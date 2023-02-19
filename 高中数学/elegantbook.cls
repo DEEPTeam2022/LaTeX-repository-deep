@@ -1033,7 +1033,7 @@
 \renewcommand{\theexam}{\thesection.\arabic{exam}}
 \newenvironment{example}[1][]{
   \refstepcounter{exam}
-  \par\noindent\textbf{\color{main}{\examplename} \theexam #1 }\rmfamily}{
+  \vspace{1em}\noindent\textbf{\color{main}{\examplename} \theexam #1 }\rmfamily}{
   \par\ignorespacesafterend}
 
 %% Exercise with counter
@@ -1053,7 +1053,7 @@
 \renewcommand{\theprob}{\thechapter.\arabic{prob}}
 \newenvironment{problem}[1][]{
   \refstepcounter{prob}
-  \par\noindent\textbf{\color{main}{\problemname} \theprob #1 }\rmfamily}{
+  \vspace{1em}\noindent\textbf{\color{main}{\problemname} \theprob #1 }\rmfamily}{
   \par\ignorespacesafterend}
 
 \newenvironment{note}{

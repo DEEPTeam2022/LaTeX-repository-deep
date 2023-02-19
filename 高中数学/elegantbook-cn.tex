@@ -37,7 +37,7 @@
 
 \author{Johnny Tang}
 \institute{DEEP Team}
-\date{January 21, 2022}
+\date{January 21, 2023}
 
 \extrainfo{请：相信时间的力量，敬畏概率的准则}
 
@@ -62,6 +62,8 @@
 
 \tableofcontents
 
+注：初等数论部分在我学完后开始编写.
+
 \newpage
 
 \part{预备知识}
@@ -71,7 +73,16 @@
 
 \section{数理逻辑}
 
-先讨论命题之间的关系.
+\subsection{命题的概念}
+
+\begin{definition}{命题}
+	由一个陈述句表达的、具有真值的判断称为\textbf{命题}.
+\end{definition}
+\begin{remark}
+	有一种特殊的命题，形如“若$p$，则$q$”，这种命题可以帮助我们判断很多要素.
+\end{remark}
+
+命题之间有一些特殊关系.
 
 \begin{definition}{充分条件与必要条件} %ayumu数分p1定义0.1
 	设命题$A$和$B$.若$A$可以推得$B$，则称命题$A$是$B$的\textbf{充分条件}(sufficient condition)，$B$是$A$的\textbf{必要条件}(necessary condition)，记作$$A \Rightarrow B,~\text{或}~B \Leftarrow A$$
@@ -82,17 +93,22 @@
 	还有一个类似的逻辑语言：有且仅有(恰有)，这意味着存在一个(存在性)且只有一个(唯一性).例如，平面中，过直线外一点有且仅有一条直线与之平行.
 \end{remark}
 
-可以用图像来更好理解该定义：
+可以用图像来更好理解该定义.
 
-% TODO 充分条件与必要条件的示意图
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=5cm]{attachment/202302191.pdf}
+	\caption{例如，此时$A$是$B$的必要且不充分条件}
+\end{figure}
 
 \begin{example}
 	(1)一个四边形“是菱形”是“它的对角线互相垂直”的\tk 条件. \\
 	(2)“$0<x<1$”是“$x<2$”的\tk 条件. \\
-	(3)“人类生存”是“人类呼吸”的\tk 条件.
+	(3)设有命题$p,q$.则“$p \Rightarrow q$”是“$p \Leftrightarrow q$”的\tk 条件. \\
+	(4)“$x^2-5x+6 \neq 0$”是“$x \neq 2$”的\tk 条件.
 \end{example}
 \begin{solution}
-	(1)充分；(2)必要；(3)充分.
+	(1)充分且不必要；(2)充分且不必要；(3)必要且不充分；(4)必要且不充分.
 \end{solution}
 
 不过这种直观的判断方式比较迷惑，我们可以通过命题的逻辑运算更好地思考这些问题.
@@ -101,21 +117,19 @@
 	设命题$A$与$B$， \\
 	(1)若$A$和$B$中至少有一个命题成立，则称$A$\textbf{或}(or)$B$，记作$$A \vee B$$
 	(2)若$A$和$B$同时成立，则称$A$\textbf{且}(and)$B$，记作$$A \wedge B$$
-	(3)若$A$的相反形式成立，则称\textbf{非}(not)$A$，记作$$\neg A$$
+	(3)若$A$的相反形式成立，则称\textbf{非}(not)$A$(或称$A$的否定)，记作$$\neg A$$
 \end{definition}
+\begin{remark}
+	关于“且”“或”的否定，存在如下规律：
+	$$\neg (A \vee B) = (\neg A) \wedge (\neg B)$$
+	$$\neg (A \wedge B) = (\neg A) \vee (\neg B)$$
+\end{remark}
 
-\begin{definition}{原命题，逆命题，否命题，逆否命题}
-	设有\textbf{原命题}(primitive proposition)：$P \Rightarrow Q$. \\
-	(1)\textbf{逆命题}(converse proposition)定义为：$$Q \Rightarrow P$$
-	(2)\textbf{否命题}(inverse proposition)定义为：$$\neg P \Rightarrow \neg Q$$
-	(3)\textbf{逆否命题}(contrapositive proposition)定义为：$$\neg Q \Rightarrow \neg P$$
-\end{definition}
+另外，对于任意命题的否定，有一个重要法则.在二值逻辑中，该定律实际上告诉我们一个命题$P$要么为真、要么为假.
 
-\begin{proposition}
-	逆否命题与原命题的真假性相同.
+\begin{proposition}{排中律}
+	对于任何命题$P$，$P \vee (\neg P)$为真.
 \end{proposition}
-
-由这个命题，我们知道“$A$是$B$的必要条件”等价于“$\neg A \Rightarrow \neg B$”.这就比之前的判断方式更确切.
 
 \begin{definition}{存在，任意}
 	设命题$A$， \\
@@ -123,20 +137,54 @@
 	(2)若对于\textbf{任意}(for all)$x$都能使得命题$A$成立，可以记作$$\forall x,A$$
 \end{definition}
 \begin{remark}
-	“$s.t.$”是“$such~that$”的缩写.
+	“$s.t.$”是“\textit{such that}”的缩写.
 \end{remark}
 \begin{remark}
-	“存在”与“任意”的相互关系如下：$$\neg (\forall x,A) = \exists x~s.t.~\neg A$$
+	“存在”与“任意”的否定如下：
+	$$\neg (\forall x,A) = \exists x~s.t.~\neg A$$
+	$$\neg (\exists x~s.t.~A) = \forall x,\neg A$$
 \end{remark}
+
+\subsection{特殊的命题}
+
+我们可以对特殊的“若$p$，则$q$”型命题进行更进一步的讨论.
+
+\begin{definition}{原命题，逆命题，否命题，逆否命题}
+	设有\textbf{原命题}(primitive proposition)可以表示为$P \Rightarrow Q$的形式. \\
+	(1)\textbf{逆命题}(converse proposition)定义为：$$Q \Rightarrow P$$
+	(2)\textbf{否命题}(inverse proposition)定义为：$$\neg P \Rightarrow \neg Q$$
+	(3)\textbf{逆否命题}(contrapositive proposition)定义为：$$\neg Q \Rightarrow \neg P$$
+\end{definition}
+\begin{remark}
+	此时否命题就是原命题的否定形式，即$\neg (P \Rightarrow Q) = (\neg Q \Rightarrow \neg P)$.
+\end{remark}
+
+回顾上一个例题的最后一问，除了用直观的判断方式以外，我们还可以用反证法说明“若$x \neq 2$，则$x^2-5x+6 \neq 0$”.实际上，反证法的本质就是以下命题所述：
+
+\begin{proposition}
+	逆否命题与原命题的真假性相同.
+\end{proposition}
+
+这个命题也可用图像来解释：
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{attachment/202302192.pdf}
+	\caption{逆否命题与原命题的真假性比较}
+\end{figure}
+
+容易发现，其中“若$A$，则$B$”就等价于“若$\neg B$(即矩形除去大圆的区域)，则$\neg A$(即矩形除去小圆的区域)”.
+
+
 
 
 \begin{example}
 	证明：$\sqrt{2}$是无理数.
 \end{example}
 \begin{proof}
-	设原命题：“能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是有理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
-	构造逆否命题：“$\sqrt{2}$是有理数”$\Rightarrow$“存在一个能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数不是有理数”， \\
-	即“$\sqrt{2}$是有理数”$\Rightarrow$“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”. \\
+	设原命题：“所有能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是有理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
+	则原命题等价于“所有不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是无理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
+	构造逆否命题：“$\sqrt{2}$是有理数”$\Rightarrow$“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”， \\
 	由“$\sqrt{2}$是有理数”，假设$\sqrt{2}= \dfrac{p}{q}~$($p,q$都是正整数且互质).两边同时平方，有$$2q^2=p^2$$
 	这要求$p$是$2$的倍数，因而$p^2$是$4$的倍数，故$q^2$是$2$的倍数.又因为$q$是整数，所以$q$是$2$的倍数，那么$p,q$不互质，即$\sqrt{2}$不能表示为上述形式.这就证明了“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”.由于原命题与逆否命题的真假性相同，故原命题也成立.
 \end{proof}
@@ -181,7 +229,7 @@
 	(3)给定实数集合$A,B$，定义运算$A \oplus B = \{ x|x=ab+a+b,a \in A,b \in B \}$.设$A = \{ 0,2,4,\cdots ,18 \},~B= \{ 98,99,100 \}$，则$A \oplus B$中所有元素之和为\tk .
 \end{example}
 \begin{solution}
-	待解答.
+	% TODO 例题待解答
 \end{solution}
 
 以下介绍集合之间的关系：
@@ -202,11 +250,17 @@
 有时我们需要研究某个有限集合的元素个数.设有限集$A$，可以用$\card (A)$表示其元素个数(card即\textit{cardinal}，基数).另外，有限集$A$的\textbf{阶}也表示其元素个数，记作$|A|$.
 
 \begin{example}
-	对于一个有限集$A$，它的子集个数为$2^{|A|}$个，真子集个数为$2^{|A|}-1$个.
+	证明：对于一个有限集$A$，它的子集个数为$2^{|A|}$个，真子集个数为$2^{|A|}-1$个.
 \end{example}
+\begin{solution}
+	% TODO 例题待解答
+\end{solution}
 \begin{example}
 	设$\{ b_n \}$是集合$\{ 2^t+2^s+2^r | 0 \leq r < s < t,~r,s,t \in \mathbb{Z} \}$中所有的数从小到大排列成的数列，已知$b_k=1160$，求$k$.
 \end{example}
+\begin{solution}
+	% TODO 例题待解答
+\end{solution}
 
 \subsection{集合间的运算与运算律}
 
@@ -240,70 +294,12 @@
 	(2)已知$M,N$均为$\mathbb{R}$的子集，且$(\complement _{\mathbb{R}} M) \subseteq N$，则$M \cup (\complement _{\mathbb{R}} N)=$\tk . \\
 	(3)设集合$A = \{ x|1 \leq x \leq 2000,~x \in \mathbb{N} \}$，$B = \{ x|1993 \leq x \leq 2021,~x \in \mathbb{N} \}$.则满足$S \subseteq A$，且$S \cap B \neq \varnothing$的集合$S$的个数为\tk .
 \end{example}
+\begin{solution}
+	% TODO 例题待解答
+\end{solution}
 
 
-\chapter{新的数域与运算}
-
-\section{复数}
-
-\begin{definition}{复数}
-	记$z=a+b\ic $($a,b \in \R$)为一个\textbf{复数}(complex number)，其中$\ic ^2=-1$.由所有复数构成的集合记为$\C$. \\
-	$\C$上的加法与乘法定义如下：
-	$$(a+b\ic ) + (c+d\ic ) = (a+c) + (b+d)\ic $$
-	$$(a+b\ic )(c+d\ic ) = (ac-bd) + (ad+bc)\ic $$
-\end{definition}
-
-\begin{proposition}{复数运算的性质}{Fxkvi}
-	(1) 交换性质$$\forall \alpha , \beta \in \C , \alpha + \beta = \beta + \alpha , \alpha \beta = \beta \alpha$$
-	(2) 结合性质$$\forall \alpha , \beta , \lambda \in \C , (\alpha + \beta) + \lambda = \alpha + (\beta + \lambda) , (\alpha \beta) \lambda = \alpha (\beta \lambda)$$
-	(3) 单位元$$\forall \lambda \in \C , \lambda + 0 = \lambda , 1 \lambda = \lambda$$
-	(4) 加法逆元$$\forall \alpha \in \C , \exists ! \beta \in \C , \alpha + \beta = 0$$
-	(5) 乘法逆元$$\forall \alpha \in \C (\alpha \neq 0) , \exists ! \beta \in \C , \alpha \beta = 1$$
-	(6) 分配性质$$\forall \lambda , \alpha , \beta \in \C , \lambda (\alpha + \beta) = \lambda \alpha + \lambda \beta$$
-\end{proposition}
-\begin{proof}
-	这里只选择部分性质证明： \\
-	(1) 加法交换性质：设$\alpha = a+b\ic , \beta = c+d\ic ~(a,b,c,d \in \R )$，则
-	\begin{align*}
-		\alpha + \beta &= (a+b\ic ) + (c+d\ic ) \\
-		&= (a+c) + (b+d)\ic \\
-		&= (c+a) + (d+b)\ic \\
-		\beta + \alpha &= (c+d\ic ) + (a+b\ic ) \\
-		&= (c+a) + (d+b)\ic
-	\end{align*}
-	因此有$\alpha + \beta = \beta + \alpha$ \\
-	(2) 乘法单位元：设$\lambda = a+b\ic ~ (a,b \in \R )$，那么$$1 \lambda = (1+0\ic )(a+b\ic ) = a + b\ic = \lambda$$
-	(3) 加法逆元：先证明存在.设$\alpha = a+b\ic $，取$\beta = (-a) + (-b)\ic $，则$\alpha + \beta = 0+0\ic = 0$；\\
-	再证明唯一.假设$\beta _1, \beta _2 \in \C $均为$\alpha$的加法逆元，那么$$\beta _1 = \beta _1 + 0 = \beta _1 + \alpha + \beta _2 = 0 + \beta _2 = \beta _2$$
-	这与假设矛盾，则$\alpha$的加法逆元是唯一的.
-\end{proof}
-
-由此可以引出\textbf{域}的正式定义：
-
-\begin{definition}{域}
-	\textbf{域}是一个集合$\F$，它带有加法与乘法两种运算(分别在加法与乘法上封闭)，且这些运算满足命题\ref{pro:Fxkvi}所示所有性质.
-\end{definition}
-\begin{remark}
-	最小的域是一个集合$\{ 0,1 \}$，带有通常的加法与乘法运算，但规定$1+1=0$.
-\end{remark}
-
-容易验证，$\R$与$\C$都是域.
-
-总是用$\beta$表示$\alpha$的逆元非常不自然，因此定义出加/乘法逆元的表示与减/除法.
-
-\begin{definition}{加法逆元，减法，乘法逆元，除法}
-	设$\alpha , \beta \in \C $.
-	\begin{itemize}
-		\item 令$- \alpha$表示$\alpha$的加法逆元，即$-\alpha$是使得$$\alpha + (-\alpha) = 0$$成立的唯一复数.
-		\item 对于$\alpha \neq 0$，令$\alpha ^{-1}$表示$\alpha$的乘法逆元，即$\alpha ^{-1}$是使得$$\alpha (\alpha ^{-1}) = 1$$成立的唯一复数.
-		\item 定义$\C $上的\textbf{减法}：$$\beta - \alpha = \beta + (-\alpha)$$
-		\item 定义$\C $上的\textbf{除法}：$$\beta / \alpha = \beta (1 / \alpha)$$
-	\end{itemize}
-\end{definition}
-
-\newpage
-\section{对数运算}
-
+\chapter{对数运算}
 在初中我们常常遇到一类问题：例如，求$2$的多少次方是$1024$.这种简单的式子还可以一眼看出结果，那么$2$的多少次方是$1023$呢？这就不好说明.更进一步，我们甚至找不到一个比较好的逼近计算的方式.于是人们发明了对数运算：
 
 一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数.通常把以$10$为底的对数叫做\textbf{常用对数}(common logarithm)(化学中pH值的计算公式就包括它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
@@ -346,9 +342,39 @@
 	若要计算$\lg{120}$与$\lg{0.012}$，只需要知道$\lg{1.2}$的值.于是$\lg{N}$可以被用在换底公式中作为“工具对数”来近似计算.
 \end{remark}
 
+\chapter{多项式与代数变换}
+
+\section{多项式与Vieta定理}
+
+多项式，多项式间的关系与运算，多项式的带余除法，多项式的根，余数定理，因式定理，Vieta定理
+
+\begin{definition}{多项式}
+	形如$$f(x) = a_nx^n + \cdots + a_1x + a_0~(a_n \neq 0)$$的表达式称为关于$x$的一元$n$次\textbf{多项式}(polynomial)，其中$n$称为多项式的\textbf{次数}，记作$\deg f = n$.规定恒等于$0$的多项式的次数为$-\infty$.
+\end{definition}
+
+\begin{definition}{多项式间的关系与运算}
+	设$f(x) = \sum_{k=0}^{n}a_kx^k,~g(x) = \sum_{k=0}^{m}b_kx^k$.不妨设$n \geq m$，规定$b_k=0~(k > m)$.
+	\begin{itemize}
+		\item $f(x)=g(x)$的充要条件是$n=m,~a_k=b_k$.
+		\item 多项式的加减法定义如下：$$f(x) \pm g(x) := \sum_{k=0}^{n} (a_k \pm b_k)x^{k}$$
+		\item 多项式的乘法定义如下：$$f(x) \cdot g(x) := \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k$$
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}{多项式的带余除法}
+	若$f(x)$和$g(x)$是两个已知的多项式，其中$g(x)$不是零多项式，那么存在唯一的一对多项式$q(x)$和$r(x)$，使得$$f(x) = g(x) \cdot q(x) + r(x)$$其中$\deg r < \deg g$或$r(x)=0$.称$q(x)$和$r(x)$分别为$f(x)$除以$g(x)$所得的\textbf{商式}与\textbf{余式}.
+\end{proposition}
+
+\section{整式恒等变形}
+
+换元技巧，齐次性原理
+
+\section{简单的不等式}
+
+绝对值不等式，糖水不等式，均值不等式，线性规划
+
 \part{函数与数列}
 
-\setcounter{chapter}{0}
 \chapter{函数}
 
 \section{映射与函数}
@@ -482,7 +508,7 @@
 
 反三角函数的概念、图像与性质
 
-\chapter{数列}
+\chapter{数列与数学归纳法}
 
 数列，顾名思义，就是将一组数按顺序排为一列的形式.为了区别于集合与组，一般直接将每一项列出来而不加括号，例如$a_1,a_2, \cdots ,a_n$.也可以用通项公式或递推公式表示，例如
 $$\{ a_n \}_{n=1}^{\infty} \qquad a_{n+k}=f(a_{n+1}, \cdots ,a_{n+k-1})$$
@@ -523,7 +549,7 @@ $$\{ a_n \}_{n=1}^{\infty} \qquad a_{n+k}=f(a_{n+1}, \cdots ,a_{n+k-1})$$
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	XXX
+	% TODO 命题待证明
 \end{proof}
 
 在证明一个数列是等差数列或利用题目中关于等差数列的条件时，常常利用等差数列的定义，即相邻两项之差为定值.
@@ -610,7 +636,7 @@ $$
 	那么，对任意$n \in \mathbb{N}^{*}$，$P(n)$都成立.
 \end{theorem}
 \begin{proof}
-	XXX
+	% TODO 命题待证明
 \end{proof}
 
 在应用数学归纳法时，我们可以对“跨度”有轻微的调整，这就是跳跃数学归纳法：
@@ -621,7 +647,7 @@ $$
 	那么，对任意$n \in \mathbb{N}^{*}$，$P(n)$都成立.
 \end{corollary}
 \begin{proof}
-	XXX
+	% TODO 命题待证明
 \end{proof}
 
 还有一种略有不同的归纳法：
@@ -632,7 +658,7 @@ $$
 	那么，对任意$n \in \mathbb{N}^{*}$，$P(n)$都成立.
 \end{theorem}
 \begin{proof}
-	XXX
+	% TODO 命题待证明
 \end{proof}
 
 \subsection{最小数原理与无穷递降法}
@@ -701,7 +727,7 @@ Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
 
 正方体，正四面体
 
-\section{空间向量}
+\section{空间向量的应用}
 
 空间向量基本定理，法向量与夹角计算
 
@@ -711,11 +737,91 @@ Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
 
 \subsection{点与直线}
 
-形式，位置关系判断，点到直线距离公式，定比分点公式
+在初中，我们曾接触到了“一次函数的图像”，这种形如$\{ (x,y):y=kx+b \}$的式子可以用来表达任意不垂直于$x$轴的直线.为了将形如$x=a$的直线表示出来，规定直线方程的\textbf{一般式}为如下形式：$$Ax+By+C=0~(A^2+B^2 \neq 0)$$
+
+为了方便计算，直线方程还衍生出了如下各种形式：
+
+\begin{table}[h]
+	\centering
+	\renewcommand\arraystretch{1.5}
+	\begin{tabular}{ccc}
+		\toprule
+		名称&形式&限制条件 \\
+		\midrule
+		点斜式 & $y-y_0=k(x-x_0)$ & 不能表示垂直于$x$轴的直线 \\
+		斜截式 & $y=kx+b$ & 不能表示垂直于$x$轴的直线 \\
+		两点式 & $\dfrac{y-y_1}{x-x_1}=\dfrac{y-y_2}{x-x_2}$ & 不能表示垂直于$x$轴的直线 \\
+		截距式 & $\dfrac{x}{a}+\dfrac{y}{b}=1~(ab \neq 0)$ & 不能表示垂直于$x$轴、$y$轴或经过原点的直线 \\
+		参数式 & $\begin{cases}
+			x=x_0+t\cos \alpha \\
+			y=y_0+t\sin \alpha
+		\end{cases},~\textit{其中}t\textit{为参数}$ & 无 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+其中，斜截式用来表达直线的倾斜角非常合适.
+
+\begin{definition}{直线的倾斜角、斜率与解析式}
+    对于直线$l$，我们把它向上的方向与$x$轴正方向所成的夹角定义为它的\textbf{倾斜角}，一般记作$\alpha$，注意应该满足$0^{\circ} \leq \alpha < 180^{\circ}$；\\
+    那么就可以推出斜率的定义：直线倾斜角$\alpha$的正切值叫做这条直线的\textbf{斜率}，一般记作$k$，倾斜角为$90^{\circ}$的直线没有斜率；\\
+    因而，若已知$l$在$y$轴上的截距$b$（即$l$与$y$轴的交点纵坐标）及它的斜率$k$，我们可以把$l$用一个函数关系式表达出来：$$y=kx+b$$
+\end{definition}
+
+平面中与点和直线相关的定理如下.
+
+\begin{theorem}{定比分点公式}
+	已知点$A(x_1,y_1),~B(x_2,y_2)$，若点$P(x,y)$分$AB$的比为$\dfrac{AP}{BP}=\lambda$，则$$x=\frac{x_1+\lambda x_2}{1+\lambda}, \quad y = \frac{y_1+\lambda y_2}{1+\lambda}$$
+\end{theorem}
+
+\begin{theorem}{点到直线距离公式}
+	设点$P(x_0,y_0)$，直线$l:Ax+By+C=0$，则$$d_{P-l}=\frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}$$
+\end{theorem}
+
+直线间的位置关系判断如下(以一般式为例)：
+
+\begin{proposition}{直线间的位置关系}
+	设$l_1:A_1x+B_1y+C_1=0,~l_2:A_2x+B_2y+C_2=0$. \\
+	(1)$~l_1 \parallel l_2$等价于$$\begin{cases}
+		A_1B_2-A_2B_1=0 \\
+		A_1C_2-A_2C_1 \neq 0
+	\end{cases}$$
+	(2)$~l_1 \bot l_2$等价于$$A_1A_2+B_1B_2=0$$
+\end{proposition}
+
+如例题中所示，有些时候为了使用待定系数法，需要进行一系列繁杂的计算.通过直线系(一系列具有相同性质直线的集合)可以很好地表达出这种约束关系.
+
+\begin{proposition}{常见直线系的方程形式}
+	设$l_1:A_1x+B_1y+C_1=0,~l_2:A_2x+B_2y+C_2=0$. \\
+	(1)所有平行于$l_1$的直线构成集合$$\{ l|l:A_1x-B_1y+m=0 \}~(m \neq C_1)$$
+	(2)所有垂直于$l_1$的直线构成集合$$\{ l|l:B_1x-A_1y+n=0 \}$$
+	(3)所有经过$l_1,l_2$交点的直线构成集合$$\{ l|l:A_1x+B_1y+C_1+\lambda (A_2x+B_2y+C_2)=0 \} \cup l_2$$
+\end{proposition}
+
+\begin{problem}
+	求空间中直线方程的一般形式.
+\end{problem}
 
 \subsection{圆}
 
-标准方程，参数方程
+圆方程的各种形式如下：
+
+\begin{table}[h]
+	\centering
+	\renewcommand\arraystretch{1.5}
+	\begin{tabular}{ccc}
+		\toprule
+		名称&形式&几何含义 \\
+		\midrule
+		标准方程 & $(x-a)^2+(y-b)^2=r^2$ & 其中$(a,b)$为圆心，$r$为半径 \\
+		一般方程 & $x^2+y^2+Dx+Ey+F=0~(D^2+E^2-4F>0)$ & 无 \\
+		参数方程 & $\begin{cases}
+			x=a+r\cos \theta \\
+			y=b+r\cos \theta
+		\end{cases}, ~\textit{其中}\theta \textit{为参数}$ & 其中$(a,b)$为圆心，$r$为半径 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \section{圆锥曲线}
 
@@ -727,14 +833,69 @@ Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
 
 第二定义，抛物线
 
-\section{圆锥曲线计算技巧}
-
 
 \part{数与代数}
 
 \chapter{复数}
 
 \section{复数的概念}
+
+\subsection{复数与复数域}
+
+\begin{definition}{复数}
+	记$z=a+b\ic $($a,b \in \R$)为一个\textbf{复数}(complex number)，其中$\ic ^2=-1$.由所有复数构成的集合记为$\C$. \\
+	$\C$上的加法与乘法定义如下：
+	$$(a+b\ic ) + (c+d\ic ) = (a+c) + (b+d)\ic $$
+	$$(a+b\ic )(c+d\ic ) = (ac-bd) + (ad+bc)\ic $$
+\end{definition}
+
+\begin{proposition}{复数运算的性质}{Fxkvi}
+	(1) 交换性质$$\forall \alpha , \beta \in \C , \alpha + \beta = \beta + \alpha , \alpha \beta = \beta \alpha$$
+	(2) 结合性质$$\forall \alpha , \beta , \lambda \in \C , (\alpha + \beta) + \lambda = \alpha + (\beta + \lambda) , (\alpha \beta) \lambda = \alpha (\beta \lambda)$$
+	(3) 单位元$$\forall \lambda \in \C , \lambda + 0 = \lambda , 1 \lambda = \lambda$$
+	(4) 加法逆元$$\forall \alpha \in \C , \exists ! \beta \in \C , \alpha + \beta = 0$$
+	(5) 乘法逆元$$\forall \alpha \in \C (\alpha \neq 0) , \exists ! \beta \in \C , \alpha \beta = 1$$
+	(6) 分配性质$$\forall \lambda , \alpha , \beta \in \C , \lambda (\alpha + \beta) = \lambda \alpha + \lambda \beta$$
+\end{proposition}
+\begin{proof}
+	这里只选择部分性质证明： \\
+	(1) 加法交换性质：设$\alpha = a+b\ic , \beta = c+d\ic ~(a,b,c,d \in \R )$，则
+	\begin{align*}
+		\alpha + \beta &= (a+b\ic ) + (c+d\ic ) \\
+		&= (a+c) + (b+d)\ic \\
+		&= (c+a) + (d+b)\ic \\
+		\beta + \alpha &= (c+d\ic ) + (a+b\ic ) \\
+		&= (c+a) + (d+b)\ic
+	\end{align*}
+	因此有$\alpha + \beta = \beta + \alpha$ \\
+	(2) 乘法单位元：设$\lambda = a+b\ic ~ (a,b \in \R )$，那么$$1 \lambda = (1+0\ic )(a+b\ic ) = a + b\ic = \lambda$$
+	(3) 加法逆元：先证明存在.设$\alpha = a+b\ic $，取$\beta = (-a) + (-b)\ic $，则$\alpha + \beta = 0+0\ic = 0$；\\
+	再证明唯一.假设$\beta _1, \beta _2 \in \C $均为$\alpha$的加法逆元，那么$$\beta _1 = \beta _1 + 0 = \beta _1 + \alpha + \beta _2 = 0 + \beta _2 = \beta _2$$
+	这与假设矛盾，则$\alpha$的加法逆元是唯一的.
+\end{proof}
+
+由此可以引出\textbf{域}的正式定义：
+
+\begin{definition}{域}
+	\textbf{域}是一个集合$\F$，它带有加法与乘法两种运算(分别在加法与乘法上封闭)，且这些运算满足命题\ref{pro:Fxkvi}所示所有性质.
+\end{definition}
+\begin{remark}
+	最小的域是一个集合$\{ 0,1 \}$，带有通常的加法与乘法运算，但规定$1+1=0$.
+\end{remark}
+
+容易验证，$\R$与$\C$都是域.
+
+总是用$\beta$表示$\alpha$的逆元非常不自然，因此定义出加/乘法逆元的表示与减/除法.
+
+\begin{definition}{加法逆元，减法，乘法逆元，除法}
+	设$\alpha , \beta \in \C $.
+	\begin{itemize}
+		\item 令$- \alpha$表示$\alpha$的加法逆元，即$-\alpha$是使得$$\alpha + (-\alpha) = 0$$成立的唯一复数.
+		\item 对于$\alpha \neq 0$，令$\alpha ^{-1}$表示$\alpha$的乘法逆元，即$\alpha ^{-1}$是使得$$\alpha (\alpha ^{-1}) = 1$$成立的唯一复数.
+		\item 定义$\C $上的\textbf{减法}：$$\beta - \alpha = \beta + (-\alpha)$$
+		\item 定义$\C $上的\textbf{除法}：$$\beta / \alpha = \beta (1 / \alpha)$$
+	\end{itemize}
+\end{definition}
 
 \subsection{复数的表示}
 
@@ -747,41 +908,6 @@ Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
 \section{复数的应用}
 
 三角函数的复数形式，双曲函数的复数形式
-
-\chapter{代数变换与多项式}
-
-\section{多项式的概念}
-
-多项式，多项式间的关系与运算，多项式的带余除法
-
-\begin{definition}{多项式}
-	形如$$f(x) = a_nx^n + \cdots + a_1x + a_0~(a_n \neq 0)$$的表达式称为关于$x$的一元$n$次\textbf{多项式}(polynomial)，其中$n$称为多项式的\textbf{次数}，记作$\deg f = n$.规定恒等于$0$的多项式的次数为$-\infty$.
-\end{definition}
-
-\begin{definition}{多项式间的关系与运算}
-	设$f(x) = \sum_{k=0}^{n}a_kx^k,~g(x) = \sum_{k=0}^{m}b_kx^k$.不妨设$n \geq m$，规定$b_k=0~(k > m)$.
-	\begin{itemize}
-		\item $f(x)=g(x)$的充要条件是$n=m,~a_k=b_k$.
-		\item 多项式的加减法定义如下：$$f(x) \pm g(x) := \sum_{k=0}^{n} (a_k \pm b_k)x^{k}$$
-		\item 多项式的乘法定义如下：$$f(x) \cdot g(x) := \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k$$
-	\end{itemize}
-\end{definition}
-
-\begin{proposition}{多项式的带余除法}
-	若$f(x)$和$g(x)$是两个已知的多项式，其中$g(x)$不是零多项式，那么存在唯一的一对多项式$q(x)$和$r(x)$，使得$$f(x) = g(x) \cdot q(x) + r(x)$$其中$\deg r < \deg g$或$r(x)=0$.称$q(x)$和$r(x)$分别为$f(x)$除以$g(x)$所得的\textbf{商式}与\textbf{余式}.
-\end{proposition}
-
-\section{多项式的根与Vieta定理}
-
-多项式的根，余数定理，因式定理，Vieta定理
-
-\section{整式恒等变形}
-
-换元技巧，齐次性原理
-
-\section{简单的不等式}
-
-绝对值不等式，糖水不等式，均值不等式，线性规划
 
 \chapter{不等式}
 
@@ -815,7 +941,7 @@ Hölder不等式，Young不等式，Schur不等式，权方和不等式，Bernou
 
 一些常见的几何不等式
 
-\part{概率、统计与组合}
+\part{概率、计数与组合}
 
 \chapter{概率、计数与组合}
 
