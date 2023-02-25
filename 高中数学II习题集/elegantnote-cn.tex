@@ -25,6 +25,7 @@
 \DeclareMathAccent{\hu}{\mathord}{yh}{"F3}
 \newcommand{\xl}[1]{\overrightarrow{#1}}
 \newcommand{\nd}[1]{〔#1〕}
+\newcommand{\cor}{~\textit{或}~}
 \newcommand{\ssb}[1]{\left( #1 \right)}
 \newcommand{\sw}[1]{\boxed{\text{解法 #1}} \ }
 \newcommand{\buzhou}[1]{$#1^{\circ} \ $}
@@ -551,8 +552,83 @@ $7$ & $2,3,4,5,6~~\hlt{5}$ & $1,3,4,5,6~~\hlt{5}$ & $2,4,5,6~~\hlt{4}$ & $3,5,6~
 \end{solution}
 
 
+\chapter{兴趣二阶数论}
 
+\begin{problem} % 兴趣二阶数论1.1
+	黑板上写着五个正整数，其中任何三个数的和均可被其余两个数中的每一个整除.问：这五个数中是否一定有四个相同的数？
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		设这五个数分别为$a,b,c,d,e$.对于$a$，由于$$a\mid b+c+d,\quad a\mid b+c+e,\quad a\mid b+d+e,\quad a\mid c+d+e$$
+		可知$a\mid b-c,a\mid b-d,\cdots$.例如，对于$a\mid b-c$，为了让$b-c=0$，自然想到令$a$为最大元.
+	\end{guess}
+	不妨设这五个数分别为$a,b,c,d,e$，满足$a \geq b \geq c \geq d \geq e$.对于$a$，由于$a\mid b+d+e,~a\mid c+d+e$，故$a\mid b-c$.因为$b,c \leq a$，自然$b-c \leq a$，故$b-c=0$.同理$c-d=0,d-e=0$，即$b=c=d=e$.
+\end{solution}
 
+\begin{problem} % 兴趣二阶数论1.1
+	已知正整数$n$有至少三个不同的真因子.求最小的$n$，使得这三个因子之和等于$1001$.
+\end{problem}
+\begin{solution}
+	先求$n$的范围：容易发现，这三个真因子至多是$\dfrac{n}{2},\dfrac{n}{3},\dfrac{n}{4}$，可得$$1001 \leq \frac{n}{2} + \frac{n}{3} + \frac{n}{4}$$
+	即$n \geq 924$.当$n=924$时，由于$462\mid n,308\mid n,231\mid n$，又$462+308+231=1001$，故原命题成立.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.2
+	已知$13$分别除以$5,7,9$所得的余数依次为$3,6,4$，将三个余数相加仍然得到原数$13$. \\
+	(1)设$a,b$均小于$n~(a,b,n \in \mathbb{Z}_+)$，证明：$n$除以$a,b$所得余数之和不可能等于$n$. \\
+	(2)若$n~(n>229)$除以$99,132,229$所得余数之和仍为$n$，求所有的$n$.
+\end{problem}
+\begin{solution}
+	(1)记$n=q_1a+r_1=q_2b+r_2$， \\
+	当$a>\dfrac{n}{2}$时，$q_1=1$，因而$r_1<\dfrac{n}{2}$；当$a \leq \dfrac{n}{2}$时，总有$r_1 < a <\dfrac{n}{2}$.故$r_1<\dfrac{n}{2}$，同理$r_2<\dfrac{n}{2}$，于是$$r_1+r_2 < \frac{n}{2} + \frac{n}{2} = n$$
+	即$r_1+r_2 \neq n$. \\
+	(2)\begin{guess}
+		注意到，$98+131=229$.自然想到$r \leq a-1$.
+	\end{guess}
+	设$n$除以$99,132,229$的余数分别为$r_1,r_2,r_3$，满足$n=r_1+r_2+r_3$.可知$$r_1 \leq 98,\quad r_2 \leq 131$$
+	于是$r_1+r_2 \leq 229$.另一方面，由$229\mid n-r_3$，有$229 \leq n-r_3 \leq 229$，可知所有的等号全部取到，即$r_1=98,~r_2=131$，也即$$99\mid n+1,\quad 132\mid n+1$$
+	再结合$229<n<229+228$(这是因为$n=r_1+r_2+r_3<229+228$)，可知这样的$n$只有$395$一个.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.3
+	设$a_1, \cdots ,a_{10}$是不小于$3$的互异正整数，满足$a_1+ \cdots + a_{10}=678$.是否存在正整数$n$，使得当$n$分别除以$a_1, \cdots ,a_{10},2a_1, \cdots ,2a_{10}$这$20$个数所得到的余数的和等于$2012$.
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		记$n$除以$a_i,2a_i$的余数分别为$r_i,t_i$，对于$a_i$与$2a_i$，注意到$$r_i=\begin{cases}
+			t_i-a_i &t_i \geq a_i \\
+			t_i &t_i < a_i
+		\end{cases},\quad i.e. \quad r_i+t_i=\begin{cases}
+			2r_i+a_i<3a_i &t_i \geq a_i \\
+			2r_i<2a_i &t_i < a_i
+		\end{cases}$$
+		由于$3(a_1+ \cdots + a_{10})$刚好超过$2012$，容易发现全都是第一种情况.
+	\end{guess}
+	记$n$除以$a_i,2a_i$的余数分别为$r_i,t_i$.由于
+	\begin{align*}
+		2012&=r_1+ \cdots + r_{10} + t_1 + \cdots + t_{10} \\
+		&\leq (a_1-1)+ \cdots + (a_{10}-1)+(2a_1-1)+ \cdots + (2a_{10}-1) \\
+		&=3(a_1+ \cdots + a_{10})-20=2014
+	\end{align*}
+	又因为$a_i \geq 3$，所以$t_i=a_i+r_i,~(i=1, \cdots ,10)$.代回上式，可得
+	\begin{align*}
+		2012 &= r_1+ \cdots + r_{10} + (a_1+r_1) + \cdots + (a_{10}+r_{10}) \\
+		&= 2(r_1 + \cdots + r_{10}) + 678
+	\end{align*}
+	解得$r_1 + \cdots + r_{10}=667$.注意到，$r_1 + \cdots + r_{10} \leq a_1+ \cdots + a_{10}-10=668$，故必有唯一一个$a_m$使得$r_m+2=a_m$，即$2a_m\mid n+2$.又因为$2r_i\mid n+1~(i \neq m)$，而$n+1,n+2$中必有一个为奇数，故矛盾.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.4
+	求所有满足下列条件的正整数$n$：(i)$n$至少含有$4$个正因子；(ii)对于$n$的任意正因子$a,b~(1<a<b<n)$，有$(b-a) \mid n$.
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		容易发现，$n$在过大的时候会出问题，主要矛盾类似于“完美数”从第四项就开始变得巨大的原因，即素数在大数中分布不够密集.
+	\end{guess}
+	设$n$的正因子依次为$1<r_1< \cdots <r_k<n$.取$r_1,r_k$，可知$(r_k-r_1)\mid n$，即$$\ssb{ \frac{n}{r_1}-r_1 }\mid n$$
+	因为$\ssb{ \dfrac{n}{r_1}-r_1 } \mid r_1\ssb{ \dfrac{n}{r_1}-r_1 }$，所以有$$\ssb{ \frac{n}{r_1}-r_1 }\mid r_1^2$$
+	即$\ssb{ \dfrac{n}{r_1}-r_1}=1 \cor r_1 \cor r_1^2$.由此可解得$n=6 \cor 8 \cor 12$.
+\end{solution}
 
 
 \end{document}
