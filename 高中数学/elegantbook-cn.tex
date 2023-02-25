@@ -298,8 +298,31 @@
 	% TODO 例题待解答
 \end{solution}
 
+实际上，集合之间的交、并与逻辑运算中的和、或是一样的.例如，不等式$x^2-4x+3 \geq 0$的取值范围为$$\{ x|(x \leq 1) \vee (x \geq 3) \} = \{ x|x \leq 1 \} \cup \{ x|x \geq 3 \}$$
+
+为了更方便地表示上述结果，引入区间的概念：
+
+\begin{definition}{区间}
+	定义$\R$上的一种特殊数集为\textbf{区间}(interval).例如 \\
+	$$(a,b):=\{ x \in \R | a<x<b \} \quad \textit{“开区间”}$$
+	$$[a,b]:=\{ x \in \R | a \leq x \leq b \} \quad \textit{“闭区间”}$$
+	$$(a,b]:=\{ x \in \R | a<x \leq b \} \quad \textit{“左开右闭区间”}$$
+	$$(-\infty,b):=\{ x \in \R | x<b \}$$
+	$$[a,+\infty):=\{ x \in \R | x \geq a \}$$
+	$$(-\infty ,+\infty):= \R $$
+	其他形式的区间定义相似.
+\end{definition}
+
+上文例子中$x$的取值范围就可以表达为$$(-\infty ,1] \cup [3,+\infty )$$
+
 
 \chapter{对数运算}
+
+在介绍对数运算之前，我们需要了解\textbf{幂}(power)的概念.对于单项式$a^n(n \in \mathbb{Q})$，令$n=\frac{p}{q}$，
+$$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
+
+这就是有理数次幂的严格定义.其中，$a$称为底数，$n$称为指数，$a^n$的值称为幂值.若$n$是无理数，可以通过计算有理数次幂进行逼近计算.
+
 在初中我们常常遇到一类问题：例如，求$2$的多少次方是$1024$.这种简单的式子还可以一眼看出结果，那么$2$的多少次方是$1023$呢？这就不好说明.更进一步，我们甚至找不到一个比较好的逼近计算的方式.于是人们发明了对数运算：
 
 一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数.通常把以$10$为底的对数叫做\textbf{常用对数}(common logarithm)(化学中pH值的计算公式就包括它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
@@ -379,7 +402,7 @@
 
 \section{映射与函数}
 
-映射、映射相等的概念，特殊的映射，逆映射，映射的复合，函数的概念
+\subsection{映射与函数的概念}
 
 \begin{definition}{映射}
 	\begin{itemize}
@@ -407,50 +430,280 @@
 
 % TODO 单射、满射、双射举例作图
 
+\subsection{映射与函数的运算}
+
+先介绍一种由定义自然产生的运算：
+
+\begin{definition}{逆映射与反函数} %兴趣一阶I p26
+    设映射$f:A \to B$，如果$f$是一个双射，则对任意的$y \in B$，都存在唯一的$x \in A$使得$y=f(x)$.这就产生了一个从$B$到$A$的映射，称为$f$的\textbf{逆映射}(inverse mapping)，记作$$f^{-1}:B \to A$$
+    对于这样的逆映射，它的定义域是$B$，值域是$A$.\\
+    同样地，设函数$f:A \mapsto B$，如果$f$是一个双射，则$f$的逆映射$f^{-1}$称为函数$f$的\textbf{反函数}(inverse function)，其定义域是$B$，值域是$A$.
+\end{definition}
+
+不难发现，如果两个函数互为反函数，它们的图像关于$y=x$对称.
+
+函数间加减法的定义很符合直觉.
+
+\begin{definition}{函数的加减法}
+	对于$f,g:A \to B$，对所有$x \in A$，规定函数的加减法$f \pm g$满足$$(f \pm g)(x) = f(x) \pm g(x)$$
+	函数$f \pm g$的定义域为$A$，陪域不定.
+\end{definition}
+
+那么函数之间的乘法该是如何的？实际上，如果单纯地将$f(x)$与$g(x)$的值相乘，得到的新函数很难研究.我们更倾向于研究一种特殊的“乘法”：
+
+\begin{definition}{映射与函数的复合} %兴趣一阶I p26
+    设映射$f:A \to B$，$g:B \to C$，则它们的\textbf{复合映射}(composite mapping)$gf:A \to C$定义为$$(gf)(x)=g(f(x)) \ (x \in A)$$
+    注意复合运算有先后顺序.容易说明映射$gf$的定义域为$A$，值域为$C$.\\
+    当集合$A,B,C$均为数集时，可以得到类似的复合函数定义.
+\end{definition}
+\begin{remark}
+	为了强调复合运算，$gf$也可记作$g \circ f$.
+\end{remark}
 
 \section{常见初等函数}
 
-% BV1FG4y1Q7q7 评论 by @四逝同堂
-% 科普一下 若a，b∈Q 则有a=p/q b=m/n（pq互素 mn互素）对于任意的p、q、m、n 有：p、q、m、n∈Z 
-% 而此时a^b=（p/q）^（m/n）=p^（m/n）/q^（m/n）
-% =【n次根号下p/m】/【n次根号下q/m】
-% 以上是容易计算的 但是π不仅是无理数 还是超越数 是不能轻易被代数计算的 退一万步讲 即使能够使得π=a/b（a，b∈R） 但看一下之前的分数指数幂的计算 这个计算量不是家用电子设备能运行的
+初等函数，是指用基本初等函数进行有限次加减乘除、乘方、开方、复合操作后得到的函数.
 
-基本初等函数、初等函数的概念
+在中学阶段可以遇见的基本初等函数，大致可以分为以下几类：常值函数、指数函数、对数函数、幂函数、三角函数、反三角函数.对于这些函数的概念、图像与性质，我们逐一介绍.(注：三角函数与反三角函数在下一章介绍)
 
-\subsection{二次函数}
+\subsection{基本初等函数}
 
-二次函数的性质，最值问题，实根分布问题
+\begin{definition}{常值函数}
+    形如$$f(x)=C \ (C \in \mathbb{R}, C\textit{是常数})$$
+    的函数称为\textbf{常值函数}(constant function).它的定义域为$\mathbb{R}$，值域为${C}$.
+\end{definition}
 
-\subsection{对勾函数}
+\begin{definition}{幂函数}
+    形如$$f(x)=x^{\alpha} \ (\alpha \text{是常数})$$
+    的函数称为\textbf{幂函数}(power function).
+\end{definition}
 
-对勾函数、垃圾函数的性质
+幂函数的性质不过多介绍.只需知道例如$f(x)=x^3$或$f(x)=\sqrt[4]{x}$的函数都是幂函数.
 
-\subsection{常值函数、指数函数、幂函数、对数函数}
+\begin{definition}{指数函数}
+    形如$$f(x)=a^x, \ a>0 , a\neq 1$$
+    的函数称为\textbf{指数函数}(exponential function).
+\end{definition}
 
-常值函数的概念、幂函数的概念，指数函数的概念、图像与性质，对数函数的概念、图像与性质
+\begin{proposition}{指数函数的性质}
+    指数函数$f(x)=a^x$具有以下性质：
+    \begin{itemize}
+        \item 定义域：$\mathbb{R}$
+        \item 值域：$\mathbb{R}^+$
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
+        \item 图像：恒过定点$(0,1)$
+    \end{itemize}
+\end{proposition}
+\begin{remark}
+    单调性参考后文：函数的性质.
+\end{remark}
 
-\subsection{三角函数与双曲函数}
+% TODO 指数函数的图像
 
-详见下一章.
+\begin{definition}{对数函数}
+    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
+    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$
+\end{definition}
+
+\begin{proposition}{对数函数的性质}
+    对数函数$f(x)=\log_{a}{x}$具有以下性质：
+    \begin{itemize}
+        \item 定义域：$\mathbb{R}^{+}$
+        \item 值域：$\mathbb{R}$
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
+        \item 图像：恒过定点$(1,0)$
+    \end{itemize}
+\end{proposition}
+
+% TODO 对数函数的图像
+
+实际上，我们发现对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
+
+\subsection{对勾函数与飘带函数}
+
+有两类特殊的初等函数，在研究最值问题时很常见.
+
+\begin{problem}
+    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0)$$
+    请指出它的定义域、值域并作出示意图.
+\end{problem}
+\begin{solution}
+    XXX
+\end{solution}
+
+还有一种类似于对勾函数，但没什么研究价值的函数.我们可以形象地称之为“垃圾函数”，虽然大多数人都会叫它“飘带函数”.
+
+\begin{problem}
+    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
+    请指出它的定义域、值域并作出示意图.
+\end{problem}
+\begin{solution}
+    XXX
+\end{solution}
 
 \section{函数的性质}
 
 \subsection{单调性}
 
-单调性的概念，用单调性判断函数单射，函数单调性的运算，区间根定理
+先介绍单调性的概念：
 
-\subsection{奇偶性}
+\begin{definition}{函数的单调性} %兴趣一阶I p66
+    设函数$f(x)$的定义域为$D$，区间$I \subseteq D$.\\
+    若对任意$x_1,x_2 \in I$，且$x_1 < x_2$，有$f(x_1) < f(x_2)$，则称$f(x)$\textbf{单调递增}(monotonically increasing)，也称$f(x)$为增函数.\\
+    反之，若对任意$x_1,x_2 \in I$，且$x_1 < x_2$，有$f(x_1) > f(x_2)$，则称$f(x)$\textbf{单调递减}(monotonically decreasing)，也称$f(x)$为减函数.\\
+    如果函数$f(x)$在某个区间$I$上是增函数或减函数，那么就说函数$f(x)$在这个区间上具有\textbf{单调性}(monotonicity).区间$I$叫做$f(x)$的单调区间.
+\end{definition}
+\begin{remark}
+    有些时候，将定义中的条件分别改为$f(x_1) \leq f(x_2)$、$f(x_1) \geq f(x_2)$的函数，也被称为不减函数、不增函数.
+\end{remark}
+\begin{note}
+    要注意描述单调区间的语言：例如，\\
+    函数$$f(x)=\frac{1}{x}$$
+    在$(- \infty , 0)$\color{red}{和}\color{black}$(0 , + \infty)$上单调递减.它有两个单调区间，而不能看做一整个，这是因为存在例如$f(-1) < f(1)$的情况；\\
+    函数$$ f(x)=\begin{cases}
+    	x &x<0 \\
+    	x+1 &x>0
+    \end{cases}$$
+    在$(- \infty , 0) \color{red}{\cup}\color{black} (0 , + \infty)$上单调递增.它只有一个单调区间.
+\end{note}
 
-奇偶性的概念，函数奇偶性的运算
+注意到，如果一个函数在某个区间上连续且单调，它在这个区间上一定是个单射.(注：所有初等函数都是连续的)
 
-\subsection{对称性}
+\begin{proposition}{函数单调性的变化规律}
+    设函数$f(x),g(x)$，为了方便计算，假定它们的定义域相同、单调区间相同.\\
+    (1)函数的加法$f(x)+g(x)$：增函数$+$增函数 $\Rightarrow$ 增函数；减函数$+$减函数 $\Rightarrow$ 减函数.\\
+    (2)函数的减法$f(x)-g(x)$：增函数$-$减函数 $\Rightarrow$ 增函数；减函数$-$增函数 $\Rightarrow$ 减函数.\\
+    (3)函数的乘法、除法、乘方、开方：具体情况分析.\\
+    (4)函数的复合$f(x) \circ g(x)$：增函数 $\circ$ 增函数 $\Rightarrow$ 增函数；增函数 $\circ$ 减函数 $\Rightarrow$ 减函数；减函数 $\circ$ 增函数 $\Rightarrow$ 减函数；减函数 $\circ$ 减函数 $\Rightarrow$ 增函数.
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
 
-对称性的概念，函数的对称变换，含绝对值的函数
+\begin{theorem}{区间根定理}
+    假设函数$f(x)$满足以下条件：
+    \begin{enumerate}
+        \item 在区间$a \leq x \leq b$上连续；
+        \item $f(a) \cdot f(b)<0$.
+    \end{enumerate}
+    则在区间$a<x<b$上必定存在至少一个$c$，使得$f(c)=0$.\\
+    或者说，当一个函数在$x=a$时有$f(x)<0$且在$x=b$时有$f(x)>0$，那么它必然有至少一个零点$c$，其中$a<c<b$.反之亦然.
+\end{theorem}
+
+\subsection{奇偶性与对称性}
+
+先介绍奇偶性的概念：
+
+\begin{definition}{奇偶性} %兴趣一阶I p66
+    设函数$f(x)$，其定义域$D$关于原点对称.\\
+    若对任意$x \in D$，$f(x)=-f(-x)$，则称$f(x)$为\textbf{奇函数}(odd function).\\
+    反之，若对任意$x \in D$，$f(x)=f(-x)$，则称$f(x)$为\textbf{偶函数}(even function).\\
+    显然，奇函数的图像沿原点中心对称，偶函数的图像沿$y$轴轴对称.
+\end{definition}
+
+\begin{proposition}{函数奇偶性的变化规律}
+    设函数$f(x),g(x)$，为了方便计算，假定它们的定义域相同.\\
+    (1)同奇偶性函数的加减法$f(x) \pm g(x)$：奇函数$\pm$奇函数 $\Rightarrow$ 奇函数；偶函数$\pm$偶函数 $\Rightarrow$ 偶函数.\\
+    (2)不同奇偶性函数的加减法：具体情况分析.\\
+    (3)函数的乘法$f(x) \cdot g(x)$：奇函数$\cdot$奇函数 $\Rightarrow$ 偶函数；偶函数$\cdot$偶函数 $\Rightarrow$ 偶函数；奇函数$\cdot$偶函数 $\Rightarrow$ 奇函数.\\
+    (4)函数的除法：$\frac{1}{\text{奇函数}}$ $\Rightarrow$ 奇函数；$\frac{1}{\text{偶函数}}$ $\Rightarrow$ 偶函数.可以通过函数的乘法推广到任意两函数相除.\\
+    (5)函数的复合$f(x) \circ g(x)$：奇函数 $\circ$ 奇函数 $\Rightarrow$ 奇函数；奇函数 $\circ$ 偶函数 $\Rightarrow$ 偶函数；偶函数 $\circ$ 奇函数 $\Rightarrow$ 偶函数；偶函数 $\circ$ 偶函数 $\Rightarrow$ 偶函数.
+\end{proposition}
+\begin{remark}
+	如果把复合看做乘法，那么可以把“增减”看做“正负”，“奇偶”看做“奇偶”
+\end{remark}
+\begin{proof}
+    XXX
+\end{proof}
+
+对称性其实就是奇偶性在部分区间上的推广.因此，它在定义域上比较自由.
+
+\begin{definition}{对称性} %兴趣一阶I p76
+    设函数$f(x)$的定义域为$D$，区间$I \subseteq D$.\\
+    类似于偶函数，函数$f(x)$的图像关于直线$x=a$\textbf{轴对称}等价于
+    $$ \forall x \in I, f(a+x)=f(a-x) $$
+    类似于奇函数，函数$f(x)$的图像关于点$(a,b)$\textbf{中心对称}等价于
+    $$ \forall x \in I, f(a+x)+f(a-x)=2b $$
+\end{definition}
+\begin{remark}
+    轴对称的定义等价于$$\forall x \in I, f(x)=f(2a-x)$$
+    中心对称的定义等价于$$\forall x \in I, f(x)=2b-f(2a-x)$$
+\end{remark}
+
+\begin{proposition}{函数的对称变换}
+    设函数$f(x)$与$g(x)$.假设其定义域满足下方自然要求.\\
+    (1)$f(x)$与$g(x)$的图像关于直线$x=a$对称，等价于$$f(a+x)=g(a-x) \Longleftrightarrow f(x)=g(2a-x)$$
+    (2)$f(x)$与$g(x)$的图像关于直线$y=b$对称，等价于$$b+f(x)=b-g(x) \Longleftrightarrow f(x)=2b-g(x)$$
+    (3)$f(x)$与$g(x)$的图像关于点$(a,b)$对称，等价于$$b+f(a+x)=b-g(a-x) \Longleftrightarrow f(x)=2b-g(2a-x)$$
+\end{proposition}
 
 \subsection{周期性}
 
-周期性的概念
+\begin{definition}{周期性} %兴趣一阶I p76
+    设函数$f(x)$的定义域为$D$.\\
+    当$f(x)$满足$$\forall x \in D, \exists \ T \in \mathbb{R}, f(x)=f(x+T)$$
+    称这样的$T$为函数$f(x)$的\textbf{周期}(period)，称$f(x)$为\textbf{周期函数}(periodic function).当$f(x)$有一个最小的正数$T$作为周期，这样的$T$称作最小正周期.
+\end{definition}
+
+\begin{remark}
+    一个周期函数不一定有最小正周期，例如函数$f(x)=1$.
+\end{remark}
+\begin{remark}
+    当一个函数$f(x)$同时有周期$T_1,T_2$，则$aT_1+bT_2(a,b \in \mathbb{Z})$也为它的周期.
+\end{remark}
+
+\section{函数图像的变换}
+
+\begin{proposition}{绝对值对函数图像的影响}
+    设函数$f(x)$，以下解析式不一定是函数.\\
+    (1)当$y=f(|x|)$，即将$f(x)$的图像在$y$轴右侧部分沿$y$轴对称，作为在$y$轴左侧的图像.\\
+    (2)当$y=|f(x)|$，即将$f(x)$的图像在$x$轴下方部分沿$x$轴翻折.\\
+    (3)当$|y|=f(x)$，即将$f(x)$的图像在$x$轴上方部分沿$x$轴对称，作为在$x$轴下方的图像.\\
+    作为练习，接着探究以下更加复杂的解析式.\\
+    (4)当$|y|=|f(x)|$，即将(2)中得到的图像按(3)的法则变换.\\
+    (5)当$y=|f(|x|)|$，即将(2)中得到的图像按(1)的法则变换.\\
+    (6)当$|y|=|f(|x|)|$，即将(5)中得到图像按(3)的法则变换.
+\end{proposition}
+
+\begin{proposition}{函数图像的拉伸}
+    设函数$f(x)$.\\
+    (1)当$y=af(x)$，即将$f(x)$的图像沿竖直方向拉伸$a$倍（当$a\in (0,1)$时，则为向小拉伸）.\\
+    (2)当$y=f(b x)$，即将$f(x)$的图像沿水平方向拉伸$b$倍.
+\end{proposition}
+
+\begin{problem}
+    有了上方的命题，我们可以对于函数图像拉伸进行一些思考：\\
+    假设在函数$f(x)$的图像上存在$n~(n \geq 2)$个点.\\
+    (1)经过其中两个点的一条直线，它的斜率在拉伸前后如何变化？\\
+    (2)连接其中$m$个点($m \leq n$)所构成的平面图形，它的面积在拉伸前后如何变化？\\
+    (3)将其中$m$个点($m \leq n$)两两之间连接，这样一些线段的长度所构成的一组比值在拉伸前后如何变化？\\
+\end{problem}
+
+\begin{proposition}{函数的平移变换}
+    设函数$f(x)$，变换后的函数为$g(x)$.假设其定义域满足下方自然要求.\\
+    (1)$f(x)$的图像向上或向下平移$m$个单位，等价于$$g(x)=f(x)+m \ \text{或} \ g(x)=f(x)-m$$
+    (2)$f(x)$的图像向左或向右平移$n$个单位，等价于$$g(x)=f(x+n) \ \text{或} \ g(x)=f(x-n)$$
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{proposition}{函数图像的轴对称变换}
+    设函数$f(x),g(x)$，直线$l:Ax+By+C=0$，记$y=f(x)$\\
+    当$f(x),g(x)$的图像关于该直线对称时，满足$$y = g\left(  x - \frac{2A(Ax+By+C)}{A^2+B^2}  \right) + \frac{2B(Ax+By+C)}{A^2+B^2}$$
+    化简一下，即\small$$f \left(  x + \frac{A(Ax+By+C)}{A^2+B^2}  \right) - \frac{B(Ax+By+C)}{A^2+B^2} = g \left(  x - \frac{A(Ax+By+C)}{A^2+B^2}  \right) + \frac{B(Ax+By+C)}{A^2+B^2}$$\normalsize
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
+
+上面的式子非常不对称.因而我们来讨论一下单个函数关于自己对称的情况(即某函数有一个对称轴).
+
+\begin{proposition}{图像有轴对称性的函数}
+    设函数$f(x)$，它的图像的对称轴为直线$l:Ax+By+C=0$.\\
+    那么这个函数满足$$f(x) = f\left(  x - \frac{2A(Ax+Bf(x)+C)}{A^2+B^2}  \right) + \frac{2B(Ax+Bf(x)+C)}{A^2+B^2}$$
+    化简之后，即\small$$f \left(  x + \frac{A(Ax+Bf(x)+C)}{A^2+B^2}  \right) - \frac{B(Ax+Bf(x)+C)}{A^2+B^2} = f \left(  x - \frac{A(Ax+Bf(x)+C)}{A^2+B^2}  \right) + \frac{B(Ax+Bf(x)+C)}{A^2+B^2}$$\normalsize
+\end{proposition}
 
 \section{函数迭代与函数方程}
 
@@ -466,47 +719,267 @@
 
 \section{三角函数的概念}
 
-任意角，弧度制
+在研究更高深的三角函数之前，要对初中所学过的“角”的概念进行推广.
+
+\begin{definition}{任意角与弧度制} %兴趣一阶II p6
+    角的一边从$x$轴正方向开始旋转（以逆时针为正方向），最终旋转过的角度即为该角的角度.这样，我们就把角的概念推广到了\textbf{任意角}(any angle).\\
+    像这样旋转生成的角上，某一点旋转产生的弧长$l$与到原点距离$r$之比，定义为该角的\textbf{弧度}(radian).弧度的单位为rad(一般省略).由于这样做出的比值是用$k \pi$表示的，我们可以用一个比较规整的数值表示角度.容易发现，$\pi$等价于$180^{\circ}$.
+\end{definition}
+
+利用任意角，可以得到更加广阔的三角函数定义：
+
+\begin{definition}{三角函数} %兴趣一阶II p7
+    设平面直角坐标系中的单位圆$\odot O$，记角的终边与该单位圆的交点为$P(x,y)$，记$OP=r$.\\
+    分别定义$$\sin{\alpha}=\frac{y}{r} \quad \cos{\alpha}=\frac{x}{r} \quad \tan{\alpha}=\frac{y}{x} \quad \cot{\alpha}=\frac{x}{y}$$
+    其中，函数$$f(x)=\sin{x} \qquad f(x)=\cos{x} \qquad f(x)=\tan{x} \qquad f(x)=\cot{x}$$
+    分别称为\textbf{正弦函数}(sine function)，\textbf{余弦函数}(cosine function)，\textbf{正切函数}(tangent function)，\textbf{余切函数}(cotangent function).这些函数统称为\textbf{三角函数}(trigonometric function).
+\end{definition}
+\begin{remark}
+    正切与余切函数满足：$\tan{x} \cdot \cot{x} = 1$.
+\end{remark}
+\begin{remark}
+    类似于正(余)弦、正(余)切函数，正割函数$\sec{x}=\dfrac{1}{\cos{x}}$与余割$\csc{x}=\dfrac{1}{\sin{x}}$函数也有定义，但并不常用.
+\end{remark}
+\begin{remark}
+    不同角的终边可以相同.终边相同的角的角度不一定相同，但它们的三角函数值一定相同.
+\end{remark}
+
 
 \subsection{三角函数的性质}
 
-三角函数的定义，诱导公式，和差角公式
+由于其定义的特殊性，三角函数会有一些独特的性质：
 
-\subsection{三角函数的函数性质}
+\begin{proposition}{三角函数诱导公式} %兴趣一阶II p7
+    通过上述三角函数的定义，我们不难发现不同角的三角函数有时会有一些关系，这也是三角函数部分性质的体现.\\
+    (1)关于$2\pi$的周期性$$\sin{(\alpha + 2k\pi)}=\sin{\alpha} \quad \cos{(\alpha + 2k\pi)}=\cos{\alpha} \quad \tan{(\alpha + 2k\pi)}=\tan{\alpha} \quad \cot{(\alpha + 2k\pi)}=\cot{\alpha}$$
+    (2)关于$\pi$的性质$$\sin{(\alpha + \pi)}=-\sin{\alpha} \quad \cos{(\alpha + \pi)}=-\cos{\alpha} \quad \tan{(\alpha + \pi)}=\tan{\alpha} \quad \cot{(\alpha + \pi)}=\cot{\alpha}$$
+    (3)奇偶性$$\sin{(-\alpha)}=-\sin{\alpha} \quad \cos{(-\alpha)}=\cos{\alpha} \quad \tan{(-\alpha)}=-\tan{\alpha}$$
+    (4)在单位圆中角的终边关于$y$轴的对称性$$\sin{(\pi - \alpha)} = \sin{\alpha} \quad \cos{(\pi - \alpha)} = -\cos{\alpha} \quad \tan{(\pi - \alpha)} = -\tan{\alpha}$$
+    (5)在单位圆中角的终边关于直线$y=x$的对称性$$\sin{\ssb{\frac{\pi}{2}-\alpha}}=\cos{\alpha} \quad \cos{\ssb{\frac{\pi}{2}-\alpha}}=\sin{\alpha} \quad \tan{\ssb{\frac{\pi}{2}-\alpha}}=\cot{\alpha}$$
+    (6)关于$\frac{\pi}{2}$的性质$$\sin{\ssb{\alpha+\frac{\pi}{2}}}=\cos{\alpha} \quad \cos{\ssb{\alpha+\frac{\pi}{2}}}=-\sin{\alpha} \quad \tan{\ssb{\alpha+\frac{\pi}{2}}}=-\cot{\alpha}$$
+\end{proposition}
 
-三角函数的图像与性质
+作为一种函数，自然要研究其函数性质：
 
-\subsection{三角函数与双曲函数}
+\begin{proposition}{三角函数的函数性质}
+    三角函数$\sin{x},\cos{x},\tan{x},\cot{x}$具有以下性质：
 
-三角函数的复数表示，双曲函数的定义
+    \vspace{1em}
+    \centering
+    \renewcommand\arraystretch{1.2}
+    \begin{tabular}{c|c|c|c|c}
+        \hline
+          & $\sin{x}$ & $\cos{x}$ & $\tan{x}$ & $\cot{x}$ \\ \hline
+        定义域 & $\mathbb{R}$ & $\mathbb{R}$ & $\{ x|x \in \mathbb{R},x \neq k\pi + \frac{1}{2} \pi ,k \in \mathbb{Z} \}$ & $\{ x|x \in \mathbb{R},x \neq k\pi ,k \in \mathbb{Z} \}$ \\ \hline
+        值域 & $[-1,1]$ & $[-1,1]$ & $\mathbb{R}$ & $\mathbb{R}$ \\ \hline
+        奇偶性 & 偶函数 & 奇函数 & 奇函数 & 奇函数 \\ \hline
+        周期性 & $T=2\pi$ & $T=2\pi$ & $T=\pi$ & $T=\pi$ \\ \hline
+    \end{tabular}
+    
+\end{proposition}
+
+为了更好地记忆以上性质，我们需要作出不同三角函数的图像.
+
+% TODO 三角函数的图像
+
+回忆函数章节里介绍的“函数图像的变换”内容，通过对正弦函数进行这种操作，可以得到类正弦函数：
+
+\begin{definition}{类正弦函数}
+    函数$$f(x)=A \sin (\omega x + \varphi)$$
+    称为\textbf{类正弦函数}(sinusoidal function)，也叫波函数.\\
+    该函数的最小正周期$T=\frac{2\pi}{|\omega|}$.最大值(波峰)、最小值(波谷)分别为$|A|$,$-|A|$.
+\end{definition}
+
+类正弦函数在物理学中有很多应用.
 
 \section{三角函数的计算}
 
 \subsection{三角恒等变形}
 
-二倍角、半角公式，三倍角公式，万能公式，辅助角公式，积化和差、和差化积公式，双曲恒等变形公式
+在三角函数中，自变量的变化能够相应地得到值的变化.这样的变化规律就是三角恒等变形.
+
+\begin{theorem}{三角函数和差角公式} %兴趣一阶II p16
+    正弦和差角公式$$\sin{(\alpha \pm \beta)}=\sin{\alpha}\cos{\beta} \pm \cos{\alpha}\sin{\beta}$$
+    余弦和差角公式$$\cos{(\alpha \pm \beta)}=\cos{\alpha}\cos{\beta} \mp \sin{\alpha}\sin{\beta}$$
+    正切和差角公式$$\tan{(\alpha \pm \beta)}=\frac{\tan{\alpha} \pm \tan{\beta}}{1 \mp \tan{\alpha}\tan{\beta}}$$
+\end{theorem}
+\begin{proof}
+    XXX
+\end{proof}
+
+有了这些公式，下面的的倍角公式就很容易推导出来.
+
+\begin{proposition}{三角函数倍角公式} %兴趣一阶II p16
+    正弦二倍角公式$$\sin{2\alpha}=2\sin{\alpha}\cos{\alpha}$$
+    余弦二倍角公式$$\cos{2\alpha}=\cos{\alpha ^2}-\sin{\alpha ^2}$$
+    特别地，可以推导出另外一个形式的公式：$\cos{2\alpha}=2\cos{\alpha ^2}-1=1-2\sin{\alpha ^2}$.这个形式可以直接跳过对同角的另一个三角函数值的求解.\\
+    正切二倍角公式$$\tan{2\alpha}=\frac{2\tan{\alpha}}{1-\tan{\alpha ^2}}$$
+\end{proposition}
+
+降角升幂.
+
+\begin{proposition}{三角函数半角公式} %兴趣一阶II p16
+    正弦半角公式$$\sin ^2 \frac{\alpha}{2}=\frac{1-\cos{2\alpha}}{2}$$
+    余弦半角公式$$\cos ^2 \frac{\alpha}{2}=\frac{1+\cos{2\alpha}}{2}$$
+    正切半角公式$$\tan ^2 \frac{\alpha}{2}=\frac{1-\cos{2\alpha}}{1+\cos{2\alpha}}$$
+\end{proposition}
+
+降幂升角.
+
+\begin{proposition}{三角函数的三倍角公式} %兴趣一阶II p16
+    (1)正弦三倍角公式$$\sin{3\alpha}=3\sin{\alpha}-4\sin^3 \alpha=4\sin{\alpha} \cdot \sin{(60^{\circ}-\alpha)} \cdot \sin{(60^{\circ}+\alpha)}$$
+    (2)余弦三倍角公式$$\cos{3\alpha}=4\cos^3 \alpha-3\cos{\alpha}=4\cos{\alpha} \cdot \cos{(60^{\circ}-\alpha)} \cdot \cos{(60^{\circ}+\alpha)}$$
+\end{proposition}
+\begin{remark}
+    正切、余切三倍角公式可以由上方正弦、余弦公式推得.
+\end{remark}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{proposition}{万能公式} %兴趣一阶II p16
+    (1)正弦万能公式$$\sin{\alpha}=\frac{2\tan{\frac{\alpha}{2}}}{1+\tan^2{\frac{\alpha}{2}}}$$
+    (2)余弦万能公式$$\cos{\alpha}=\frac{1-\tan^2{\frac{\alpha}{2}}}{1+\tan^2{\frac{\alpha}{2}}}$$
+    (3)正切“万能公式”——实际上是正切二倍角公式$$\tan{\alpha}=\frac{2\tan{\frac{\alpha}{2}}}{1-\tan^2{\frac{\alpha}{2}}}$$
+    (4)余切万能公式$$\cot{\alpha}=\frac{1-\tan^2{\frac{\alpha}{2}}}{2\tan{\frac{\alpha}{2}}}$$
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{proposition}{辅助角公式}
+    (1)正弦形式$$a \cdot \sin{\alpha} + b \cdot \cos{\alpha} = \sqrt{a^2+b^2} \cdot \sin{(\alpha + \varphi)}$$
+    其中$\varphi$满足$\tan{\varphi}=\frac{b}{a}$.\\
+    (2)余弦形式(不常用)$$a \cdot \sin{\alpha} + b \cdot \cos{\alpha} = \sqrt{a^2+b^2} \cdot \cos{(\alpha - \varphi)}$$
+    其中$\varphi$满足$\tan{\varphi}=\frac{a}{b}$.
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{proposition}{积化和差公式} %兴趣一阶II p26
+    (1)$$\sin{\alpha}\cos{\beta}=\frac{1}{2}[\sin{(\alpha+\beta)}+\sin{(\alpha-\beta)}]$$
+    $$\cos{\alpha}\sin{\beta}=\frac{1}{2}[\sin{(\alpha+\beta)}-\sin{(\alpha-\beta)}]$$
+    (2)$$\cos{\alpha}\cos{\beta}=\frac{1}{2}[\cos{(\alpha+\beta)}-\cos{(\alpha-\beta)}]$$
+    $$\sin{\alpha}\sin{\beta}=-\frac{1}{2}[\cos{(\alpha+\beta)}-\cos{(\alpha-\beta)}]$$
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{proposition}{和差化积公式} %兴趣一阶II p26
+    (1)$$\sin{\alpha}+\sin{\beta}=2\sin{\frac{\alpha+\beta}{2}}\cos{\frac{\alpha-\beta}{2}}$$
+    $$\sin{\alpha}-\sin{\beta}=2\cos{\frac{\alpha+\beta}{2}}\sin{\frac{\alpha-\beta}{2}}$$
+    (2)$$\cos{\alpha}+\cos{\beta}=2\cos{\frac{\alpha+\beta}{2}}\cos{\frac{\alpha-\beta}{2}}$$
+    $$\cos{\alpha}-\cos{\beta}=-2\sin{\frac{\alpha+\beta}{2}}\sin{\frac{\alpha-\beta}{2}}$$
+\end{proposition}
+\begin{proof}
+    XXX
+\end{proof}
+\begin{remark}
+    细心的读者已经发现，和差化积公式的左半部分总是同名三角函数.那么不同名三角函数之和该如何转化呢？请自行证明：$$\sin{\alpha}+\cos{\beta}=2\sin{\frac{\alpha+\frac{\pi}{2}-\beta}{2}}\cos{\frac{\alpha-\frac{\pi}{2}+\beta}{2}}$$
+    提示：利用诱导公式.
+\end{remark}
 
 \subsection{正弦定理与余弦定理}
 
-正弦面积公式，正弦定理，余弦定理
+\begin{theorem}{正弦定理} %兴趣一阶II p36
+    在$\Delta ABC$中，记$\angle A$所对的边长为$a$，那么有$$\frac{a}{\sin{A}}=\frac{b}{\sin{B}}=\frac{c}{\sin{C}}=2R$$其中$R$为该三角形外接圆半径.
+\end{theorem}
+这个定理适用于把三角形中边长比例与三角函数比例互相转化.
+
+\begin{theorem}{余弦定理} %兴趣一阶II p36
+    在$\Delta ABC$中，记$\angle A$所对的边长为$a$，那么有$$\cos{A}=\frac{b^2+c^2-a^2}{2bc}$$
+    因而可以推导出$a$的大小$$a^2=b^2+c^2-2bc \cos{A}$$
+\end{theorem}
+这个定理适用于用三角形中的边长表示三角函数.尽管它可以求出某边的长度，但是如你所见，带有根号和二次方的式子显然不如正弦定理的结果美观.
 
 \section{三角函数的应用}
 
 \subsection{三角换元}
 
-三角换元常见形式
+\begin{proposition}{三角换元常用公式}
+    (1)
+    $$a^2+b^2=1 \quad \longrightarrow \quad \sin^2{x}+\cos^2{x}=1$$
+    $$a^2-b^2=1 \quad \longrightarrow \quad \frac{1}{\cos^2 x}-\tan^2 {x}=1$$
+    另一种常见的形式
+    $$b=\sqrt{1-a^2} \quad \longrightarrow \quad a=\sin{x} , b=\cos{x}$$
+    $$b=\sqrt{1+a^2} \quad \longrightarrow \quad a=\tan{x} , b=\frac{1}{\cos{x}}$$
+    如果是多元的也可以进行换元，这里以三元的情况为例
+    $$a^2+b^2+c^2=1 \quad \longrightarrow \quad (\sin{x}\sin{y})^2+(\sin{x}\cos{y})^2+\cos^2{x}=1$$
+    (2)
+    \begin{align*}
+        ab+bc+ca=1 \quad & \longrightarrow \quad \tan{\frac{A}{2}} \cdot \tan{\frac{B}{2}} + \tan{\frac{B}{2}} \cdot \tan{\frac{C}{2}} + \tan{\frac{C}{2}} \cdot \tan{\frac{A}{2}} \quad (A+B+C=\pi) \\
+        or & \longrightarrow \quad \cot{A} \cdot \cot{B} + \cot{B} \cdot \cot{C} + \cot{C} \cdot \cot{A} = 1 \quad (A+B+C=k\pi)
+    \end{align*}
+    (3)$$a+b+c=abc \quad \longrightarrow \quad \tan{A}+\tan{B}+\tan{C}=\tan{A} \cdot \tan{B} \cdot \tan{C} \quad (A+B+C=k\pi)$$
+    (4)双曲函数换元
+    $$a^2-b^2=1 \quad \longrightarrow \quad \cosh^2{x}-\sinh^2{y}=1$$
+\end{proposition}
+\begin{remark}
+	有关双曲函数的内容会在复数章节仔细研究.
+\end{remark}
 
-\subsection{三角恒等式}
+\subsection{三角恒等式、三角不等式}
 
-常见的三角恒等式
+\begin{proposition}{三角形中的三角恒等式} %兴趣一阶II p36
+    在$\vartriangle ABC$中(即$A+B+C=\pi$时)：\\
+    (1)不同名和、积转换
+    $$\sin A + \sin B + \sin C = 4 \cos \frac{A}{2} \cdot \cos \frac{B}{2} \cdot \cos \frac{C}{2}$$
+    $$\cos A + \cos B + \cos C = 1 + 4 \sin \frac{A}{2} \cdot \sin \frac{B}{2} \cdot \sin \frac{C}{2}$$
+    (2)同名和、积转换
+    $$\sin 2A + \sin 2B + \sin 2C = 4\sin A \cdot \sin B \cdot \sin C$$
+    $$\cos 2A + \cos 2B + \cos 2C = -1 - 4\cos A \cdot \cos B \cdot \cos C$$
+    (3)正切和、积转换
+    $$\tan A + \tan B + \tan C = \tan A \cdot \tan B \cdot \tan C$$
+    (4)正切、正割转换
+    $$\cot \frac{A}{2} + \cot \frac{B}{2} + \cot \frac{C}{2} = \cot \frac{A}{2} \cdot \cot \frac{B}{2} \cdot \frac{C}{2}$$
+    $$\tan \frac{A}{2} \tan \frac{B}{2} + \tan \frac{B}{2} \tan \frac{C}{2} + \tan \frac{C}{2} \tan \frac{A}{2} = 1$$
+\end{proposition}
 
-\subsection{三角不等式}
-
-常见的三角不等式
+\begin{proposition}{三角形中的三角不等式} %兴趣一阶II p46
+    在$\vartriangle ABC$中(即$A+B+C=\pi$时)：\\
+    (1)$$\sin A + \sin B + \sin C \leq \frac{ 3\sqrt{3} }{2} \qquad \qquad \cos A + \cos B + \cos C \leq \frac{2}{3}$$
+    (2)$$\sin ^2 A + \sin ^2 B + \sin ^2 C \leq \frac{9}{4} \qquad \qquad \cos ^2 A + \cos ^2 B + \cos ^2 C \geq \frac{3}{4}$$
+    (3)$$\sin A \cdot \sin B \cdot \sin C \leq \frac{ 3\sqrt{3} }{8} \qquad \qquad \cos A \cdot \cos B \cdot \cos C \leq \frac{1}{8}$$
+    特别地，当$\vartriangle ABC$为锐角三角形时
+    $$\tan A \cdot \tan B \cdot \tan C \geq 3\sqrt{3}$$
+    (4)
+    $$\sin 2A + \sin 2B + \sin 2C \leq \frac{ 3\sqrt{3} }{2} \qquad \qquad \cos 2A + \cos 2B + \cos 2C \geq -\frac{3}{2}$$
+    (5)
+    $$\sin \frac{A}{2} \cdot \sin \frac{B}{2} \cdot \sin \frac{C}{2} \leq \frac{1}{8} \qquad \cos \frac{A}{2} \cdot \cos \frac{B}{2} \cdot \cos \frac{C}{2} \leq \frac{3 \sqrt{3}}{8} \qquad \tan \frac{A}{2} \cdot \tan \frac{B}{2} \cdot \tan \frac{C}{2} \leq \frac{\sqrt{3}}{9}$$
+    (6)$$\sin ^2 \frac{A}{2} \cdot \sin ^2 \frac{B}{2} \cdot \sin ^2 \frac{C}{2} \geq \frac{3}{4} \qquad \qquad \cos ^2 \frac{A}{2} \cdot \cos ^2 \frac{B}{2} \cdot \cos ^2 \frac{C}{2} \leq \frac{3 \sqrt{3}}{8}$$
+\end{proposition}
 
 \section{反三角函数}
 
-反三角函数的概念、图像与性质
+三角函数是将角度映射为距离之比的函数.相应地，将距离之比映射到角度的函数叫做反三角函数(arc的意思即为“弧长”).
+
+\begin{definition}{反三角函数}
+    函数$$f(x)=\arcsin{x} \qquad f(x)=\arccos{x} \qquad f(x)=\arctan{x} \qquad f(x)=\arccot{x}$$
+    分别称为\textbf{反正弦函数}(arcsine function)，\textbf{反余弦函数}(arccosine function)，\textbf{反正切函数}(arctangent function)，\textbf{反余切函数}(arccotangent function).这些函数统称为\textbf{反三角函数}(inverse trigonometric function).
+\end{definition}
+\begin{note}
+    反正弦函数、反余弦函数不是正弦函数、余弦函数的反函数，而是与其中的某一段互为反函数.
+\end{note}
+
+\begin{proposition}{反三角函数的函数性质}
+    反三角函数$\arcsin{x},\arccos{x},\arctan{x},\arccot{x}$具有以下性质：
+
+    \vspace{1em}
+    \centering
+    \renewcommand\arraystretch{1.2}
+    \begin{tabular}{c|c|c|c|c}
+        \hline
+          & $\arcsin{x}$ & $\arccos{x}$ & $\arctan{x}$ & $\arccot{x}$ \\ \hline
+        定义域 & $[-1,1]$ & $[-1,1]$ & $\mathbb{R}$ & $\mathbb{R}$ \\ \hline
+        值域 & $[-\frac{\pi}{2} ,\frac{\pi}{2}]$ & $[0,\pi]$ & $[-\frac{\pi}{2},\frac{\pi}{2}]$ & $[0,\pi]$ \\ \hline
+        对称性 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 \\ \hline
+    \end{tabular}
+    
+\end{proposition}
+
+% TODO 反三角函数的图像
 
 \chapter{数列与数学归纳法}
 
@@ -681,9 +1154,17 @@ $$
 
 \chapter{平面向量}
 
+在物理学中，我们常常需要处理一些同时具有方向特征与距离特征的量，例如一个力$F$.在探究几个力的合力时，一般可以进行正交分解(即“建系”)，但是这样的方法会产生很多繁杂的三角函数运算.
+
+有没有一种方法能够更加合理地分解这样一个集合元素呢？更进一步，我们能否构造一个“平面非直角坐标系”？
+
 \section{平面向量的概念}
 
-平面向量的概念，向量间的关系，向量的运算
+% 平面向量的概念，向量间的关系，向量的运算
+
+如前文所述，像一个力$F$一样，既有大小，又有方向的量叫做\textbf{向量}(vector)，物理学上也称为矢量.与向量相对的量，即那些只有大小、没有方向的量叫做\textbf{标量}(scalar).
+
+一个向量通常用加向右箭头的小写字母表示，如$\xl{a},\xl{v}$；有时也会用大写字母，例如在物理学中的电场强度$\xl{E}$、力$\xl{F}$.在平面几何中，若给定两点$A,B$，也可以用$\xl{AB}$来表示从点$A$出发、结束于点$B$的向量.另外，一些印刷材料会使用粗体小写字母表示，如$\boldsymbol{a},\boldsymbol{x_i}$.
 
 \section{平面向量基本定理}
 
@@ -697,17 +1178,68 @@ $$
 
 \chapter{平面几何中的距离与角度}
 
-\section{常用平面几何结论——边长}
+\section{常用平面几何结论——边长与三角}
 
-Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
+\begin{theorem}{Menelaus定理}
+    设$D,E,F$分别是$\Delta ABC$的三边$BC,CA,AB$或其延长线上的点，则$$D,E,F \text{三点共线} \quad \Longleftrightarrow \quad \frac{AE}{EB} \cdot \frac{BD}{DC} \cdot \frac{CF}{FA} = 1$$
+    它还有一个角元形式，即$$D,E,F \text{三点共线} \quad \Longleftrightarrow \quad \frac{\sin \angle ADE}{\sin \angle BDE} \cdot \frac{\sin \angle BAD}{\sin \angle CAD} \cdot \frac{\sin \angle CDF}{\sin \angle ADF} = 1$$
+\end{theorem}
+\begin{proof}
+    XXX
+\end{proof}
 
-\section{常用平面几何结论——三角}
+对应“三点共线”问题，还有一类“三线共点”问题，可以利用Ceva定理解决.
 
-张角定理，角元Menelaus定理，角元Ceva定理
+\begin{theorem}{Ceva定理}
+    设$D,E,F$分别是$\Delta ABC$的三边$BC,CA,AB$或其延长线上的点，则$$AD,BE,CF \text{三线共点或平行} \quad \Longleftrightarrow \quad \frac{AE}{EC} \cdot \frac{CD}{DB} \cdot \frac{BF}{FA} = 1$$
+    它还有一个角元形式，即$$AD,BE,CF \text{三线共点或平行} \quad \Longleftrightarrow \quad \frac{\sin \angle ABE}{\sin \angle CBE} \cdot \frac{\sin \angle CAD}{\sin \angle BAD} \cdot \frac{\sin \angle BCF}{\sin \angle ACF} = 1$$
+\end{theorem}
+\begin{proof}
+    XXX
+\end{proof}
+
+特殊的四点共圆情景可以考虑Ptolemy定理或三弦定理.
+
+\begin{theorem}{Ptolemy定理}
+    给定一圆内接四边形$ABCD$，则其两组对边乘积之和等于两对角线的乘积，即$$AB \times CD + BC \times DA = AC \times BD$$
+\end{theorem}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{corollary}{三弦定理}
+    设$A$是圆上任意一点，$AB,AC,AD$是该圆上顺次的三条弦，则$$AC \cdot \sin \angle BAD = AB \cdot \sin \angle DAC + AD \cdot \sin \angle BAC$$
+\end{corollary}
+
+限制$P$点位置(求解$AP$长度)可以利用Stewart定理.
+
+\begin{theorem}{Stewart定理}
+    设$P$为$\Delta ABC$的边$BC$上任一点，则$$AP^2=\frac{PC}{BC} \cdot AB^2 + \frac{BP}{BC} \cdot AC^2 - \frac{BP}{BC} \cdot \frac{PC}{BC} \cdot BC^2$$
+\end{theorem}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{corollary}
+    设$AP$为$\Delta ABC$的边$BC$上的中线，则$$AP^2 = \frac{1}{2} AB^2 + \frac{1}{2} AC^2 - \frac{1}{4}BC^2$$
+\end{corollary}
+    
+\begin{corollary}
+    设$P$为$\Delta ABC$的边$BC$上一点，满足$AP$为$\angle A$的内角平分线，则$$AP^2 = AB \cdot AC - BP \cdot PC$$
+\end{corollary}
+\begin{remark}
+    $AP$为外角平分线的情况类似，请读者自行证明.
+\end{remark}
+
+“角元”形式的Stewart定理.
+
+\begin{theorem}{张角定理}
+    设$P$为$\Delta ABC$的边$BC$上任一点，连接$AP$，则$$\frac{\sin \angle BAP}{CP} + \frac{\sin \angle CAP}{BP} = \frac{\sin \angle BAC}{AP}$$
+\end{theorem}
 
 \section{常用平面几何结论——平面向量}
 
-极化恒等式，奔驰定理
+极化恒等式，奔驰定理，三角形五心
 
 \chapter{立体几何}
 
@@ -823,16 +1355,108 @@ Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
 	\end{tabular}
 \end{table}
 
+为了判断直线与圆的位置关系，可以利用以下两种方法：
+
+\begin{enumerate}
+	\item 利用几何特征：设圆心的直线的距离为$d$，圆半径大小为$r$.则$$d<r \Longleftrightarrow \textit{相交} \qquad d=r \Longleftrightarrow \textit{相切} \qquad d>r \Longleftrightarrow \textit{相离}$$
+	\item 利用代数特征：联立圆的方程与直线方程，得到一个一元二次方程.设该方程的判别式为$\Delta$，则$$\Delta > 0 \Longleftrightarrow \textit{相交} \qquad \Delta = 0 \Longleftrightarrow \textit{相切} \qquad \Delta < 0 \Longleftrightarrow \textit{相离}$$
+\end{enumerate}
+
+由于联立求判别式的计算量较大，一般采用几何特征来判断.
+
+同样地，对于圆之间的位置关系，也有两种判断方法：(设圆$O_1,O_2$半径分别为$r_1,r_2$，圆心距离为$d$)
+
+\begin{table}[h]
+	\centering
+	\renewcommand\arraystretch{1.5}
+	\begin{tabular}{c|cc}
+		\toprule
+		位置关系&几何特征&代数特征(联立方程得到解的个数) \\
+		\midrule
+		外离 & $d>r_1+r_2$ & 无解 \\
+		外切 & $d=r_1+r_2$ & 一组实数解 \\
+		相交 & $|r_1-r_2|<d<r_1+r_2$ & 两组实数解 \\
+		内切 & $d=|r_1-r_2|$ & 一组实数解 \\
+		内含 & $0 \leq d < |r_1-r_2|$ & 无解 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+注意到，若用代数特征描述，容易出现多情况，故这里还是倾向于用几何特征.
+
+关于圆的切线有一个方便计算的命题：
+
+\begin{proposition}{圆的切线方程}
+	设点$P(x_0,y_0)$，圆$O:(x-a)^2+(y-b)^2=r^2$. \\
+	(1)当$P$在圆上时，过$P$点的圆的切线方程为$$(x_0-a)(x-a)+(y_0-b)(y-b)=r^2$$
+	(2)当$P$在圆外时，设过$P$点的直线与圆切于$A,B$两点，则直线$AB$的方程为$$(x_0-a)(x-a)+(y_0-b)(y-b)=r^2$$
+\end{proposition}
+
 \section{圆锥曲线}
+
+在三维空间中，一个圆锥与任意给定平面的交集被称为\textbf{圆锥曲线}(conic section).我们知道，当该平面与圆锥底面平行时，它们的交集就是一个圆.但如果该平面倾斜一下，会“割”出怎样的图形？
 
 \subsection{椭圆与双曲线}
 
-椭圆的概念，双曲线的概念
+我们不妨先采用一种特殊的化归思想来研究椭圆：设平面直角坐标系$xOy$中有圆$C:x^2+y^2=1$.现在将整个坐标系进行“压缩”，对圆上的任意一点$P(x_0,y_0)$，令$P'(x'_0,y'_0)$满足$x'_0=\dfrac{1}{a} x_0,~y'_0=\dfrac{1}{b} y_0~(a,b>0)$.于是这个圆$C$被压缩为了椭圆$C'$，其方程满足$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$
+这种伸缩变换的过程如下所示：
+
+% TODO 伸缩变换图像
+
+不过，直观的定义总是不严谨.幸运的是，人们发现椭圆还有一种等价定义：
+
+\begin{definition}{椭圆的第一定义}
+	设平面内一点$P$，若$P$到两个定点$F_1,F_2$的距离之和为大于$|F_1F_2|$的常数，则称所有这样的$P$构成的点集为\textbf{椭圆}(ellipse). \\
+	称这两个定点$F_1,F_2$为椭圆的\textbf{焦点}([单]focus;[复]foci)，$F_1F_2$的中点$C$为椭圆的\textbf{中心}(center).
+\end{definition}
+\begin{remark}
+	后文为了方便计算，总是假设一个中心在坐标原点的椭圆.
+\end{remark}
+
+既然是等价定义，这样的椭圆必然可以化为$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$的形式.设椭圆$C$的中心在坐标原点，两焦点分别为$F_1(-c,0),F_2(c,0)$，$|PF_1|+|PF_2|=2a$，椭圆上一点$P(x,y)$.由定义可得$$|PF_1|+|PF_2|=\sqrt{(x+c)^2+y^2} + \sqrt{(x-c)^2+y^2} = 2a$$
+作代数变形：
+\begin{align*}
+	\sqrt{(x+c)^2+y^2} &= 2a - \sqrt{(x-c)^2+y^2} \\
+	(x+c)^2+y^2 &= 4a^2 + (x-c)^2+y^2 - 4a\sqrt{(x-c)^2+y^2} \\
+	cx-a^2 &= -a\sqrt{(x-c)^2+y^2} \\
+	a^4 - 2a^2cx + c^2x^2 &= a^2x^2 - 2a^2cx + a^2c^2 + a^2y^2 \\
+	(a^2-c^2)x^2+a^2y^2 &= a^2(a^2-c^2)
+\end{align*}
+若令$b^2=a^2-c^2$，即得$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$，其中$a>b>0$.该形式称作椭圆的标准方程.
+
+同样地，对于焦点在$y$轴的椭圆，其方程可表示为$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1~(b>a>0)$.
+
+这个等价定义阐释了椭圆的几何性质.以焦点在$x$轴上的椭圆为例，其与$x$轴的两个交点分别称作左顶点、右顶点，与$y$轴的两个交点称作上顶点、下顶点；连接左、右顶点的线段称作长轴，连接上、下顶点的线段称作短轴.满足长轴长为$2a$，短轴长为$2b$.
+
+另外，定义椭圆的\textbf{离心率}(eccentricity)为$e=\dfrac{c}{a} \in (0,1)$.容易发现，$e$在越靠近$0$时，椭圆越像圆；越靠近$0$时，椭圆越扁.
+
+\begin{example}
+	已知一圆形纸片的圆心为$O$，$F$是圆内一定点，$M$是圆周上一动点，把纸片折叠使$M$与$F$重合，然后抹平纸片，折痕为$CD$，设$CD$与$OM$交与点$P$，则点$P$的轨迹是\tk .
+\end{example}
+
+
+关于椭圆，有两个方便的命题：
+
+\begin{proposition}{椭圆的切线方程}
+	设点$P(x_0,y_0)$，椭圆$C:\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$. \\
+	(1)当$P$在椭圆上时，过$P$点的椭圆的切线方程为$$\frac{x_0x}{a^2} + \frac{y_0y}{b^2} = 1$$
+	(2)当$P$在椭圆外时，设过$P$点的直线与椭圆切于$A,B$两点，则直线$AB$的方程为$$\frac{x_0x}{a^2} + \frac{y_0y}{b^2} = 1$$
+\end{proposition}
+
+\begin{proposition}{焦点三角形的面积}
+	设椭圆$C:\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1~(a>b>0)$. \\
+	则两焦点$F_1,F_2$与椭圆上任一点$P$所围成的三角形(称为焦点三角形)，满足其面积为$$S_{\vartriangle PF_1F_2} = b^2\tan \frac{\angle F_1PF_2}{2}$$
+\end{proposition}
+
+
 
 \subsection{第二定义与抛物线}
 
 第二定义，抛物线
 
+\begin{problem}
+	证明：在三维空间中，一个圆锥与任意给定平面的交集总是圆、椭圆、双曲线、抛物线中的一种，并且给出每种交集的出现条件.
+\end{problem}
 
 \part{数与代数}
 
@@ -907,7 +1531,40 @@ Ptolemy定理，定差幂线定理，Stewart定理，Menelaus定理，Ceva定理
 
 \section{复数的应用}
 
-三角函数的复数形式，双曲函数的复数形式
+\begin{lemma}
+    任意定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
+\end{lemma}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{definition}{双曲函数}
+    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
+    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
+    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
+    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+\end{definition}
+
+在本节中，我们先来看看双曲函数的恒等变形式，详细的研究放在复数部分.
+
+\begin{proposition}{双曲恒等变形公式}
+    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
+    (2)和差角公式
+    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
+    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
+    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
+    (3)倍角公式
+    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
+    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
+\end{proposition}
+\begin{remark}
+    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
+    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
+    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+    同样，证明留在复数部分讲解.
+\end{remark}
+
 
 \chapter{不等式}
 
