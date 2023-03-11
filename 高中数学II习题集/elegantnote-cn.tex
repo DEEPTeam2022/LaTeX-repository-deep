@@ -630,5 +630,73 @@ $7$ & $2,3,4,5,6~~\hlt{5}$ & $1,3,4,5,6~~\hlt{5}$ & $2,4,5,6~~\hlt{4}$ & $3,5,6~
 	即$\ssb{ \dfrac{n}{r_1}-r_1}=1 \cor r_1 \cor r_1^2$.由此可解得$n=6 \cor 8 \cor 12$.
 \end{solution}
 
+\begin{problem} % 兴趣二阶数论1.5
+	是否存在$2009$个不同的正整数满足其和被其中任意两个数的和整除？
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		类似于上个问题，不妨设$a_1 < \cdots < a_{2009}$，$S=a_1+ \cdots + a_{2009}$，容易发现$\dfrac{S}{a_i+a_j} \in \mathbb{Z}$中的$a_i+a_j$分布比较均匀，然而$S$的因子在数比较大时应该稀疏.故寻找极值时的矛盾.
+	\end{guess}
+	假设存在这样的一组数$a_1, \cdots ,a_{2009}$，不妨设$a_1 < \cdots < a_{2009}$，$S=a_1+ \cdots + a_{2009}$，那么有$$2009 > \frac{S}{a_{2009}} > \frac{S}{a_1+a_{2009}} > \cdots > \frac{S}{a_{2008}+a_{2009}}$$
+	由于该不等式链中每一项都是整数，可得$\dfrac{S}{a_{2008}+a_{2009}}=1$，于是$a_1+ \cdots + a_{2007}=0$，矛盾.综上，不存在这样的数.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.6
+	求满足下列条件的正整数数对$(x,y)$：
+	\begin{center}
+		$(x+y+1) \mid 2xy,~(x+y-1) \mid (x^2+y^2-1)$
+	\end{center}
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		有一个操纵整除符号左边的结论：若$a \mid c,~b \mid c$，则$ab \mid c(a,b)$.
+	\end{guess}
+	由$(x+y-1) \mid (x^2+y^2-1)$，可得$(x+y-1) \mid 2(x+y-xy-1)$，那么$(x+y-1) \mid 2xy$. \\
+	又$(x+y+1) \mid 2xy$，于是$$(x+y-1)(x+y+1) \mid 2xy (x+y-1,x+y+1)$$
+	其中，$(x+y-1,x+y+1)=(x+y-1,2)=1\cor 2$. \\
+	\buzhou{1} 当$(x+y-1,x+y+1)=1$时，即有$$(x+y)^2-1 \mid 2xy,\quad i.e.~(x+y)^2-1 \leq 2xy$$可得$x^2+y^2 \leq 1$.因为$x,y$均为正整数，$(x,y)$无解； \\
+	\buzhou{2} 当$(x+y-1,x+y+1)=2$时，即有$$(x+y)^2-1 \mid 4xy,\quad i.e.~(x+y)^2-1 \leq 4xy$$可得$(x-y)^2 \leq 1$.若$x=y$，代入上式，则$4x^2-1 \mid 4x^2$，显然不成立；若$y=x+1$，经验证符合条件；同理，若$x=y+1$，也符合条件. \\
+	综上，满足要求的$(x,y)$为$(k,k+1)$及$(k+1,k)$，其中$k$为正整数.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.7
+	求所有的正整数对$(a,b)$，使得$a^2b \mid b^2+3a$.
+\end{problem}
+\begin{solution}
+	由$a^2b \mid b^2+3a$，有$b \mid b^2+3a$，于是$b \mid 3a$. \\
+	\buzhou{1} 若$(b,3)=1$，则$b \mid a$.令$a=kb$，则$k^2b^3 \mid (3k+b)b$，于是$k^2b^2 \mid 3k+b$，可得$k^2b^2 \leq 3k+b$. \\
+	(i)~若$k \geq b$，那么$k^2b^2 \leq 4k$，于是$kb^2 \leq 4$.只能$b=1$，即有$k^2 \mid 3k+1,~k^2 \leq 3k+1$，解得$k=1$.此时即$(a,b)=(1,1)$； \\
+	(ii)~若$k \leq b$，那么$k^2b^2 \leq 4b$，于是$k^2b \leq 4$.只能$k=1$，即有$b^2 \mid b+3,~b^2 \leq b+3$，解得$b=1\cor 2$.然而这两个解均不成立，故此时无解. \\
+	\buzhou{2} 若$(b,3)=3$，令$b=3b_1$，于是$b_1 \mid a$.设$a=l b_1$，同\buzhou{1}可知$l=b_1=1$，即$(a,b)=(1,3)$时可行. \\
+	综上，满足条件的整数对为$(1,1),~(1,3)$.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.8
+	求出所有的正整数$x,y,p,n,k$，满足$\begin{cases}
+		5x+y=p^k \\ 5y+x=p^{n+k}
+	\end{cases}$.
+\end{problem}
+\begin{solution}
+	将方程组视作关于$x,y$的，得$x=\dfrac{p^k \cdot (5-p^n)}{24},~y=\dfrac{p^k \cdot (5p^n-1)}{24}$. \\
+	由于$x,y>0$，可知$\dfrac{1}{5} < p^n < 5$.另外，当$p^n=1$时，有$5x+y=1$，矛盾，故$p^n=2,3,4$. \\
+	\buzhou{1} 若$p^n=2$，必有$p=2,~n=1$.此时$x=\dfrac{2^k}{8},~y=\dfrac{3 \cdot 2^k}{8}$.只需$k \geq 3$即可符合题意. \\
+	\buzhou{2} 若$p^n=3$，必有$p=3,~n=1$.此时$x=\dfrac{3^k}{12},~y=\dfrac{7 \cdot 3^k}{12}$，$y$一定不是整数，故此时无解. \\
+	\buzhou{3} 若$p^n=4$，则$x=\dfrac{p^k}{24}$.由于此时$p=2\cor 4$，$x$一定不是整数，故此时无解. \\
+	综上，满足条件的整数对为$(x,y,p,n,k)=(2^{k-3},3\cdot 2^{k-3},2,1,k)$，其中$k \geq 3$.
+\end{solution}
+
+\begin{problem} % 兴趣二阶数论1.9
+	对于自然数$N$，记$N$的标准分解式为$N=p_1^{\alpha _1}p_2^{\alpha _2} \cdots p_n^{\alpha _n}$，其中，$p_i$为两两不同的素数，$a_i \in \mathbb{Z}_{+},~a \leq i \leq n$.记$T(N)=a_1+a_2+ \cdots + a_n$. \\
+	已知四个不同的自然数$a,b,c,d$满足$(ac+bd) \mid (ab+cd)$.证明：$T(ab+cd) \geq 3$.
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		当$T(ab+cd)$比较小时会好想一点，考虑用反证法.
+	\end{guess}
+	假设$T(ab+cd) \leq 2$. \\
+	\buzhou{1} 若$T(ab+cd)=1$，即$ab+cd$为素数.由$(ac+bd) \mid (ab+cd)$，$ac+bd=1\cor ab+cd$.又$a,b,c,d$为不同的自然数，$ac+bd=ab+cd$，于是$(a-d)(c-b)=0$，总存在两个相等的数，矛盾. \\
+	\buzhou{2} 若$T(ab+cd)=2$，记$ab+cd=p_1p_2$.若$ab+cd=ac+bd$，由\buzhou{1}可知这样会产生矛盾.故不妨令$ac+bd=p_1$.由$\dfrac{ab+cd}{ac+bd} \in \mathbb{Z}$，有$\dfrac{(a+d)(b+c)}{p_1} \in \mathbb{Z}$.不妨令$ac+bd \mid a+d$，于是$b=c=1$，矛盾. \\
+	综上，$T(ab+cd) \geq 3$.
+\end{solution}
 
 \end{document}

@@ -393,6 +393,28 @@
 	于是$f(x) \leq \sqrt{10}$，取等条件为$A,B,P$三点共线，即$x=\dfrac{1-\sqrt{37}}{6}$时.
 \end{solution}
 
+\begin{problem} %奥数教程高一p28
+	求函数$y=x^2+x\sqrt{x^2-1}$的值域.
+\end{problem}
+\begin{solution}
+	注意到，该函数的定义域为$(-\infty ,-1] \cup [1,+\infty )$.令$t=\dfrac{1}{x}~(t \in [-1,0) \cup (0,1])$，这样的$x$即可满足定义域要求.于是$y=\dfrac{1}{t^2}+\dfrac{1}{t}\sqrt{\dfrac{1-t^2}{t^2}}$. \\
+	当$t>0$时，$y=\dfrac{1}{t^2}+\dfrac{\sqrt{1-t^2}}{t^2} = \dfrac{1}{1-\sqrt{1-t^2}}$.由$\sqrt{1-t^2} \in [0,1)$，可知$y \in [1,+\infty)$. \\
+	当$t<0$时，$y=\dfrac{1}{t^2}-\dfrac{\sqrt{1-t^2}}{t^2} = \dfrac{1}{1+\sqrt{1-t^2}}$，同理可得$y \in (\dfrac{1}{2},1]$. \\
+	综上，$y \in (\dfrac{1}{2},+\infty)$.
+\end{solution}
+
+\begin{problem} %奥数教程高一p34
+	证明：函数$f(x)=3x^2$可以表示为两个单调递增的多项式函数之差.
+\end{problem}
+\begin{solution}
+	\begin{guess}
+		为了使得作差后得到$3x^2$且两个多项式函数均单调递增，考虑某两个三次函数.
+	\end{guess}
+	给定两个多项式函数$\varphi _1(x)=(x+1)^3$与$\varphi _2(x)=x^3+3x+1$.容易证明，它们都是单调递增的函数，且$f(x)=\varphi _1(x) - \varphi _2(x)$.
+\end{solution}
+
+
+
 \section{二次函数相关问题}
 
 \subsection{参变互换}
@@ -422,6 +444,13 @@
 	所以$$S_0 = |2f(1)+2f(0)-4f\ssb{\frac{1}{2}}| + |4f\ssb{\frac{1}{2}}-3f(0)-f(1)| + |f(0)|$$
 	且这个式子在$f(0),f(1)$增大时增大，在$f\ssb{\dfrac{1}{2}}$增大时减小.故$$S_0 \leq 8+8+1=17$$
 	取等条件为$f(1)=1,f(0)=1,f\ssb{\dfrac{1}{2}}=-1$，即$f(x)=8x^2-8x+1$.
+\end{solution}
+
+\begin{problem} %奥数教程高一p34
+	求函数$y=2x-3+\sqrt{x^2-12}$的值域.
+\end{problem}
+\begin{solution}
+	该函数的定义域为$(-\infty ,-2\sqrt{3}] \cup [2\sqrt{3}, +\infty )$.于是，关于$x$的方程$2x-3+\sqrt{x^2-12}-y=0$在该定义域上有解.该方程等价于$$3x^2 - (4y+12)x + y^2+6y+21 = 0$$
 \end{solution}
 
 \subsection{调整}
