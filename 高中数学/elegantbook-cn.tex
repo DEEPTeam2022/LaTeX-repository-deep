@@ -1,4 +1,4 @@
-\documentclass[lang=cn, zihao=4.5]{elegantbook}
+\documentclass[lang=cn, zihao=5]{elegantbook}
 \usepackage{hyperref}
 \usepackage{booktabs}
 
@@ -18,6 +18,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}
 \newcommand{\sw}[1]{\boxed{\text{解法 #1}} \ }
 \newcommand{\buzhou}[1]{$#1^{\circ} \ $}
 \usepackage{ulem}
@@ -48,8 +49,8 @@
 
 
 % 修改标题页的橙色带
-% \definecolor{customcolor}{RGB}{32,178,170}
-% \colorlet{coverlinecolor}{customcolor}
+\definecolor{customcolor}{RGB}{102,102,153}
+\colorlet{coverlinecolor}{customcolor}
 
 
 \begin{document}
@@ -60,9 +61,24 @@
 
 \mainmatter
 
+\chapter*{写在前面}\markboth{写在前面}{写在前面}
+
+本讲义是由DEEP Team出品、主要面向强基竞赛学生的高中数学讲义.本讲义注重知识体系的搭建，关于具体的解题技巧，请参考《高中数学解题指南I》、《高中数学解题指南II》(皆可在我们的网站上找到)；为了提升熟练度和补充，也推荐搭配如《奥数教程》等一试书籍.
+
+提到高中数学，不得不介绍其特点：
+\begin{enumerate}
+	\item 从知识体系上来看，高中数学的内容脉络更加严谨、有条理.高中数学在初中已经接触的部分内容的基础上，进行了适当的拓展研究.另外，其作为初等数学至高等数学的衔接课程，相较初中更具抽象性.
+	\item 从考题上来看，由于高中数学引入了各个具体板块的内容，较难的题目一般会以知识综合的形式出现，接近于真正的数学研究环境.
+\end{enumerate}
+根据上述特点，本讲义在编写时即侧重于知识体系的完整性与逻辑性，尽量自然地引入各种概念与定理；本讲义给出了许多思考问题，而不是单纯的例题堆积，这会增进对知识的理解.
+
+不同于大多数高中数学讲义，为了更好地培养抽象思维，本讲义十分注重定理和公式的证明.关于高中考试中经常出现的二级结论，本讲义会在不脱离主干知识脉络的条件下尽量拓展，以免影响对数学体系的整体认知.关于计算能力与知识熟练度，为了尽可能较少讲义篇幅，这部分内容请读者参考《奥数教程》等练习.
+
+本讲义包括如下内容：高中数学预备知识，函数与数列，几何，数与代数，概率、计数与组合，初等数论.大致涵盖高中数学联赛一试、二试内容，也兼顾强基计划的知识体系.
+
 \tableofcontents
 
-注：初等数论部分在我学完后开始编写.
+注：初等数论部分待完成.
 
 \newpage
 
@@ -1156,25 +1172,121 @@ $$
 
 在物理学中，我们常常需要处理一些同时具有方向特征与距离特征的量，例如一个力$F$.在探究几个力的合力时，一般可以进行正交分解(即“建系”)，但是这样的方法会产生很多繁杂的三角函数运算.
 
-有没有一种方法能够更加合理地分解这样一个集合元素呢？更进一步，我们能否构造一个“平面非直角坐标系”？
+有没有一种方法能够更加合理地分解这样一个几何元素呢？更进一步，我们能否构造一个“平面非直角坐标系”？
 
-\section{平面向量的概念}
-
-% 平面向量的概念，向量间的关系，向量的运算
+\section{平面向量的几何定义}
 
 如前文所述，像一个力$F$一样，既有大小，又有方向的量叫做\textbf{向量}(vector)，物理学上也称为矢量.与向量相对的量，即那些只有大小、没有方向的量叫做\textbf{标量}(scalar).
 
-一个向量通常用加向右箭头的小写字母表示，如$\xl{a},\xl{v}$；有时也会用大写字母，例如在物理学中的电场强度$\xl{E}$、力$\xl{F}$.在平面几何中，若给定两点$A,B$，也可以用$\xl{AB}$来表示从点$A$出发、结束于点$B$的向量.另外，一些印刷材料会使用粗体小写字母表示，如$\boldsymbol{a},\boldsymbol{x_i}$.
+一个向量通常用加向右箭头的小写字母表示，如$\vec{a},\vec{v}$；有时也会用大写字母，例如在物理学中的电场强度$\vec{E}$、力$\vec{F}$.在平面几何中，若给定两点$A,B$，也可以用$\xl{AB}$来表示从点$A$出发、结束于点$B$的向量.另外，一些印刷材料会使用粗体小写字母表示，如$\boldsymbol{a},\boldsymbol{x_i}$.
 
-\section{平面向量基本定理}
+我们称一个向量$\vec{a}$的大小为它的\textbf{模长}(或绝对值)，记作$|\vec{a}|$.特别地，称模长为$1$的向量为单位向量，模长为$0$的向量为零向量.规定零向量的方向为任意方向.
+
+当两个向量相等，即$\vec{a}=\vec{b}$时，意味着它们的模长相等、方向相同；当两个向量相反，即$\vec{a}=-\vec{b}$时，意味着它们的模长相等、方向相反.容易发现，在平面中，向量的大小与方向不受其位置所影响.因此当两个向量平行时，等价于它们共线，即它们的方向相同或相反，记作$\vec{a} \pll \vec{b}$.由于零向量的方向为任意方向，可知零向量平行于任意向量.
+
+类似于物理学中对力的合成与分解，向量的加法与减法符合“三角形法则”与“平行四边形法则”：
+
+% TODO 三角形法则图像
+
+容易想到，如果要把一个向量拉伸、缩小，即只改变其大小而不改变其方向，只需要乘以一个系数$\lambda$即可.实际上，定义向量的标量乘法(数乘)如下：记$\vec{b}=\lambda \vec{a}$，则$\vec{b}$的模长满足$|\vec{b}|=|\lambda | \cdot |\vec{a}|$.当$\lambda > 0$时，$\vec{b}$的方向与$\vec{a}$相同；当$\lambda = 0$时，$\vec{b}$的方向为任意方向(即，$\vec{b}$为零向量)；当$\lambda < 0$时，$\vec{b}$的方向为$-\vec{a}$的方向.
+
+接着，定义向量间的乘法.第一种乘法称作内积(或点乘)，定义$\vec{a} \cdot \vec{b}$为一个实数，满足$$\vec{a} \cdot \vec{b} = |\vec{a}| \cdot |\vec{b}| \cdot \cos \langle \vec{a},\vec{b} \rangle$$
+其中，$\langle \vec{a},\vec{b} \rangle$表示向量$\vec{a},\vec{b}$的夹角.内积的几何意义如下：
+
+% TODO 向量的内积图像
+
+由内积的定义，不难发现以下结论：
+
+\begin{proposition}{向量内积的常用结论}
+	(1)对于向量$\vec{a}$，其模长满足$$|\vec{a}|^2=\vec{a} \cdot \vec{a} = (\vec{a})^2$$
+	(2)对于向量$\vec{a},\vec{b}$，有$$\vec{a} \cdot \vec{b} = 0 \quad \Longleftrightarrow \quad \vec{a} \bot \vec{b}$$
+\end{proposition}
+
+另一种乘法称作外积(或叉乘).定义$\vec{a} \times \vec{b}$得到一个向量$\vec{c}$，其模长满足$$|\vec{c}|=|\vec{a}| \cdot |\vec{b}| \cdot \sin \langle \vec{a},\vec{b} \rangle $$
+而其方向满足“右手定则”，如图所示：
+
+% TODO 向量的外积图像
+
+向量的外积用代数形式定义其实更明了，我们会在下一节说明.
+
+\section{向量的代数定义}
 
 \subsection{平面向量基本定理}
 
-平面向量基本定理，定比分点公式
+\begin{theorem}{向量共线定理}{xlllgsxm}
+	若向量$\vec{b}$与非零向量$\vec{a}$共线，则存在唯一$\lambda \in \R$，使得$\vec{b} = \lambda \vec{a}$.
+\end{theorem}
+\begin{proof}
+	\buzhou{1} 存在性：构造$\lambda \in \R$使得$|\lambda | = \dfrac{|\vec{b}|}{|\vec{a}|}$，且当$\vec{a},\vec{b}$同向(反向)时，$\lambda$的方向为正(负).这样的$\lambda$恰能满足条件. \\
+	\buzhou{2} 唯一性：设有不同的$\lambda _1,\lambda _2$满足条件，那么$\vec{b} = \lambda _1 \vec{a} = \lambda _2 \vec{a}$.两式相减，可得$\vec{0}=(\lambda _1 - \lambda _2)\vec{a}$.由于$\vec{a}$不是零向量，必然有$\lambda _1 - \lambda _2=0$，即$\lambda _1=\lambda _2$，与假设矛盾.
+\end{proof}
 
-\subsection{向量的本质}
+\begin{theorem}{平面向量基本定理}
+	若$\vec{c}$与非零不共线向量$\vec{a},\vec{b}$共面，则存在唯一的$\lambda _1,\lambda _2 \in \R$使得$\vec{c} = \lambda _1 \vec{a} + \lambda _2 \vec{b}$. \\
+	此处的$\vec{a},\vec{b}$常称作\textbf{基底}(bases).
+\end{theorem}
+\begin{proof}
+	\buzhou{1} 存在性：将$\vec{c}$沿$\vec{a},\vec{b}$方向分解为$\vec{c_a},\vec{c_b}$，即构造如下图所示平行四边形.
+	% TODO 平面向量基本定理的证明图像
+	由定理\ref{thm:xlllgsxm}，取$\lambda _1,\lambda _2$使得$\lambda _1 \vec{a}=\vec{c_a}, \lambda _2 \vec{b}=\vec{c_b}$.这样的$\lambda _1,\lambda _2$恰能满足条件. \\
+	\buzhou{2} 唯一性：假设不同的$(\lambda _1, \lambda _2),(\lambda '_1, \lambda '_2)$均满足条件，那么$$\vec{c}=\begin{cases}
+		\lambda _1 \vec{a} + \lambda _2 \vec{b} \\
+		\lambda '_1 \vec{a} + \lambda '_2 \vec{b}
+	\end{cases}$$
+	两式相减，得$\vec{0}=(\lambda _1 - \lambda '_1) \vec{a} + (\lambda _2 - \lambda '_2) \vec{b}$.由于$\vec{a},\vec{b}$均不为零向量且不共线，可知$\lambda _1 - \lambda '_1 = \lambda _2 - \lambda '_2 = 0$，即$(\lambda _1, \lambda _2)=(\lambda '_1, \lambda '_2)$，与假设矛盾.
+\end{proof}
 
-平面向量的坐标表示，组，高维向量的定义
+类似于“算术基本定理”，平面向量基本定理实际上为我们提供了一种分解任意向量的方法.当基底选成互相垂直的单位向量时，$\vec{c}$就是平面直角坐标系中从原点出发、到某个点结束的有向线段.
+
+关于平面向量基本定理，有一个重要推论：
+
+\begin{corollary}{定比分点公式}
+	给定平面上的三点$A,B,C$，记$|AC|=a,|BC|=b$.若存在该平面上的另一点$P$，则$$\xl{PC} = \frac{b}{a+b} \cdot \xl{PA} + \frac{a}{a+b} \cdot \xl{PB} \quad \Longleftrightarrow \quad A,B,C~\textit{三点共线}$$
+\end{corollary}
+\begin{proof}
+	\buzhou{1} 充分性：如下图所示，在$AP,BP$上取点$B',A'$，使得$\dfrac{|AB'|}{|AP|}=\dfrac{a}{a+b},\dfrac{|BA'|}{|BP|}=\dfrac{b}{a+b}$，由相似三角形可知$\xl{B'C}=\xl{PA'},\xl{A'C}=\xl{PB'}$.由平行四边形法则，上式即成立. \\
+	% TODO 定比分点公式证明图像
+	\buzhou{2} 必要性：用同一法很好说明，详细证明留给读者.
+\end{proof}
+
+
+\subsection{向量的代数定义}
+
+让我们来重温“自由度”的概念：自由度，就是描述一个问题所需不相关的变量的个数.例如，想要在地球表面确定一个人的位置，至少需要经度、纬度，故这个问题的自由度是$2$；在坐标系中想要确定点$P(x,x)$的位置，只需要一个量$x$，这个问题的自由度就是$1$.
+
+不难发现，当把向量分解为两个非零不共线向量的倍数之和时，总能用两个量$\lambda _1,\lambda _2$来描述这个向量.当我们将$\lambda _1,\lambda _2$用数组$(\lambda _1,\lambda _2)$时，就会产生向量在坐标系下的意义.
+
+更特殊地，取基底$\vec{e_1},\vec{e_2}$，满足$\vec{e_1}=(1,0),\vec{e_2}=(0,1)$.于是任意一个向量$\vec{c}$可以表示为如下形式：(其中，$x,y \in \R$)$$\vec{c}=x\vec{e_1}+y\vec{e_2}=x(1,0)+y(0,1)=(x,0)+(0,y)=(x,y)$$
+这就构建出一个完整的表示体系(尽管这种说明过程有循环论证的意味).借助这种想法，可以用坐标形式定义向量.
+
+\begin{definition}{向量}
+	在给定的$2$维直角坐标系中，定义任意一个点$(x,y)$为一个\textbf{向量}(vector). \\
+	对于向量$(x_1,y_1),(x_2,y_2)$与标量$\lambda \in \R$： \\
+	(1)向量之间的加减法定义如下：
+	$$(x_1,y_1) + (x_2,y_2) = (x_1+x_2,y_1+y_2)$$
+	$$(x_1,y_1) - (x_2,y_2) = (x_1-x_2,y_1-y_2)$$
+	(2)向量的标量乘法定义如下：$$\lambda \cdot (x_1,y_1) = (\lambda x_1, \lambda y_1)$$
+	(3)向量之间的内积定义如下：$$(x_1,y_1) \cdot (x_2,y_2) = x_1x_2 + y_1y_2$$
+	(4)向量之间的外积定义如下：将$(x_1,y_1),(x_2,y_2)$表示为矩阵的形式，即$$\begin{pmatrix}
+		x_2 \\ y_2 \end{pmatrix} \times \begin{pmatrix}
+			x_1 & y_1 \end{pmatrix} = \begin{pmatrix}
+				x_1x_2 & x_2y_1 \\ x_1y_2 & y_1y_2
+			\end{pmatrix}$$
+	(5)向量的模长定义为：$$|(x_1,y_1)|=\sqrt{x_1^2+y_1^2}$$
+\end{definition}
+\begin{remark}
+	可以证明，该定义与上一节所述几何定义是等价的.
+\end{remark}
+\begin{remark}
+	这个定义可以推广到任意维度.
+\end{remark}
+\begin{note}
+	在应用向量的减法时，例如取$P=(x_1,y_1),Q=(x_2,y_2)$，由$\xl{PQ}=\xl{Q}-\xl{P}$，实际上有$\xl{PQ}=(x_2-x_1,y_2-y_1)$，这与直觉上将两个向量相减是反着的.
+\end{note}
+
+利用代数形式定义向量的好处就在于，这种定义是统一的，因而比几何定义要简单的多.
+
+
 
 \chapter{平面几何中的距离与角度}
 
@@ -1282,6 +1394,7 @@ $$
 		\midrule
 		点斜式 & $y-y_0=k(x-x_0)$ & 不能表示垂直于$x$轴的直线 \\
 		斜截式 & $y=kx+b$ & 不能表示垂直于$x$轴的直线 \\
+		横截式 & $x=my+b$ & 不能表示垂直于$y$轴的直线 \\
 		两点式 & $\dfrac{y-y_1}{x-x_1}=\dfrac{y-y_2}{x-x_2}$ & 不能表示垂直于$x$轴的直线 \\
 		截距式 & $\dfrac{x}{a}+\dfrac{y}{b}=1~(ab \neq 0)$ & 不能表示垂直于$x$轴、$y$轴或经过原点的直线 \\
 		参数式 & $\begin{cases}
@@ -1292,7 +1405,7 @@ $$
 	\end{tabular}
 \end{table}
 
-其中，斜截式用来表达直线的倾斜角非常合适.
+其中，斜截式用来表达直线的倾斜角非常合适；横截式在处理过$x$轴上定点的问题时会简化计算.
 
 \begin{definition}{直线的倾斜角、斜率与解析式}
     对于直线$l$，我们把它向上的方向与$x$轴正方向所成的夹角定义为它的\textbf{倾斜角}，一般记作$\alpha$，注意应该满足$0^{\circ} \leq \alpha < 180^{\circ}$；\\
@@ -1396,7 +1509,7 @@ $$
 
 在三维空间中，一个圆锥与任意给定平面的交集被称为\textbf{圆锥曲线}(conic section).我们知道，当该平面与圆锥底面平行时，它们的交集就是一个圆.但如果该平面倾斜一下，会“割”出怎样的图形？
 
-\subsection{椭圆与双曲线}
+\subsection{椭圆}
 
 我们不妨先采用一种特殊的化归思想来研究椭圆：设平面直角坐标系$xOy$中有圆$C:x^2+y^2=1$.现在将整个坐标系进行“压缩”，对圆上的任意一点$P(x_0,y_0)$，令$P'(x'_0,y'_0)$满足$x'_0=\dfrac{1}{a} x_0,~y'_0=\dfrac{1}{b} y_0~(a,b>0)$.于是这个圆$C$被压缩为了椭圆$C'$，其方程满足$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$
 这种伸缩变换的过程如下所示：
@@ -1407,7 +1520,7 @@ $$
 
 \begin{definition}{椭圆的第一定义}
 	设平面内一点$P$，若$P$到两个定点$F_1,F_2$的距离之和为大于$|F_1F_2|$的常数，则称所有这样的$P$构成的点集为\textbf{椭圆}(ellipse). \\
-	称这两个定点$F_1,F_2$为椭圆的\textbf{焦点}([单]focus;[复]foci)，$F_1F_2$的中点$C$为椭圆的\textbf{中心}(center).
+	称这两个定点$F_1,F_2$为椭圆的\textbf{焦点}([单]focus;[复]foci)，$|F_1F_2|$称作\textbf{焦距}(focal length)，$F_1F_2$的中点$C$为椭圆的\textbf{中心}(center).
 \end{definition}
 \begin{remark}
 	后文为了方便计算，总是假设一个中心在坐标原点的椭圆.
@@ -1424,16 +1537,19 @@ $$
 \end{align*}
 若令$b^2=a^2-c^2$，即得$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$，其中$a>b>0$.该形式称作椭圆的标准方程.
 
-同样地，对于焦点在$y$轴的椭圆，其方程可表示为$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1~(b>a>0)$.
+同样地，对于焦点在$y$轴的椭圆，其方程可表示为$\dfrac{y^2}{a^2}+\dfrac{x^2}{b^2}=1~(a>b>0)$.
 
 这个等价定义阐释了椭圆的几何性质.以焦点在$x$轴上的椭圆为例，其与$x$轴的两个交点分别称作左顶点、右顶点，与$y$轴的两个交点称作上顶点、下顶点；连接左、右顶点的线段称作长轴，连接上、下顶点的线段称作短轴.满足长轴长为$2a$，短轴长为$2b$.
 
 另外，定义椭圆的\textbf{离心率}(eccentricity)为$e=\dfrac{c}{a} \in (0,1)$.容易发现，$e$在越靠近$0$时，椭圆越像圆；越靠近$0$时，椭圆越扁.
 
+两种椭圆的图像如下：
+
+% TODO 两种椭圆的图像
+
 \begin{example}
 	已知一圆形纸片的圆心为$O$，$F$是圆内一定点，$M$是圆周上一动点，把纸片折叠使$M$与$F$重合，然后抹平纸片，折痕为$CD$，设$CD$与$OM$交与点$P$，则点$P$的轨迹是\tk .
 \end{example}
-
 
 关于椭圆，有两个方便的命题：
 
@@ -1442,17 +1558,116 @@ $$
 	(1)当$P$在椭圆上时，过$P$点的椭圆的切线方程为$$\frac{x_0x}{a^2} + \frac{y_0y}{b^2} = 1$$
 	(2)当$P$在椭圆外时，设过$P$点的直线与椭圆切于$A,B$两点，则直线$AB$的方程为$$\frac{x_0x}{a^2} + \frac{y_0y}{b^2} = 1$$
 \end{proposition}
+\begin{proof}
+	
+\end{proof}
 
-\begin{proposition}{焦点三角形的面积}
-	设椭圆$C:\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1~(a>b>0)$. \\
+\begin{proposition}{椭圆常用结论}
+	(1)椭圆的焦点弦(即过焦点的弦)中最短的为通径(过焦点且垂直于长轴的弦)，且其长为$\dfrac{2b^2}{a^2}$. \\
+	(2)设椭圆$C:\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1~(a>b>0)$. \\
 	则两焦点$F_1,F_2$与椭圆上任一点$P$所围成的三角形(称为焦点三角形)，满足其面积为$$S_{\vartriangle PF_1F_2} = b^2\tan \frac{\angle F_1PF_2}{2}$$
+\end{proposition}
+\begin{proof}
+	
+\end{proof}
+
+\subsection{双曲线}
+
+类似于椭圆的第一定义，所有到两个定点距离之差为定值的点构成的集合，就是双曲线.
+
+\begin{definition}{双曲线的第一定义}
+	设平面内一点$P$，若$P$到两个定点$F_1,F_2$的距离之差的绝对值为小于$|F_1F_2|$的常数，则称所有这样的$P$构成的点集为\textbf{双曲线}(hyperbola). \\
+	称这两个定点$F_1,F_2$为双曲线的\textbf{焦点}([单]focus;[复]foci)，$|F_1F_2|$称作\textbf{焦距}(focal length)，$F_1F_2$的中点$C$为双曲线的\textbf{中心}(center).
+\end{definition}
+
+利用和椭圆相似的方式，可以证明双曲线的标准方程为$$\frac{x^2}{a^2}-\frac{y^2}{b^2}=1~(a,b>0) \quad \textit{或} \quad \frac{y^2}{a^2}-\frac{x^2}{b^2}=1~(a,b>0)$$
+分别表示焦点在$x$轴、$y$轴上的双曲线.
+
+双曲线的几何性质也与椭圆类似，以焦点在$x$轴上的椭圆为例，其与$x$轴的两个交点$A_1A_2$分别称为左顶点、右顶点，线段$A_1A_2$称作实轴.相应地，定义$B_1(0,b),B_2(0,-b)$称作上顶点、下顶点，线段$B_1B_2$称作虚轴.
+
+定义双曲线的离心率为$e=\dfrac{c}{a} \in (1,+\infty)$.定义双曲线的渐进线(即双曲线的图像在$x$很大时不断趋近于这条线)为$y=\pm \dfrac{b}{a} x$.
+
+两种双曲线的图像如下：
+
+% TODO 两种双曲线的图像
+
+\begin{example}
+	已知定点$F_1(-2,0),F_2(2,0)$，$N$是圆$O:x^2+y^2+1$上任意一点，点$F_1$关于点$N$的对称点为$M$，线段$F_1M$的中垂线与直线$F_2M$相交于点$P$，则点$P$的轨迹是\tk .
+\end{example}
+
+\begin{example}
+	证明：反比例函数$y=\dfrac{1}{x}$是经过旋转的等轴双曲线(即实轴长与虚轴长相等的双曲线).
+\end{example}
+
+关于双曲线，有一些常用结论：
+
+\begin{proposition}{双曲线的切线方程}
+	设点$P(x_0,y_0)$，双曲线$C:\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$. \\
+	(1)当$P$在双曲线上时，过$P$点的双曲线的切线方程为$$\frac{x_0x}{a^2} - \frac{y_0y}{b^2} = 1$$
+	(2)当$P$在双曲线外时，设过$P$点的直线与双曲线切于$A,B$两点，则直线$AB$的方程为$$\frac{x_0x}{a^2} - \frac{y_0y}{b^2} = 1$$
+\end{proposition}
+\begin{proof}
+	证明与椭圆类似，详细过程留给读者.
+\end{proof}
+
+\begin{proposition}{双曲线常用结论}
+	设双曲线$C:\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1~(a,b>0)$. \\
+	(1)双曲线的焦点到其渐近线的距离为$b$. \\
+	(2)双曲线同支的焦点弦(即过焦点的弦)中最短的为通径(过焦点且垂直于实轴的弦)，且其长为$\dfrac{2b^2}{a^2}$. \\
+	(3)两焦点$F_1,F_2$与双曲线上任一点$P$所围成的三角形(称为焦点三角形)，满足其面积为$$S_{\vartriangle PF_1F_2} = \frac{b^2}{\tan \frac{\angle F_1PF_2}{2}}$$
+\end{proposition}
+
+\subsection{第二定义与抛物线}
+
+\begin{definition}{圆锥曲线的第二定义}
+	设$C$为到定点与到定直线的距离之比为常数$e$的点所构成的集合. \\
+	(1)当$0<e<1$时，$C$为离心率为$e$的椭圆，该定点为椭圆的一个焦点； \\
+	(2)当$e>1$时，$C$为离心率为$e$的双曲线，该定点为双曲线的一个焦点； \\
+	(3)当$e=1$时，$C$为\textbf{抛物线}(parabola)，该定点为抛物线的焦点. \\
+	其中，该定直线常称作圆锥曲线的\textbf{准线}(directrix).
+\end{definition}
+
+由于统一了椭圆与双曲线的定义，可以得到一些通用结论.
+
+\begin{proposition}{关于椭圆与双曲线的焦点、准线的结论}
+	对于椭圆与双曲线： \\
+	(1)在第二定义中，当定点为左焦点$(-c,0)$时，准线方程为$x=-\dfrac{a^2}{c}$；当定点为右焦点$(c,0)$时，准线方程为$x=\dfrac{a^2}{c}$. \\
+	(2)称椭圆与双曲线上一点$P(x_0,y_0)$到一个焦点$F$的距离为\textbf{焦半径}(focal radius).对于左焦点$F_1$，焦半径$|PF_1|=|a+ex_0|$；对于右焦点$F_2$，焦半径$|PF_2|=|a-ex_0|$.
+\end{proposition}
+
+圆锥曲线的第二定义图像如下：
+
+% TODO 圆锥曲线的第二定义图像
+
+接着，我们来研究一下抛物线的性质.
+
+由第二定义，容易得到双曲线的标准方程为$$x^2=2py \quad \textit{或} \quad y^2=2px$$
+分别表示对称轴是$y$轴、$x$轴的双曲线.
+
+抛物线的几何性质比较特殊，它只具有轴对称性而没有中心对称性.对于抛物线$x^2=2py$，其焦点坐标为$\ssb{0,\dfrac{p}{2}}$，准线方程为$y=-\dfrac{p}{2}$；对于抛物线$y^2=2px$，其焦点坐标为$\ssb{\dfrac{p}{2},0}$，准线方程为$x=-\dfrac{p}{2}$.
+
+抛物线的图像如下：
+
+% TODO 抛物线的图像
+
+关于抛物线的结论更多：
+
+\begin{proposition}{抛物线常用结论}
+	以抛物线$y^2=2px~(p>0)$为例. \\
+	(1)其上一点$P(x_0,y_0)$到焦点的距离(即焦半径)为$|PF|=x_0+\dfrac{p}{2}$. \\
+	(2)设$AB$是过焦点的弦，其中$A(x_1,y_1),B(x_2,y_2)$，直线$AB$的倾斜角为$\alpha $，则有
+	$$x_1x_2=\frac{p^2}{4},\quad y_1y_2=-p^2$$
+	$$|AB| = x_1+x_2+p=\frac{2p}{\sin ^2 \alpha }$$
+	\begin{center}
+		以$AB$为直径的圆与准线相切；以$AF,BF$为直径的圆与$y$轴相切.
+	\end{center}
+	(3)焦点弦中最短的为通径(过焦点且垂直于对称轴的弦)，且其长为$2p$.
 \end{proposition}
 
 
 
-\subsection{第二定义与抛物线}
 
-第二定义，抛物线
+
 
 \begin{problem}
 	证明：在三维空间中，一个圆锥与任意给定平面的交集总是圆、椭圆、双曲线、抛物线中的一种，并且给出每种交集的出现条件.
