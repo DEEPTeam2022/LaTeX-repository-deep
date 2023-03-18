@@ -1065,9 +1065,9 @@
   \par\noindent\textbf{\color{second}\proofname\;}
   \color{black!90}\cfs}{
   % \hfill$\Box$\quad
-  \par}
+  \par\vspace{1em}}
 
-\newenvironment{solution}{\par\noindent\textbf{\color{main}\solutionname} \citshape}{\par}
+\newenvironment{solution}{\par\noindent\textbf{\color{main}\solutionname} \citshape}{\par\vspace{1em}}
 \newenvironment{hint}{\par\noindent\textbf{\color{third}\hintname} \citshape}{\par}
 \newenvironment{remark}{\noindent\textbf{\color{second}\remarkname}}{\par}
 \newenvironment{assumption}{\par\noindent\textbf{\color{third}\assumptionname} \citshape}{\par}

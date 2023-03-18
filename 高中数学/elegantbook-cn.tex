@@ -1,6 +1,7 @@
 \documentclass[lang=cn, zihao=5]{elegantbook}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage{float}
 
 % font settings
 \definecolor{mgreen}{RGB}{0,166,82}
@@ -87,6 +88,14 @@
 \setcounter{chapter}{-1}
 \chapter{数理逻辑与集合}
 
+\begin{introduction}
+	\item 命题、充分条件、存在与任意
+	\item 命题的逻辑运算
+	\item 集合、子集与母集
+	\item 集合间的运算及其运算律
+	\item 区间
+\end{introduction}
+
 \section{数理逻辑}
 
 \subsection{命题的概念}
@@ -108,13 +117,16 @@
 \begin{remark}
 	还有一个类似的逻辑语言：有且仅有(恰有)，这意味着存在一个(存在性)且只有一个(唯一性).例如，平面中，过直线外一点有且仅有一条直线与之平行.
 \end{remark}
+\begin{remark}
+	类似于大于等于(小于等于)号，“充分(必要)条件”具有传递性.即“若$A \Rightarrow B$且$B \Rightarrow C$，则$A \Rightarrow C$”.
+\end{remark}
 
 可以用图像来更好理解该定义.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=5cm]{attachment/202302191.pdf}
-	\caption{例如，此时$A$是$B$的必要且不充分条件}
+	\caption{例如，此时$A$是$B$的充分且不必要条件}
 \end{figure}
 
 \begin{example}
@@ -124,7 +136,7 @@
 	(4)“$x^2-5x+6 \neq 0$”是“$x \neq 2$”的\tk 条件.
 \end{example}
 \begin{solution}
-	(1)充分且不必要；(2)充分且不必要；(3)必要且不充分；(4)必要且不充分.
+	(1)充分且不必要；(2)充分且不必要；(3)必要且不充分；(4)充分且不必要.
 \end{solution}
 
 不过这种直观的判断方式比较迷惑，我们可以通过命题的逻辑运算更好地思考这些问题.
@@ -177,7 +189,7 @@
 
 回顾上一个例题的最后一问，除了用直观的判断方式以外，我们还可以用反证法说明“若$x \neq 2$，则$x^2-5x+6 \neq 0$”.实际上，反证法的本质就是以下命题所述：
 
-\begin{proposition}
+\begin{proposition}{逆否命题的真假性}{nifzmkti}
 	逆否命题与原命题的真假性相同.
 \end{proposition}
 
@@ -194,14 +206,14 @@
 
 
 
-\begin{example}
+\begin{problem}
 	证明：$\sqrt{2}$是无理数.
-\end{example}
+\end{problem}
 \begin{proof}
 	设原命题：“所有能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是有理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
 	则原命题等价于“所有不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是无理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
 	构造逆否命题：“$\sqrt{2}$是有理数”$\Rightarrow$“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”， \\
-	由“$\sqrt{2}$是有理数”，假设$\sqrt{2}= \dfrac{p}{q}~$($p,q$都是正整数且互质).两边同时平方，有$$2q^2=p^2$$
+	由“$\sqrt{2}$是有理数”，设$\sqrt{2}= \dfrac{p}{q}~$($p,q$都是正整数且互质).两边同时平方，有$$2q^2=p^2$$
 	这要求$p$是$2$的倍数，因而$p^2$是$4$的倍数，故$q^2$是$2$的倍数.又因为$q$是整数，所以$q$是$2$的倍数，那么$p,q$不互质，即$\sqrt{2}$不能表示为上述形式.这就证明了“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”.由于原命题与逆否命题的真假性相同，故原命题也成立.
 \end{proof}
 
@@ -216,9 +228,10 @@
 
 对于一个集合，我们有两种方式描述集合中的元素：
 
-(1)列举法：将集合中的元素一一列举，例如$$\{ 1,2,3,\cdots \}$$其中“$\cdots$”表示类似的元素.
-
-(2)描述法：为了描述含有无限个元素的集合(即无限集)，我们用所含元素的性质来表示该集合，例如$$\kaishu \{ x \in E|P(x) \},~\text{或}\{ x \in E:P(x) \}$$\songti 其中$x$为这些元素的代表元素，$E$是$x$的范围，$P(x)$表示$x$满足的性质.
+\begin{enumerate}
+	\item 列举法：将集合中的元素一一列举，例如$$\{ 1,2,3,\cdots \}$$其中“$\cdots$”表示类似的元素.
+	\item 描述法：为了描述含有无限个元素的集合(即无限集)，我们用所含元素的性质来表示该集合，例如$$\kaishu \{ x \in E|P(x) \},~\text{或}\{ x \in E:P(x) \}$$\songti 其中$x$为这些元素的代表元素，$E$是$x$的范围，$P(x)$表示$x$满足的性质.
+\end{enumerate}
 
 另外，一些常见的数集有它们特定的表示符号：
 
@@ -232,20 +245,23 @@
 		$\R$         & 实数(real number)集      \\
 		$\mathbb{Q}$ & 有理数(rational number)集 \\
 		$\mathbb{Z}$ & 整数(integer)集          \\
-		$\mathbb{N}$ & 有理数(natural number)集 \\
+		$\mathbb{N}$ & 自然数(natural number)集 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-为了描述类似于“正整数集”的集合，我们规定一些标记.例如，$\R ^{+}$(或$\R _{+}$)表示正实数集，$\mathbb{Z}^{-}$表示负整数集，$\mathbb{N}^{*}$表示正有理数集(等价于正整数集).
+为了描述类似于“正整数集”的集合，我们规定一些标记.例如，$\R ^{+}$(或$\R _{+}$)表示正实数集，$\mathbb{Z}^{-}$表示负整数集，$\mathbb{N}^{*}$表示非零自然数集(等价于正整数集).
 
 \begin{example}
 	(1)集合$A=\{ 2,0,1,3 \},~B = \{ x|-x \in A,2-x^2 \notin A \}$，则集合$B$中所有元素的和为\tk . \\
 	(2)由三个实数构成的集合，既能表示为$\{ a,1,b/a \}$，也能表示为$\{ a^2,a+b,0 \}$，则$a^{99}+b^{99}=$\tk . \\
-	(3)给定实数集合$A,B$，定义运算$A \oplus B = \{ x|x=ab+a+b,a \in A,b \in B \}$.设$A = \{ 0,2,4,\cdots ,18 \},~B= \{ 98,99,100 \}$，则$A \oplus B$中所有元素之和为\tk .
 \end{example}
 \begin{solution}
-	% TODO 例题待解答
+	(1)由题意可知，集合$B=\{ -2,-3 \}$，则$B$中所有元素的和为$-5$. \\
+	(2)\sw{一}由于$1$和$0$不能相等，且$a \neq 0$，于是$b/a=0$，即$b=0$.又由$a^2 \neq a,~a^2=1$，可知$a=-1$.综上，$a^{99}+b^{99}=-1$. \\
+	\sw{二}由题，$\begin{cases}
+		a+1+\dfrac{b}{a} = a^2+(a+b) + 0 \\ a \times 1 \times \dfrac{b}{a} = a^2 \times (a+b) \times 0
+	\end{cases}$，由第二个式子可知$b=0$，代回第一个式子，解得$a= \pm 1$，又因为$a^2 \neq a+b$，于是$a=-1$.综上，$a^{99}+b^{99}=-1$.
 \end{solution}
 
 以下介绍集合之间的关系：
@@ -260,23 +276,28 @@
 \begin{note}
 	上述定义中符号“$\subseteq ,\subsetneqq$”在一些数学课本中也会写作“$\subset$”等.本书均采用上述写法.
 \end{note}
+\begin{remark}
+	(真)包含关系具有传递性，就如同逻辑运算中“充分条件”有传递性一样.
+\end{remark}
 
 由上述定义，不难证明，空集是任意集合的子集、是任意非空集合的真子集.
 
 有时我们需要研究某个有限集合的元素个数.设有限集$A$，可以用$\card (A)$表示其元素个数(card即\textit{cardinal}，基数).另外，有限集$A$的\textbf{阶}也表示其元素个数，记作$|A|$.
 
-\begin{example}
+\begin{problem}
 	证明：对于一个有限集$A$，它的子集个数为$2^{|A|}$个，真子集个数为$2^{|A|}-1$个.
-\end{example}
-\begin{solution}
-	% TODO 例题待解答
-\end{solution}
-\begin{example}
-	设$\{ b_n \}$是集合$\{ 2^t+2^s+2^r | 0 \leq r < s < t,~r,s,t \in \mathbb{Z} \}$中所有的数从小到大排列成的数列，已知$b_k=1160$，求$k$.
-\end{example}
-\begin{solution}
-	% TODO 例题待解答
-\end{solution}
+\end{problem}
+\begin{proof}
+	\sw{一}使用“贡献法”.对于给定的一个$A$的子集，任何一个$a_i~(i=1,2,\cdots ,n)$要么在其中，要么不在其中，由乘法原理，这样做就会生成$2^n$个不同的子集.对于一个有限集$A$，其真子集恰会比其子集少一个$A$，即真子集个数为$2^n-1$. \\
+	\sw{二}设集合$\{ a_1, \cdots ,a_n \}$.对$n$较小的情况进行子集的枚举：
+	\begin{align*}
+		n=1&,\quad \varnothing, \{ a_1 \} \\
+		n=2&,\quad \color{red} \varnothing, \{ a_1 \},\{ a_2 \},\{ a_1,a_2 \} \color{black} \\
+		n=3&,\quad \color{red} \varnothing, \{ a_1 \},\{ a_2 \}\color{black},\{ a_3 \},\color{red} \{a_1,a_2\} \color{black},\{ a_2,a_3 \},\{ a_3,a_1 \},\{ a_1,a_2,a_3 \}
+	\end{align*}
+	容易发现，每次从$n$增加到$n+1$时，$n$的情况中的子集全部被“继承”到$n+1$的情况里，又将新增加的元素$a_{n+1}$放在每一个继承下来的子集里形成一族新的子集(以$n=2 \to 3$为例，红色部分即为“继承”，黑色部分即为增加).由这种递推关系，可以得到$n$元集合的子集个数为$2^n$. \\
+	注：在不使用数学归纳法时，这种证明实际上是不严谨的.
+\end{proof}
 
 \subsection{集合间的运算与运算律}
 
@@ -290,6 +311,30 @@
 	(4)设$U$为\textbf{全集}.$A$的\textbf{补集}(complement)，记作$\complement _{U}{A}$，定义为$$\complement _{U}{A} = \{ x|(x \in U) \wedge (x \notin A) \}$$
 	若已知该全集(题目中明确定义)，$A$的补集也可记作$\overline{A}$.
 \end{definition}
+\begin{note}
+	两集合间的差集并不要求它们有包含关系，而只是从一个集合中“除去”在另一个集合中的元素.
+\end{note}
+
+\begin{problem}
+	证明：$$A \cap B = B ~ \Leftrightarrow ~ B \subseteq A ,\quad A \cup B = A ~ \Leftrightarrow ~ B \subseteq A$$
+\end{problem}
+\begin{proof}
+	以第一个为例. \\
+	\buzhou{1}充分性：由$B \subseteq A$，有$\forall x, x \in B \Rightarrow x \in A$.于是$$B = \{ x|x \in B \} = \{ x|(x \in B) \wedge (x \in B) \} \subseteq \{ x|(x \in A) \wedge (x \in B) \} = A \cap B$$
+	又因为$(A \cap B) \subseteq B$，于是$A \cap B = B$. \\
+	\buzhou{2}必要性：由$A \cap B = B$可得$B \subseteq (A \cap B)$.又因为$(A \cap B) \subseteq A$，于是$B \subseteq A$.
+\end{proof}
+
+上述定义与问题如果用图像的形式来看，会自然许多：
+
+\begin{center}
+	\includegraphics{attachment/20230318jihe.pdf}
+\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics{attachment/20230318jihe2.pdf}
+	\caption{集合间的运算图示}
+\end{figure}
 
 就像对于加减乘除运算，我们要研究其运算律一样，集合的交、并、补运算也有类似的运算律.
 
@@ -307,11 +352,11 @@
 
 \begin{example}
 	(1)已知$A=\{ 2,5 \}$，$B = \{ x|x^2+px+q=0 \}$，且$A \cup B = A$，$A \cap B = \{ 5 \}$，则$pq=$\tk . \\
-	(2)已知$M,N$均为$\mathbb{R}$的子集，且$(\complement _{\mathbb{R}} M) \subseteq N$，则$M \cup (\complement _{\mathbb{R}} N)=$\tk . \\
-	(3)设集合$A = \{ x|1 \leq x \leq 2000,~x \in \mathbb{N} \}$，$B = \{ x|1993 \leq x \leq 2021,~x \in \mathbb{N} \}$.则满足$S \subseteq A$，且$S \cap B \neq \varnothing$的集合$S$的个数为\tk .
+	(2)已知$M,N$均为$\mathbb{R}$的子集，且$(\complement _{\mathbb{R}} M) \subseteq N$，则$M \cup (\complement _{\mathbb{R}} N)=$\tk .~(用$M,N$表示) \\
 \end{example}
 \begin{solution}
-	% TODO 例题待解答
+	(1)由$A \cup B = A$，$A \cap B = \{ 5 \}$，可知$B \subsetneqq A$且$5 \in B$，即$B=\{ 5 \}$.这意味着二次方程$x^2+px+q=0$恰有一个解$x=5$，于是$p=-10,~q=25$，进而$pq=-250$. \\
+	(2)可以作一个换元的操作：令$P=\complement _{\mathbb{R}} M$，则$M=\complement _{\mathbb{R}} P$(也即$P \cup Q=\R ,~P \cap Q = \varnothing$).于是$P \subseteq N$，所求即为$(\complement _{\mathbb{R}} P) \cup (\complement _{\mathbb{R}} N)$.由命题\ref{pro:nifzmkti}可知$(\complement _{\mathbb{R}} N) \subseteq (\complement _{\mathbb{R}} P)$，于是原式等于$\complement _{\mathbb{R}} P$，即为$M$.
 \end{solution}
 
 实际上，集合之间的交、并与逻辑运算中的和、或是一样的.例如，不等式$x^2-4x+3 \geq 0$的取值范围为$$\{ x|(x \leq 1) \vee (x \geq 3) \} = \{ x|x \leq 1 \} \cup \{ x|x \geq 3 \}$$
@@ -332,7 +377,9 @@
 上文例子中$x$的取值范围就可以表达为$$(-\infty ,1] \cup [3,+\infty )$$
 
 
-\chapter{对数运算}
+\chapter{数与代数预备知识}
+
+\section{对数运算}
 
 在介绍对数运算之前，我们需要了解\textbf{幂}(power)的概念.对于单项式$a^n(n \in \mathbb{Q})$，令$n=\frac{p}{q}$，
 $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
@@ -341,13 +388,16 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 
 在初中我们常常遇到一类问题：例如，求$2$的多少次方是$1024$.这种简单的式子还可以一眼看出结果，那么$2$的多少次方是$1023$呢？这就不好说明.更进一步，我们甚至找不到一个比较好的逼近计算的方式.于是人们发明了对数运算：
 
-一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数.通常把以$10$为底的对数叫做\textbf{常用对数}(common logarithm)(化学中pH值的计算公式就包括它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
+一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数.通常把以$10$为底的对数叫做\textbf{常用对数}(化学中pH值的计算公式就有利用到它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
 
 对数运算有两条重要性质：(1)$~\log_{a}{1} = 0,~\log_{a}{a}=1$；(2)$~a^{\log_{a}{N}}=N$.第二条看起来是个废话，其实很有用.
 
 \begin{example}
 	计算：$\log_{2}{8}=$\tk ,~$\log_{\sqrt{5}}{125}=$\tk ,~$\log_{114514}{1}=$\tk ,$\log_{8}{16}=$\tk .
 \end{example}
+\begin{solution}
+	$3$；$6$；$0$；$\dfrac{4}{3}$.
+\end{solution}
 
 类似于指数运算，对数运算也有一些重要运算公式：
 
@@ -381,11 +431,9 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	若要计算$\lg{120}$与$\lg{0.012}$，只需要知道$\lg{1.2}$的值.于是$\lg{N}$可以被用在换底公式中作为“工具对数”来近似计算.
 \end{remark}
 
-\chapter{多项式与代数变换}
-
 \section{多项式与Vieta定理}
 
-多项式，多项式间的关系与运算，多项式的带余除法，多项式的根，余数定理，因式定理，Vieta定理
+\subsection{多项式的概念}
 
 \begin{definition}{多项式}
 	形如$$f(x) = a_nx^n + \cdots + a_1x + a_0~(a_n \neq 0)$$的表达式称为关于$x$的一元$n$次\textbf{多项式}(polynomial)，其中$n$称为多项式的\textbf{次数}，记作$\deg f = n$.规定恒等于$0$的多项式的次数为$-\infty$.
@@ -404,13 +452,19 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	若$f(x)$和$g(x)$是两个已知的多项式，其中$g(x)$不是零多项式，那么存在唯一的一对多项式$q(x)$和$r(x)$，使得$$f(x) = g(x) \cdot q(x) + r(x)$$其中$\deg r < \deg g$或$r(x)=0$.称$q(x)$和$r(x)$分别为$f(x)$除以$g(x)$所得的\textbf{商式}与\textbf{余式}.
 \end{proposition}
 
-\section{整式恒等变形}
+\begin{theorem}{余数定理}
+	多项式$f(x)$除以$x-c$时所得余数等于$f(c)$.
+\end{theorem}
 
-换元技巧，齐次性原理
+\begin{theorem}{因式定理}
+    对于一个关于$x$的$n$次多项式$$f(x)=a_nx^n+ \cdots +a_1x+a_0$$若存在有理根$c=\dfrac{p}{q}$，则分子$p$是常数项$a_0$的因数，分母$q$是首项系数$a_n$的因数.
+\end{theorem}
+
+\subsection{多项式的根与Vieta定理}
 
 \section{简单的不等式}
 
-绝对值不等式，糖水不等式，均值不等式，线性规划
+二次函数求极值，绝对值不等式，糖水不等式，均值不等式，线性规划
 
 \part{函数与数列}
 
@@ -803,7 +857,7 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 \begin{definition}{类正弦函数}
     函数$$f(x)=A \sin (\omega x + \varphi)$$
     称为\textbf{类正弦函数}(sinusoidal function)，也叫波函数.\\
-    该函数的最小正周期$T=\frac{2\pi}{|\omega|}$.最大值(波峰)、最小值(波谷)分别为$|A|$,$-|A|$.
+    该函数的最小正周期$T=\dfrac{2\pi}{|\omega|}$.最大值(波峰)、最小值(波谷)分别为$|A|$,$-|A|$.
 \end{definition}
 
 类正弦函数在物理学中有很多应用.
@@ -1353,28 +1407,6 @@ $$
 
 极化恒等式，奔驰定理，三角形五心
 
-\chapter{立体几何}
-
-\section{空间中的几何体}
-
-空间中的几何体及其表面积、体积计算
-
-\section{空间中的位置关系}
-
-公理体系，空间中的平行关系，空间中的垂直关系
-
-\section{空间中的距离与角度}
-
-空间中的距离，空间中的角度
-
-\section{多面体与球}
-
-正方体，正四面体
-
-\section{空间向量的应用}
-
-空间向量基本定理，法向量与夹角计算
-
 \chapter{解析几何}
 
 \section{平面基本元素}
@@ -1664,14 +1696,36 @@ $$
 	(3)焦点弦中最短的为通径(过焦点且垂直于对称轴的弦)，且其长为$2p$.
 \end{proposition}
 
-
-
-
-
-
 \begin{problem}
 	证明：在三维空间中，一个圆锥与任意给定平面的交集总是圆、椭圆、双曲线、抛物线中的一种，并且给出每种交集的出现条件.
 \end{problem}
+
+
+\chapter{立体几何}
+
+\section{空间中的几何体}
+
+空间中的几何体及其表面积、体积计算
+
+\section{空间中的位置关系}
+
+公理体系，空间中的平行关系，空间中的垂直关系
+
+\section{空间中的距离与角度}
+
+空间中的距离，空间中的角度
+
+\section{多面体与球}
+
+正方体，正四面体
+
+\section{空间向量与空间直角坐标系}
+
+空间向量基本定理，法向量与夹角计算
+
+
+
+
 
 \part{数与代数}
 

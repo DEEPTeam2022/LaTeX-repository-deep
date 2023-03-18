@@ -474,6 +474,50 @@
 
 \chapter{三角函数}
 
+\section{有关三角函数概念的问题}
+
+\begin{problem} %启东中学奥赛教程p124
+	(2015高联)设$w$是正实数，若存在$a,b~(\pi \leq a < b \leq 2\pi )$，使得$\sin \omega a + \sin \omega b = 2$，求$\omega$的取值范围.
+\end{problem}
+\begin{solution}
+	由$\sin \omega a , \sin \omega b \leq 1$，$\sin \omega a = \sin \omega b = 1$.记$\omega a = 2k\pi + \dfrac{\pi }{2} ,~\omega b = 2l\pi + \dfrac{\pi }{2}~(k,l \in \mathbb{Z})$，则存在$k,l$使得$$\omega \pi \leq 2k\pi + \frac{\pi }{2} < 2l\pi + \frac{\pi }{2} \leq 2\omega \pi$$
+	当区间$[\omega \pi ,~2\omega \pi ]$的长度$\geq 4\pi $时，总存在$k,l$满足上式；当$\omega \in (0,4)$时： \\
+	\buzhou{1}若$\omega \pi \leq \dfrac{1}{2}\pi < \dfrac{5}{2}\pi \leq 2\omega \pi$，此时$\omega$无解； \\
+	\buzhou{2}若$\omega \pi \leq \dfrac{5}{2}\pi < \dfrac{9}{2}\pi \leq 2\omega \pi$，此时$\omega \in \left[ \dfrac{9}{4},\dfrac{5}{2} \right]$； \\
+	\buzhou{3}若$\omega \pi \leq \dfrac{9}{2}\pi < \dfrac{13}{2}\pi \leq 2\omega \pi$，此时$\omega \in \left[ \dfrac{13}{4},\dfrac{9}{2} \right]$，该上界已经超出$4$，故$\omega \in \left[ \dfrac{9}{4},4 \right)$. \\
+	综上，$\omega \in \left[ \dfrac{9}{4},\dfrac{5}{2} \right] \cup \left[ \dfrac{9}{4},+\infty \right)$
+\end{solution}
+
+\begin{problem} %启东中学奥赛教程p126
+	设函数$f(x)=\sin \ssb{\dfrac{11}{6} \pi x + \dfrac{\pi}{3}}$. \\
+	(1)对于任意的正数$\alpha$，是否总能找到不小于$\alpha$，且不大于$(\alpha +1)$的两个数$a,b$，使$f(a)=1,f(b)=-1$？给出答案并证明. \\
+	(2)若$\alpha$是任意自然数，再次讨论上述问题.
+\end{problem}
+\begin{solution}
+	(1)答案是否定的.函数$f(x)$的最小正周期为$\dfrac{12}{11}>1$，故在一段长度为$1$的区间上不一定能同时给出极大值与极小值.现在进行反例构造： \\
+	取$f(a)=1$，例如$a=\dfrac{1}{11}$.找一个以$x=a$为中心、长度为$1$的区间，即区间$\ssb{-\dfrac{9}{22},\dfrac{13}{22}}$.在该区间上取不到最小值$-1$. \\
+	(2)假设找不到这样的$a,b$，由于使$f(x)$函数值为$-1$的自变量$x$的集合为$\left\{ x \mid x=\dfrac{12}{11}k+\dfrac{7}{11},~k \in \mathbb{Z} \right\}$，故存在一个$\alpha$使得$$\dfrac{12}{11}k+\dfrac{7}{11}-\dfrac{12}{11} < \alpha < \alpha + 1 < \dfrac{12}{11}k+\dfrac{7}{11}$$
+	即要求$\dfrac{12k-5}{11} < \alpha < \dfrac{12k-1}{11}$.由于$\alpha$是自然数，这样的$\alpha$便不存在，与假设矛盾.原命题即得证.
+\end{solution}
+
+\begin{problem}
+	求证：存在唯一的一对实数$\alpha ,\beta \in \ssb{0,\dfrac{\pi}{2}}$，且$\alpha < \beta$，使得$\sin (\cos \alpha )=\alpha ,~\cos (\sin \beta )=\beta $.
+\end{problem}
+\begin{solution}
+	从$\sin$入手：记$f(x)=\sin (\cos x )-x$.由于$f(x)$在$\ssb{0,\dfrac{\pi}{2}}$上单调递减，且$f(0)>0,~f \ssb{\dfrac{\pi}{2}}<0$，故$\ssb{0,\dfrac{\pi}{2}}$上存在唯一一个$\alpha$满足$\sin (\cos \alpha )=\alpha$. \\
+	为了凑出$\cos (\sin \beta )$，令$\alpha = \sin \beta $，即$\sin (\cos (\sin \beta ) )=\sin \beta $，由于$\beta \in \ssb{0,\dfrac{\pi}{2}}$，故$\cos (\sin \beta )=\beta$，而这样的$\beta $由$\alpha $唯一确定，即$\beta $满足题意.最后，由于$\sin (\cos \alpha )=\sin (\cos (\sin \beta))=\sin \beta < \beta$，可知$\alpha < \beta$.
+\end{solution}
+
+\begin{problem}
+	(1983高联)函数$F(x)=|\cos ^2 x+2\sin x \cos x - \sin ^2 x + Ax + B|$在$\left[ 0,\dfrac{3}{2}\pi \right]$上的最大值$M$与参数$A,B$有关.问$A,B$取什么值时，$M$为最小？并证明你的结论.
+\end{problem}
+\begin{solution}
+	化简$F(x)$，则$F(x)=|\sqrt{2}\sin \ssb{2x+\dfrac{\pi}{4}}+Ax+B |$.观察$F(x)$的图像，其是一个正弦型函数$f(x)=\sqrt{2}\sin \ssb{2x+\dfrac{\pi}{4}}$与一次函数$g(x)=Ax+B$之和的绝对值，极值只能在$\dfrac{\pi}{8},\dfrac{5\pi}{8},\dfrac{9\pi}{8}$处取到.以$\dfrac{\pi}{8}$为例： \\
+	\buzhou{1}当$g \ssb{\dfrac{\pi}{8}} \neq 0$时，不妨令$g \ssb{\dfrac{\pi}{8}} > 0$，即$\dfrac{\pi}{8}A+B>0$：当$A>0$时，$M=\sqrt{2}+\dfrac{9\pi}{8}A+B>\sqrt{2}+A>\sqrt{2}$；当$A \leq 0$时，$M=\sqrt{2}+\dfrac{\pi}{8}A+B>\sqrt{2}$. \\
+	\buzhou{2}当$g \ssb{\dfrac{\pi}{8}} = 0$时，即$\dfrac{\pi}{8}A+B=0$：当$A \neq 0$时，$M=\sqrt{2}+\dfrac{9\pi}{8}A+B \text{或} \sqrt{2}+\dfrac{5\pi}{8}A+B>\sqrt{2}$；当$A = 0$时，$B=0$，则$M=\sqrt{2}$. \\
+	综上，$M$的最小值为$\sqrt{2}$.
+\end{solution}
+
 \chapter{平面向量}
 
 \subsection*{填空题}
