@@ -22,6 +22,7 @@
 \newcommand{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}
 \newcommand{\sw}[1]{\boxed{\text{解法 #1}} \ }
 \newcommand{\buzhou}[1]{$#1^{\circ} \ $}
+\newcommand{\cor}{~\textit{或}~}
 \usepackage{ulem}
 	\newcommand{\tk}{\uline{\hspace{4em}}}
 \newcommand{\pspace}{\vspace{0.5em}}
@@ -50,7 +51,7 @@
 
 
 % 修改标题页的橙色带
-\definecolor{customcolor}{RGB}{102,102,153}
+\definecolor{customcolor}{RGB}{241,192,184}
 \colorlet{coverlinecolor}{customcolor}
 
 
@@ -379,18 +380,27 @@
 
 \chapter{数与代数预备知识}
 
-\section{对数运算}
+\section{幂运算与对数运算}
 
-在介绍对数运算之前，我们需要了解\textbf{幂}(power)的概念.对于单项式$a^n(n \in \mathbb{Q})$，令$n=\frac{p}{q}$，
+首先介绍\textbf{幂}(power)的概念.对于单项式$a^n(n \in \mathbb{Q})$，令$n=\frac{p}{q}$，
 $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 
-这就是有理数次幂的严格定义.其中，$a$称为底数，$n$称为指数，$a^n$的值称为幂值.若$n$是无理数，可以通过计算有理数次幂进行逼近计算.
+这就是有理数次幂的严格定义.其中，$a$称为底数，$n$称为指数，$a^n$的值称为幂值.若$n$是无理数，可以借助指数函数进行定义(后文会提到).
 
-在初中我们常常遇到一类问题：例如，求$2$的多少次方是$1024$.这种简单的式子还可以一眼看出结果，那么$2$的多少次方是$1023$呢？这就不好说明.更进一步，我们甚至找不到一个比较好的逼近计算的方式.于是人们发明了对数运算：
+幂运算的运算律如下：
 
-一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数.通常把以$10$为底的对数叫做\textbf{常用对数}(化学中pH值的计算公式就有利用到它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
+\begin{proposition}{幂函数的运算律}
+	设$a,b,m,n \in \R $. \\
+	(1)同底数幂相乘$$a^m \times a^n = a^{m+n}$$
+	(2)同指数幂相乘$$a^m \times b^m = (ab)^m$$
+	(3)幂的幂$$(a^m)^n=a^{mn}$$
+\end{proposition}
 
-对数运算有两条重要性质：(1)$~\log_{a}{1} = 0,~\log_{a}{a}=1$；(2)$~a^{\log_{a}{N}}=N$.第二条看起来是个废话，其实很有用.
+接着介绍对数的概念.一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数(这里人为要求$a>0$是因为当$a\leq 0$时运算不可逆，也即对数函数不单调)；读作“以$a$为底$y$的对数”.
+
+通常把以$10$为底的对数叫做\textbf{常用对数}(化学中pH值的计算公式就有利用到它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
+
+对数运算有两条重要性质：(1)$~\log_{a}{1} = 0,~\log_{a}{a}=1$；(2)$~a^{\log_{a}{N}}=N$.第二条看起来是个废话，但是我们会在下方多次应用.
 
 \begin{example}
 	计算：$\log_{2}{8}=$\tk ,~$\log_{\sqrt{5}}{125}=$\tk ,~$\log_{114514}{1}=$\tk ,$\log_{8}{16}=$\tk .
@@ -422,7 +432,7 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	不难发现，在应用换底公式之后做证明变得很轻松.可以说，如果把“重要性质”比作一个轮子，那么换底公式就是一辆车：用轮子也能向前走(用重要性质也能写证明)，但远不及一辆车快速与舒适(引入换底公式会十分便捷).
 \end{remark}
 \begin{remark}
-	换底公式的本质是找到了一个“工具对数”作为中间量化简计算，就跟我们倾向于使用$\dfrac{1}{7}$而不是$0.142857\cdots$一样.
+	换底公式的本质是找到了一个“工具对数”作为中间量化简计算.类似于在应用题中我们倾向于在过程中利用符号$\pi $来计算、只在最后一步将$\pi $化为小数.
 \end{remark}
 \begin{remark}
 	由加减法运算法则，可以一窥常用对数的作用.例如，
@@ -430,6 +440,22 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	$$\lg{0.012} = \lg{1.2 \times 10^{-2}} = \lg{1.2}-2$$
 	若要计算$\lg{120}$与$\lg{0.012}$，只需要知道$\lg{1.2}$的值.于是$\lg{N}$可以被用在换底公式中作为“工具对数”来近似计算.
 \end{remark}
+
+\begin{example}
+	(1)计算：$5^{\lg 20} \times 0.5^{\lg 0.5}=$\tk ；$6^{\lg 40} \times 5^{\lg 36}=$\tk . \\
+	(2)已知$\log_{18}{9}=a,~18^b=5$，则$\log_{36}{45}=$\tk .~(用$a,b$表示) \\
+	(3)设$a,b,c$都是正数，且$3^a=4^b=6^c$，则$a,b,c$的关系为\tk .
+\end{example}
+\begin{solution}
+	(1)$$5^{\lg 20} \times 0.5^{\lg 0.5} = 5^{\lg 20} \times 2^{\lg 2} = 5 \times 5^{\lg 2} \times 2^{\lg 2} = 10$$
+	$$6^{\lg 40} \times 5^{\lg 36} = 10^{\lg 6 \cdot \lg 40} \times 10^{\lg 5 \cdot \lg 36} = 10^{\lg 6 \cdot (\lg 40 + \lg 25)} = 216$$
+	(2)由所给条件，令$a=\frac{\ln{9}}{\ln{18}}=\frac{2\ln{3}}{\ln{2}+2\ln{3}} ,~b=\frac{\ln{5}}{\ln{18}}=\frac{\ln{5}}{\ln{2}+2\ln{3}}$，则$$\ln{2}=\frac{2-2a}{a}\ln{3},~\ln{5}=\frac{2b}{a}\ln{3}$$
+	于是
+	$$\log_{36}{45} = \frac{\ln{45}}{\ln{36}} = \frac{\ln{5} + 2\ln{3}}{2\ln{2}+2\ln{3}} = \frac{\frac{2b}{a}+2}{\frac{4-4a}{a}+2} = \frac{a+b}{2-a}$$
+	(3)记$3^a=4^b=6^c=t$，则$$a=\log_{3}{t},~b=\log_{4}{t},~c=\log_{6}{t}$$
+	于是$$\frac{1}{a}=\log_{t}{3},~\frac{1}{b}=\log_{t}{4},~\frac{1}{c}=\log_{t}{6}$$
+	故$$\frac{2}{a} + \frac{1}{b} = \log_{t}{9} + \log_{t}{4} = \log_{t}{36} = \frac{2}{c}$$
+\end{solution}
 
 \section{多项式与Vieta定理}
 
@@ -478,14 +504,18 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	\begin{itemize}
 		\item 设$A$和$B$为两个集合，若对$A$中每个元素$x$，都存在$B$中唯一的元素$y$与之对应，则称此对应关系为一个\textbf{映射}(map)，记作$$f:A \to B,~~x \mapsto y$$
 		\item $x$在$B$中的对应元素$y$称为$x$在$f$下的\textbf{象}(image)，$x$称为$y$在$f$下的\textbf{原象}(preimage)，记作$$f(x) = y,~ x \in A$$
-		\item 集合$A$称作映射$f$的\textbf{定义域}(domain)，记作$D_f$；集合$B$称为映射$f$的\textbf{陪域}(codomain)；$A$中所有元素在$f$下的象组成的集合称为$f$的\textbf{值域}(range)，记作$R_f$或$f(D)$.
+		\item 集合$A$称作映射$f$的\textbf{定义域}(domain)，记作$D_f$；集合$B$称为映射$f$的\textbf{陪域}(codomain)；$A$中所有元素在$f$下的象组成的集合称为$f$的\textbf{值域}(range)，记作$R_f$或$f(A)$.
 		\item 两个映射相等，当且仅当它们的定义域、对应关系、值域相同.
 	\end{itemize}
 \end{definition}
 
 定义域、陪域与值域的关系如下：
 
-% TODO 定义域、陪域、值域的关系作图
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{attachment/20230403ykue.pdf}
+	\caption{定义域、陪域、值域的关系}
+\end{figure}
 
 \begin{definition}{特殊的映射}
 	设映射$f:A \to B$.
@@ -498,7 +528,22 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 
 单射、满射、双射举例如下：
 
-% TODO 单射、满射、双射举例作图
+\begin{figure}[h!]
+	\centering
+	\includegraphics{attachment/20230403teuuykue.pdf}
+	\caption{单射、满射、双射举例}
+\end{figure}
+
+利用映射，可以确定集合间元素个数的关系(下列命题其实是另一种理解映射的方法)：
+
+\begin{proposition}{集合的对应原理}
+	设$A,B$为有限集，$f$为从$A$到$B$的一个映射. 
+	\begin{itemize}
+		\item 如果$f$为单射，则$|A| \leq |B|$. 
+		\item 如果$f$为满射，则$|A| \geq |B|$. 
+		\item 如果$f$为双射，则$|A| = |B|$. 
+	\end{itemize}
+\end{proposition}
 
 \subsection{映射与函数的运算}
 
@@ -529,87 +574,6 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 \begin{remark}
 	为了强调复合运算，$gf$也可记作$g \circ f$.
 \end{remark}
-
-\section{常见初等函数}
-
-初等函数，是指用基本初等函数进行有限次加减乘除、乘方、开方、复合操作后得到的函数.
-
-在中学阶段可以遇见的基本初等函数，大致可以分为以下几类：常值函数、指数函数、对数函数、幂函数、三角函数、反三角函数.对于这些函数的概念、图像与性质，我们逐一介绍.(注：三角函数与反三角函数在下一章介绍)
-
-\subsection{基本初等函数}
-
-\begin{definition}{常值函数}
-    形如$$f(x)=C \ (C \in \mathbb{R}, C\textit{是常数})$$
-    的函数称为\textbf{常值函数}(constant function).它的定义域为$\mathbb{R}$，值域为${C}$.
-\end{definition}
-
-\begin{definition}{幂函数}
-    形如$$f(x)=x^{\alpha} \ (\alpha \text{是常数})$$
-    的函数称为\textbf{幂函数}(power function).
-\end{definition}
-
-幂函数的性质不过多介绍.只需知道例如$f(x)=x^3$或$f(x)=\sqrt[4]{x}$的函数都是幂函数.
-
-\begin{definition}{指数函数}
-    形如$$f(x)=a^x, \ a>0 , a\neq 1$$
-    的函数称为\textbf{指数函数}(exponential function).
-\end{definition}
-
-\begin{proposition}{指数函数的性质}
-    指数函数$f(x)=a^x$具有以下性质：
-    \begin{itemize}
-        \item 定义域：$\mathbb{R}$
-        \item 值域：$\mathbb{R}^+$
-        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
-        \item 图像：恒过定点$(0,1)$
-    \end{itemize}
-\end{proposition}
-\begin{remark}
-    单调性参考后文：函数的性质.
-\end{remark}
-
-% TODO 指数函数的图像
-
-\begin{definition}{对数函数}
-    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
-    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$
-\end{definition}
-
-\begin{proposition}{对数函数的性质}
-    对数函数$f(x)=\log_{a}{x}$具有以下性质：
-    \begin{itemize}
-        \item 定义域：$\mathbb{R}^{+}$
-        \item 值域：$\mathbb{R}$
-        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
-        \item 图像：恒过定点$(1,0)$
-    \end{itemize}
-\end{proposition}
-
-% TODO 对数函数的图像
-
-实际上，我们发现对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
-
-\subsection{对勾函数与飘带函数}
-
-有两类特殊的初等函数，在研究最值问题时很常见.
-
-\begin{problem}
-    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0)$$
-    请指出它的定义域、值域并作出示意图.
-\end{problem}
-\begin{solution}
-    XXX
-\end{solution}
-
-还有一种类似于对勾函数，但没什么研究价值的函数.我们可以形象地称之为“垃圾函数”，虽然大多数人都会叫它“飘带函数”.
-
-\begin{problem}
-    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
-    请指出它的定义域、值域并作出示意图.
-\end{problem}
-\begin{solution}
-    XXX
-\end{solution}
 
 \section{函数的性质}
 
@@ -721,6 +685,91 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 \begin{remark}
     当一个函数$f(x)$同时有周期$T_1,T_2$，则$aT_1+bT_2(a,b \in \mathbb{Z})$也为它的周期.
 \end{remark}
+
+\section{常见初等函数}
+
+初等函数，是指用基本初等函数进行有限次加减乘除、乘方、开方、复合操作后得到的函数.
+
+在中学阶段可以遇见的基本初等函数，大致可以分为以下几类：常值函数、指数函数、对数函数、幂函数、三角函数、反三角函数.对于这些函数的概念、图像与性质，我们逐一介绍.(注：三角函数与反三角函数在下一章介绍)
+
+\subsection{基本初等函数}
+
+\begin{definition}{常值函数}
+    形如$$f(x)=C \ (C \in \mathbb{R}, C\textit{是常数})$$
+    的函数称为\textbf{常值函数}(constant function).它的定义域为$\mathbb{R}$，值域为$\{ C \}$.
+\end{definition}
+
+\begin{definition}{幂函数}
+    形如$$f(x)=x^{\alpha} \ (\alpha \text{是常数})$$
+    的函数称为\textbf{幂函数}(power function).
+\end{definition}
+\begin{remark}
+	请注意，当$\alpha =0$时，$f(x)=x^0$并不是常值函数，因为该函数的定义域不包括$0$.
+\end{remark}
+
+幂函数的性质不过多介绍.只需知道例如$f(x)=x^3$或$f(x)=\sqrt[4]{x}$的函数都是幂函数.
+
+\begin{definition}{指数函数}
+    形如$$f(x)=a^x, \ a>0 , a\neq 1$$
+    的函数称为\textbf{指数函数}(exponential function).
+\end{definition}
+
+\begin{proposition}{指数函数的性质}
+    指数函数$f(x)=a^x$具有以下性质：
+    \begin{itemize}
+        \item 定义域：$\mathbb{R}$
+        \item 值域：$\mathbb{R}^+$
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
+        \item 图像：恒过定点$(0,1)$
+    \end{itemize}
+\end{proposition}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics{attachment/20230402viuuhjuu.pdf}
+	\caption{指数函数的图像}
+\end{figure}
+
+\begin{definition}{对数函数}
+    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
+    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$
+\end{definition}
+
+\begin{proposition}{对数函数的性质}
+    对数函数$f(x)=\log_{a}{x}$具有以下性质：
+    \begin{itemize}
+        \item 定义域：$\mathbb{R}^{+}$
+        \item 值域：$\mathbb{R}$
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
+        \item 图像：恒过定点$(1,0)$
+    \end{itemize}
+\end{proposition}
+
+% TODO 对数函数的图像
+
+实际上，我们发现对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
+
+\subsection{对勾函数与飘带函数}
+
+有两类特殊的初等函数，在研究最值问题时很常见.
+
+\begin{problem}
+    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0)$$
+    请指出它的定义域、值域并作出示意图.
+\end{problem}
+\begin{solution}
+    XXX
+\end{solution}
+
+还有一种类似于对勾函数，但没什么研究价值的函数.我们可以形象地称之为“垃圾函数”，虽然大多数人都会叫它“飘带函数”.
+
+\begin{problem}
+    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
+    请指出它的定义域、值域并作出示意图.
+\end{problem}
+\begin{solution}
+    XXX
+\end{solution}
 
 \section{函数图像的变换}
 
@@ -1057,6 +1106,12 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 $$\{ a_n \}_{n=1}^{\infty} \qquad a_{n+k}=f(a_{n+1}, \cdots ,a_{n+k-1})$$
 其中第一种表示形式的“$_{n=1}^{\infty}$”常省略不写.
 
+或者，利用映射可以严格地定义数列：
+
+\begin{definition}{序列，数列}
+	从自然数集$\mathbb{N}$到任意非空集合$A$的一个映射称为$A$中元素的一个\textbf{序列}(sequence).特别地，当$A$是数集时，称该序列为\textbf{数列}(number sequence).
+\end{definition}
+
 数列可按以下标准分类：
 \begin{enumerate}
 	\item 单调性：若$\forall n \in \mathbb{Z}^+,~ a_{n+1} \geq (>)~ a_n$，称$\{ a_n \}$为\textbf{(严格)递增数列}；反之，若$\forall n \in \mathbb{Z}^+,~ a_{n+1} \leq (<)~ a_n$，称$\{ a_n \}$为\textbf{(严格)递减数列}；若$\forall n \in \mathbb{Z}^+,~ a_{n+1} = a_n$，称$\{ a_n \}$为\textbf{常数数列}.
@@ -1210,15 +1265,197 @@ $$
 
 \section{极限的概念与运算}
 
-数列的极限，函数的极限，极限的四则运算，常用极限
+在上一章，我们定义了数列的界限，其中可以类比得到一个重要思想：“无穷小的正数”就是一个比任何正数都要小的数.为了定义函数在某处的极限(也就是当$x+\Delta x$中的$\Delta x$无穷小时$f(x+\Delta x)$的值)，同样可以利用这种思想.
+
+为了方便思考，我们先讨论一个最特殊的情况：数列在项数趋于无穷时的极限.
+
+\subsection{数列的极限}
+
+\begin{definition}{数列的极限}
+	设数列$\{ a_n \}$.若对于任意$\varepsilon >0$，存在$N \in \mathbb{N}^{*}$，使得当$n > N$时总有$$|a_n-a|<\varepsilon$$
+	其中$a$是给定的实数.则称数列$\{ a_n \}$\textbf{收敛}(convergent)于$a$，亦称$\{ a_n \}$的\textbf{极限}(limit)为$a$.记作$$\lim_{n \to \infty}{a_n}=a \quad \cor \quad a_n \to a~(n \to \infty)$$
+	否则，称该数列\textbf{发散}(divergent).
+\end{definition}
+\begin{remark}
+	以上定义称为“$\varepsilon - N$”定义.
+\end{remark}
+\begin{remark}
+	定义中的$|a_n-a|$即相当于上文所说的“无穷小的正数”.
+\end{remark}
+\begin{remark}
+	定义中的$N$其实是依赖于$\varepsilon$的.也就意味着，对于任意正数$\varepsilon$，只要能保证一定找到一个$N$符合要求即可.(你可以将$N$粗略看做$\varepsilon$的一个函数，虽然往往对应$\varepsilon$的$N$无法保证只有一个)
+\end{remark}
+
+\begin{example}
+	求极限：$$\lim_{n \to \infty} \frac{1}{n}$$
+\end{example}
+\begin{solution}
+	为了证明上述极限为$0$，只需找到一个$N$使当$n > N$时，对于给定的$\varepsilon > 0$，有$$\left| \frac{1}{n}-0 \right| = \left| \frac{1}{n} \right| < \varepsilon$$
+	这要求$N>\dfrac{1}{\varepsilon}$，考虑到$N$为整数，取$N=\left[ \dfrac{1}{\varepsilon} \right]+1$即可满足上式.由数列极限的定义可知上述极限为$0$.
+\end{solution}
+
+但是每遇到一个数列就用$\varepsilon - N$写一遍是很麻烦的.为了将未知数列的极限化为已知，可以利用数列极限的运算：
+
+\begin{theorem}{数列极限的运算} % ayumu数分i p89
+	设数列$\{ a_n \},\{ b_n \}$.若$\lim_{n \to \infty} a_n=a,~\lim_{n \to \infty} b_n=b$，则 \\
+	(1)加减法$$\lim_{n \to \infty}{(a_n \pm b_n)} = a \pm b$$
+	(2)标量乘法(其中$c$为给定的实数)$$\lim_{n \to \infty}{ca_n}=ca$$
+	(3)乘法$$\lim_{n \to \infty}{a_nb_n} = ab$$
+	(4)除法(当$b \neq 0$时)$$\lim_{n \to \infty}{\frac{a_n}{b_n}} = \frac{a}{b}$$
+	(5)绝对值$$\lim_{n \to \infty}{|a_n|} = |a|$$
+\end{theorem}
+\begin{proof}
+	XXX
+\end{proof}
+
+\subsection{函数的极限}
+
+类比数列极限，自然引出函数极限的定义(因为数列只不过是特殊的函数)：
+
+\begin{definition}{函数的极限}
+	设函数$f$在$x_0$附近有定义.若对于任意$\varepsilon > 0$，存在$\delta > 0$，使得当$x$满足$0<|x-x_0|<\delta$时总有$$|f(x)-a|<\varepsilon$$
+	则称$f$在$x_0$处的极限为$a$，记作$$\lim_{x \to x_0}{f(x)=a} \quad \cor \quad f(x) \to a~(x \to x_0)$$
+\end{definition}
+\begin{remark}
+	以上定义称为“$\varepsilon - \delta$”定义.
+\end{remark}
+\begin{remark}
+	讨论函数$f$在$x_0$处的极限，不必要求$f$在$x_0$处有定义.
+\end{remark}
+\begin{remark}
+	描述“$x_0$附近”需要借助邻域的概念，这里不展开说明.
+\end{remark}
+
+同样地，函数的极限存在运算.
+
+\begin{theorem}{函数极限的运算} % ayumu数分i p135
+	设函数$f,g$.若$\lim_{x \to x_0} f(x)=a,~\lim_{x \to x_0} g(x)=b$，则 \\
+	(1)加减法$$\lim_{x \to x_0}{(f(x) \pm g(x))} = a \pm b$$
+	(2)乘法$$\lim_{x \to x_0}{f(x)g(x)} = ab$$
+	(3)除法(当$b \neq 0$时)$$\lim_{x \to x_0}{\frac{f(x)}{g(x)}} = \frac{a}{b}$$
+	(4)绝对值$$\lim_{x \to x_0}{|f(x)|} = |a|$$
+\end{theorem}
+\begin{remark}
+	证明这些性质有可能会用到更高级的定理，因此这里不证明了.
+\end{remark}
+\begin{remark}
+	函数极限中其实也有“标量乘法”，即设函数$f$满足$\lim_{x \to x_0}f(x)=a$，则对于实数$c$，$$\lim_{x \to x_0}{cf(x)}=ca$$
+	该运算可以由乘法推出(只用令$g(x)=1,~\forall x$).
+\end{remark}
 
 \section{导数的概念与运算}
 
-导数的概念，导函数的概念，初等函数的导数，导数的运算法则
+\begin{definition}{导数}
+	设函数$f$在$x_0$附近有定义.若存在实数$a$使得$$\lim_{\Delta x \to 0} {\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}} = \lim_{\Delta \to 0}{\frac{\Delta f(x)}{\Delta x}} = a$$
+	则称$f(x)$在$x_0$处\textbf{可导}(derivable)，$a$称为$f$在$x_0$处的\textbf{导数}(derivative)，记作$f'(x_0)=a$.
+\end{definition}
+
+\begin{definition}{曲线的切线}
+	若曲线$y=f(x)$在$x_0$处可导，则过点$P(x_0,f(x_0))$的斜率为$f'(x_0)$的直线$$y=f(x_0)+f'(x_0)(x-x_0)$$
+	称为曲线$y=f(x)$在$P$处的\textbf{切线}(tangent line).
+\end{definition}
+
+利用导数定义曲线的切线很合乎逻辑，如下图所示：
+
+% TODO 导数的几何意义
+
+请注意，在接触导数之前，我们从未严格定义过曲线的切线.因此，比起称“切线斜率是导数的几何意义”，不如说“曲线的切线是由导数严格刻画的”.
+
+现在我们知道了一个函数$f(x)$在某一点处的导数.如果一个函数在某个区间$I$上全部可导，则区间上的每个点都应该对应一个导数值.可以建立一个新的映射来表述每个$x_0$与$f'(x_0)$的关系.
+
+\begin{definition}{导函数}
+	\begin{itemize}
+		\item 设函数$f(x)$在某个区间$I$上全部可导.将$I$作为定义域，求导的过程作为对应法则，得到一个新的函数$f'(x)$.称该函数为原函数的\textbf{导函数}，也可以简称为原函数的导数.
+		\item 在可导的前提下，$f(x)$的\textbf{$n$阶导函数}是其$n-1$阶导函数的导函数，记作$f^{(n)}(x)$.即，$$f^{(0)}(x)=f(x) \quad f^{(1)}(x)=f'(x) \quad f^{(n)}(x)=(f^{(n-1)})'(x)$$
+	\end{itemize}
+\end{definition}
+\begin{remark}
+	对于$f(x)$的$2$阶导数，也可用$f''(x)$来表示.
+\end{remark}
+
+\begin{theorem}{导函数的运算法则}
+	(1)加减法$$(f(x) \pm g(x))'=f'(x) \pm g'(x)$$
+	(2)标量乘法($c$为常数)$$(c \cdot f(x))'=c \cdot f'(x)$$
+	(3)乘法$$(f(x) \cdot g(x))'=f'(x) \cdot g(x) + g'(x) \cdot f(x)$$
+	(4)除法$$\ssb{ \frac{f(x)}{g(x)} }'=\frac{f'(x) \cdot g(x) - g'(x) \cdot f(x)}{(g(x))^2}$$
+	(5)复合函数$$(f(g(x)))'=f'(g(x)) \cdot g'(x)$$
+	(6)反函数$$(f^{-1}(x))'=\frac{1}{f'(f^{-1}(x))}$$
+\end{theorem}
+\begin{proof}
+	XXX
+\end{proof}
+
+\begin{proposition}{基本初等函数的导函数}
+	(1)常值函数：($c$为常数)$$(c)'=0$$
+	(2)幂函数：$$(x^{\alpha})'=\alpha x^{\alpha -1}$$
+	(3)指数函数：$$(e^x)'=e^x \quad (a^x)'=a^x \cdot \ln a$$
+	(4)对数函数：$$(\ln x)'=\frac{1}{x} \quad (\log_{a}{x})'=\frac{1}{x\cdot \ln a}$$
+	(5)三角函数：$$(\sin x)'=\cos x \quad (\cos x)'=-\sin x \quad (\tan x)'=\frac{1}{\cos ^2 x} \quad (\cot x)'=-\frac{1}{\sin ^2 x}$$
+	(6)反三角函数：$$(\arcsin x)'=\frac{1}{\sqrt{1-x^2}} \quad (\arccos x)'=-\frac{1}{\sqrt{1-x^2}} \quad (\arctan x)'=\frac{1}{1+x^2} \quad (\arccot x)'=-\frac{1}{1+x^2}$$
+\end{proposition}
+\begin{proof}
+	XXX
+\end{proof}
 
 \section{导数的应用}
 
-导数与单调性，导数与极值点
+先来看看一阶导数的几何意义.
+
+\begin{theorem}{函数的单调性与其导函数的关系}
+	设函数$f(x)$的定义域为$D$，区间$I \subseteq D$，$f(x)$在$I$上可导.
+	\begin{itemize}
+		\item 若对任意$x \in I$都有$f'(x)>0$，则$f(x)$在$I$上单调递增.
+		\item 若对任意$x \in I$都有$f'(x)<0$，则$f(x)$在$I$上单调递减.
+	\end{itemize}
+\end{theorem}
+\begin{remark}
+	即使函数$f(x)$在$I$上严格单调，在区间$I$内仍然可能存在$x_0$使得$f'(x_0)=0$.例如，函数$f(x)=x^3$在$0$处的导数为$0$.
+\end{remark}
+\begin{proof}
+	XXX(需要用到Lagrange中值定理)
+\end{proof}
+
+\begin{definition}{极值与极值点}
+	\begin{itemize}
+		\item 如果函数$f(x)$在点$x_0$处的函数值$f(x_0)$比它在点$x_0$附近的其它点的函数值都小，则称$x_0$是函数$f(x)$的\textbf{极小值点}，称$f(x_0)$是函数$f(x)$的\textbf{极小值}.
+		\item 极大值点、极大值定义类似.
+	\end{itemize}
+\end{definition}
+\begin{remark}
+	区别于最值(在一段区间上的)，极值反映的是某一点附近的大小情况，刻画的是函数的局部性质.
+\end{remark}
+
+\begin{theorem}{极值点的判定}
+	\begin{itemize}
+		\item 若函数$f(x)$在$x_0$处可导，且$f'(x_0)=0$，则称$x_0$为$f(x)$的一个\textbf{驻点}(亦称稳定点).
+		\item 对于$f(x)$的一个驻点$x_0$，若在$x_0$的左侧$f'(x)<0$，右侧$f'(x)>0$，则$x_0$是$f(x)$的一个极小值点.最大值点判定类似.
+	\end{itemize}
+\end{theorem}
+\begin{remark}
+	正如上个定理的注记，驻点不一定是极值点.
+\end{remark}
+
+再来看看二阶导数的几何意义.
+
+\begin{definition}{函数的凹凸性}
+	设函数$f(x)$的定义域为$D$，区间$I \subseteq D$.
+	\begin{itemize}
+		\item 若对任意$x_1,x_2 \in I$都有$$f\ssb{\frac{x_1+x_2}{2}} \geq \frac{f(x_1)+f(x_2)}{2}$$则称$f(x)$在$I$上为\textbf{上凸函数}(凹函数，concave function)\footnote{“凹(凸)”在中文语境里定义不一，此处“凹函数”在图像上实际是“凸着的”.为了避免混淆，建议使用“上(下)凸”描述.}.
+		\item 若对任意$x_1,x_2 \in I$都有$$f\ssb{\frac{x_1+x_2}{2}} \leq \frac{f(x_1)+f(x_2)}{2}$$则称$f(x)$在$I$上为\textbf{下凸函数}(凸函数，convex function).
+		\item 若上述不等式的等号只在$x_1=x_2$时取得，则称这样的凹凸性是严格的.
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}{函数的凹凸性与其导函数的关系}
+	设函数$f(x)$的定义域为$D$，区间$I \subseteq D$，$f(x)$在$I$上存在二阶导数.
+	\begin{itemize}
+		\item 若对任意$x \in I$都有$f''(x) \geq 0$，则$f(x)$在$I$上为下凸函数.
+		\item 若对任意$x \in I$都有$f''(x) \leq 0$，则$f(x)$在$I$上为上凸函数.
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	XXX
+\end{proof}
 
 \part{几何}
 
