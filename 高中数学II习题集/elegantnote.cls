@@ -344,6 +344,8 @@
 % environment derived from framed.sty: see leftbar environment definition
 \definecolor{problemshade}{rgb}{0.97,0.98,0.96} % 文本背景颜色=248,251,244
 \definecolor{problem}{rgb}{0.55,0.78,0.25} % 框颜色=141,198,63
+\definecolor{cproblemshade}{rgb}{1,1,1} % 文本背景颜色=248,251,244
+\definecolor{cproblem}{rgb}{0.55,0.78,0.25} % 框颜色=141,198,63
 \definecolor{propositionshade}{rgb}{1,0.98,0.94} % 文本背景颜色=255,249,239
 \definecolor{proposition}{rgb}{0.98,0.62,0.17} % 框颜色=250,157,43
 \definecolor{theoremshade}{rgb}{1,0.97,0.95} % 文本背景颜色=255,246,240
@@ -392,6 +394,22 @@
 	\begin{adjustwidth}{}{7pt}%
 	\refstepcounter{prob}%
 	\textbf{问题 \thechapter.\arabic{prob}}%
+}%
+{%
+\vspace{6pt}\end{adjustwidth}\endMakeFramed%
+}%
+
+\newenvironment{cproblem}{%
+	\def\FrameCommand{%
+		\hspace{1pt}%
+		{\color{cproblem}\vrule width 2pt}%
+		{\color{cproblemshade}\vrule width 4pt}%
+		\colorbox{cproblemshade}%
+	}%
+	\MakeFramed{\advance\hsize-\width\FrameRestore}%
+	\noindent\hspace{-4.55pt}% disable indenting first paragraph
+	\begin{adjustwidth}{}{7pt}%
+	\textbf{已通过问题~}%
 }%
 {%
 \vspace{6pt}\end{adjustwidth}\endMakeFramed%

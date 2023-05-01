@@ -273,7 +273,7 @@
  
 \chapter{函数}
 
-\section{函数的极值}
+\section{函数的极值与简单的不等式}
 
 \subsection{恒等变形}
 
@@ -544,7 +544,140 @@
 
 \chapter{不等式}
 
-\chapter{概率统计与计数}
+\section{几个著名不等式的应用}
+
+\section{综合解题方法}
+
+\subsection{换元与齐次化}
+
+\begin{problem} % 奥数教程代数p150
+	设$a,b,c$为正实数，且任意两数之和大于第三个数.求证：$$abc \geq (a+b-c)(b+c-a)(c+a-b)$$
+\end{problem}
+\begin{solution}
+	令$x=a+b-c,y=b+c-a,z=c+a-b$，则$x,y,z>0$.下略.
+\end{solution}
+
+\begin{problem} % 奥数教程代数p155
+	证明：不等式$$\frac{a^4+a^2b^2+b^4}{3} \geq \frac{a^3b+ab^3}{2}$$
+	对所有实数$a,b$均成立.
+\end{problem}
+\begin{solution}
+	令$m=a^2+b^2,n=ab$.下略.
+\end{solution}
+
+\begin{problem} % 奥数教程代数p160
+	求证：对任意正实数$a,b,c$都有$$1 < \frac{a}{\sqrt{a^2+b^2}} + \frac{b}{\sqrt{b^2+c^2}} + \frac{c}{\sqrt{c^2+a^2}}$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\subsection{恒等变形}
+
+恒等变形一般需要刻意关注题目给出的提示信息.一般会出现例如因式分解、裂项等提示.
+
+\begin{problem} % 奥数教程代数p156
+	设$a,b,c$是正实数，且满足$a+b+c=1$.证明：$$\frac{a-bc}{a+bc} + \frac{b-ca}{b+ca} + \frac{c-ab}{c+ab} \leq \frac{3}{2}$$
+\end{problem}
+\begin{solution}
+	注意到，$$1-\frac{a-bc}{a+bc} = \frac{2bc}{a+bc} = \frac{2bc}{a(a+b+c)+bc} = \frac{2bc}{(b-1)(c-1)}$$
+	下略.
+\end{solution}
+
+\begin{problem} % 奥数教程代数p150
+	已知$x_1, \cdots ,x_n$都是实数，$n \geq 2$，且$\sum_{k=1}^{n} |x_k|=1,~\sum_{i=1}^{n} x_i = 0$.求证：$$\left| \sum_{k=1}^{n} \frac{x_k}{k} \right| \leq \frac{1}{2}-\frac{1}{2n} $$
+	并指出其取等条件.
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p157
+	设$0<t_1 \leq t_2 \leq \cdots \leq t_n <1$.求证：$$(1-t_n)^2 \cdot \left[ \frac{t_1}{(1-t_1^2)^2} + \frac{t_2^2}{(1-t_2^3)^2} + \cdots + \frac{t_n^n}{(1-t_n^{n+1})^2} \right] < 1$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p157
+	设$a_1, \cdots ,a_n$均为正数，它们的和为$1$，求证：$$\frac{a_1^2}{a_1+a_2} + \frac{a_2^2}{a_2+a_3} + \cdots + \frac{a_{n-1}^{2}}{a_{n-1}+a_n} + \frac{a_n^2}{a_n+a_1} \geq \frac{1}{2}$$
+\end{problem}
+\begin{solution}
+	对称处理.% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p158
+	设$a_1, \cdots ,a_n>0$，证明：$$\sum_{k=1}^{n} \frac{k^2}{a_1^2+ \cdots + a_k^2} \leq \ssb{\sum_{k=1}^{n} \frac{1}{a_k}}^2$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p159
+	设$a_1,\cdots ,a_n~(n \geq 2)$是$n$个互不相同的实数，$S=a_1^2+\cdots +a_n^2,~\displaystyle{ M=\min_{1 \leq i < j \leq n} (a_i-a_j)^2 }$.求证：$$\frac{S}{M} \geq \frac{n(n^2-1)}{12}$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+
+\subsection{切线(曲线)放缩}
+
+\subsection{局部不等式}
+
+\begin{problem} % 奥数教程代数p161
+	设$x,y,z>0$，求证：$$\frac{x^3}{x+y} + \frac{y^3}{y+z} + \frac{z^3}{z+x} \geq \frac{xy+yz+zx}{2}$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p161
+	设$a,b,c$为正实数，求证：$$\frac{a^3}{a^2+ab+b^2} + \frac{b^3}{a^2+bc+c^2} + \frac{c^3}{c^2+ca+a^2} \geq \frac{a+b+c}{3}$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p161
+	设$x,y,z$为正实数，求证：$$\frac{1+xy+xz}{(1+y+z)^2} + {1+yz+yx}{(1+z+x)^2} + {1+zx+zy}{(1+x+y)^2} \geq 1$$
+\end{problem}
+
+\subsection{局部调整与磨光变换}
+
+\subsection{有上下界的变量}
+
+\begin{problem} % 奥数教程代数p151
+	若$x_1,\cdots ,x_n \in [a,b]$，其中$0<a<b$.求证：$$(x_1+ \cdots + x_n)\ssb{\frac{1}{x_1} + \cdots + \frac{1}{x_n}} \leq \frac{(a+b)^2}{4ab}n^2$$
+\end{problem}
+\begin{solution}
+	略
+\end{solution}
+
+\begin{problem} % 奥数教程代数p151
+	设$a_1, \cdots ,a_n , b_1 ,\cdots ,b_n \in [1,2]$，且$\sum_{i=1}^{n} a_i^2 = \sum_{i=1}^{n} b_i^2$.求证：$$\sum_{i=1}^{n} \frac{a_i^3}{b_i} \leq \frac{17}{10}\sum_{i=1}^{n} a_i^2$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\subsection{特殊的取等条件配凑}
+
+\section{综合练习}
+
+\begin{problem} % 奥数教程代数p152
+	已知$a_1, \cdots ,a_n$为两两不相同的非零自然数列.求证：对任何正整数$n$有$$\sum_{k=1}^{n} \frac{a_k}{k^2} \geq \sum_{k=1}^{n} \frac{1}{k}$$
+\end{problem}
+\begin{solution}
+	% TODO 解答
+\end{solution}
+
+\begin{problem} % 奥数教程代数p158
+	设正数$a,b,c$满足$abc=8$，证明：$$\frac{a^2}{\sqrt{(1+a^3)(1+b^3)}} + \frac{b^2}{\sqrt{(1+b^3)(1+c^3)}} + \frac{c^2}{\sqrt{(1+c^3)(1+a^3)}} \geq \frac{4}{3}$$
+\end{problem}
+\begin{solution}
+	先用切线放缩：$\sqrt{1+a^3} \leq \dfrac{1}{2}a^2+1$，带入左式易证.
+\end{solution}
 
 \chapter{解析几何}
 

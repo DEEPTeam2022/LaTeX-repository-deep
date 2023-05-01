@@ -2,6 +2,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{svg}
 
 % font settings
 \definecolor{mgreen}{RGB}{0,166,82}
@@ -34,6 +35,7 @@
 	\DeclareMathOperator{\setjianfa}{\textbackslash}
 	\DeclareMathOperator{\CRe}{Re}
 	\DeclareMathOperator{\CIm}{Im}
+	\DeclareMathOperator{\lcm}{lcm}
 \newcommand{\examplefont}[1]{\color{mgreen} \textbf{#1}}
 
 % cover settings
@@ -81,8 +83,6 @@
 本讲义包括如下内容：高中数学预备知识，函数与数列，几何，数与代数，概率、计数与组合，初等数论.大致涵盖高中数学联赛一试、二试内容，也兼顾强基计划的知识体系.
 
 \tableofcontents
-
-注：初等数论部分待完成.
 
 \newpage
 
@@ -628,16 +628,16 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\end{itemize}
 \end{definition}
 
-\begin{definition}{多项式间的关系与运算}
+\begin{theorem}{多项式间的关系与运算}
 	设$f(x) = \sum_{i=0}^{n}a_i x^i,~g(x) = \sum_{i=0}^{m}b_i x^i$.不妨设$m \leq n$，规定$b_i=0~(k > m)$.
 	\begin{itemize}
 		\item $f(x)=g(x)$的充要条件是$n=m,~a_i=b_i$.
-		\item 多项式的加法定义如下：$$f(x) + g(x) := \sum_{i=0}^{n} (a_i + b_i)x^{i}$$
-		\item 多项式的乘法定义如下：$$f(x) \cdot g(x) := \sum_{i=0}^{n} \sum_{j=0}^{m} a_ib_j x^{i+j} = \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k$$
+		\item 多项式的加法如下：$$f(x) + g(x) = \sum_{i=0}^{n} (a_i + b_i)x^{i}$$
+		\item 多项式的乘法如下：$$f(x) \cdot g(x) = \sum_{i=0}^{n} \sum_{j=0}^{m} a_ib_j x^{i+j} = \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k$$
 	\end{itemize}
-\end{definition}
+\end{theorem}
 
-类比于整式的带余除法，多项式间也可以有带余除法.
+类比于整数的带余除法，多项式间也可以有带余除法.
 
 \begin{theorem}{多项式的带余除法}{doxluiiufa}
 	若$f(x)$和$g(x)$是两个已知的多项式，其中$g(x)$不是零多项式，那么存在唯一的一对多项式$q(x)$和$r(x)$，使得$$f(x) = g(x) \cdot q(x) + r(x)$$其中$\deg r < \deg g$或$r(x)=0$.称$q(x)$和$r(x)$分别为$f(x)$除以$g(x)$所得的\textbf{商式}与\textbf{余式}.
@@ -975,12 +975,14 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 幂函数的性质不过多介绍.只需知道例如$f(x)=x^3$或$f(x)=\sqrt[4]{x}$的函数都是幂函数.
 
-\begin{definition}{指数函数}
-    形如$$f(x)=a^x, \ a>0 , a\neq 1$$
-    的函数称为\textbf{指数函数}(exponential function).
+\begin{definition}{指数函数与对数函数}
+	形如$$f(x)=a^x, \ a>0 , a\neq 1$$
+    的函数称为\textbf{指数函数}(exponential function).它的定义域为$\mathbb{R}$，值域为$\mathbb{R}^{+}$. \\
+    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
+    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$.
 \end{definition}
 
-\begin{proposition}{指数函数的性质}
+\begin{proposition}{指数函数与对数函数的性质}
     指数函数$f(x)=a^x$具有以下性质：
     \begin{itemize}
         \item 定义域：$\mathbb{R}$
@@ -988,20 +990,6 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
         \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
         \item 图像：恒过定点$(0,1)$
     \end{itemize}
-\end{proposition}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics{attachment/20230402viuuhjuu.pdf}
-	\caption{指数函数的图像}
-\end{figure}
-
-\begin{definition}{对数函数}
-    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
-    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$
-\end{definition}
-
-\begin{proposition}{对数函数的性质}
     对数函数$f(x)=\log_{a}{x}$具有以下性质：
     \begin{itemize}
         \item 定义域：$\mathbb{R}^{+}$
@@ -1009,13 +997,22 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
         \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
         \item 图像：恒过定点$(1,0)$
     \end{itemize}
+    对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
 \end{proposition}
 
-% TODO 对数函数的图像
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=10cm]{gnuplot/202304201edit.svg}
+	\caption{指数函数的图像}
+\end{figure}
 
-实际上，我们发现对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=6cm]{gnuplot/202304202edit.svg}
+	\caption{对数函数的图像}
+\end{figure}
 
-\subsection{对勾函数与飘带函数}
+\subsection{常见初等函数}
 
 有两类特殊的初等函数，在研究最值问题时很常见.
 
@@ -1024,10 +1021,11 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     请指出它的定义域、值域并作出示意图.
 \end{problem}
 \begin{solution}
-    XXX
+    \begin{figure}[h!]
+		\centering
+		\includesvg[width=7cm]{gnuplot/202304221edit.svg}
+	\end{figure}
 \end{solution}
-
-还有一种类似于对勾函数，但没什么研究价值的函数.我们可以形象地称之为“垃圾函数”，虽然大多数人都会叫它“飘带函数”.
 
 \begin{problem}
     设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
@@ -1177,6 +1175,36 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 类正弦函数在物理学中有很多应用.
 
+\subsection{反三角函数}
+
+三角函数是将角度映射为距离之比的函数.相应地，将距离之比映射到角度的函数叫做反三角函数(arc的意思即为“弧长”).
+
+\begin{definition}{反三角函数}
+    函数$$f(x)=\arcsin{x} \qquad f(x)=\arccos{x} \qquad f(x)=\arctan{x} \qquad f(x)=\arccot{x}$$
+    分别称为\textbf{反正弦函数}(arcsine function)，\textbf{反余弦函数}(arccosine function)，\textbf{反正切函数}(arctangent function)，\textbf{反余切函数}(arccotangent function).这些函数统称为\textbf{反三角函数}(inverse trigonometric function).
+\end{definition}
+\begin{note}
+    反正弦函数、反余弦函数不是正弦函数、余弦函数的反函数，而是与其中的某一段互为反函数.
+\end{note}
+
+\begin{proposition}{反三角函数的函数性质}
+    反三角函数$\arcsin{x},\arccos{x},\arctan{x},\arccot{x}$具有以下性质：
+
+    \vspace{1em}
+    \centering
+    \renewcommand\arraystretch{1.2}
+    \begin{tabular}{c|c|c|c|c}
+        \hline
+          & $\arcsin{x}$ & $\arccos{x}$ & $\arctan{x}$ & $\arccot{x}$ \\ \hline
+        定义域 & $[-1,1]$ & $[-1,1]$ & $\mathbb{R}$ & $\mathbb{R}$ \\ \hline
+        值域 & $[-\frac{\pi}{2} ,\frac{\pi}{2}]$ & $[0,\pi]$ & $[-\frac{\pi}{2},\frac{\pi}{2}]$ & $[0,\pi]$ \\ \hline
+        对称性 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 \\ \hline
+    \end{tabular}
+    
+\end{proposition}
+
+% TODO 反三角函数的图像
+
 \section{三角函数的计算}
 
 \subsection{三角恒等变形}
@@ -1281,30 +1309,6 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \section{三角函数的应用}
 
-\subsection{三角换元}
-
-\begin{proposition}{三角换元常用公式}
-    (1)
-    $$a^2+b^2=1 \quad \longrightarrow \quad \sin^2{x}+\cos^2{x}=1$$
-    $$a^2-b^2=1 \quad \longrightarrow \quad \frac{1}{\cos^2 x}-\tan^2 {x}=1$$
-    另一种常见的形式
-    $$b=\sqrt{1-a^2} \quad \longrightarrow \quad a=\sin{x} , b=\cos{x}$$
-    $$b=\sqrt{1+a^2} \quad \longrightarrow \quad a=\tan{x} , b=\frac{1}{\cos{x}}$$
-    如果是多元的也可以进行换元，这里以三元的情况为例
-    $$a^2+b^2+c^2=1 \quad \longrightarrow \quad (\sin{x}\sin{y})^2+(\sin{x}\cos{y})^2+\cos^2{x}=1$$
-    (2)
-    \begin{align*}
-        ab+bc+ca=1 \quad & \longrightarrow \quad \tan{\frac{A}{2}} \cdot \tan{\frac{B}{2}} + \tan{\frac{B}{2}} \cdot \tan{\frac{C}{2}} + \tan{\frac{C}{2}} \cdot \tan{\frac{A}{2}} \quad (A+B+C=\pi) \\
-        or & \longrightarrow \quad \cot{A} \cdot \cot{B} + \cot{B} \cdot \cot{C} + \cot{C} \cdot \cot{A} = 1 \quad (A+B+C=k\pi)
-    \end{align*}
-    (3)$$a+b+c=abc \quad \longrightarrow \quad \tan{A}+\tan{B}+\tan{C}=\tan{A} \cdot \tan{B} \cdot \tan{C} \quad (A+B+C=k\pi)$$
-    (4)双曲函数换元
-    $$a^2-b^2=1 \quad \longrightarrow \quad \cosh^2{x}-\sinh^2{y}=1$$
-\end{proposition}
-\begin{remark}
-	有关双曲函数的内容会在复数章节仔细研究.
-\end{remark}
-
 \subsection{三角恒等式、三角不等式}
 
 \begin{proposition}{三角形中的三角恒等式} %兴趣一阶II p36
@@ -1336,47 +1340,52 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     (6)$$\sin ^2 \frac{A}{2} \cdot \sin ^2 \frac{B}{2} \cdot \sin ^2 \frac{C}{2} \geq \frac{3}{4} \qquad \qquad \cos ^2 \frac{A}{2} \cdot \cos ^2 \frac{B}{2} \cdot \cos ^2 \frac{C}{2} \leq \frac{3 \sqrt{3}}{8}$$
 \end{proposition}
 
-\section{反三角函数}
+\subsection{三角换元}
 
-三角函数是将角度映射为距离之比的函数.相应地，将距离之比映射到角度的函数叫做反三角函数(arc的意思即为“弧长”).
+介绍三角换元的常见形式：
+    (1)
+    $$a^2+b^2=1 \quad \longrightarrow \quad \sin^2{x}+\cos^2{x}=1$$
+    $$a^2-b^2=1 \quad \longrightarrow \quad \frac{1}{\cos^2 x}-\tan^2 {x}=1$$
+    另一种常见的形式
+    $$b=\sqrt{1-a^2} \quad \longrightarrow \quad a=\sin{x} , b=\cos{x}$$
+    $$b=\sqrt{1+a^2} \quad \longrightarrow \quad a=\tan{x} , b=\frac{1}{\cos{x}}$$
+    如果是多元的也可以进行换元，这里以三元的情况为例
+    $$a^2+b^2+c^2=1 \quad \longrightarrow \quad (\sin{x}\sin{y})^2+(\sin{x}\cos{y})^2+\cos^2{x}=1$$
+    (2)
+    \begin{align*}
+        ab+bc+ca=1 \quad & \longrightarrow \quad \tan{\frac{A}{2}} \cdot \tan{\frac{B}{2}} + \tan{\frac{B}{2}} \cdot \tan{\frac{C}{2}} + \tan{\frac{C}{2}} \cdot \tan{\frac{A}{2}} \quad (A+B+C=\pi) \\
+        or & \longrightarrow \quad \cot{A} \cdot \cot{B} + \cot{B} \cdot \cot{C} + \cot{C} \cdot \cot{A} = 1 \quad (A+B+C=k\pi)
+    \end{align*}
+    (3)$$a+b+c=abc \quad \longrightarrow \quad \tan{A}+\tan{B}+\tan{C}=\tan{A} \cdot \tan{B} \cdot \tan{C} \quad (A+B+C=k\pi)$$
+    (4)双曲函数换元
+    $$a^2-b^2=1 \quad \longrightarrow \quad \cosh^2{x}-\sinh^2{y}=1$$
 
-\begin{definition}{反三角函数}
-    函数$$f(x)=\arcsin{x} \qquad f(x)=\arccos{x} \qquad f(x)=\arctan{x} \qquad f(x)=\arccot{x}$$
-    分别称为\textbf{反正弦函数}(arcsine function)，\textbf{反余弦函数}(arccosine function)，\textbf{反正切函数}(arctangent function)，\textbf{反余切函数}(arccotangent function).这些函数统称为\textbf{反三角函数}(inverse trigonometric function).
-\end{definition}
-\begin{note}
-    反正弦函数、反余弦函数不是正弦函数、余弦函数的反函数，而是与其中的某一段互为反函数.
-\end{note}
+\begin{remark}
+	有关双曲函数的内容会在复数章节仔细研究.
+\end{remark}
 
-\begin{proposition}{反三角函数的函数性质}
-    反三角函数$\arcsin{x},\arccos{x},\arctan{x},\arccot{x}$具有以下性质：
+三角换元对于解决一些与反三角函数相关的问题很好用.
 
-    \vspace{1em}
-    \centering
-    \renewcommand\arraystretch{1.2}
-    \begin{tabular}{c|c|c|c|c}
-        \hline
-          & $\arcsin{x}$ & $\arccos{x}$ & $\arctan{x}$ & $\arccot{x}$ \\ \hline
-        定义域 & $[-1,1]$ & $[-1,1]$ & $\mathbb{R}$ & $\mathbb{R}$ \\ \hline
-        值域 & $[-\frac{\pi}{2} ,\frac{\pi}{2}]$ & $[0,\pi]$ & $[-\frac{\pi}{2},\frac{\pi}{2}]$ & $[0,\pi]$ \\ \hline
-        对称性 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 \\ \hline
-    \end{tabular}
-    
-\end{proposition}
+\begin{example}
+	(1)证明下列恒等式成立：
+	$$\arcsin \frac{1}{\sqrt{1+x}} + \arcsin \frac{\sqrt{x}}{\sqrt{1+x}} = \frac{\pi}{2}$$
+	$$\arcsin \sqrt{\frac{2x+1}{2}} + \arccot \sqrt{\frac{1+2x}{1-2x}} = \frac{\pi}{2}$$
+	(2)解方程：$$\arccos \left| \frac{x^2-1}{x^2+1} \right| + \arcsin \left| \frac{2x}{x^2+1} \right| + \arccot \left| \frac{x^2-1}{2x} \right| = \pi$$
+\end{example}
 
-% TODO 反三角函数的图像
+
 
 \chapter{数列与数学归纳法}
 
-数列，顾名思义，就是将一组数按顺序排为一列的形式.为了区别于集合与组，一般直接将每一项列出来而不加括号，例如$a_1,a_2, \cdots ,a_n$.也可以用通项公式或递推公式表示，例如
-$$\{ a_n \}_{n=1}^{\infty} \qquad a_{n+k}=f(a_{n+1}, \cdots ,a_{n+k-1})$$
-其中第一种表示形式的“$_{n=1}^{\infty}$”常省略不写.
-
-或者，利用映射可以严格地定义数列：
+数列，顾名思义，就是将一组数按顺序排为一列的形式.或者，利用映射可以严格地定义数列：
 
 \begin{definition}{序列，数列}
 	从自然数集$\mathbb{N}$到任意非空集合$A$的一个映射称为$A$中元素的一个\textbf{序列}(sequence).特别地，当$A$是数集时，称该序列为\textbf{数列}(number sequence).
 \end{definition}
+
+为了区别于集合与组，一般直接将每一项列出来而不加括号，例如$a_1,a_2, \cdots ,a_n$.也可以用通项公式或递推公式表示，例如
+$$\{ a_n \}_{n=1}^{\infty} \qquad a_{n+k}=f(a_{n+1}, \cdots ,a_{n+k-1})$$
+其中第一种表示形式的“$_{n=1}^{\infty}$”常省略不写.
 
 数列可按以下标准分类：
 \begin{enumerate}
@@ -1456,22 +1465,21 @@ $$
 
 以下给出几种常见的由递推求通项的方式：
 
-\begin{proposition}{由递推求通项基本方法}
-	\begin{enumerate}
-		\item 求满足下列递推式的数列的通项公式：$a_{n+1}=a_n+f(n)$. \\
-			\sw{一} 利用类似于等差数列求和的递推累加法，即$$a_n = a_{n-1} + f(n-1) = a_{n-2} + f(n-1) + f(n-2) = \cdots = a_1 + \sum _{k=1}^{n-1} f(k)$$
-			\sw{二} 构造裂项形成常数列，作$f(n) = g(n+1) - g(n)$，则$$a_{n} - g(n) = a_{n-1} - g(n-1) = \cdots = a_1 - g(1) \quad \Rightarrow \quad a_{n} = a_1 - g(1) + g(n)$$
-		\item 求满足下列递推式的数列的通项公式：$a_{n+1}=a_n \cdot f(n) ~(a_i \neq 0)$. \\
-			\sw{一} 利用递推累乘法，即$$a_n = f(n-1) \cdot a_{n-1} = f(n-1) \cdot f(n-2) \cdot a_{n-1} = \cdots = a_1 \cdot \prod _{k=1}^{n-1} f(k)$$
-			\sw{二} 构造裂项形成常数列，作$f(n) = \dfrac{g(n+1)}{g(n)}$，则$$\frac{a_n}{g(n)} = \frac{a_{n-1}}{g(n-1)} = \cdots = \frac{a_1}{g(1)} \quad \Rightarrow \quad a_n = \frac{g(n)}{g(1)}a_1$$
-		\item 求满足下列递推式的数列的通项公式：$a_{n+1}=pa_n + q ~(p \neq 1,q \neq 0)$. \\
-			\sw{一} 化为等比数列，构造$a_{n+1} - t = p(a_n - t)$，其中$t = \dfrac{q}{1-p}$. \\
-			\sw{二} 化为等差数列，构造$\dfrac{a_{n+1}}{p^{n+1}} = \dfrac{a_n}{p^n} + \dfrac{a}{p^{n+1}}$即可.
-		\item 求满足下列递推式的数列的通项公式：$a_{n+1}=p(n)a_n + q(n)$. \\
-			\sw{一} 化为等比数列，构造$a_{n+1} - f(n+1) = p(n)(a_n - f(n))$.(这种构造方法不太好用) \\
-			\sw{二} 化为等差数列，作$p(n) = \dfrac{f(n+1)}{f(n)}$，则$\dfrac{a_{n+1}}{f(n+1)} = \dfrac{a_n}{f(n)} + \dfrac{q(n)}{f(n+1)}$.
-	\end{enumerate}
-\end{proposition}
+\begin{enumerate}
+	\item 求满足下列递推式的数列的通项公式：$a_{n+1}=a_n+f(n)$. \\
+		\sw{一} 利用类似于等差数列求和的递推累加法，即$$a_n = a_{n-1} + f(n-1) = a_{n-2} + f(n-1) + f(n-2) = \cdots = a_1 + \sum _{k=1}^{n-1} f(k)$$
+		\sw{二} 构造裂项形成常数列，作$f(n) = g(n+1) - g(n)$，则$$a_{n} - g(n) = a_{n-1} - g(n-1) = \cdots = a_1 - g(1) \quad \Rightarrow \quad a_{n} = a_1 - g(1) + g(n)$$
+	\item 求满足下列递推式的数列的通项公式：$a_{n+1}=a_n \cdot f(n) ~(a_i \neq 0)$. \\
+		\sw{一} 利用递推累乘法，即$$a_n = f(n-1) \cdot a_{n-1} = f(n-1) \cdot f(n-2) \cdot a_{n-1} = \cdots = a_1 \cdot \prod _{k=1}^{n-1} f(k)$$
+		\sw{二} 构造裂项形成常数列，作$f(n) = \dfrac{g(n+1)}{g(n)}$，则$$\frac{a_n}{g(n)} = \frac{a_{n-1}}{g(n-1)} = \cdots = \frac{a_1}{g(1)} \quad \Rightarrow \quad a_n = \frac{g(n)}{g(1)}a_1$$
+	\item 求满足下列递推式的数列的通项公式：$a_{n+1}=pa_n + q ~(p \neq 1,q \neq 0)$. \\
+		\sw{一} 化为等比数列，构造$a_{n+1} - t = p(a_n - t)$，其中$t = \dfrac{q}{1-p}$. \\
+		\sw{二} 化为等差数列，构造$\dfrac{a_{n+1}}{p^{n+1}} = \dfrac{a_n}{p^n} + \dfrac{a}{p^{n+1}}$即可.
+	\item 求满足下列递推式的数列的通项公式：$a_{n+1}=p(n)a_n + q(n)$. \\
+		\sw{一} 化为等比数列，构造$a_{n+1} - f(n+1) = p(n)(a_n - f(n))$.(这种构造方法不太好用) \\
+		\sw{二} 化为等差数列，作$p(n) = \dfrac{f(n+1)}{f(n)}$，则$\dfrac{a_{n+1}}{f(n+1)} = \dfrac{a_n}{f(n)} + \dfrac{q(n)}{f(n+1)}$.
+\end{enumerate}
+
 
 不过以上方法只是抛砖引玉，具体如何进行构造还要靠代数变形的技巧.
 
@@ -1843,72 +1851,44 @@ $$
 
 利用代数形式定义向量的好处就在于，这种定义是统一的，因而比几何定义要简单的多.
 
+\chapter{复数}
 
+\section{复数的概念}
 
-\chapter{平面几何中的距离与角度}
+复数的三角表示，复数的指数表示，复数的四则运算，共轭复数的运算
 
-\section{常用平面几何结论——边长与三角}
+\section{复数的应用}
 
-\begin{theorem}{Menelaus定理}
-    设$D,E,F$分别是$\Delta ABC$的三边$BC,CA,AB$或其延长线上的点，则$$D,E,F \text{三点共线} \quad \Longleftrightarrow \quad \frac{AE}{EB} \cdot \frac{BD}{DC} \cdot \frac{CF}{FA} = 1$$
-    它还有一个角元形式，即$$D,E,F \text{三点共线} \quad \Longleftrightarrow \quad \frac{\sin \angle ADE}{\sin \angle BDE} \cdot \frac{\sin \angle BAD}{\sin \angle CAD} \cdot \frac{\sin \angle CDF}{\sin \angle ADF} = 1$$
-\end{theorem}
+\begin{lemma}
+    任意定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
+\end{lemma}
 \begin{proof}
     XXX
 \end{proof}
 
-对应“三点共线”问题，还有一类“三线共点”问题，可以利用Ceva定理解决.
+\begin{definition}{双曲函数}
+    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
+    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
+    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
+    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+\end{definition}
 
-\begin{theorem}{Ceva定理}
-    设$D,E,F$分别是$\Delta ABC$的三边$BC,CA,AB$或其延长线上的点，则$$AD,BE,CF \text{三线共点或平行} \quad \Longleftrightarrow \quad \frac{AE}{EC} \cdot \frac{CD}{DB} \cdot \frac{BF}{FA} = 1$$
-    它还有一个角元形式，即$$AD,BE,CF \text{三线共点或平行} \quad \Longleftrightarrow \quad \frac{\sin \angle ABE}{\sin \angle CBE} \cdot \frac{\sin \angle CAD}{\sin \angle BAD} \cdot \frac{\sin \angle BCF}{\sin \angle ACF} = 1$$
-\end{theorem}
-\begin{proof}
-    XXX
-\end{proof}
-
-特殊的四点共圆情景可以考虑Ptolemy定理或三弦定理.
-
-\begin{theorem}{Ptolemy定理}
-    给定一圆内接四边形$ABCD$，则其两组对边乘积之和等于两对角线的乘积，即$$AB \times CD + BC \times DA = AC \times BD$$
-\end{theorem}
-\begin{proof}
-    XXX
-\end{proof}
-
-\begin{corollary}{三弦定理}
-    设$A$是圆上任意一点，$AB,AC,AD$是该圆上顺次的三条弦，则$$AC \cdot \sin \angle BAD = AB \cdot \sin \angle DAC + AD \cdot \sin \angle BAC$$
-\end{corollary}
-
-限制$P$点位置(求解$AP$长度)可以利用Stewart定理.
-
-\begin{theorem}{Stewart定理}
-    设$P$为$\Delta ABC$的边$BC$上任一点，则$$AP^2=\frac{PC}{BC} \cdot AB^2 + \frac{BP}{BC} \cdot AC^2 - \frac{BP}{BC} \cdot \frac{PC}{BC} \cdot BC^2$$
-\end{theorem}
-\begin{proof}
-    XXX
-\end{proof}
-
-\begin{corollary}
-    设$AP$为$\Delta ABC$的边$BC$上的中线，则$$AP^2 = \frac{1}{2} AB^2 + \frac{1}{2} AC^2 - \frac{1}{4}BC^2$$
-\end{corollary}
-    
-\begin{corollary}
-    设$P$为$\Delta ABC$的边$BC$上一点，满足$AP$为$\angle A$的内角平分线，则$$AP^2 = AB \cdot AC - BP \cdot PC$$
-\end{corollary}
+\begin{proposition}{双曲恒等变形公式}
+    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
+    (2)和差角公式
+    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
+    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
+    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
+    (3)倍角公式
+    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
+    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
+\end{proposition}
 \begin{remark}
-    $AP$为外角平分线的情况类似，请读者自行证明.
+    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
+    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
+    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
 \end{remark}
-
-“角元”形式的Stewart定理.
-
-\begin{theorem}{张角定理}
-    设$P$为$\Delta ABC$的边$BC$上任一点，连接$AP$，则$$\frac{\sin \angle BAP}{CP} + \frac{\sin \angle CAP}{BP} = \frac{\sin \angle BAC}{AP}$$
-\end{theorem}
-
-\section{常用平面几何结论——平面向量}
-
-极化恒等式，奔驰定理，三角形五心
 
 \chapter{解析几何}
 
@@ -2226,120 +2206,399 @@ $$
 
 空间向量基本定理，法向量与夹角计算
 
+\chapter{平面几何}
 
+\part{代数}
 
+\chapter{著名不等式}
 
-
-\part{数与代数}
-
-\chapter{复数}
-
-\section{复数的概念}
-
-\subsection{复数的表示}
-
-复数的几何表示，复数的三角表示
-
-\subsection{复数的运算}
-
-复数的四则运算，共轭复数的运算
-
-\section{复数的应用}
-
-\begin{lemma}
-    任意定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
-\end{lemma}
-\begin{proof}
-    XXX
-\end{proof}
-
-\begin{definition}{双曲函数}
-    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
-    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
-    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
-    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
-\end{definition}
-
-在本节中，我们先来看看双曲函数的恒等变形式，详细的研究放在复数部分.
-
-\begin{proposition}{双曲恒等变形公式}
-    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
-    (2)和差角公式
-    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
-    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
-    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
-    (3)倍角公式
-    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
-    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
-    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
-\end{proposition}
-\begin{remark}
-    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
-    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
-    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
-    同样，证明留在复数部分讲解.
-\end{remark}
-
-
-\chapter{不等式}
-
-\section{常用不等式}
-
-\subsection{均值不等式}
+\section{均值不等式}
 
 均值不等式，加权均值不等式
 
-\subsection{Cauchy不等式}
+\section{Cauchy不等式}
 
 Cauchy不等式
 
-\subsection{排序不等式}
+\section{排序不等式}
 
 排序不等式，切比雪夫不等式
 
-\subsection{函数的凹凸性与Jensen不等式}
-
-函数的凹凸性，Jensen不等式，加权Jensen不等式
-
 \section{若干著名不等式}
 
-Hölder不等式，Young不等式，Schur不等式，权方和不等式，Bernoulli不等式
+Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和不等式，Bernoulli不等式
 
-\section{常见代数不等式}
+\chapter{不等式的证明方法}
 
-一些常见的代数不等式
+\section{整式变形}
 
-\section{常见几何不等式}
+三元恒等变形、不等变形，求和符号变形
 
-一些常见的几何不等式
+\section{切线放缩与曲线放缩}
 
-\part{概率、计数与组合}
+切线放缩，是指利用在函数的某一点处的切线比其图像更低(高)进行放缩的技巧.在实际操作中，也有可能用到曲线放缩、割线放缩等推广方法.
 
-\chapter{概率、计数与组合}
+\begin{instance}
+	(1)已知$a,b,c$是正实数，且$a+b+c=3$.证明：$$\frac{1}{2-a}+\frac{1}{2-b}+\frac{1}{2-c} \geq 3$$
+	(2)将第一问中条件改为$a^2+b^2+c^2=3$，再次证明上述结论.
+\end{instance}
+\begin{solution}
+	(1)对于每个单独的$\dfrac{1}{2-a}$，寻找$\dfrac{1}{2-a} \geq ka+l$以便进行累加，最终将$a,b,c$变为一次和的形式消掉.有两种主要分析方法： \\
+	\sw{一}首先注意到取等条件为$a=b=c=1$，则必有$\dfrac{1}{2-1}=k+l$，即$l=1-k$.代回得$\dfrac{1}{2-a} \geq ka+1-k$，左右同乘$2-a$得$$1 \geq (ka+1-k)(2-a)$$
+	整理得$ka^2+(1-3k)a+(2k-1) \geq 0$.我们希望这个式子对于所有在$(0,3)$中的$a$均成立，最简单的想法是把左边配方，即$\Delta = (1-3k)^2-4k(2k-1) = 0$，可得$k=1$. \\
+	于是$\dfrac{1}{2-a} \geq a$，三式累加可得$$\frac{1}{2-a}+\frac{1}{2-b}+\frac{1}{2-c} \geq a+b+c = 3$$
+	\sw{二}这里既然想要放缩为一次的式子，不妨对目标函数求导以寻找$a=1$处的切线. \\
+	记$f(x)=\dfrac{1}{2-x}$，易知$f'(x) = \dfrac{1}{(2-x)^2}$，故其在$x=1$处的切线为$y=x$.同解法一可得原命题成立. \\
+	(2)同样地，我们希望得到$\dfrac{1}{2-x} \geq kx^2+l$.代入取等条件，可得$l=1-k$.下面寻找$\dfrac{1}{2-x} \geq kx^2+1-k$. \\
+	\sw{一}上式左右同乘$2-x$并化简之，可得$$kx^3-2kx^2+(1-k)x+(2k-1) \geq 0$$
+	由取等条件可知，该式子可以因式分解为$$(x-1)(kx^2-kx+1-2k) \geq 0$$
+	在$x > 1$时，希望第二个式子$>0$；在$x<1$时，希望第二个式子$<0$.于是，在$x=1$时，可以令第二个式子$=0$，即得$k=\dfrac{1}{2}$.代回即可证出原命题. \\
+	\sw{二}虽然这里想要得到的式子不是一次的了，我们也可以猜出来该二次式子与原函数在$x=1$处导数相同：因为该二次式子在$x>1,x<1$时切线斜率分别要小于、大于原函数的切线斜率，以保证该二次式子总在原函数图像下方. \\
+	记$f(x)=\dfrac{1}{2-x},~g(x)=kx^2+1-k$，则$f'(x)=\dfrac{1}{(2-x)^2},~g'(x)=2kx$.由$f(1)=g(1)$及$f'(1)=g'(1)$可以解得$k=\dfrac{1}{2}$.
+\end{solution}
+\begin{remark}
+	这两道题的第一种解法在原函数比较简单的情况下使用，而第二种解法几乎是通用的(可以应用到任意形式的“切线”上，不仅限于二次式).
+\end{remark}
 
-\section{概率与数学期望}
+\section{凹凸性分析}
+
+\section{局部不等式}
+
+\part{数论}
+
+\chapter{整除}
+
+\section{整数的可除性}
+
+\begin{definition}{整除}
+	设$a,b$为任意两个整数$(b \neq 0)$，若存在一个整数$q$使等式$$a=bq$$成立，称$b$\textbf{整除}$a$(或$a$被$b$整除)，记作$b \mid a$，此时称$b$为$a$的\textbf{因数}. \\
+	若满足上述等式的整数$q$不存在，称$b$\textbf{不能整除}$a$(或$a$不能被$b$整除)，记作$b \nmid a$.
+\end{definition}
+
+由定义可知整除满足以下基本性质：
+
+\begin{theorem}{整除的基本性质}
+	对任意整数$x,y,z$，有 \\
+	(1)自反性：$x \mid x$ \\
+	(2)传递性：若$x \mid y$且$y \mid z$，有$x \mid z$. \\
+	(3)反对称性：若$x \mid y$且$y \mid x$则$|x|=|y|$.
+\end{theorem}
+\begin{remark}
+	实际上，满足自反性、传递性与反对称性的二元关系被称作“偏序关系”，例如集合的包含关系.
+\end{remark}
+\begin{remark}
+	反对称性可以进行推广：若$x \mid y$且$y \neq 0$，则$|x| \leq |y|$.这一条性质可以利用整除关系得到大小关系，在解决整除方程时很有用.
+\end{remark}
+
+整除还有一些比较自然的性质：
+
+\begin{theorem}{整除的性质}
+	(1)(整除与线性组合的关系)若$x \mid y_i~(i=1,\cdots ,n)$，则$x \mid \sum_{i=1}^{n} b_i \cdot y_i$，其中$b_i \in \mathbb{Z}~(i=1,2,\cdots ,n)$. \\
+	(2)对于任意的$z \neq 0$，$x \mid y \Leftrightarrow xz \mid yz$. \\
+	(3)$n$个连续整数中有且仅有一个是$n$的倍数. \\
+	(4)任意$n$个连续整数之积一定是$n!$的倍数.
+\end{theorem}
+
+整除的性质固然比较良好，现在我们尝试将它推广到一般情况.
+
+\begin{theorem}{带余除法}
+	设$a,b$为整数，$b>0$，则存在唯一的整数$q,r$，使得$a=bq+r$，其中$0 \leq r <b$.
+\end{theorem}
+\begin{proof}
+	\buzhou{1}存在性：在数列$$\cdots , -2b ,-b , 0 ,b,2b,\cdots $$中，$a$必然在某两项之间，即存在$q$使$qb \leq a < (q+1)b$.此时取$r=a-bq$满足$0 \leq r <b$. \\
+	\buzhou{2}唯一性：假设$a=bq_1+r_1=bq_2+r_2$且$q_1 \neq q_2,~r_1 \neq r_2$，则$b(q_1-q_2)=r_1-r_2$，于是$b \mid r_2-r_1$. \\
+	由题目要求，$0 \leq r_1 < b,~0 \leq r_2 < b$，则$0 \leq |r_1-r_2| < b$.联系上式，必然有$r_1-r_2=0$，矛盾！故唯一性成立.
+\end{proof}
+
+从整除到带余除法，我们一直在寻找整数可除性的下限.有一类非常顽固的数，它们除以任何不为$1$及它本身的数均不能整除，称作\textbf{素数}(prime)；相应地，不是素数的数就是合数.需要注意，$1$既不是素数也不是合数.
+
+关于素数的“通项公式”，人们有过很多猜想.例如，形如$F_m=2^{2^m}+1~(m=1,2,\cdots )$的数被称为“费马数”.由于$F_0 \sim F_4$均为素数，费马曾认为所有的$F_m$都是素数，然而实际上已知的素数只有$F_0 \sim F_4$(人们猜测这之后的费马数全是合数，但是还没有证明).另一个猜想是“梅森素数”，即形如$M_n=2^n-1~(n=1,2,\cdots )$的素数.截至2018年12月，已知51个梅森素数，最大的是$2^{82589933}-1$.
+
+\begin{example} % 初等数论p4
+	(1)若$ax_0+by_0$是形如$ax+by$~(其中$x,y$为任意整数，$a,b$是两个不全为$0$的整数)的数中的最小正数，求证：$$(ax_0+by_0) \mid (ax+by)$$对所有$x,y$均成立. \\
+	(2)已知$a,b$是任意整数，且$b \neq 0$.求证：存在两个整数$s,t$使得$$a=bs+t,~|t| \leq \frac{|b|}{2}$$
+	成立.且当$b$为奇数时，这样的$s,t$唯一存在.并讨论$b$为偶数时存在个数的情况.
+\end{example}
+\begin{proof}
+	(1)设$ax+by=q(ax_0+by_0)+r$，其中$0 \leq r < ax_0+by_0$.整理上式，可得$$r=a(x-qx_0)+b(y-qy_0)$$
+	假设$r \neq 0$，则$r$也是形如$ax+by$的数，又因为$r < ax_0+by_0$，这与$ax_0+by_0$是最小的形如$ax+by$的正数矛盾.故$r=0$，即$(ax_0+by_0) \mid (ax+by)$. \\
+	(2)\buzhou{1}存在性： \\
+	$b > 0$时：由带余除法定理，存在$q,r$使$a=bq+r$与$0 \leq r <b$成立. \\
+	若$r \leq \dfrac{b}{2}$，取$t=r,~s=q$即可；若$r < \dfrac{b}{2}$，则取$t=r-b,~s=q+1$，此时$-\dfrac{b}{2} \leq t < \dfrac{b}{2}$，即$|t| \leq \dfrac{|b|}{2}$. \\
+	$b < 0$时，将上面的$b$替换为$-b$，同理可证. \\
+	\buzhou{2}唯一性：\\
+	$b$为奇数时，$s,t$唯一存在.假设$a=bs_1+t_1=bs_2+t_2$，则$b(s_1-s_2)=t_2-t_1$，可得$b \mid t_2-t_1$.由$|t_2-t_1| \leq |t_2|+|t_1| < |b|$(其中等号应在$t_1+t_2=b$处取到，然而$b$为奇数，故不存在满足该条件的整数$t_1,t_2$，故等号取不到)，必有$t_2-t_1=0$，即$t_2=t_1$，矛盾！于是这样的$s,t$唯一存在. \\
+	$b$为偶数时，$s,t$不唯一存在.例如，对于满足$a=3 \cdot \dfrac{b}{2}$的$a,b$，取$(s,t)=(1,\dfrac{b}{2}),(2,-\dfrac{b}{2})$均符合题意.
+\end{proof}
+
+\begin{example} % 初等数论p19
+	(1)证明素数有无穷多个. \\
+	(2)若$2^n+1$是素数(其中$n$为正整数)，则$n$是$2$的方幂.
+\end{example}
+\begin{proof}
+	(1)假设素数只有有限个，设为$p_1,p_2, \cdots ,p_m$.令$N=p_1p_2 \cdots p_n + 1$，取$N$的一个素因子$p$.\\
+	若$p=p_i$，则由$p \mid p_1p_2\cdots p_n +1$有$p \mid 1$，与$p$是素数矛盾.故$p$为不同于任何一个$p_i$的素数，与假设矛盾.于是素数个数无穷. \\
+	(2)首先，若$n$为奇数，则有$$2^n+1 = (3-1)^n+1 = 3^n + C_n^1 3^{n-1}(-1) + \cdots +C_n^{n-1} 3^1 (-1)^{n-1} + (-1)^n + 1$$
+	于是$2^n+1$是$3$的倍数. \\
+	其次，当$n$为偶数时，其必然可以表示为$k \cdot 2^m$的形式，其中$k$为奇数.于是有
+	\begin{align*}
+		2^n+1 = &\left( 2^{2^m} \right)^k + 1 = \ssb{ (2^{2^m}+1)-1 }^k + 1 \\
+		&= (2^{2^m}+1)^k + C_k^1 (2^{2^m}+1)^{k-1}(-1) + \cdots + C_k^{k-1}(2^{2^m}+1)^1(-1)^{k-1} + (-1)^k + 1
+	\end{align*}
+	故$2^{2^m}+1$可以整除$2^n+1$. \\
+	综上，$n$只能是$2$的方幂.
+\end{proof}
+
+\section{最大公约数与最小公倍数}
+
+\begin{definition}{最大公约数}
+	设$a_1,a_2, \cdots ,a_n$是$n~(n \geq 2)$个整数.满足下面两个条件的整数$d$称为它们的\textbf{最大公约数}(greatest common divisor)，记作$\gcd (a_1,a_2, \cdots ,a_n)$或简记为$(a_1,a_2, \cdots ,a_n)$： \\
+	(1)$d$是$a_1,a_2, \cdots ,a_n$的公约数，即$d \mid a_1,d \mid a_2, \cdots ,d \mid a_n$； \\
+	(2)$d$是所有$a_1,a_2, \cdots ,a_n$的公约数中最大的. \\
+	特别地，若$(a_1,a_2, \cdots ,a_n)=1$，则称$a_1,a_2, \cdots ,a_n$\textbf{互素}；若$a_1,a_2, \cdots ,a_n$中任意两个是互素的，则称它们\textbf{两两互素}.互素与两两互素不是等价的.
+\end{definition}
+\begin{remark}
+	注意到，任意一组整数必然有公约数；若它们不全为$0$，则公约数只有有限多个，此时的最大公约数存在且是唯一的.\\ 
+	另外，若$d$是$a_1,a_2, \cdots ,a_n$的公约数，则$-d$也是$a_1,a_2, \cdots ,a_n$的公约数，那么最大公约数一定是正整数.
+\end{remark}
+
+\begin{theorem}{最大公约数的性质}{zvdagsytuu}
+	(1)$(ab,ac)=a(b,c)$. \\ 
+	(2)若$(a,b)=1$，则$(a,bc)=(a,c)$. \\
+	(3)若$d \mid a,~d \mid b$则$d \mid (a,b)$. \\
+	(4)若$a \mid c,~b \mid c$则$ab \mid c(a,b)$. \\
+	(5)$a,b$的公约数与$(a,b)$的因数相同. \\
+	(6)若$d$是$a,b$的任一公约数，则$$\ssb{\frac{a}{d},\frac{b}{d}} = \frac{(a,b)}{|d|}$$
+	特别地，$$\ssb{\frac{a}{(a,b)},\frac{b}{(a,b)}}=1$$
+	(7)$(a,b,c)=((a,b),c)$.
+\end{theorem}
+\begin{remark}
+	这些性质用算术基本定理证明更方便，这里先不证明了.
+\end{remark}
+
+\begin{theorem}{辗转相除}{vjvrxliu}
+	设$a,b,k$为整数，则$(a,b)=(a,b-ka)$.
+\end{theorem}
+\begin{proof}
+	记$d$为$a,b$的任意公约数.由于$d \mid a,~d \mid b$，可得$d \mid b-ka$，于是$d$是$a,b-ka$的某个公约数. \\
+	同理，任取$d$为$a,b-ka$的任意公约数，可得$d$是$a,b$的某个公约数.于是由所有$a,b$公约数构成的集合与所有$a,b-ka$的公约数构成的集合相等，其中的最大元素也相等.
+\end{proof}
+
+利用定理\ref{thm:vjvrxliu}，我们可以很方便地求解两个整数的最大公约数.例如，$(114,514)=(114,514-4\times 114) = (114,58) = (114-2\times 58 ,58)=(-2,58)=2$\footnote{严格来讲，这里将$114$变为$-2$的操作不是辗转相除，但这样计算会简便一些.}.这样的求解算法称作\textbf{Euclid算法}(辗转相除法).其严格定义如下：
+
+\begin{definition}{Euclid算法}
+	设$a,b$为整数，$b \neq 0$，按下述方式反复做带余除法，有限步之后停止(即余数为$0$)，称做\textbf{Euclid算法}： \\
+	用$b$除$a$：$a=bq_0+r_0,\quad 0<r<|b|$； \\
+	用$r_0$除$b$：$b=r_0q_1+r_1,\quad 0<r_1<r_0$； \\
+	用$r_1$除$r_0$：$r_0=r_1q_2+r_2,\quad 0<r_2<r_1$； \\
+	$\cdots \cdots$ \\
+	用$r_{n-1}$除$r_{n-2}$：$r_{n-2}=r_{n-1}q_n+r_n,\quad 0<r_n<r_{n-1}$； \\
+	用$r_n$除$r_{n-1}$：$r_{n-1}=r_nq_{n+1}$. \\
+	则$(a,b)=(r_0,b)=(r_1,r_2)= \cdots = (r_{n+1},r_n)=r_n$.
+\end{definition}
+\begin{remark}
+	实际上，由于余数$r_0,r_1,\cdots ,r_n,\cdots $为整数，且满足$r_0 > r_1 > \cdots > r_{n} > \cdots \geq 0$，必然在某一步时余数为$0$.(无穷递降法)
+\end{remark}
+
+\begin{theorem}{Bezout定理}
+	若$a,b$为不全为$0$的整数，则存在整数$x,y$，使得$$ax+by=(a,b)$$成立.
+\end{theorem}
+\begin{remark}
+	$x,y$并不唯一，因为可以通过$(a,b)=ax+by=a(x+kb)+b(y-ka)$的形式调整(其中$k$为任意整数).
+\end{remark}
+\begin{remark}
+	特别地，若$(a,b)=1$，则存在整数$x,y$使$ax+by=k$.($k$为任意整数)
+\end{remark}
+\begin{proof} % 解法一：自己写的 解法二：https://oi-wiki.org/math/number-theory/bezouts/#证明
+	\sw{一}由于$a$与$-a$在上式中等价，不妨设$a \geq b \geq 0$. 记$n=a+b$，对$n$进行归纳. \\
+	\buzhou{1}当$n=1$时，即$a=1,b=0$，取$x=1$即符合题意. \\
+	\buzhou{2}假设当$n=1$至$n=k-1$时命题均成立.当$n=k$时， \\
+	若$b=0$，取$x=1$符合题意；若$b > 0$即$b \geq 1$，则$a-b \leq k-1$，由归纳假设知方程$$(a-2b)x+by=(a-2b,b)$$
+	有解$(x,y)$.于是方程$ax+by=(a,b)$有解$(x,y-2x)$，命题成立. \\
+	由第二数学归纳法知原命题成立. \\
+	\sw{二}同解法一，若$a,b$中有一个为$0$，显然成立.在$a,b$均不为$0$时，不妨设$a \geq b >0$. \\
+	记$a=a_1(a,b),~b=b_1(a,b)$，于是$(a_1,b_1)=1$.则原命题等价于存在$x,y$使得$a_1x+b_1y=1$. \\
+	将求$(a_1,b_1)$的过程写成Euclid算法形式：
+	\begin{align*}
+		a_1 &= q_1b_1+r_1, \quad 0 \leq r_1 < b_1 \\
+		b_1 &= q_2r_1+r_2, \quad 0 \leq r_2 < r_1 \\
+		r_1 &= q_3r_2+r_3, \quad 0 \leq r_3 < r_2 \\
+		& \cdots \cdots \\
+		r_{n-3} &= q_{n-1}r_{n-2} + r_{n-1}, \quad 0 \leq r_{n-1} < r_{n-2} \\
+		r_{n-2} &= q_nr_{n-1} + r_n, \quad 0 \leq r_n < r_{n-1} \\
+		r_{n-1} &= q_{n+1}r_n
+	\end{align*}
+	由于$(a_1,b_1)=1$，可知其中$r_n=1$，即有$$r_{n-2} = q_nr_{n-1} + 1,\quad i.e. \quad 1=r_{n-2} - q_nr_{n-1}$$
+	将倒数第三个式子$r_{n-1} = r_{n-3} - q_{n-1}r_{n-2}$代入上式，得$$1 = (1+q_nq_{n-1})r_{n-2} - q_nr_{n-3}$$
+	同样地，将Euclid算法中的式子逐步代入以消去$r_{n-2},\cdots ,r_1$.最后等式右边一定会得到$a_1,b_1$的线性组合形式(因为右边没有常数项)，即存在$x,y$使得$a_1x+b_1y=1$，原命题得证.
+\end{proof}
+
+类似地，可以定义最小公倍数：
+
+\begin{definition}{最小公倍数}
+	设$a_1,a_2, \cdots ,a_n$是$n~(n \geq 2)$个整数.满足下面两个条件的整数$D$称为它们的\textbf{最小公倍数}(least common multiple)，记作$\lcm (a_1,a_2, \cdots ,a_n)$或简记为$[a_1,a_2, \cdots ,a_n]$： \\
+	(1)$D$是$a_1,a_2, \cdots ,a_n$的公倍数，即$a_1 \mid D,a_2 \mid D, \cdots ,a_n \mid D$； \\
+	(2)$D$是所有$a_1,a_2, \cdots ,a_n$的公倍数中最小的.
+\end{definition}
+
+\begin{theorem}{最小公倍数的性质}{zvxngsbwuu}
+	(1)$[ab,ac]=a[b,c]$. \\
+	(2)若$a \mid D,~b \mid D$则$[a,b] \mid D$. \\
+	(3)$a,b$的公倍数与$[a,b]$的倍数相同. \\
+	(4)$[a,b,c]=[[a,b],c]$. \\
+	(5)$(a,b)[a,b]=|ab|$.
+\end{theorem}
+\begin{remark}
+	第五条性质最常用，因为最大公约数的性质远比最小公倍数的好.
+\end{remark}
+
+\begin{example} % 初等数论p9,p14
+	(1)证明两整数$a,b$互素的充要条件是：存在两个整数$s,t$满足$$as+bt=1$$ \\
+	(2)应用上节例题(2)证明：$(a,b)=ax_0+by_0$，其中$ax_0+by_0$是形如$ax+by$~(其中$x,y$为任意整数)的整数里的最小正数.
+\end{example}
+\begin{solution}
+	(1)必要性显然.下证充分性：由$(a,b) \mid a,~(a,b) \mid b$，可得$(a,b) \mid as+bt$，于是$(a,b)=1$，即$a,b$互素. \\
+	(2)首先，由于$(a,b) \mid a,~(a,b) \mid b$，可得$(a,b) \mid ax_0+by_0$. \\
+	其次，由Bezout定理可得，存在整数$x,y$使得$ax+by = (a,b)$，又因为$ax_0 + by_0 \mid ax+by$，故$ax_0 + by_0 \mid (a,b)$. \\
+	综上可得，$(a,b)=ax_0+by_0$.
+\end{solution}
+\begin{remark}
+	这两道例题都旨在说明整除与线性组合的强关联性.
+\end{remark}
+
+\section{Euclid引理与算术基本定理}
+
+\begin{theorem}{Euclid引理}
+	若$p$是一个素数，且$p \mid ab$，则$p \mid a$或$p \mid b$.
+\end{theorem}
+\begin{proof}
+	假设$p \nmid a$且$p \nmid b$.由于$p$是素数，又$(a,p) \mid p$，可得$(a,p)=1$. \\
+	由Bezout定理，存在整数$m,n$使得$am+pn=1$成立，于是$abm+bpn=b$.由于$p \mid ab$，由上式有$p \mid b$，矛盾！则原命题成立.
+\end{proof}
+
+\begin{theorem}{算术基本定理}
+	每个不等于$1$的正整数均可分解为有限个素数的乘积.如果不计素因数在乘积中的次序，则该分解方式是唯一的.
+\end{theorem}
+\begin{proof}
+	对于正整数$n>1$， \\
+	\buzhou{1}存在性：第$1$步：取$n$的一个素因子$p_1$，于是有$n=n_1 \cdot p_1$； \\
+	第$i$步：取$n_{i-1}$的一个素因子$p_i$，于是有$n_{i-1}=n_i \cdot p_i$. \\
+	对于上述算法，由于每一步$n_i$都严格减少，因此一定在某一步停止，即此时$n_{i-1}=1$.最后可得分解为$n=p_1p_2 \cdots p_{i-1}$. \\
+	\buzhou{2}唯一性：假设$n = p_1^{\alpha _1} p_2^{\alpha _2} \cdots p_k^{\alpha _k} = q_1^{\beta _1} q_2^{\beta _2} \cdots q_l^{\beta _l}$~(这两种表示方法不全相同). \\
+	对于$p_1$，由于$p_1 \mid n$，可得$p_1 \mid q_1^{\beta _1} q_2^{\beta _2} \cdots q_l^{\beta _l}$.由Euclid引理，$q_1, \cdots ,q_l$中必有一个素数与$p_1$相同.同理可得$\{ p_1,\cdots ,p_k \} \subseteq \{ q_1,\cdots ,q_l \}$，由对称性可得$\{ q_1,\cdots ,q_l \} \subseteq \{ p_1,\cdots ,p_k \}$，于是$\{ p_1,\cdots ,p_k \} = \{ q_1,\cdots ,q_l \}$. \\
+	不妨设$q_i=p_i~(i=1, \cdots ,k)$，即$p_1^{\alpha _1} p_2^{\alpha _2} \cdots p_k^{\alpha _k} = p_1^{\beta _1} q_2^{\beta _2} \cdots p_k^{\beta _k}$.对于任意给定的$i$，若$\alpha _i \neq \beta _i$，不妨设$\alpha _i < \beta _i$，则由于$$\frac{n}{p_i^{\alpha _i}} = p_1^{\alpha _1} \cdots p_{i-1}^{\alpha _{i-1}} p_{i+1}^{\alpha _{i+1}} \cdots p_{k}^{\alpha _{k}} = p_1^{\beta _1} \cdots p_{i-1}^{\beta _{i-1}} p_{i}^{\beta _{i} - \alpha _{i}} p_{i+1}^{\beta _{i+1}} \cdots p_{k}^{\beta _{k}}$$
+	可知$p_i \mid p_1^{\alpha _1} \cdots p_{i-1}^{\alpha _{i-1}} p_{i+1}^{\alpha _{i+1}} \cdots p_{k}^{\alpha _{k}}$，这是不可能的. \\
+	于是，对于任意$i~(i=1, \cdots ,k)$，$\alpha _i = \beta _i$，即这两种表示方法相同，与假设矛盾.故这样的表示方法是唯一的.
+\end{proof}
+
+由算术基本定理，不等于$\pm 1$的非零整数$n$可以唯一地表示为$$n = \varepsilon p_1^{\alpha _1} p_2^{\alpha _2} \cdots p_k^{\alpha _k}$$
+其中$p_1,p_2, \cdots ,p_k$为互不相同的素数，$\alpha _1 ,\alpha _2,\cdots ,\alpha _k$为正整数，$\varepsilon =\pm 1$.这称为$n$的素因数标准分解.(当$\alpha _1 ,\alpha _2,\cdots ,\alpha _k$为非负整数时，称作$n$的素因数分解.为了方便计算，有些时候会选择取$\alpha _i$为非负整数以补齐位数)
+
+从素因数分解的角度，我们得到了一种新的判断整除的方法，并由此得到了计算最大公约数、最小公倍数的方法：
+
+\begin{proposition}{从素因数分解看整除}
+	设$a=p_1^{\alpha _1} p_2^{\alpha _2} \cdots p_k^{\alpha _k},~b=p_1^{\beta _1} p_2^{\beta _2} \cdots p_k^{\beta _k}$.则
+	$$b \mid a \quad \Longleftrightarrow \quad \forall i,~0 \leq \beta _i \leq \alpha _i$$
+	因而有
+	$$(a,b)=\sum_{i=1}^{k} p_i^{\min {\alpha _i,\beta _i}}, \quad \quad [a,b]=\sum_{i=1}^{k} p_i^{\max {\alpha _i,\beta _i}}$$
+\end{proposition}
+
+作为练习，读者不妨返回上一节，尝试利用素因数分解证明定理\ref{thm:zvdagsytuu}和定理\ref{thm:zvxngsbwuu}.
+
+\section{不定方程}
+
+先从最简单的二元一次不定方程开始研究：
+
+\begin{theorem}{二元一次不定方程解的关系}{eryryicigrxi}
+	设$a,b,c$为整数，满足$ax+by=c$~(其中$a,b$不全为$0$).若该不定方程有一组整数解$(x_0,y_0)$，则它的一切解都可以写成$$x=x_0-\frac{b}{(a,b)}t,\quad y=y_0+\frac{a}{(a,b)}t$$
+	的形式，其中$t$为任意整数.
+\end{theorem}
+\begin{proof}
+	首先，显然上述形式可以满足$ax+by=c$.对于$ax+by=c$的一组解$(x',y')$，有$$ax'+by' = c = ax_0+by_0,\quad \textit{即} \quad a(x'-x_0) + b(y'-y_0) = 0$$
+	记$(a,b)=d~,a=a_1d,b=b_1d$，则$(a_1,b_1)=1$.代入上式，即得$$a_1(x'-x_0)=-b_1(y'-y_0)$$
+	于是$a_1 \mid y'-y_0$，即存在整数$t$使得$y'-y_0=ta_1$，即$y'=y_0+a_1t$.将这样的$y'$代回原式可得$x'=x_0-b_1t$.于是原方程所有的解均可表示为上述形式.
+\end{proof}
+
+\begin{theorem}{二元一次不定方程解的存在性}
+	设$a,b,c$为整数，满足$ax+by=c$~(其中$a,b$不全为$0$).该二元一次不定方程有整数解当且仅当$(a,b) \mid c$.
+\end{theorem}
+\begin{proof}
+	\buzhou{1}必要性：设方程有一组解$(x_0,y_0)$，即$ax_0+by_0=c$，由$(a,b) \mid ax_0+by_0$，自然有$(a,b) \mid c$. \\
+	\buzhou{2}充分性：由Bezout定理可知，存在整数$m,n$使$am+bn=(a,b)$.记$c=c_1(a,b)$，则$amc_1+bnc_1=c$，即$(mc_1,nc_1)$是原方程的一组整数解.
+\end{proof}
+
+具体来讲，如何找到不定方程的一组解，除了通过观察，更快速的是借助下一章的同余工具，这里简要示范(读者可以在看过下一章之后再回来做).实际上，定理\ref{thm:eryryicigrxi}也可以用同余的知识证明.
+
+多元一次不定方程是二元情况的推广，在求解的时候一般作换元以消去尽可能多的变量，最后只需要解一些二元不定方程即可.
+
+\begin{example}
+	(1)解不定方程：$1145x+14y=1919810$. \\
+	(2)将$\dfrac{17}{60}$表示为分母两两互素的三个既约分数之和.
+\end{example}
+\begin{solution}
+	(1)两边同时模$14$，可得$$11x \equiv 4 \mod 14$$
+	即$-3x \equiv 18 \mod 14$，即$x \equiv -6 \mod 14$.于是，$(8,136475)$是原方程的一组解.它的所有解可以表示为$$x=8-14t,\quad y=136475+1145t$$
+	的形式，其中$t$为任意整数. \\
+	(2)由于$60=3 \times 4 \times 5$，设$\dfrac{17}{60} = \dfrac{x}{3} + \dfrac{y}{4} + \dfrac{z}{5}$，即解不定方程$$20x+15y+12z=17$$
+	记$t=4x+3y$，于是$5t+12z=17$.这两个不定方程的解分别为$$\begin{cases}
+		x=t-3u \\ y=-t+4u
+	\end{cases}, \quad \begin{cases}
+		t=1-12v \\ z=1+5v
+	\end{cases}$$
+	其中$u,v$是任意整数.将第二组中关于$t$的解带入第一组，即得$$\begin{cases}
+		x=1-12v-3u \\ y=-1+12v+4u \\ z=1+5v
+	\end{cases}$$
+\end{solution}
+
+还有一些高次不定方程，需要通过合理的分析与处理进行解决.最有名的二次不定方程莫过于“勾股数”方程：$x^2+y^2=z^2$.
+
+\begin{example}
+	证明： \\
+	(1)设$n$为正整数，有$(a^n,b^n)=(a,b)^n$. \\
+	(2)设$a,b$为互素的正整数，$ab=c^n$~($c$为整数)，则$a,b$都是正整数的$n$次方幂. \\
+	(3)设正整数$x,y,z$满足$x^2+y^2=z^2$.则存在正整数$m,n$，使得$$x=m^2-n^2,~y=2mn,~z=m^2+n^2 ~~\cor ~~ x=2mn,~y=m^2-n^2,~z=m^2+n^2$$
+\end{example}
+\begin{proof}
+	(1)记$(a,b)=d,~a=a_1d,~b=b_1d$，则$(a_1,b_1)=1$.于是$$(a^n,b^n)=(d^na_1^n,d_nb_1^n)=d^n(a_1^n,b_1^n)=d^n$$
+	(2)由(1)可得$$(a,c)^n = (a^n,c^n) = (a^n,ab) = a(a^{n-1},b) = a$$
+	同理可得$b=(b,c)^n$.故$a,b$都是正整数的$n$次方幂. \\
+	(3)由于$x^2+y^2=z^2$及“对于正整数$n$，$n^2$除$4$余$0$或$1$”及$(x,y,z)=1$，可知$(x,y,z)$的奇偶性分别可能为$(\textit{奇},\textit{偶},\textit{奇})\cor (\textit{奇},\textit{偶},\textit{奇})$.不妨设$y$为偶数. \\
+	容易发现满足$m^2=\dfrac{z+x}{2},~n^2=\dfrac{z-x}{2}$的有理数$m,n$符合题意.下证这样的$m,n$为整数. \\
+	注意到$\dfrac{z+x}{2} \cdot \dfrac{z-x}{2} = \ssb{\dfrac{y}{2}}^2$，由(2)中结论，只需证明$$\ssb{\frac{z+x}{2}, \frac{z-x}{2}}=1$$
+	化简之，即证明$(z+x,z-x)=2$，即$(x,z)=1$.这是显然的，不妨设$(x,y,z)=1$(因为$x,y,z$同时扩大对结论无影响)，假设$(x,z)>1$，即存在素数$p$使得$p \mid x$且$p \mid z$，由于$y^2=z^2-x^2$，可得$p \mid y^2$，即有$p \mid y$.这与$(x,y,z)=1$矛盾！
+\end{proof}
+
+\chapter{同余}
+
+\section{同余}
+
+同余
+
+\section{剩余系}
+
+剩余系，完全剩余系，数论倒数，缩剩余系，Euler函数，Fermat定理，Wilson定理
+
+\section{中国剩余定理}
+
+\part{组合}
+
+\chapter{计数与概率}
 
 \section{排列组合模型}
 
 计数原理，无重排列与组合，可重排列与组合，圆排列
 
+\section{概率与数学期望}
+
 \section{二项式定理}
 
 二项式定理，组合恒等式
 
-\part{初等数论}
+\chapter{存在性问题}
 
+\chapter{组合最值问题}
 
-
-
-
-
-
-
-
-
-
-
+\chapter{组合数学中的图论}
 
 \end{document}
 
