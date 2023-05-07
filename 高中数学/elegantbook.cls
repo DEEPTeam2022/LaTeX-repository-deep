@@ -417,7 +417,7 @@
   \newcommand{\lemmaname}{引理}
   \newcommand{\propositionname}{命题}
   \newcommand{\corollaryname}{推论}
-  \newcommand{\examplename}{例题} %
+  \newcommand{\examplename}{例} %
   \newcommand{\instancename}{示例} %
   \newcommand{\problemname}{问题} % 问题
   \newcommand{\exercisename}{练习} % 练习=习题
@@ -1068,6 +1068,8 @@
   \par\vspace{1em}}
 
 \newenvironment{solution}{\par\noindent\textbf{\color{main}\solutionname} \citshape}{\par\vspace{1em}}
+\newenvironment{psolution}{\par\vspace{1em}\noindent\citshape \begin{enumerate}}{
+  \end{enumerate}}
 \newenvironment{hint}{\par\noindent\textbf{\color{third}\hintname} \citshape}{\par}
 \newenvironment{remark}{\noindent\textbf{\color{second}\remarkname}}{\par}
 \newenvironment{assumption}{\par\noindent\textbf{\color{third}\assumptionname} \citshape}{\par}
@@ -1105,7 +1107,7 @@
 
 \RequirePackage{adforn}
 
-\newenvironment{problemset}[1][\xchaptertitle~\exercisename]{
+\newenvironment{problemset}[1][\xchaptertitle ~\exercisename]{
   \vspace*{10pt}
   \begin{center}
     \phantomsection\addcontentsline{toc}{section}{\texorpdfstring{\xchaptertitle~\exercisename}{\exercisename}}

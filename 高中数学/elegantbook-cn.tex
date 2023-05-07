@@ -38,6 +38,41 @@
 	\DeclareMathOperator{\lcm}{lcm}
 \newcommand{\examplefont}[1]{\color{mgreen} \textbf{#1}}
 
+\makeatletter
+% restore footnote internals to those in normal page, not minipage
+\def\tcb@restore@footnote{%
+  \def\@mpfn{footnote}%
+  \def\thempfn{\arabic{footnote}}%
+  \let\@footnotetext\tcb@footnote@collect
+}
+
+% collect footnote text
+\long\def\tcb@footnote@collect#1{%
+  % expand \@thefnmark before appending before app to \tcb@footnote@acc
+  \expandafter\gappto\expandafter\tcb@footnote@acc\expandafter{%
+    \expandafter\footnotetext\expandafter[\@thefnmark]{#1}%
+  }%
+}
+
+\def\tcb@footnote@use{%
+  \tcb@footnote@acc
+  \global\let\tcb@footnote@acc\@empty
+}
+\global\let\tcb@footnote@acc\@empty
+
+
+\tcbset{
+  % restore for every box
+  every box/.style={
+    before upper pre=\tcb@restore@footnote
+  },
+  % use for layer 1 boxes only
+  every box on layer 1/.append style={
+    after app=\tcb@footnote@use
+  }
+}
+\makeatother
+
 % cover settings
 
 \title{高中数学}
@@ -69,18 +104,7 @@
 
 \chapter*{写在前面}\markboth{写在前面}{写在前面}
 
-本讲义是由DEEP Team出品、主要面向强基竞赛学生的高中数学讲义.本讲义注重知识体系的搭建，关于具体的解题技巧，请参考《高中数学解题指南I》、《高中数学解题指南II》(皆可在我们的网站上找到)；为了提升熟练度和补充，也推荐搭配如《奥数教程》等一试书籍.
-
-提到高中数学，不得不介绍其特点：
-\begin{enumerate}
-	\item 从知识体系上来看，高中数学的内容脉络更加严谨、有条理.高中数学在初中已经接触的部分内容的基础上，进行了适当的拓展研究.另外，其作为初等数学至高等数学的衔接课程，相较初中更具抽象性.
-	\item 从考题上来看，由于高中数学引入了各个具体板块的内容，较难的题目一般会以知识综合的形式出现，接近于真正的数学研究环境.
-\end{enumerate}
-根据上述特点，本讲义在编写时即侧重于知识体系的完整性与逻辑性，尽量自然地引入各种概念与定理；本讲义给出了许多思考问题，而不是单纯的例题堆积，这会增进对知识的理解.
-
-不同于大多数高中数学讲义，为了更好地培养抽象思维，本讲义十分注重定理和公式的证明.关于高中考试中经常出现的二级结论，本讲义会在不脱离主干知识脉络的条件下尽量拓展(多以“问题”表示)，以免影响对数学体系的整体认知.关于计算能力与知识熟练度，为了尽可能较少讲义篇幅，这部分内容请读者参考《奥数教程》等练习.
-
-本讲义包括如下内容：高中数学预备知识，函数与数列，几何，数与代数，概率、计数与组合，初等数论.大致涵盖高中数学联赛一试、二试内容，也兼顾强基计划的知识体系.
+“例题”主要旨在提升对定理、定义的理解，“练习”则是一些利用既有知识解决的题目.
 
 \tableofcontents
 
@@ -255,18 +279,6 @@
 
 为了描述类似于“正整数集”的集合，我们规定一些标记.例如，$\R ^{+}$(或$\R _{+}$)表示正实数集，$\mathbb{Z}^{-}$表示负整数集，$\mathbb{N}^{*}$表示非零自然数集(等价于正整数集).
 
-\begin{example}
-	(1)集合$A=\{ 2,0,1,3 \},~B = \{ x|-x \in A,2-x^2 \notin A \}$，则集合$B$中所有元素的和为\tk . \\
-	(2)由三个实数构成的集合，既能表示为$\{ a,1,b/a \}$，也能表示为$\{ a^2,a+b,0 \}$，则$a^{99}+b^{99}=$\tk . \\
-\end{example}
-\begin{solution}
-	(1)由题意可知，集合$B=\{ -2,-3 \}$，则$B$中所有元素的和为$-5$. \\
-	(2)\sw{一}由于$1$和$0$不能相等，且$a \neq 0$，于是$b/a=0$，即$b=0$.又由$a^2 \neq a,~a^2=1$，可知$a=-1$.综上，$a^{99}+b^{99}=-1$. \\
-	\sw{二}由题，$\begin{cases}
-		a+1+\dfrac{b}{a} = a^2+(a+b) + 0 \\ a \times 1 \times \dfrac{b}{a} = a^2 \times (a+b) \times 0
-	\end{cases}$，由第二个式子可知$b=0$，代回第一个式子，解得$a= \pm 1$，又因为$a^2 \neq a+b$，于是$a=-1$.综上，$a^{99}+b^{99}=-1$.
-\end{solution}
-
 以下介绍集合之间的关系：
 
 \begin{definition}{子集和母集}
@@ -287,9 +299,9 @@
 
 有时我们需要研究某个有限集合的元素个数.设有限集$A$，可以用$\card (A)$表示其元素个数(card即\textit{cardinal}，基数).另外，有限集$A$的\textbf{阶}也表示其元素个数，记作$|A|$.
 
-\begin{problem}
-	证明：对于一个有限集$A$，它的子集个数为$2^{|A|}$个，真子集个数为$2^{|A|}-1$个.
-\end{problem}
+\begin{proposition}{有限集合的子集个数}
+	对于一个有限集$A$，它的子集个数为$2^{|A|}$个，真子集个数为$2^{|A|}-1$个.
+\end{proposition}
 \begin{proof}
 	\sw{一}使用“贡献法”.对于给定的一个$A$的子集，任何一个$a_i~(i=1,2,\cdots ,n)$要么在其中，要么不在其中，由乘法原理，这样做就会生成$2^n$个不同的子集.对于一个有限集$A$，其真子集恰会比其子集少一个$A$，即真子集个数为$2^n-1$. \\
 	\sw{二}设集合$\{ a_1, \cdots ,a_n \}$.对$n$较小的情况进行子集的枚举：
@@ -308,19 +320,23 @@
 
 \begin{definition}{集合的交、并、差、补}
 	设集合$A$和$B$， \\
-	(1)$A$与$B$的\textbf{交集}(intersection)，记作$A \cap B$，定义为$$A \cap B = \{ x|(x \in A) \wedge (x \in B) \}$$
-	(2)$A$与$B$的\textbf{并集}(union)，记作$A \cup B$，定义为$$A \cup B = \{ x|(x \in A) \vee (x \in B) \}$$
-	(3)$A$与$B$的\textbf{差集}(difference)，记作$A-B$或$A \setjianfa B$，定义为$$A \setjianfa B = \{ x|(x \in A) \wedge (x \notin B) \}$$
-	(4)设$U$为\textbf{全集}.$A$的\textbf{补集}(complement)，记作$\complement _{U}{A}$，定义为$$\complement _{U}{A} = \{ x|(x \in U) \wedge (x \notin A) \}$$
+	(1)$A$与$B$的\textbf{交集}(intersection)，记作$A \cap B$，定义为$$A \cap B := \{ x|(x \in A) \wedge (x \in B) \}$$
+	(2)$A$与$B$的\textbf{并集}(union)，记作$A \cup B$，定义为$$A \cup B := \{ x|(x \in A) \vee (x \in B) \}$$
+	(3)$A$与$B$的\textbf{差集}(difference)，记作$A-B$或$A \setjianfa B$，定义为$$A \setjianfa B := \{ x|(x \in A) \wedge (x \notin B) \}$$
+	(4)设$U$为\textbf{全集}.$A$的\textbf{补集}(complement)，记作$\complement _{U}{A}$，定义为$$\complement _{U}{A} := \{ x|(x \in U) \wedge (x \notin A) \}$$
 	若已知该全集(题目中明确定义)，$A$的补集也可记作$\overline{A}$.
 \end{definition}
+\begin{remark}
+	“$A := B$”表示用$B$定义$A$.
+\end{remark}
 \begin{note}
 	两集合间的差集并不要求它们有包含关系，而只是从一个集合中“除去”在另一个集合中的元素.
 \end{note}
 
-\begin{problem}
-	证明：$$A \cap B = B ~ \Leftrightarrow ~ B \subseteq A ,\quad A \cup B = A ~ \Leftrightarrow ~ B \subseteq A$$
-\end{problem}
+\begin{proposition}
+	设集合$A,B$，
+	$$A \cap B = B ~ \Leftrightarrow ~ B \subseteq A ,\quad A \cup B = A ~ \Leftrightarrow ~ B \subseteq A$$
+\end{proposition}
 \begin{proof}
 	以第一个为例. \\
 	\buzhou{1}充分性：由$B \subseteq A$，有$\forall x, x \in B \Rightarrow x \in A$.于是$$B = \{ x|x \in B \} = \{ x|(x \in B) \wedge (x \in B) \} \subseteq \{ x|(x \in A) \wedge (x \in B) \} = A \cap B$$
@@ -328,7 +344,7 @@
 	\buzhou{2}必要性：由$A \cap B = B$可得$B \subseteq (A \cap B)$.又因为$(A \cap B) \subseteq A$，于是$B \subseteq A$.
 \end{proof}
 
-上述定义与问题如果用图像的形式来看，会自然许多：
+上述定义与命题如果用图像的形式来看，会自然许多：
 
 \begin{center}
 	\includegraphics{attachment/20230318jihe.pdf}
@@ -353,15 +369,6 @@
 	(4)它们的交、并运算与补运算之间满足摩根律(或称德摩根定理，De Morgan's theorem)，即$$\overline{A \cap B} = \overline{A} \cup \overline{B} \qquad \overline{A \cup B} = \overline{A} \cap \overline{B}$$
 \end{proposition}
 
-\begin{example}
-	(1)已知$A=\{ 2,5 \}$，$B = \{ x|x^2+px+q=0 \}$，且$A \cup B = A$，$A \cap B = \{ 5 \}$，则$pq=$\tk . \\
-	(2)已知$M,N$均为$\mathbb{R}$的子集，且$(\complement _{\mathbb{R}} M) \subseteq N$，则$M \cup (\complement _{\mathbb{R}} N)=$\tk .~(用$M,N$表示) \\
-\end{example}
-\begin{solution}
-	(1)由$A \cup B = A$，$A \cap B = \{ 5 \}$，可知$B \subsetneqq A$且$5 \in B$，即$B=\{ 5 \}$.这意味着二次方程$x^2+px+q=0$恰有一个解$x=5$，于是$p=-10,~q=25$，进而$pq=-250$. \\
-	(2)可以作一个换元的操作：令$P=\complement _{\mathbb{R}} M$，则$M=\complement _{\mathbb{R}} P$(也即$P \cup Q=\R ,~P \cap Q = \varnothing$).于是$P \subseteq N$，所求即为$(\complement _{\mathbb{R}} P) \cup (\complement _{\mathbb{R}} N)$.由命题\ref{pro:nifzmkti}可知$(\complement _{\mathbb{R}} N) \subseteq (\complement _{\mathbb{R}} P)$，于是原式等于$\complement _{\mathbb{R}} P$，即为$M$.
-\end{solution}
-
 实际上，集合之间的交、并与逻辑运算中的和、或是一样的.例如，不等式$x^2-4x+3 \geq 0$的取值范围为$$\{ x|(x \leq 1) \vee (x \geq 3) \} = \{ x|x \leq 1 \} \cup \{ x|x \geq 3 \}$$
 
 为了更方便地表示上述结果，引入区间的概念：
@@ -379,6 +386,22 @@
 
 上文例子中$x$的取值范围就可以表达为$$(-\infty ,1] \cup [3,+\infty )$$
 
+\begin{problemset}
+	\item 集合$A=\{ 2,0,1,3 \},~B = \{ x|-x \in A,2-x^2 \notin A \}$，则集合$B$中所有元素的和为\tk .
+	\item 由三个实数构成的集合，既能表示为$\{ a,1,b/a \}$，也能表示为$\{ a^2,a+b,0 \}$，则$a^{99}+b^{99}=$\tk .
+	\item 已知$A=\{ 2,5 \}$，$B = \{ x|x^2+px+q=0 \}$，且$A \cup B = A$，$A \cap B = \{ 5 \}$，则$pq=$\tk .
+	\item 已知$M,N$均为$\mathbb{R}$的子集，且$(\complement _{\mathbb{R}} M) \subseteq N$，则$M \cup (\complement _{\mathbb{R}} N)=$\tk .~(用$M,N$表示)
+\end{problemset}
+\begin{psolution}
+	\item 由题意可知，集合$B=\{ -2,-3 \}$，则$B$中所有元素的和为$-5$.
+	\item \sw{一}由于$1$和$0$不能相等，且$a \neq 0$，于是$b/a=0$，即$b=0$.又由$a^2 \neq a,~a^2=1$，可知$a=-1$.综上，$a^{99}+b^{99}=-1$. \\
+	\sw{二}由题，$\begin{cases}
+		a+1+\dfrac{b}{a} = a^2+(a+b) + 0 \\ a \times 1 \times \dfrac{b}{a} = a^2 \times (a+b) \times 0
+	\end{cases}$，由第二个式子可知$b=0$，代回第一个式子，解得$a= \pm 1$，又因为$a^2 \neq a+b$，于是$a=-1$.综上，$a^{99}+b^{99}=-1$.
+	\item 由$A \cup B = A$，$A \cap B = \{ 5 \}$，可知$B \subsetneqq A$且$5 \in B$，即$B=\{ 5 \}$.这意味着二次方程$x^2+px+q=0$恰有一个解$x=5$，于是$p=-10,~q=25$，进而$pq=-250$.
+	\item 可以作一个换元的操作：令$P=\complement _{\mathbb{R}} M$，则$M=\complement _{\mathbb{R}} P$(也即$P \cup Q=\R ,~P \cap Q = \varnothing$).于是$P \subseteq N$，所求即为$(\complement _{\mathbb{R}} P) \cup (\complement _{\mathbb{R}} N)$.由命题\ref{pro:nifzmkti}可知$(\complement _{\mathbb{R}} N) \subseteq (\complement _{\mathbb{R}} P)$，于是原式等于$\complement _{\mathbb{R}} P$，即为$M$.
+\end{psolution}
+
 
 \chapter{算术预备知识}
 
@@ -393,7 +416,7 @@
 首先介绍\textbf{幂}(power)的概念.对于单项式$a^n(n \in \mathbb{Q})$，令$n=\frac{p}{q}$，
 $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 
-这就是有理数次幂的严格定义.其中，$a$称为底数，$n$称为指数，$a^n$的值称为幂值.若$n$是无理数，可以借助指数函数进行定义(后文会提到).
+这就是有理数次幂的严格定义.其中，$a$称为底数，$n$称为指数，$a^n$的值称为幂值.若$n$是无理数，可以通过计算其相邻的有理数逼近，也可以借助指数函数进行定义(后文会提到).
 
 幂运算的运算律如下：
 
@@ -465,6 +488,7 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	故$$\frac{2}{a} + \frac{1}{b} = \log_{t}{9} + \log_{t}{4} = \log_{t}{36} = \frac{2}{c}$$
 \end{solution}
 
+\newpage
 \section{求和符号}
 
 为了简明地表示一连串式子求和，定义如下求和符号：
@@ -531,7 +555,7 @@ $$\sum_{\textit{$x$是素数且$0< x \leq 10$}} x = 2+3+5+7$$
 	将式\ref{ex1214}带入式\ref{ex1213}，可得$$LHS = n\sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^{n} a_i}^2$$
 \end{proof}
 
-\chapter{复数与多项式}
+\chapter{复数与多项式I}
 
 \begin{introduction}
 	\item 复数的概念与运算
@@ -539,7 +563,9 @@ $$\sum_{\textit{$x$是素数且$0< x \leq 10$}} x = 2+3+5+7$$
 	\item 多项式的根与Vieta定理
 \end{introduction}
 
-\section{复数初步\footnote{在之后还会对复数的不同表示形式及应用进行更加深入的研究.}}
+复数与多项式在初等数学的代数部分非常重要.本章我们先进行大致介绍，进一步的知识放在代数部分讲解.
+
+\section{复数初步}
 
 在介绍复数之前，我们先来看看这个例子：
 
@@ -579,6 +605,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	(5) 乘法逆元$$\forall \alpha \in \C (\alpha \neq 0) , \exists ! \beta \in \C , \alpha \beta = 1$$
 	(6) 分配性质$$\forall \lambda , \alpha , \beta \in \C , \lambda (\alpha + \beta) = \lambda \alpha + \lambda \beta$$
 \end{proposition}
+\begin{remark}
+	“$\exists !$”表示“存在唯一”.
+\end{remark}
 \begin{proof}
 	这里只选择部分性质证明： \\
 	(1) 加法交换性质：设$\alpha = a+b\ic , \beta = c+d\ic ~(a,b,c,d \in \R )$，则
@@ -633,6 +662,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\begin{itemize}
 		\item $f(x)=g(x)$的充要条件是$n=m,~a_i=b_i$.
 		\item 多项式的加法如下：$$f(x) + g(x) = \sum_{i=0}^{n} (a_i + b_i)x^{i}$$
+		\item 多项式的标量乘法如下：$$\lambda f(x) = \sum_{i=0}^{n} (\lambda a_i)x^{i}$$
 		\item 多项式的乘法如下：$$f(x) \cdot g(x) = \sum_{i=0}^{n} \sum_{j=0}^{m} a_ib_j x^{i+j} = \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k$$
 	\end{itemize}
 \end{theorem}
@@ -707,7 +737,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	第二个：记$f(x)=x^3-9yx^2+26y^2x-24y^3$为关于$x$的多项式.注意到，$f(2y)=0$，故$f(x)$必有因式$(x-2y)$.同上可得$$f(x)=(x-2y)(x^2-7xy+12y^2)=(x-2y)(x-3y)(x-4y)$$
 	(2)记$f(x)=(2x-3)(3x+1) \cdot q(x) + r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) \leq 1$，记$r(x)=ax+b$. \\
 	由余数定理可得$f(3/2)=7,f(-1/3)=-4$.带入上式，有$$\frac{3}{2}a+b=7,\quad -\frac{1}{3}a+b=-4$$
-	解得$a=6,n=-2$.则所求余式$r(x)=6x-2$. \\
+	解得$a=6,b=-2$.则所求余式$r(x)=6x-2$. \\
 	(3)记$x^{10}=(x-1)^2 \cdot q(x) + r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) \leq 1$，记$r(x)=ax+b$，即$$x^{10} = (x-1)^2 \cdot q(x) + ax+b$$
 	由余数定理可得$f(1)=0$，即得$a+b=1$.带入上式，有$$x^{10} = (x-1)^2 \cdot q(x) + ax-a+1$$
 	作代数变形，得
@@ -762,16 +792,25 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \chapter{函数}
 
+\begin{introduction}
+	\item 映射与函数的概念
+	\item 函数的(初等)性质
+	\item 常见初等函数
+	\item 函数图像的变换
+	\item 简单的函数方程
+\end{introduction}
+
 \section{映射与函数}
 
 \subsection{映射与函数的概念}
 
-\begin{definition}{映射}
+\begin{definition}{映射，函数}
 	\begin{itemize}
 		\item 设$A$和$B$为两个集合，若对$A$中每个元素$x$，都存在$B$中唯一的元素$y$与之对应，则称此对应关系为一个\textbf{映射}(map)，记作$$f:A \to B,~~x \mapsto y$$
 		\item $x$在$B$中的对应元素$y$称为$x$在$f$下的\textbf{象}(image)，$x$称为$y$在$f$下的\textbf{原象}(preimage)，记作$$f(x) = y,~ x \in A$$
 		\item 集合$A$称作映射$f$的\textbf{定义域}(domain)，记作$D_f$；集合$B$称为映射$f$的\textbf{陪域}(codomain)；$A$中所有元素在$f$下的象组成的集合称为$f$的\textbf{值域}(range)，记作$R_f$或$f(A)$.
 		\item 两个映射相等，当且仅当它们的定义域、对应关系、值域相同.
+		\item 定义域与陪域均为数集的映射称作\textbf{函数}(function).
 	\end{itemize}
 \end{definition}
 
@@ -788,7 +827,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\begin{itemize}
 		\item 若$A$中的每一个$x$的唯一对应$B$中的一个$f(x)$，则称$f$是\textbf{单射}(injection).
 		\item 若对于$B$中的每一个元素$y$，总能找到$A$中的一个$x$使得$f(x)=y$，则称$f$是\textbf{满射}(surjection).
-		\item 若$f$既是单射，又是满射，则称$f$是\textbf{双射}(bijection).
+		\item 若$f$既是单射，又是满射，则称$f$是\textbf{双射}(bijection)或一一映射.
 	\end{itemize}
 \end{definition}
 
@@ -796,7 +835,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics{attachment/20230403teuuykue.pdf}
+	\includegraphics[width=17cm]{attachment/20230403teuuykue.pdf}
 	\caption{单射、满射、双射举例}
 \end{figure}
 
@@ -811,29 +850,62 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\end{itemize}
 \end{proposition}
 
+刚才我们用了一种静态的方式理解函数.初中介绍的函数概念更为“动态”，即因变量随着自变量的变化而变化的规则称为函数.这种理解方式会在下一小节的例题中体现.
+
+\begin{example}
+	(1)判断：下列每组中两个函数是否相同？
+	$$f(x)=\frac{x^2-1}{x-1},\quad g(x)=x+1$$
+	$$f(x)=x^2,~x \in (-\infty ,0)\cup (0,+\infty),\quad g\ssb{\frac{1}{t}}=\frac{1}{t^2}$$
+	(2)构造满足下列条件的映射：定义域和值域分别相同的两个不同映射；双射$f:(0,1) \to (-1,+\infty)$. \\
+	(3)设$a \in \R ,~f(x)=\sqrt{x^2+ax+1}$.若$f$的定义域为$\R$，则$a$的取值范围为\tk ；若$f$的值域为$\R ^{+} \cup \{ 0 \}$，则$a$的取值范围为\tk . \\
+	(4)已知函数$f(x)=\begin{cases}
+		2/x,~x \geq 2 \\ (x-1)^3,~x<2
+	\end{cases}$.若关于$x$的方程$f(x)=k$有两个不同的实根，则实数$k$的取值范围为\tk .
+\end{example}
+\begin{solution}
+	(1)第一组：不同.$f$的定义域为$(-\infty ,1)\cup (1,+\infty)$，而$g$的定义域为$\R$. \\
+	第二组：相同.$f$和$g$的定义域都是$(-\infty ,0)\cup (0,+\infty)$，对应法则相同，值域都是$\R ^{+}$. \\
+	(2)分别构造如下：$$f(x)=x^2, ~g(x)=|x|;\quad f(x)=\frac{1}{x}-2$$
+	(3)第一问：即要求对于任意$x \in \R$都有$x^2+ax+1 \geq 0$，只需$\Delta \leq 0$，即得$a \in [-2,2]$. \\
+	第二问：即要求对于所有$x \in \R$，$x^2+ax+1$的值取遍$\R ^{+} \cup \{ 0 \}$.由于$$x^2+ax+1 = \ssb{x+\frac{a}{2}}^2 + 1-\frac{a^2}{4}$$
+	由二次函数的性质可知$1-\dfrac{a^2}{4} \leq 0$，即得$a \in (-\infty ,-2]\cup [2,+\infty)$. \\
+	(4)做出$f(x)$的大致图像如下：
+	\begin{figure}[h!]
+		\centering
+		\includesvg[width=8cm]{gnuplot/202305021edit.svg}
+	\end{figure}
+	于是得到$k \in (0,1)$.
+\end{solution}
+
+\newpage
 \subsection{映射与函数的运算}
 
 先介绍一种由定义自然产生的运算：
 
 \begin{definition}{逆映射与反函数} %兴趣一阶I p26
-    设映射$f:A \to B$，如果$f$是一个双射，则对任意的$y \in B$，都存在唯一的$x \in A$使得$y=f(x)$.这就产生了一个从$B$到$A$的映射，称为$f$的\textbf{逆映射}(inverse mapping)，记作$$f^{-1}:B \to A$$
+    设映射$f:A \to B$，如果$f$是一个双射，则对任意的$y \in B$，都存在唯一的$x \in A$使得$y=f(x)$.这就产生了一个从$B$到$A$的映射$g$，满足$$x=g(y),~\forall y \in B$$
+    该映射称为$f$的\textbf{逆映射}(inverse mapping)，记作$$f^{-1}:B \to A$$
     对于这样的逆映射，它的定义域是$B$，值域是$A$.\\
-    同样地，设函数$f:A \mapsto B$，如果$f$是一个双射，则$f$的逆映射$f^{-1}$称为函数$f$的\textbf{反函数}(inverse function)，其定义域是$B$，值域是$A$.
+    同样地，设函数$f:A \to B$，如果$f$是一个双射，则$f$的逆映射$f^{-1}$称为函数$f$的\textbf{反函数}(inverse function)，其定义域是$B$，值域是$A$.
 \end{definition}
 
 不难发现，如果两个函数互为反函数，它们的图像关于$y=x$对称.
 
-函数间加减法的定义很符合直觉.
+函数的加法与标量乘法的定义很符合直觉.
 
-\begin{definition}{函数的加减法}
-	对于$f,g:A \to B$，对所有$x \in A$，规定函数的加减法$f \pm g$满足$$(f \pm g)(x) = f(x) \pm g(x)$$
-	函数$f \pm g$的定义域为$A$，陪域不定.
+\begin{definition}{函数的加法，标量乘法}
+	\begin{itemize}
+		\item 对于$f,g:A \to B$，对所有$x \in A$，规定函数的加和$f + g$满足$$(f + g)(x) = f(x) + g(x)$$
+		函数$f + g$的定义域为$A$，陪域不定.
+		\item 对于$f:A \to B$及$\lambda \in \R$，对所有$x \in A$，规定函数的标量乘法得到的乘积$\lambda f$满足$$(\lambda f)(x) = \lambda f(x)$$
+		函数$\lambda f$的定义域为$A$，陪域为$\lambda B$\footnote{我们用常数乘以集合的方式表示将该集合中每个元素均乘以该常数构成的新集合}.
+	\end{itemize}
 \end{definition}
 
 那么函数之间的乘法该是如何的？实际上，如果单纯地将$f(x)$与$g(x)$的值相乘，得到的新函数很难研究.我们更倾向于研究一种特殊的“乘法”：
 
 \begin{definition}{映射与函数的复合} %兴趣一阶I p26
-    设映射$f:A \to B$，$g:B \to C$，则它们的\textbf{复合映射}(composite mapping)$gf:A \to C$定义为$$(gf)(x)=g(f(x)) \ (x \in A)$$
+    设映射$f:A \to B$，$g:B \to C$，则它们的\textbf{复合映射}(composite mapping)~$gf:A \to C$定义为$$(gf)(x)=g(f(x)) \ (x \in A)$$
     注意复合运算有先后顺序.容易说明映射$gf$的定义域为$A$，值域为$C$.\\
     当集合$A,B,C$均为数集时，可以得到类似的复合函数定义.
 \end{definition}
@@ -841,6 +913,159 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	为了强调复合运算，$gf$也可记作$g \circ f$.
 \end{remark}
 
+容易验证，这样的“乘法”运算满足结合律与分配律、不满足交换律.
+
+有了函数的“乘法”，自然可以得到函数的“乘方”运算.我们一般将$f \circ f \circ \cdots \circ f~(n\textit{次复合})$称作$f$的$n$次迭代，记作$f^n$.
+
+另外，如果定义“恒等映射”$I:A \to A,I(x)=x$为乘法单位元，“零映射”$0:A\to A,0(x)=0$为加法单位元，用类似于复数的方法我们可以定义函数的乘法逆元、加法逆元.注意到，这里的乘法逆元就是逆映射，即$$f^{-1} \circ f (x) = x$$
+其余性质读者可参考复数章节证明.
+
+\begin{example}
+	(1)求下列函数的反函数：$$f(x)=2x+3,x\in (0,3);\quad y=\frac{6x-5}{x-1};\quad f(x)=x^3-3x^2+9x$$
+	(2)已知$f(x+1)=x^2+x$，则$f(x)=$\tk ；已知$f(\sqrt{x})=3x-2\sqrt{x}$，则$f(x)=$\tk . \\
+	(3)若函数$y=f(x)$的图像经过点$(2,4)$，则$y=f(20-2x)$的图像必过点\tk . \\
+	(4)函数$y=f(x+1)$的反函数是$y=f^{-1}(x+1)$，已知$f(1)=4007$，则$f(1998)=$\tk . \\
+\end{example}
+\begin{solution}
+	(1)第一个：记$y=f(x)$，那么$y \in (3,9)$，$x=\dfrac{y-3}{2}$，于是$$f^{-1}(x)=\frac{x-3}{2},~x \in (3,9)$$
+	第二个：由于$y=6+\dfrac{1}{x-1} \in (-\infty ,6)\cup (6,+\infty)$，所以$$f^{-1}(x) = 1+\frac{1}{x-6},~x \in (-\infty ,6)\cup (6,+\infty)$$
+	第三个：记$y=f(x)$，注意到$y-27=(x-3)^3 \in \R$，故$$f^{-1}(x) = \sqrt[3]{x-27}+3$$
+	(2)第一个：记$t=x+1$，则$f(t)=t(t-1)=t^2-t$，故$f(x)=x^2-x$； \\
+	第二个：记$t=\sqrt{x} \geq 0$，则$f(t)=3t^2-2t$，故$f(x)=3x^2-2x,~x \in [0,+\infty )$. \\
+	(3)题目条件即$f(2)=4$，令$20-2x=2$，此时$x=9,~y=4$.于是$y=f(20-2x)$的反函数过点$(4,9)$. \\
+	(4)由于$y$的反函数为$y=f^{-1}(x+1)$，可知$y+1=f(x)$，将$y=f(x+1)$代入，即得$f(x+1)+1=f(x)$.于是有
+	\begin{align*}
+		f(1998)-f(1997)&=-1 \\
+		f(1997)-f(1996)&=-1 \\
+		\cdots \cdots \\
+		f(2)-f(1)&=-1
+	\end{align*}
+	将上式累加可得$f(1998)-f(1)=-1997$，则$f(1998)=4007-1997=2010$.
+\end{solution}
+
+\newpage
+\section{常见初等函数}
+
+初等函数，是指用基本初等函数进行有限次加减乘除、乘方、开方、复合操作后得到的函数.(注意，不可以进行分段函数操作)
+
+在中学阶段可以遇见的基本初等函数，大致可以分为以下几类：常值函数、指数函数、对数函数、幂函数、三角函数、反三角函数.对于这些函数的概念、图像与性质，我们逐一介绍.(注：三角函数与反三角函数在下一章介绍)
+
+所有的初等函数都是实值函数，即自变量$x$是实数；所有的初等函数都是连续的.(在下一节会用到)
+
+\begin{definition}{常值函数}
+    形如$$f(x)=C \ (C \in \mathbb{R}, C\textit{是常数})$$
+    的函数称为\textbf{常值函数}(constant function).它的定义域为$\mathbb{R}$，值域为$\{ C \}$.
+\end{definition}
+
+\begin{definition}{幂函数}
+    形如$$f(x)=x^{\alpha} \ (\alpha \text{是常数})$$
+    的函数称为\textbf{幂函数}(power function).
+\end{definition}
+\begin{remark}
+	请注意，当$\alpha =0$时，$f(x)=x^0$并不是常值函数，因为该函数的定义域不包括$0$.
+\end{remark}
+
+幂函数的性质不过多介绍.只需知道例如$f(x)=x^3$或$f(x)=\sqrt[4]{x}$的函数都是幂函数.
+
+\begin{definition}{指数函数与对数函数}
+	形如$$f(x)=a^x, \ a>0 , a\neq 1$$
+    的函数称为\textbf{指数函数}(exponential function).它的定义域为$\mathbb{R}$，值域为$\mathbb{R}^{+}$. \\
+    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
+    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$.
+\end{definition}
+
+指数函数与对数函数的诸多性质都很相似，因为它们互为反函数.
+
+\begin{proposition}{指数函数与对数函数的性质}
+    指数函数$f(x)=a^x$具有以下性质：
+    \begin{itemize}
+        \item 定义域：$\mathbb{R}$
+        \item 值域：$\mathbb{R}^+$
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
+        \item 图像：恒过定点$(0,1)$
+    \end{itemize}
+    对数函数$f(x)=\log_{a}{x}$具有以下性质：
+    \begin{itemize}
+        \item 定义域：$\mathbb{R}^{+}$
+        \item 值域：$\mathbb{R}$
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
+        \item 图像：恒过定点$(1,0)$
+    \end{itemize}
+    对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
+\end{proposition}
+
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=10cm]{gnuplot/202304201edit.svg}
+	\caption{指数函数的图像}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=6cm]{gnuplot/202304202edit.svg}
+	\caption{对数函数的图像}
+\end{figure}
+
+顺便说一句，在学习幂运算时，我们无法定义无理数次幂，只能通过实数的连续性逼近.现在我们可以定义$$a^x = \ssb{e ^{\ln a}}^x = e^{x \cdot \ln a}$$
+其中$x \in \C$~(是的，甚至可以推广到复数域).这个定义是良定义，因为由指数函数与对数函数复合带来的连续性与我们之前通过实数连续性逼近相吻合.
+
+\begin{example}
+	(1)函数$f(x)=\ssb{1/2}^{\sqrt{-x^2-2x+3}}$的值域为\tk . \\
+	(2)设$f(x)=\min \{ 2^x,x+2,10-x \}$，则$f(x)$的最大值为\tk . \\
+	(3)函数$f(x)=3+2 \cdot 3^{x+1} - 9^x~(-1 \leq x \leq 2)$的最大值为\tk . \\
+	(4)若对任意$x \in (-\infty ,-1)$，$(m-m^2) \cdot 4^x + 2^x + 1 >0$恒成立，则实数$m$的取值范围为\tk .
+\end{example}
+\begin{solution}
+	(1)由题可知，$\sqrt{-x^2-2x+3} = \sqrt{-(x+1)^2 + 4} \in [0,2]$.故$f(x)$值域为$[1/4,1]$. \\
+	(2)作出$f(x)$的图像如下：
+	\begin{figure}[h!]
+		\centering
+		\includesvg[width=7cm]{gnuplot/202305071edit.svg}
+	\end{figure}
+	于是可知$f(x)$的最大值为$6$，在$x=4$时取得. \\
+	(3)记$t=3^x \in [1/3,9]$，故$$f(x) = -t^2 + 6t + 3$$
+	则$f(x)$的最大值为$12$，在$t=3$即$x=1$时取得. \\
+	(4)记$t=2^x \in (0,1/2)$，故原不等式等价于$$m-m^2 > -\frac{t+1}{t^2}$$恒成立.记$u=1/t \in (2, \infty)$，则$$-\frac{t+1}{t^2} = -\frac{\frac{1}{u}+1}{\frac{1}{u^2}} = -(u^2+u) < -6$$
+	联系上式，恒有$m-m^2 \geq -6$，于是$m \in [-2,3]$.
+\end{solution}
+
+\begin{remark}
+	这里对“恒成立”与“存在性”问题做一个说明：例如，若对所有$x \in I$都有$f(x) \geq c$~($c$为参数，下同)，那么$f(x)$在$I$上的最小值应$\geq c$；若存在$x \in I$使得$f(x) \geq c$，那么$f(x)$在$I$上的最大值应$\geq c$~(否则，若最大值比$c$小，则一定不存在满足条件的$x$).其余的情况可以由此例类推. \\
+	本题的(4)问就是恒成立问题.我们先进行代数变形将参数与变量分离，接着求出带变量式子的最大值，使之恒小于等于常数部分. \\
+	在解决这类问题时，一定要注意端点值能否取到，最好代回原题进行验证.
+\end{remark}
+
+\newpage
+有两类特殊的初等函数，在研究最值问题时很常见.
+
+\begin{example}
+    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0)$$
+    请指出它的定义域、值域并作出示意图.
+\end{example}
+\begin{solution}
+	该函数定义域为$(-\infty ,0) \cup (0,+\infty)$，值域为$(-\infty ,-y_0] \cup [y_0 ,+\infty )$.作图如下：
+    \begin{figure}[h!]
+		\centering
+		\includesvg[width=7cm]{gnuplot/202304221edit.svg}
+	\end{figure}
+	
+	\noindent
+	实际上，由均值不等式可得，这里的$y_0$就是$2\sqrt{mn}$，$x_0$就是$\sqrt{n/m}$.
+\end{solution}
+
+\begin{example}
+    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
+    请指出它的定义域、值域并作出示意图.
+\end{example}
+\begin{solution}
+	该函数定义域为$(-\infty ,0) \cup (0,+\infty)$，值域为$\R$.作图如下：(其中，直接计算可得$x_0=\sqrt{n/m}$.)
+    \begin{figure}[h!]
+		\centering
+		\includesvg[width=7cm]{gnuplot/202304222edit.svg}
+	\end{figure}
+\end{solution}
+
+\newpage
 \section{函数的性质}
 
 \subsection{单调性}
@@ -870,14 +1095,15 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 注意到，如果一个函数在某个区间上连续且单调，它在这个区间上一定是个单射.(注：所有初等函数都是连续的)
 
 \begin{proposition}{函数单调性的变化规律}
-    设函数$f(x),g(x)$，为了方便计算，假定它们的定义域相同、单调区间相同.\\
-    (1)函数的加法$f(x)+g(x)$：增函数$+$增函数 $\Rightarrow$ 增函数；减函数$+$减函数 $\Rightarrow$ 减函数.\\
-    (2)函数的减法$f(x)-g(x)$：增函数$-$减函数 $\Rightarrow$ 增函数；减函数$-$增函数 $\Rightarrow$ 减函数.\\
-    (3)函数的乘法、除法、乘方、开方：具体情况分析.\\
-    (4)函数的复合$f(x) \circ g(x)$：增函数 $\circ$ 增函数 $\Rightarrow$ 增函数；增函数 $\circ$ 减函数 $\Rightarrow$ 减函数；减函数 $\circ$ 增函数 $\Rightarrow$ 减函数；减函数 $\circ$ 减函数 $\Rightarrow$ 增函数.
+    设函数$f,g$，为了方便计算，假定它们的单调区间$I$相同.\\
+    (1)函数的加法$f+g$：增函数$+$增函数 $\Rightarrow$ 增函数；减函数$+$减函数 $\Rightarrow$ 减函数.\\
+    (2)函数的减法$f-g$：增函数$-$减函数 $\Rightarrow$ 增函数；减函数$-$增函数 $\Rightarrow$ 减函数.\\
+    (3)函数的复合$g \circ f$~(当$f$的值域包含于$g$的单调区间时)：增函数 $\circ$ 增函数 $\Rightarrow$ 增函数；增函数 $\circ$ 减函数 $\Rightarrow$ 减函数；减函数 $\circ$ 增函数 $\Rightarrow$ 减函数；减函数 $\circ$ 减函数 $\Rightarrow$ 增函数.
 \end{proposition}
 \begin{proof}
-    XXX
+    这里只选择(1)及(3)的部分进行证明，剩下的读者自证不难. \\
+    (1)第一部分：任取$x_1,x_2 \in I$使得$x_1 < x_2$.由题知$f(x_1) < f(x_2),~g(x_1) < g(x_2)$.将上两式相加，即得$(f+g)(x_1) < (f+g)(x_2)$.于是$f+g$在$I$上是增函数. \\
+    (3)第二部分：任取$x_1,x_2 \in I$使得$x_1 < x_2$.由题知$f(x_1) > f(x_2)$.于是$g(f(x_1)) > g(f(x_2))$，即$(gf)(x_1) > (gf)(x_2)$.于是$gf$在$I$上单调递减.
 \end{proof}
 
 \begin{theorem}{区间根定理}
@@ -889,6 +1115,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     则在区间$a<x<b$上必定存在至少一个$c$，使得$f(c)=0$.\\
     或者说，当一个函数在$x=a$时有$f(x)<0$且在$x=b$时有$f(x)>0$，那么它必然有至少一个零点$c$，其中$a<c<b$.反之亦然.
 \end{theorem}
+\begin{remark}
+	“连续性”是一个高等概念，我们暂时还无法详细了解(于是该定理也无法证明).只需要知道，高中阶段研究的函数(即初等函数)都是连续的.
+\end{remark}
 
 \subsection{奇偶性与对称性}
 
@@ -952,90 +1181,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     当一个函数$f(x)$同时有周期$T_1,T_2$，则$aT_1+bT_2(a,b \in \mathbb{Z})$也为它的周期.
 \end{remark}
 
-\section{常见初等函数}
-
-初等函数，是指用基本初等函数进行有限次加减乘除、乘方、开方、复合操作后得到的函数.
-
-在中学阶段可以遇见的基本初等函数，大致可以分为以下几类：常值函数、指数函数、对数函数、幂函数、三角函数、反三角函数.对于这些函数的概念、图像与性质，我们逐一介绍.(注：三角函数与反三角函数在下一章介绍)
-
-\subsection{基本初等函数}
-
-\begin{definition}{常值函数}
-    形如$$f(x)=C \ (C \in \mathbb{R}, C\textit{是常数})$$
-    的函数称为\textbf{常值函数}(constant function).它的定义域为$\mathbb{R}$，值域为$\{ C \}$.
-\end{definition}
-
-\begin{definition}{幂函数}
-    形如$$f(x)=x^{\alpha} \ (\alpha \text{是常数})$$
-    的函数称为\textbf{幂函数}(power function).
-\end{definition}
-\begin{remark}
-	请注意，当$\alpha =0$时，$f(x)=x^0$并不是常值函数，因为该函数的定义域不包括$0$.
-\end{remark}
-
-幂函数的性质不过多介绍.只需知道例如$f(x)=x^3$或$f(x)=\sqrt[4]{x}$的函数都是幂函数.
-
-\begin{definition}{指数函数与对数函数}
-	形如$$f(x)=a^x, \ a>0 , a\neq 1$$
-    的函数称为\textbf{指数函数}(exponential function).它的定义域为$\mathbb{R}$，值域为$\mathbb{R}^{+}$. \\
-    形如$$f(x)=\log_{a}{x}, \ a>0,a \neq 1$$
-    的函数称为\textbf{对数函数}(logarithmic function).它的定义域为$\mathbb{R}^{+}$，值域为$\mathbb{R}$.
-\end{definition}
-
-\begin{proposition}{指数函数与对数函数的性质}
-    指数函数$f(x)=a^x$具有以下性质：
-    \begin{itemize}
-        \item 定义域：$\mathbb{R}$
-        \item 值域：$\mathbb{R}^+$
-        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
-        \item 图像：恒过定点$(0,1)$
-    \end{itemize}
-    对数函数$f(x)=\log_{a}{x}$具有以下性质：
-    \begin{itemize}
-        \item 定义域：$\mathbb{R}^{+}$
-        \item 值域：$\mathbb{R}$
-        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
-        \item 图像：恒过定点$(1,0)$
-    \end{itemize}
-    对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
-\end{proposition}
-
-\begin{figure}[h!]
-	\centering
-	\includesvg[width=10cm]{gnuplot/202304201edit.svg}
-	\caption{指数函数的图像}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
-	\includesvg[width=6cm]{gnuplot/202304202edit.svg}
-	\caption{对数函数的图像}
-\end{figure}
-
-\subsection{常见初等函数}
-
-有两类特殊的初等函数，在研究最值问题时很常见.
-
-\begin{problem}
-    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0)$$
-    请指出它的定义域、值域并作出示意图.
-\end{problem}
-\begin{solution}
-    \begin{figure}[h!]
-		\centering
-		\includesvg[width=7cm]{gnuplot/202304221edit.svg}
-	\end{figure}
-\end{solution}
-
-\begin{problem}
-    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
-    请指出它的定义域、值域并作出示意图.
-\end{problem}
-\begin{solution}
-    XXX
-\end{solution}
-
-\section{函数图像的变换}
+\section{函数的图像}
 
 \begin{proposition}{绝对值对函数图像的影响}
     设函数$f(x)$，以下解析式不一定是函数.\\
@@ -1088,13 +1234,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     化简之后，即\small$$f \left(  x + \frac{A(Ax+Bf(x)+C)}{A^2+B^2}  \right) - \frac{B(Ax+Bf(x)+C)}{A^2+B^2} = f \left(  x - \frac{A(Ax+Bf(x)+C)}{A^2+B^2}  \right) + \frac{B(Ax+Bf(x)+C)}{A^2+B^2}$$\normalsize
 \end{proposition}
 
-\section{函数迭代与函数方程}
-
-\subsection{函数的迭代与不动点}
-
-函数迭代的概念，函数不动点的概念
-
-\subsection{简单的函数方程}
+\section{简单的函数方程}
 
 函数方程问题，Cauchy方程
 
@@ -1483,9 +1623,13 @@ $$
 
 不过以上方法只是抛砖引玉，具体如何进行构造还要靠代数变形的技巧.
 
-\subsection{数列求和与$\sum$符号运算}
+\subsection{数列求和}
 
 本节我们着重于研究数列求和的一些例题.
+
+\begin{example}
+	已知数列$\{ a_n \}$的通项公式为$a_n=n \cdot 2^n$，求其前$n$项和$S_n$.
+\end{example}
 
 \section{数学归纳法与无穷递降法}
 
@@ -1851,45 +1995,6 @@ $$
 
 利用代数形式定义向量的好处就在于，这种定义是统一的，因而比几何定义要简单的多.
 
-\chapter{复数}
-
-\section{复数的概念}
-
-复数的三角表示，复数的指数表示，复数的四则运算，共轭复数的运算
-
-\section{复数的应用}
-
-\begin{lemma}
-    任意定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
-\end{lemma}
-\begin{proof}
-    XXX
-\end{proof}
-
-\begin{definition}{双曲函数}
-    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
-    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
-    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
-    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
-\end{definition}
-
-\begin{proposition}{双曲恒等变形公式}
-    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
-    (2)和差角公式
-    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
-    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
-    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
-    (3)倍角公式
-    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
-    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
-    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
-\end{proposition}
-\begin{remark}
-    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
-    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
-    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
-\end{remark}
-
 \chapter{解析几何}
 
 \section{平面基本元素}
@@ -2208,62 +2313,6 @@ $$
 
 \chapter{平面几何}
 
-\part{代数}
-
-\chapter{著名不等式}
-
-\section{均值不等式}
-
-均值不等式，加权均值不等式
-
-\section{Cauchy不等式}
-
-Cauchy不等式
-
-\section{排序不等式}
-
-排序不等式，切比雪夫不等式
-
-\section{若干著名不等式}
-
-Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和不等式，Bernoulli不等式
-
-\chapter{不等式的证明方法}
-
-\section{整式变形}
-
-三元恒等变形、不等变形，求和符号变形
-
-\section{切线放缩与曲线放缩}
-
-切线放缩，是指利用在函数的某一点处的切线比其图像更低(高)进行放缩的技巧.在实际操作中，也有可能用到曲线放缩、割线放缩等推广方法.
-
-\begin{instance}
-	(1)已知$a,b,c$是正实数，且$a+b+c=3$.证明：$$\frac{1}{2-a}+\frac{1}{2-b}+\frac{1}{2-c} \geq 3$$
-	(2)将第一问中条件改为$a^2+b^2+c^2=3$，再次证明上述结论.
-\end{instance}
-\begin{solution}
-	(1)对于每个单独的$\dfrac{1}{2-a}$，寻找$\dfrac{1}{2-a} \geq ka+l$以便进行累加，最终将$a,b,c$变为一次和的形式消掉.有两种主要分析方法： \\
-	\sw{一}首先注意到取等条件为$a=b=c=1$，则必有$\dfrac{1}{2-1}=k+l$，即$l=1-k$.代回得$\dfrac{1}{2-a} \geq ka+1-k$，左右同乘$2-a$得$$1 \geq (ka+1-k)(2-a)$$
-	整理得$ka^2+(1-3k)a+(2k-1) \geq 0$.我们希望这个式子对于所有在$(0,3)$中的$a$均成立，最简单的想法是把左边配方，即$\Delta = (1-3k)^2-4k(2k-1) = 0$，可得$k=1$. \\
-	于是$\dfrac{1}{2-a} \geq a$，三式累加可得$$\frac{1}{2-a}+\frac{1}{2-b}+\frac{1}{2-c} \geq a+b+c = 3$$
-	\sw{二}这里既然想要放缩为一次的式子，不妨对目标函数求导以寻找$a=1$处的切线. \\
-	记$f(x)=\dfrac{1}{2-x}$，易知$f'(x) = \dfrac{1}{(2-x)^2}$，故其在$x=1$处的切线为$y=x$.同解法一可得原命题成立. \\
-	(2)同样地，我们希望得到$\dfrac{1}{2-x} \geq kx^2+l$.代入取等条件，可得$l=1-k$.下面寻找$\dfrac{1}{2-x} \geq kx^2+1-k$. \\
-	\sw{一}上式左右同乘$2-x$并化简之，可得$$kx^3-2kx^2+(1-k)x+(2k-1) \geq 0$$
-	由取等条件可知，该式子可以因式分解为$$(x-1)(kx^2-kx+1-2k) \geq 0$$
-	在$x > 1$时，希望第二个式子$>0$；在$x<1$时，希望第二个式子$<0$.于是，在$x=1$时，可以令第二个式子$=0$，即得$k=\dfrac{1}{2}$.代回即可证出原命题. \\
-	\sw{二}虽然这里想要得到的式子不是一次的了，我们也可以猜出来该二次式子与原函数在$x=1$处导数相同：因为该二次式子在$x>1,x<1$时切线斜率分别要小于、大于原函数的切线斜率，以保证该二次式子总在原函数图像下方. \\
-	记$f(x)=\dfrac{1}{2-x},~g(x)=kx^2+1-k$，则$f'(x)=\dfrac{1}{(2-x)^2},~g'(x)=2kx$.由$f(1)=g(1)$及$f'(1)=g'(1)$可以解得$k=\dfrac{1}{2}$.
-\end{solution}
-\begin{remark}
-	这两道题的第一种解法在原函数比较简单的情况下使用，而第二种解法几乎是通用的(可以应用到任意形式的“切线”上，不仅限于二次式).
-\end{remark}
-
-\section{凹凸性分析}
-
-\section{局部不等式}
-
 \part{数论}
 
 \chapter{整除}
@@ -2279,7 +2328,7 @@ Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和
 
 \begin{theorem}{整除的基本性质}
 	对任意整数$x,y,z$，有 \\
-	(1)自反性：$x \mid x$ \\
+	(1)自反性：$x \mid x$. \\
 	(2)传递性：若$x \mid y$且$y \mid z$，有$x \mid z$. \\
 	(3)反对称性：若$x \mid y$且$y \mid x$则$|x|=|y|$.
 \end{theorem}
@@ -2386,7 +2435,7 @@ Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和
 
 利用定理\ref{thm:vjvrxliu}，我们可以很方便地求解两个整数的最大公约数.例如，$(114,514)=(114,514-4\times 114) = (114,58) = (114-2\times 58 ,58)=(-2,58)=2$\footnote{严格来讲，这里将$114$变为$-2$的操作不是辗转相除，但这样计算会简便一些.}.这样的求解算法称作\textbf{Euclid算法}(辗转相除法).其严格定义如下：
 
-\begin{definition}{Euclid算法}
+\begin{theorem}{Euclid算法}
 	设$a,b$为整数，$b \neq 0$，按下述方式反复做带余除法，有限步之后停止(即余数为$0$)，称做\textbf{Euclid算法}： \\
 	用$b$除$a$：$a=bq_0+r_0,\quad 0<r<|b|$； \\
 	用$r_0$除$b$：$b=r_0q_1+r_1,\quad 0<r_1<r_0$； \\
@@ -2395,7 +2444,7 @@ Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和
 	用$r_{n-1}$除$r_{n-2}$：$r_{n-2}=r_{n-1}q_n+r_n,\quad 0<r_n<r_{n-1}$； \\
 	用$r_n$除$r_{n-1}$：$r_{n-1}=r_nq_{n+1}$. \\
 	则$(a,b)=(r_0,b)=(r_1,r_2)= \cdots = (r_{n+1},r_n)=r_n$.
-\end{definition}
+\end{theorem}
 \begin{remark}
 	实际上，由于余数$r_0,r_1,\cdots ,r_n,\cdots $为整数，且满足$r_0 > r_1 > \cdots > r_{n} > \cdots \geq 0$，必然在某一步时余数为$0$.(无穷递降法)
 \end{remark}
@@ -2570,15 +2619,142 @@ Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和
 
 \chapter{同余}
 
-\section{同余}
+\section{同余运算}
 
-同余
+\begin{definition}{同余运算}
+	设$a,b,m~(m \neq 0)$是整数，若$m \mid a-b$，则称$a,b$\textbf{模$m$同余}，记作$$a \equiv b \mod m$$
+	若$m \nmid a-b$，则称$a,b$模$m$不同余，记作$$a \not\equiv b \mod m$$
+\end{definition}
+\begin{remark}
+	在具体题目情景中，若上下文的模都是一样的，可以省略“$\operatorname{mod} m$”符号.
+\end{remark}
+
+\begin{theorem}{同余运算的基本性质}
+	对任意整数$x,y,z,m~(m \neq 0)$，在模$m$意义下，有 \\
+	(1)自反性：$x \equiv x$. \\
+	(2)传递性：若$x \equiv y$且$y \equiv z$，有$x \equiv z$. \\
+	(3)反对称性：若$x \equiv y$，则$y \equiv x$.
+\end{theorem}
+\begin{remark}
+	实际上，满足自反性、传递性与对称性的二元关系被称作“等价关系”，例如两个对象的相等关系.从这一点出发，我们也可以看出同余运算的优点：将整除变为“等式”，“等式”左右可以像真正的等式一样运算(基础运算即定理\ref{thm:tsyuyysr}中的(1)；除法会在后面讲到).
+\end{remark}
+
+\begin{theorem}{同余运算的性质}{tsyuyysr}
+	(1)(在模$m$的意义下)类似于等式的性质：若$a \equiv b,~c \equiv d$，则$$a+c \equiv b+d, \qquad ac \equiv bd$$
+	特别地，有$a^k \equiv b^k$. \\
+	(2)若$a \equiv b \mod m$且$a \equiv b \mod n$，则$$a \equiv b \mod [m,n]$$
+	(3)若$ac \equiv bc \mod m$，其中$c \neq 0$，则$$a \equiv b \mod \frac{m}{(c,m)}$$
+\end{theorem}
+
 
 \section{剩余系}
 
 剩余系，完全剩余系，数论倒数，缩剩余系，Euler函数，Fermat定理，Wilson定理
 
+同余的本质，实际上是将正整数集$\mathbb{Z}$分为若干集合，每个集合模$m$的余数循环.类似于这种思路，可以对所有模$m$同余的数建立一个等价类：
+
+\begin{theorem}{剩余类}{ugyulw}
+	对于任意给定的正整数$m$，全部整数可以划分成$m$个集合，记作$K_0,K_1, \cdots ,K_{m-1}$，其中$K_r~(r=0,1,\cdots ,m-1)$是由一切形如$qm+r~(q=0,\pm 1,\pm 2,\cdots )$组成的.这些集合具有下列性质： \\
+	(1)每一整数必包含在且仅在上述的一个集合里面. \\
+	(2)两个整数同在一个集合当且仅当这两个整数模$m$同余.
+\end{theorem}
+\begin{proof}
+	(1)由带余除法定理，任取整数$a$，记$a=a_1m + r~(0 \leq r < m)$，于是$a$就在$K_r$中，且这里的$r$是由$a$唯一确定的. \\
+	(2)\buzhou{1} 充分性：若$a \equiv b \mod m$，则由定义知$m \mid a-b$.记$a-b = km$，$b=qm + r$，则$$a = (k+q)m +r$$
+	故$a,b$同在$K_r$中. \\
+	\buzhou{2} 必要性：若$a,b$均在$K_r$中，记$$a=q_1m+r,~b=q_2m+r$$
+	则$a-b = (q_1-q_2)m$，故$a \equiv b \mod m$.
+\end{proof}
+
+\begin{definition}{剩余类与完全剩余系}
+	定理\ref{thm:ugyulw}中的$K_0,K_1, \cdots ,K_{m-1}$称作模$m$的\textbf{剩余类}；若$a_0,a_1,\cdots ,a_{m-1}$是$m$个整数，并且其中任意两数都不在同一个剩余类里，则$a_0,a_1,\cdots ,a_{m-1}$称作模$m$的一个\textbf{完全剩余系}.
+\end{definition}
+\begin{remark}
+	用同余的语言，可以得到一个等价定义：$m$个整数构成模$m$的一个完全剩余系当且仅当它们两两模$m$不同余.
+\end{remark}
+
+例如，对于正整数$m$，最小的非负完全剩余系为$\{ 0,1,2,\cdots ,m-1 \}$.
+
+\begin{theorem}{完全剩余系的性质}{wjqrugyuxi}
+	设正整数$m$，整数$a$满足$(a,m)=1$，$b$是任意整数.若$S$是一个模$m$的完全剩余系，则$T=aS+b$也是模$m$的完全剩余系.
+\end{theorem}
+\begin{proof}
+	对于$T$，任取其中元素$x,y$，记$x=ap+b,~y=aq+b$. \\
+	假设$x \equiv y \mod m$，则$ap \equiv ap \mod m$.应用定理\ref{thm:tsyuyysr}的第三条可知$p \equiv q \mod m$，这与$S$是完全剩余系矛盾.故$T$中元素两两模$m$不同余，则$T$是模$m$的完全剩余系.
+\end{proof}
+
+\begin{theorem}
+	设正整数$m$，整数$a$满足$(a,m)=1$，$b$是任意整数.存在整数$x$使得$ax \equiv b \mod m$且所有满足该条件的$x$在模$m$的同一个剩余类中.
+\end{theorem}
+\begin{proof}
+	由于$\{ 1,2,\cdots ,m \}$是模$m$的一个完全剩余系，由定理\ref{thm:wjqrugyuxi}可知$\{ a,2a,\cdots ,ma \}$也是模$m$的一个完全剩余系.于是对任意整数$b$，总存在$x \in \{ 1,2,\cdots ,m \}$使得$ax \equiv b \mod m$. \\
+	若有$x,y$均满足条件，即$ax \equiv b \mod m,~ay \equiv b \mod m$，则$a(x-y) \equiv 0 \mod m$，故$x \equiv y \mod m$，即所有满足条件的$x$在模$m$的同一个剩余类中.
+\end{proof}
+
+在上述定理中，如果取$b=1$，则意味着在$(a,m)=1$时，总存在$x$使得$ax \equiv 1 \mod m$.称这样的$x$为$a$在\textbf{模$m$意义下的乘法逆元}，记$x \equiv a^{-1} \mod m$.因为所有这样的$a^{-1}$组成了一个模$m$的剩余类，故可以将乘法逆元(不严谨地)当做除法来考虑.
+
 \section{中国剩余定理}
+
+\part{代数}
+
+\chapter{著名不等式及其应用}
+
+\section{均值不等式}
+
+均值不等式，加权均值不等式
+
+\section{Cauchy不等式}
+
+Cauchy不等式
+
+\section{排序不等式}
+
+排序不等式，切比雪夫不等式
+
+\section{若干著名不等式}
+
+Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和不等式，Bernoulli不等式
+
+\chapter{复数与多项式II}
+
+\section{复数进阶}
+
+\subsection{复数的不同表示形式}
+
+复数的三角表示，复数的指数表示，复数的四则运算，共轭复数的运算
+
+\subsection{复数的应用}
+
+\begin{lemma}
+    任意定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
+\end{lemma}
+\begin{proof}
+    XXX
+\end{proof}
+
+\begin{definition}{双曲函数}
+    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
+    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
+    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
+    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+\end{definition}
+
+\begin{proposition}{双曲恒等变形公式}
+    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
+    (2)和差角公式
+    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
+    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
+    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
+    (3)倍角公式
+    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
+    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
+\end{proposition}
+\begin{remark}
+    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
+    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
+    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+\end{remark}
 
 \part{组合}
 
