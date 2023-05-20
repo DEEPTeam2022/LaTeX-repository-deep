@@ -1,0 +1,64 @@
+#------------------------------Global Setting-------------------------#
+
+set term svg font 'Times New Roman'
+set encoding utf8
+set encoding iso_8859_1
+
+set size 1.0,0.6
+set out '202305072.svg'
+
+
+#----------------------------------------------------------------------#
+
+#-----------------------------Axes and frames--------------------------
+unset border
+
+xmin = -2*pi
+xmax = 2*pi
+ymin = -3
+ymax = 3
+
+set xzeroaxis linetype 1 lc 'black'
+set yzeroaxis linetype 1 lc 'black'
+set style arrow 3 head filled size screen 0.03,15,45 lc black
+set arrow 1 from 0, 1.02*ymin to 0,1.05*ymax arrowstyle 3  
+set arrow 2 from 1.02*xmin, 0 to 1.05*xmax,0 arrowstyle 3  
+
+set xtics ("-2$\pi$" -2*pi, "" -1.5*pi 1, "-$\pi$" -pi, "" -0.5*pi 1, "0" 0, "" 0.5*pi 1, "$\pi$" pi, "" 1.5*pi 1, "2$\pi$" 2*pi) nomirror axis
+set ytics 1 nomirror axis #offset -0.5*(xmax - xmin),0
+#unset xtics
+#unset ytics
+set mxtics 2
+set mytics 2
+
+#------------------------------------------------------------------
+
+#--------------------------content setting------------------------
+set xrange[xmin:xmax]
+set yrange[ymin:ymax]
+set samples 1000
+
+f(x) = sin(x)
+g(x) = cos(x)
+h(x) = tan(x)
+p(x) = 1 / tan(x)
+m(x) = x
+n1(x) = 1
+n2(x) = -1
+
+#------------------------------------------------------------
+
+#-----------------------------label setting---------------------
+set xlabel '$x$'
+set ylabel '$y$'
+unset xlabel
+unset ylabel
+set label '{$x$}' at 1.05*xmax, 0.3 offset char 0, char 0 center font 'Times New Roman,16'
+set label '{$y$}' at 0.3, 1.05*ymax offset char 0, char 0 center font 'Times New Roman,16'
+
+set key top right
+#---------------------------------------------------------------------
+
+
+#-------------------------Start plotting---------------------------------------
+plot h(x) lw 2 lc 'dark-green', p(x) lw 2 lc 'navy', m(x) lw 1.5 lc 'red' dt '-' notitle, n1(x) lw 1.5 lc 'red' dt '-' notitle, n2(x) lw 1.5 lc 'red' dt '-' notitle

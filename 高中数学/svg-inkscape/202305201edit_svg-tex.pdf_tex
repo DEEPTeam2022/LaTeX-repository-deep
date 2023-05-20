@@ -1,0 +1,86 @@
+%% Creator: Inkscape 1.2.1 (9c6d41e4, 2022-07-14), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file '202305201edit_svg-tex.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{253.39766602bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.39876293)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{202305201edit_svg-tex.pdf}}%
+    \put(0.6857798,-0){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}-2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{202305201edit_svg-tex.pdf}}%
+    \put(0.6857798,0.21961528){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}-1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{202305201edit_svg-tex.pdf}}%
+    \put(0.6857798,0.65887545){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{202305201edit_svg-tex.pdf}}%
+    \put(0.6857798,0.87849073){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{202305201edit_svg-tex.pdf}}%
+    \put(0.6857798,1.09810601){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}3\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{202305201edit_svg-tex.pdf}}%
+    \put(0.6857798,1.31772129){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}4\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{202305201edit_svg-tex.pdf}}%
+    \put(0.01391094,0.35931665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}-3\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{202305201edit_svg-tex.pdf}}%
+    \put(0.24613486,0.35931665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}-2\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{202305201edit_svg-tex.pdf}}%
+    \put(0.47838838,0.35931665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}-1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{202305201edit_svg-tex.pdf}}%
+    \put(0.94283623,0.35931665){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{202305201edit_svg-tex.pdf}}%
+    \put(0.95443855,0.49549588){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$x$\end{tabular}}}}%
+    \put(0.7802854,1.35202508){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$y$\end{tabular}}}}%
+    \put(0.66921645,0.37545402){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$O$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{202305201edit_svg-tex.pdf}}%
+    \put(0.48176818,0.81602229){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$(a,b)$\end{tabular}}}}%
+    \put(0.47863457,1.03617228){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$(a+x,b+y)$\end{tabular}}}}%
+    \put(0.27268471,0.69104642){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$(a-x,b-y)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{202305201edit_svg-tex.pdf}}%
+  \end{picture}%
+\endgroup%

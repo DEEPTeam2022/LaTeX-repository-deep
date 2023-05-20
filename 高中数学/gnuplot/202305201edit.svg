@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="360"
+   height="480"
+   viewBox="0 0 360 480"
+   version="1.1"
+   id="svg398"
+   sodipodi:docname="202305201edit.svg"
+   inkscape:version="1.2.1 (9c6d41e4, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs402">
+    <defs
+       id="defs214">
+      <circle
+         id="gpDot"
+         r="0.5"
+         stroke-width="0.5"
+         stroke="currentColor"
+         cx="0"
+         cy="0" />
+      <path
+         id="gpPt0"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M -1,0 H 1 M 0,-1 v 2" />
+      <path
+         id="gpPt1"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M -1,-1 1,1 M 1,-1 -1,1" />
+      <path
+         id="gpPt2"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M -1,0 H 1 M 0,-1 v 2 m -1,-2 2,2 m -2,0 2,-2" />
+      <rect
+         id="gpPt3"
+         stroke-width="0.222"
+         stroke="currentColor"
+         x="-1"
+         y="-1"
+         width="2"
+         height="2" />
+      <rect
+         id="gpPt4"
+         stroke-width="0.222"
+         stroke="currentColor"
+         fill="currentColor"
+         x="-1"
+         y="-1"
+         width="2"
+         height="2" />
+      <circle
+         id="gpPt5"
+         stroke-width="0.222"
+         stroke="currentColor"
+         cx="0"
+         cy="0"
+         r="1" />
+      <use
+         xlink:href="#gpPt5"
+         id="gpPt6"
+         fill="currentColor"
+         stroke="none" />
+      <path
+         id="gpPt7"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="m 0,-1.33 -1.33,2 h 2.66 z" />
+      <use
+         xlink:href="#gpPt7"
+         id="gpPt8"
+         fill="currentColor"
+         stroke="none" />
+      <use
+         xlink:href="#gpPt7"
+         id="gpPt9"
+         stroke="currentColor"
+         transform="scale(-1)" />
+      <use
+         xlink:href="#gpPt9"
+         id="gpPt10"
+         fill="currentColor"
+         stroke="none" />
+      <use
+         xlink:href="#gpPt3"
+         id="gpPt11"
+         stroke="currentColor"
+         transform="rotate(45)" />
+      <use
+         xlink:href="#gpPt11"
+         id="gpPt12"
+         fill="currentColor"
+         stroke="none" />
+      <path
+         id="gpPt13"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M 0,1.33 1.265,0.411 0.782,-1.067 -0.782,-1.076 -1.265,0.411 Z" />
+      <use
+         xlink:href="#gpPt13"
+         id="gpPt14"
+         fill="currentColor"
+         stroke="none" />
+      <filter
+         id="textbox"
+         filterUnits="objectBoundingBox"
+         x="0"
+         y="0"
+         height="1"
+         width="1">
+        <feFlood
+           flood-color="white"
+           flood-opacity="1"
+           result="bgnd"
+           id="feFlood204" />
+        <feComposite
+           in="SourceGraphic"
+           in2="bgnd"
+           operator="atop"
+           id="feComposite206" />
+      </filter>
+      <filter
+         id="greybox"
+         filterUnits="objectBoundingBox"
+         x="0"
+         y="0"
+         height="1"
+         width="1">
+        <feFlood
+           flood-color="lightgrey"
+           flood-opacity="1"
+           result="grey"
+           id="feFlood209" />
+        <feComposite
+           in="SourceGraphic"
+           in2="grey"
+           operator="atop"
+           id="feComposite211" />
+      </filter>
+    </defs>
+  </defs>
+  <sodipodi:namedview
+     id="namedview400"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.0936761"
+     inkscape:cx="400.02704"
+     inkscape:cy="461.28832"
+     inkscape:window-width="1390"
+     inkscape:window-height="1205"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g356-7" />
+  <title
+     id="title182">Gnuplot</title>
+  <desc
+     id="desc184">Produced by GNUPLOT 5.4 patchlevel 6 </desc>
+  <g
+     fill="none"
+     color="#ffffff"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g216" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g226"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,463.22 h -9"
+       id="path218" />
+    <g
+       transform="translate(247.97,467.12)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g224">
+      <text
+         id="text222"><tspan
+           font-family="'Times New Roman'"
+           id="tspan220">-2</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g236"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,426.12 h -4.5 m 4.5,-37.1 h -9"
+       id="path228" />
+    <g
+       transform="translate(247.97,392.92)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g234">
+      <text
+         id="text232"><tspan
+           font-family="'Times New Roman'"
+           id="tspan230">-1</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g246"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,351.92 h -4.5 m 4.5,-37.1 h -9"
+       id="path238" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g256"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,277.72 h -4.5 m 4.5,-37.11 h -9"
+       id="path248" />
+    <g
+       transform="translate(247.97,244.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g254">
+      <text
+         id="text252"><tspan
+           font-family="'Times New Roman'"
+           id="tspan250">1</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g266"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,203.51 h -4.5 m 4.5,-37.1 h -9"
+       id="path258" />
+    <g
+       transform="translate(247.97,170.31)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g264">
+      <text
+         id="text262"><tspan
+           font-family="'Times New Roman'"
+           id="tspan260">2</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g276"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,129.31 h -4.5 m 4.5,-37.1 h -9"
+       id="path268" />
+    <g
+       transform="translate(247.97,96.11)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g274">
+      <text
+         id="text272"><tspan
+           font-family="'Times New Roman'"
+           id="tspan270">3</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g286"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 256.36,55.11 h -4.5 m 4.5,-37.1 h -9"
+       id="path278" />
+    <g
+       transform="translate(247.97,21.91)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g284">
+      <text
+         id="text282"><tspan
+           font-family="'Times New Roman'"
+           id="tspan280">4</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g296"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 20.97,314.82 v 9"
+       id="path288" />
+    <g
+       transform="translate(20.97,345.72)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g294">
+      <text
+         id="text292"><tspan
+           font-family="'Times New Roman'"
+           id="tspan290">-3</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g306"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 60.2,314.82 v 4.5 m 39.23,-4.5 v 9"
+       id="path298" />
+    <g
+       transform="translate(99.43,345.72)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g304">
+      <text
+         id="text302"><tspan
+           font-family="'Times New Roman'"
+           id="tspan300">-2</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g316"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 138.66,314.82 v 4.5 m 39.24,-4.5 v 9"
+       id="path308" />
+    <g
+       transform="translate(177.9,345.72)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g314">
+      <text
+         id="text312"><tspan
+           font-family="'Times New Roman'"
+           id="tspan310">-1</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g326"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 217.13,314.82 v 4.5 m 39.23,-4.5 v 9"
+       id="path318" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g336"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="m 295.59,314.82 v 4.5 m 39.23,-4.5 v 9"
+       id="path328" />
+    <g
+       transform="translate(334.82,345.72)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g334">
+      <text
+         id="text332"><tspan
+           font-family="'Times New Roman'"
+           id="tspan330">1</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g338" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g342"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="M 20.97,314.82 H 334.82"
+       id="path340" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g358"
+     transform="translate(-6.2882039,8.3842774)">
+    <path
+       stroke="#000000"
+       d="M 256.36,463.22 V 18.01"
+       id="path344" />
+    <g
+       transform="translate(338.74,299.71)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="22px"
+       text-anchor="middle"
+       id="g350">
+      <text
+         id="text348"><tspan
+           font-family="'Times New Roman'"
+           id="tspan346">$x$</tspan></text>
+    </g>
+    <g
+       transform="translate(279.9,10.32)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="22px"
+       text-anchor="middle"
+       id="g356">
+      <text
+         id="text354"><tspan
+           font-family="'Times New Roman'"
+           id="tspan352">$y$</tspan></text>
+    </g>
+    <g
+       transform="translate(240.37385,340.26777)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="22px"
+       text-anchor="middle"
+       id="g356-7">
+      <text
+         id="text354-9"
+         x="2"><tspan
+           font-family="'Times New Roman'"
+           id="tspan352-0">$O$</tspan></text>
+      <circle
+         style="fill:#000000;stroke:#ff0000;stroke-width:1.00157;stroke-opacity:0;paint-order:fill markers stroke"
+         id="path1925"
+         cx="-61.264397"
+         cy="-173.31886"
+         r="3.0368187" />
+      <circle
+         style="fill:#000000;stroke:#ff0000;stroke-width:1.00157;stroke-opacity:0;paint-order:fill markers stroke"
+         id="path1925-65"
+         cx="-126.93452"
+         cy="-132.45444"
+         r="3.0368187" />
+      <circle
+         style="fill:#000000;stroke:#ff0000;stroke-width:1.00157;stroke-opacity:0;paint-order:fill markers stroke"
+         id="path1925-6"
+         cx="1.9947104"
+         cy="-216.08078"
+         r="3.0368187" />
+      <g
+         transform="translate(-63.33194,-150.85196)"
+         stroke="none"
+         fill="#000000"
+         font-family="'Times New Roman'"
+         font-size="22px"
+         text-anchor="middle"
+         id="g56-3">
+        <text
+           id="text54-9"
+           y="2"
+           x="2"><tspan
+             font-family="'Times New Roman'"
+             id="tspan52-9">$(a,b)$</tspan></text>
+      </g>
+      <g
+         transform="translate(-52.5021,-218.29762)"
+         stroke="none"
+         fill="#000000"
+         font-family="'Times New Roman'"
+         font-size="22px"
+         text-anchor="middle"
+         id="g56-3-7">
+        <text
+           id="text54-9-0"
+           y="-4.9350014"
+           x="-9.8885736"><tspan
+             font-family="'Times New Roman'"
+             id="tspan52-9-3">$(a+x,b+y)$</tspan></text>
+      </g>
+      <g
+         transform="translate(-122.08505,-101.69217)"
+         stroke="none"
+         fill="#000000"
+         font-family="'Times New Roman'"
+         font-size="22px"
+         text-anchor="middle"
+         id="g56-3-7-3">
+        <text
+           id="text54-9-0-5"
+           y="-4.9350014"
+           x="-9.8885736"><tspan
+             font-family="'Times New Roman'"
+             id="tspan52-9-3-4">$(a-x,b-y)$</tspan></text>
+      </g>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g368"
+     transform="translate(-6.2882039,8.3842774)">
+    <g
+       stroke="none"
+       shape-rendering="crispEdges"
+       id="g362">
+      <polygon
+         fill="#000000"
+         points="261.02,20.53 256.37,15.88 251.72,20.53 256.37,3.16 "
+         id="polygon360" />
+    </g>
+    <path
+       stroke="#000000"
+       d="m 256.37,15.88 -4.65,4.65 4.65,-17.37 4.65,17.37 z"
+       id="path364" />
+    <path
+       stroke="#000000"
+       d="M 256.37,466.18 V 15.88"
+       id="path366" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g378"
+     transform="translate(-6.2882039,8.3842774)">
+    <g
+       stroke="none"
+       shape-rendering="crispEdges"
+       id="g372">
+      <polygon
+         fill="#000000"
+         points="321.38,319.46 326.03,314.81 321.38,310.16 338.75,314.81 "
+         id="polygon370" />
+    </g>
+    <path
+       stroke="#000000"
+       d="m 326.03,314.81 -4.65,-4.65 17.37,4.65 -17.37,4.65 z"
+       id="path374" />
+    <path
+       stroke="#000000"
+       d="M 16.27,314.81 H 326.03"
+       id="path376" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g380" />
+  <g
+     id="gnuplot_plot_1"
+     fill="none"
+     transform="translate(-6.2882039,8.3842774)">
+    <title
+       id="title382">gnuplot_plot_1</title>
+    <g
+       fill="none"
+       color="#ffffff"
+       stroke="#000000"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g384" />
+    <g
+       fill="none"
+       color="#000000"
+       stroke="currentColor"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g388">
+      <path
+         stroke="#000000"
+         d="m 53.34,463.22 0.3,-2.14 0.32,-2.23 0.31,-2.21 0.32,-2.21 0.31,-2.2 0.31,-2.18 0.32,-2.17 0.31,-2.17 0.32,-2.15 0.31,-2.14 0.31,-2.13 0.32,-2.12 0.31,-2.1 0.32,-2.1 0.31,-2.08 0.32,-2.08 0.31,-2.06 0.31,-2.05 0.32,-2.05 0.31,-2.03 0.32,-2.02 0.31,-2.01 0.31,-2 0.32,-1.98 0.31,-1.98 0.32,-1.97 0.31,-1.95 0.32,-1.95 0.31,-1.93 0.31,-1.93 0.32,-1.91 0.31,-1.91 0.32,-1.89 0.31,-1.88 0.31,-1.88 0.32,-1.86 0.31,-1.85 0.32,-1.84 0.31,-1.83 0.32,-1.82 0.31,-1.82 0.31,-1.8 0.32,-1.79 0.31,-1.78 0.32,-1.77 0.31,-1.76 0.31,-1.75 0.32,-1.74 0.31,-1.73 0.32,-1.72 0.31,-1.71 0.32,-1.7 0.31,-1.69 0.31,-1.68 0.32,-1.68 0.31,-1.66 0.32,-1.65 0.31,-1.64 0.31,-1.63 0.32,-1.63 0.31,-1.61 0.32,-1.6 0.31,-1.6 0.32,-1.58 0.31,-1.58 0.31,-1.56 0.32,-1.56 0.31,-1.55 0.32,-1.53 0.31,-1.53 0.31,-1.52 0.32,-1.51 0.31,-1.5 0.32,-1.49 0.31,-1.48 0.32,-1.47 0.31,-1.47 0.31,-1.45 0.32,-1.45 0.31,-1.43 0.32,-1.43 0.31,-1.42 0.31,-1.41 0.32,-1.4 0.31,-1.39 0.32,-1.38 0.31,-1.37 0.32,-1.37 0.31,-1.35 0.31,-1.35 0.32,-1.34 0.31,-1.33 0.32,-1.32 0.31,-1.31 0.31,-1.3 0.32,-1.3 0.31,-1.28 0.32,-1.28 0.31,-1.27 0.32,-1.26 0.31,-1.25 0.31,-1.25 0.32,-1.23 0.31,-1.23 0.32,-1.22 0.31,-1.21 0.31,-1.2 0.32,-1.19 0.31,-1.19 0.32,-1.17 0.31,-1.17 0.32,-1.16 0.31,-1.16 0.31,-1.14 0.32,-1.14 0.31,-1.12 0.32,-1.12 0.31,-1.12 0.31,-1.1 0.32,-1.1 0.31,-1.09 0.32,-1.08 0.31,-1.07 0.32,-1.06 0.31,-1.06 0.31,-1.05 0.32,-1.04 0.31,-1.04 0.32,-1.02 0.31,-1.02 0.31,-1.01 0.32,-1.01 0.31,-0.99 0.32,-0.99 0.31,-0.98 0.32,-0.98 0.31,-0.96 0.31,-0.96 0.32,-0.95 0.31,-0.94 0.32,-0.94 0.31,-0.93 0.31,-0.92 0.32,-0.92 0.31,-0.9 0.32,-0.9 0.31,-0.9 0.32,-0.88 0.31,-0.88 0.31,-0.87 0.32,-0.87 0.31,-0.86 0.32,-0.85 0.31,-0.84 0.31,-0.84 0.32,-0.83 0.31,-0.82 0.32,-0.82 0.31,-0.81 0.32,-0.8 0.31,-0.8 0.31,-0.78 0.32,-0.79 0.31,-0.77 0.32,-0.77 0.31,-0.76 0.31,-0.76 0.32,-0.75 0.31,-0.74 0.32,-0.74 0.31,-0.73 0.32,-0.72 0.31,-0.72 0.31,-0.71 0.32,-0.7 0.31,-0.7 0.32,-0.69 0.31,-0.69 0.31,-0.68 0.32,-0.67 0.31,-0.67 0.32,-0.66 0.31,-0.65 0.32,-0.65 0.31,-0.64 0.31,-0.64 0.32,-0.63 0.31,-0.62 0.32,-0.62 0.31,-0.61 0.31,-0.61 0.32,-0.6 0.31,-0.6 0.32,-0.58 0.31,-0.59 0.32,-0.57 0.31,-0.58 0.31,-0.56 0.32,-0.56 0.31,-0.56 0.32,-0.55 0.31,-0.54 0.31,-0.54 0.32,-0.53 0.31,-0.53 0.32,-0.52 0.31,-0.51 0.32,-0.51 0.31,-0.51 0.31,-0.5 0.32,-0.49 0.31,-0.49 0.32,-0.49 0.31,-0.47 0.31,-0.48 0.32,-0.47 0.31,-0.46 0.32,-0.46 0.31,-0.45 0.32,-0.45 0.31,-0.44 0.31,-0.44 0.32,-0.43 0.31,-0.43 0.32,-0.42 0.31,-0.42 0.31,-0.41 0.32,-0.41 0.31,-0.4 0.32,-0.4 0.31,-0.39 0.31,-0.39 0.32,-0.39 0.31,-0.38 0.32,-0.37 0.31,-0.37 0.32,-0.37 0.31,-0.36 0.31,-0.36 0.32,-0.35 0.31,-0.35 0.32,-0.34 0.31,-0.34 0.31,-0.33 0.32,-0.33 0.31,-0.33 0.32,-0.32 0.31,-0.32 0.32,-0.31 0.31,-0.31 0.31,-0.3 0.32,-0.31 0.31,-0.29 0.32,-0.29 0.31,-0.29 0.31,-0.29 0.32,-0.28 0.31,-0.27 0.32,-0.27 0.31,-0.27 0.32,-0.27 0.31,-0.26 0.31,-0.25 0.32,-0.26 0.31,-0.25 0.32,-0.24 0.31,-0.24 0.31,-0.24 0.32,-0.23 0.31,-0.23 0.32,-0.23 0.31,-0.22 0.32,-0.22 0.31,-0.22 0.31,-0.21 0.32,-0.21 0.31,-0.21 0.32,-0.2 0.31,-0.2 0.31,-0.2 0.32,-0.19 0.31,-0.19 0.32,-0.18 0.31,-0.18 0.32,-0.18 0.31,-0.18 0.31,-0.17 0.32,-0.17 0.31,-0.17 0.32,-0.16 0.31,-0.16 0.31,-0.16 0.32,-0.16 0.31,-0.15 0.32,-0.15 0.31,-0.14 0.32,-0.14 0.31,-0.14 0.31,-0.14 0.32,-0.14 0.31,-0.13 0.32,-0.13 0.31,-0.12 0.31,-0.13 0.32,-0.12 0.31,-0.12 0.32,-0.11 0.31,-0.12 0.32,-0.11 0.31,-0.1 0.31,-0.11 0.32,-0.1 0.31,-0.1 0.32,-0.1 0.31,-0.1 0.31,-0.09 0.32,-0.09 0.31,-0.09 0.32,-0.09 0.31,-0.08 0.32,-0.09 0.31,-0.08 0.31,-0.08 0.32,-0.07 0.31,-0.08 0.32,-0.07 0.31,-0.07 0.31,-0.07 0.32,-0.06 0.31,-0.07 0.32,-0.06 0.31,-0.06 0.32,-0.06 0.31,-0.05 0.31,-0.06 0.32,-0.05 0.31,-0.05 0.32,-0.05 0.31,-0.05 0.31,-0.05 0.32,-0.04 0.31,-0.05 0.32,-0.04 0.31,-0.04 0.32,-0.04 0.31,-0.03 0.31,-0.04 0.32,-0.03 0.31,-0.04 0.32,-0.03 0.31,-0.03 0.31,-0.03 0.32,-0.02 0.31,-0.03 0.32,-0.03 0.31,-0.02 0.32,-0.02 0.31,-0.02 0.31,-0.03 0.32,-0.02 0.31,-0.01 0.32,-0.02 0.31,-0.02 0.31,-0.01 0.32,-0.02 0.31,-0.01 0.32,-0.01 0.31,-0.02 0.32,-0.01 0.31,-0.01 0.31,-0.01 0.32,-0.01 h 0.31 l 0.32,-0.01 0.31,-0.01 0.31,-0.01 h 0.32 l 0.31,-0.01 h 0.32 l 0.31,-0.01 h 0.32 0.31 0.31 l 0.32,-0.01 h 0.31 0.32 0.31 0.31 0.32 l 0.31,-0.01 h 0.32 0.31 0.32 0.31 0.31 0.32 0.31 0.32 0.31 0.31 0.32 0.31 0.32 0.31 0.32 0.31 0.31 0.32 l 0.31,-0.01 h 0.32 0.31 0.31 l 0.32,-0.01 h 0.31 l 0.32,-0.01 h 0.31 l 0.32,-0.01 h 0.31 l 0.31,-0.01 0.32,-0.01 0.31,-0.01 0.32,-0.01 0.31,-0.01 0.31,-0.01 0.32,-0.01 0.31,-0.01 0.32,-0.01 0.31,-0.02 0.32,-0.01 0.31,-0.02 0.31,-0.01 0.32,-0.02 0.31,-0.02 0.32,-0.02 0.31,-0.02 0.31,-0.02 0.32,-0.02 0.31,-0.03 0.32,-0.02 0.31,-0.03 0.32,-0.03 0.31,-0.03 0.31,-0.03 0.32,-0.03 0.31,-0.03 0.32,-0.03 0.31,-0.04 0.31,-0.04 0.32,-0.04 0.31,-0.04 0.32,-0.04 0.31,-0.04 0.32,-0.05 0.31,-0.04 0.31,-0.05 0.32,-0.05 0.31,-0.05 0.32,-0.05 0.31,-0.06 0.31,-0.06 0.32,-0.05 0.31,-0.07 0.32,-0.06 0.31,-0.06 0.32,-0.07 0.31,-0.07 0.31,-0.07 0.32,-0.07 0.31,-0.07 0.32,-0.08 0.31,-0.08 0.31,-0.08 0.32,-0.08 0.31,-0.08 0.32,-0.09 0.31,-0.09 0.32,-0.09 0.31,-0.1 0.31,-0.09 0.32,-0.1 0.31,-0.1 0.32,-0.1 0.31,-0.11 0.31,-0.11 0.32,-0.11 0.31,-0.11 0.32,-0.12 0.31,-0.12 0.32,-0.12 0.31,-0.12 0.31,-0.13 0.32,-0.13 0.31,-0.13 0.32,-0.13 0.31,-0.14 0.31,-0.14 0.32,-0.14 0.31,-0.15 0.32,-0.15 0.31,-0.15 0.32,-0.15 0.31,-0.16 0.31,-0.16 0.32,-0.16 0.31,-0.17 0.32,-0.17 0.31,-0.17 0.31,-0.18 0.32,-0.18 0.31,-0.18 0.32,-0.19 0.31,-0.19 0.32,-0.19 0.31,-0.19 0.31,-0.2 0.32,-0.2 0.31,-0.21 0.32,-0.21 0.31,-0.21 0.31,-0.22 0.32,-0.22 0.31,-0.22 0.32,-0.23 0.31,-0.23 0.32,-0.23 0.31,-0.24 0.31,-0.24 0.32,-0.25 0.31,-0.25 0.32,-0.25 0.31,-0.26 0.31,-0.26 0.32,-0.26 0.31,-0.27 0.32,-0.27 0.31,-0.28 0.32,-0.28 0.31,-0.28 0.31,-0.29 0.32,-0.29 0.31,-0.3 0.32,-0.3 0.31,-0.3 0.31,-0.31 0.32,-0.31 0.31,-0.32 0.32,-0.32 0.31,-0.33 0.32,-0.33 0.31,-0.33 0.31,-0.34 0.32,-0.35 0.31,-0.34 0.32,-0.36 0.31,-0.35 0.31,-0.36 0.32,-0.37 0.31,-0.37 0.32,-0.38 0.31,-0.38 0.32,-0.38 0.31,-0.39 0.31,-0.39 0.32,-0.4 0.31,-0.4 0.32,-0.41 0.31,-0.42 0.31,-0.41 0.32,-0.43 0.31,-0.42 0.32,-0.44 0.31,-0.43 0.31,-0.45 0.32,-0.44 0.31,-0.46 0.32,-0.45 0.31,-0.47 0.32,-0.47 0.31,-0.47 0.31,-0.48 0.32,-0.48 0.31,-0.49 0.32,-0.49 0.31,-0.5 0.31,-0.51 0.32,-0.51 0.31,-0.52 0.32,-0.52 0.31,-0.52 0.32,-0.54 0.31,-0.53 0.31,-0.55 0.32,-0.55 0.31,-0.55 0.32,-0.56 0.31,-0.57 0.31,-0.57 0.32,-0.58 0.31,-0.58 0.32,-0.59 0.31,-0.59 0.32,-0.6 0.31,-0.61 0.31,-0.61 0.32,-0.62 0.31,-0.62 0.32,-0.63 0.31,-0.64 0.31,-0.64 0.32,-0.65 0.31,-0.66 0.32,-0.66 0.31,-0.66 0.32,-0.68 0.31,-0.67 0.31,-0.69 0.32,-0.69 0.31,-0.7 0.32,-0.7 0.31,-0.71 0.31,-0.72 0.32,-0.72 0.31,-0.73 0.32,-0.74 0.31,-0.74 0.32,-0.75 0.31,-0.76 0.31,-0.76 0.32,-0.77 0.31,-0.78 0.32,-0.78 0.31,-0.79 0.31,-0.79 0.32,-0.81 0.31,-0.81 0.32,-0.81 0.31,-0.83 0.32,-0.83 0.31,-0.83 0.31,-0.85 0.32,-0.85 0.31,-0.85 0.32,-0.87 0.31,-0.87 0.31,-0.88 0.32,-0.89 0.31,-0.89 0.32,-0.9 0.31,-0.91 0.32,-0.91 0.31,-0.92 0.31,-0.93 0.32,-0.94 0.31,-0.94 0.32,-0.95 0.31,-0.96 0.31,-0.97 0.32,-0.97 0.31,-0.98 0.32,-0.99 0.31,-1 0.32,-1 0.31,-1.01 0.31,-1.02 0.32,-1.03 0.31,-1.03 0.32,-1.04 0.31,-1.05 0.31,-1.06 0.32,-1.06 0.31,-1.08 0.32,-1.08 0.31,-1.09 0.32,-1.09 0.31,-1.11 0.31,-1.11 0.32,-1.12 0.31,-1.13 0.32,-1.13 0.31,-1.15 0.31,-1.15 0.32,-1.16 0.31,-1.17 0.32,-1.18 0.31,-1.18 0.32,-1.2 0.31,-1.2 0.31,-1.21 0.32,-1.22 0.31,-1.22 0.32,-1.24 0.31,-1.24 0.31,-1.25 0.32,-1.26 0.31,-1.27 0.32,-1.28 0.31,-1.29 0.32,-1.29 0.31,-1.3 0.31,-1.32 0.32,-1.32 0.31,-1.33 0.32,-1.33 0.31,-1.35 0.31,-1.36 0.32,-1.36 0.31,-1.37 0.32,-1.39 0.31,-1.39 0.32,-1.4 0.31,-1.41 0.05,-0.23"
+         id="path386" />
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g391" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="#000000"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g393" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g395" />
+  <metadata
+     id="metadata3305">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Gnuplot</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

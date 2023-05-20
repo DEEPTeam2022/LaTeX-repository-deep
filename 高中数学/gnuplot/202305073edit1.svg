@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="420"
+   height="480"
+   viewBox="0 0 420 480"
+   version="1.1"
+   id="svg3748"
+   sodipodi:docname="202305073edit1.svg"
+   inkscape:version="1.2.1 (9c6d41e4, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs3752">
+    <defs
+       id="defs3547">
+      <circle
+         id="gpDot"
+         r="0.5"
+         stroke-width="0.5"
+         stroke="currentColor"
+         cx="0"
+         cy="0" />
+      <path
+         id="gpPt0"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M -1,0 H 1 M 0,-1 v 2" />
+      <path
+         id="gpPt1"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M -1,-1 1,1 M 1,-1 -1,1" />
+      <path
+         id="gpPt2"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M -1,0 H 1 M 0,-1 v 2 m -1,-2 2,2 m -2,0 2,-2" />
+      <rect
+         id="gpPt3"
+         stroke-width="0.222"
+         stroke="currentColor"
+         x="-1"
+         y="-1"
+         width="2"
+         height="2" />
+      <rect
+         id="gpPt4"
+         stroke-width="0.222"
+         stroke="currentColor"
+         fill="currentColor"
+         x="-1"
+         y="-1"
+         width="2"
+         height="2" />
+      <circle
+         id="gpPt5"
+         stroke-width="0.222"
+         stroke="currentColor"
+         cx="0"
+         cy="0"
+         r="1" />
+      <use
+         xlink:href="#gpPt5"
+         id="gpPt6"
+         fill="currentColor"
+         stroke="none" />
+      <path
+         id="gpPt7"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="m 0,-1.33 -1.33,2 h 2.66 z" />
+      <use
+         xlink:href="#gpPt7"
+         id="gpPt8"
+         fill="currentColor"
+         stroke="none" />
+      <use
+         xlink:href="#gpPt7"
+         id="gpPt9"
+         stroke="currentColor"
+         transform="scale(-1)" />
+      <use
+         xlink:href="#gpPt9"
+         id="gpPt10"
+         fill="currentColor"
+         stroke="none" />
+      <use
+         xlink:href="#gpPt3"
+         id="gpPt11"
+         stroke="currentColor"
+         transform="rotate(45)" />
+      <use
+         xlink:href="#gpPt11"
+         id="gpPt12"
+         fill="currentColor"
+         stroke="none" />
+      <path
+         id="gpPt13"
+         stroke-width="0.222"
+         stroke="currentColor"
+         d="M 0,1.33 1.265,0.411 0.782,-1.067 -0.782,-1.076 -1.265,0.411 Z" />
+      <use
+         xlink:href="#gpPt13"
+         id="gpPt14"
+         fill="currentColor"
+         stroke="none" />
+      <filter
+         id="textbox"
+         filterUnits="objectBoundingBox"
+         x="0"
+         y="0"
+         height="1"
+         width="1">
+        <feFlood
+           flood-color="white"
+           flood-opacity="1"
+           result="bgnd"
+           id="feFlood3537" />
+        <feComposite
+           in="SourceGraphic"
+           in2="bgnd"
+           operator="atop"
+           id="feComposite3539" />
+      </filter>
+      <filter
+         id="greybox"
+         filterUnits="objectBoundingBox"
+         x="0"
+         y="0"
+         height="1"
+         width="1">
+        <feFlood
+           flood-color="lightgrey"
+           flood-opacity="1"
+           result="grey"
+           id="feFlood3542" />
+        <feComposite
+           in="SourceGraphic"
+           in2="grey"
+           operator="atop"
+           id="feComposite3544" />
+      </filter>
+    </defs>
+  </defs>
+  <sodipodi:namedview
+     id="namedview3750"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.7947195"
+     inkscape:cx="130.1039"
+     inkscape:cy="249.34259"
+     inkscape:window-width="1390"
+     inkscape:window-height="1205"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3748" />
+  <title
+     id="title3515">Gnuplot</title>
+  <desc
+     id="desc3517">Produced by GNUPLOT 5.4 patchlevel 6 </desc>
+  <g
+     fill="none"
+     color="#ffffff"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3549" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3559"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 192.9,463.22 h -4.5 m 4.5,-74.2 h -9"
+       id="path3551" />
+    <g
+       transform="translate(184.51,392.92)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g3557">
+      <text
+         id="text3555"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3553">-$\pi$</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3569"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 192.9,314.82 h -4.5 m 4.5,-74.21 h -9"
+       id="path3561" />
+    <g
+       transform="translate(184.51,244.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g3567" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3579"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 192.9,166.41 h -4.5 m 4.5,-74.2 h -9"
+       id="path3571" />
+    <g
+       transform="translate(184.51,96.11)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="end"
+       id="g3577">
+      <text
+         id="text3575"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3573">$\pi$</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3589"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 192.9,18.01 h -4.5 M 20.97,240.61 v 9"
+       id="path3581" />
+    <g
+       transform="translate(20.97,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3587">
+      <text
+         id="text3585"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3583">-3</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3599"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 49.62,240.61 v 4.5 m 28.66,-4.5 v 9"
+       id="path3591" />
+    <g
+       transform="translate(78.28,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3597">
+      <text
+         id="text3595"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3593">-2</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3609"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 106.93,240.61 v 4.5 m 28.66,-4.5 v 9"
+       id="path3601" />
+    <g
+       transform="translate(135.59,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3607">
+      <text
+         id="text3605"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3603">-1</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3619"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 164.24,240.61 v 4.5 m 28.66,-4.5 v 9"
+       id="path3611" />
+    <g
+       transform="translate(192.9,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3617" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3629"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 221.55,240.61 v 4.5 m 28.65,-4.5 v 9"
+       id="path3621" />
+    <g
+       transform="translate(250.2,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3627">
+      <text
+         id="text3625"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3623">1</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3639"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 278.86,240.61 v 4.5 m 28.65,-4.5 v 9"
+       id="path3631" />
+    <g
+       transform="translate(307.51,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3637">
+      <text
+         id="text3635"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3633">2</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3649"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="m 336.17,240.61 v 4.5 m 28.65,-4.5 v 9"
+       id="path3641" />
+    <g
+       transform="translate(364.82,271.51)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="12px"
+       text-anchor="middle"
+       id="g3647">
+      <text
+         id="text3645"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3643">3</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3651" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3655"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="M 20.97,240.61 H 364.82"
+       id="path3653" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3671"
+     transform="translate(12.831682,5.8325788)">
+    <path
+       stroke="#000000"
+       d="M 192.9,463.22 V 18.01"
+       id="path3657" />
+    <g
+       transform="translate(373.42,231.64)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="16px"
+       text-anchor="middle"
+       id="g3663">
+      <text
+         id="text3661"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3659">$x$</tspan></text>
+    </g>
+    <g
+       transform="translate(210.09,12.08)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="16px"
+       text-anchor="middle"
+       id="g3669">
+      <text
+         id="text3667"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3665">$y$</tspan></text>
+    </g>
+    <g
+       transform="translate(184.39409,272.87778)"
+       stroke="none"
+       fill="#000000"
+       font-family="'Times New Roman'"
+       font-size="16px"
+       text-anchor="middle"
+       id="g3669-7">
+      <text
+         id="text3667-4"
+         x="-2"
+         y="-4"><tspan
+           font-family="'Times New Roman'"
+           id="tspan3665-8">$O$</tspan></text>
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3681"
+     transform="translate(12.831682,5.8325788)">
+    <g
+       stroke="none"
+       shape-rendering="crispEdges"
+       id="g3675">
+      <polygon
+         fill="#000000"
+         points="192.91,19.59 188.26,24.24 192.91,6.87 197.56,24.24 "
+         id="polygon3673" />
+    </g>
+    <path
+       stroke="#000000"
+       d="m 192.91,19.59 -4.65,4.65 4.65,-17.37 4.65,17.37 z"
+       id="path3677" />
+    <path
+       stroke="#000000"
+       d="M 192.91,467.66 V 19.59"
+       id="path3679" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3691"
+     transform="translate(12.831682,5.8325788)">
+    <g
+       stroke="none"
+       shape-rendering="crispEdges"
+       id="g3685">
+      <polygon
+         fill="#000000"
+         points="360.71,240.6 356.06,235.95 373.43,240.6 356.06,245.25 "
+         id="polygon3683" />
+    </g>
+    <path
+       stroke="#000000"
+       d="m 360.71,240.6 -4.65,-4.65 17.37,4.65 -17.37,4.65 z"
+       id="path3687" />
+    <path
+       stroke="#000000"
+       d="M 17.54,240.6 H 360.71"
+       id="path3689" />
+  </g>
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3693" />
+  <g
+     id="gnuplot_plot_1"
+     transform="translate(12.831682,5.8325788)">
+    <title
+       id="title3695">f(x)</title>
+    <g
+       fill="none"
+       color="#ffffff"
+       stroke="#000000"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g3697" />
+    <g
+       fill="none"
+       color="#000000"
+       stroke="currentColor"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g3703">
+      <g
+         transform="translate(297.09,39.91)"
+         stroke="none"
+         fill="#000000"
+         font-family="'Times New Roman'"
+         font-size="12px"
+         text-anchor="end"
+         id="g3701">
+        <text
+           id="text3699">$y=\arcsin x$</text>
+      </g>
+    </g>
+    <g
+       fill="none"
+       color="#000000"
+       stroke="currentColor"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g3707">
+      <path
+         stroke="#0000ff"
+         d="m 305.48,36.01 h 42.56 m -212.45,278.81 0.34,-5.18 0.35,-2.15 0.34,-1.65 0.34,-1.4 0.35,-1.23 0.34,-1.11 0.35,-1.03 0.34,-0.96 0.34,-0.9 0.35,-0.85 0.34,-0.81 0.35,-0.78 0.34,-0.74 0.35,-0.72 0.34,-0.7 0.34,-0.67 0.35,-0.66 0.34,-0.63 0.35,-0.62 0.34,-0.61 0.34,-0.59 0.35,-0.57 0.34,-0.57 0.35,-0.55 0.34,-0.55 0.35,-0.53 0.34,-0.52 0.34,-0.52 0.35,-0.51 0.34,-0.49 0.35,-0.5 0.34,-0.48 0.35,-0.48 0.34,-0.47 0.34,-0.47 0.35,-0.46 0.34,-0.45 0.35,-0.45 0.34,-0.44 0.34,-0.44 0.35,-0.44 0.34,-0.42 0.35,-0.43 0.34,-0.42 0.35,-0.42 0.34,-0.41 0.34,-0.41 0.35,-0.41 0.34,-0.4 0.35,-0.4 0.34,-0.39 0.34,-0.39 0.35,-0.39 0.34,-0.39 0.35,-0.38 0.34,-0.38 0.35,-0.38 0.34,-0.38 0.34,-0.37 0.35,-0.37 0.34,-0.37 0.35,-0.36 0.34,-0.37 0.35,-0.36 0.34,-0.36 0.34,-0.35 0.35,-0.36 0.34,-0.35 0.35,-0.35 0.34,-0.35 0.34,-0.35 0.35,-0.34 0.34,-0.35 0.35,-0.34 0.34,-0.34 0.35,-0.34 0.34,-0.34 0.34,-0.33 0.35,-0.34 0.34,-0.33 0.35,-0.33 0.34,-0.33 0.34,-0.33 0.35,-0.33 0.34,-0.32 0.35,-0.33 0.34,-0.32 0.35,-0.32 0.34,-0.32 0.34,-0.32 0.35,-0.32 0.34,-0.32 0.35,-0.32 0.34,-0.31 0.35,-0.32 0.34,-0.31 0.34,-0.31 0.35,-0.32 0.34,-0.31 0.35,-0.31 0.34,-0.31 0.34,-0.3 0.35,-0.31 0.34,-0.31 0.35,-0.3 0.34,-0.31 0.35,-0.3 0.34,-0.31 0.34,-0.3 0.35,-0.3 0.34,-0.3 0.35,-0.3 0.34,-0.3 0.34,-0.3 0.35,-0.3 0.34,-0.3 0.35,-0.3 0.34,-0.29 0.35,-0.3 0.34,-0.29 0.34,-0.3 0.35,-0.29 0.34,-0.3 0.35,-0.29 0.34,-0.3 0.35,-0.29 0.34,-0.29 0.34,-0.29 0.35,-0.29 0.34,-0.29 0.35,-0.3 0.34,-0.29 0.34,-0.29 0.35,-0.28 0.34,-0.29 0.35,-0.29 0.34,-0.29 0.35,-0.29 0.34,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.29 0.35,-0.29 0.34,-0.28 0.34,-0.29 0.35,-0.28 0.34,-0.29 0.35,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.34,-0.29 0.35,-0.28 0.34,-0.29 0.35,-0.28 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.34,-0.29 0.35,-0.28 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.34,-0.29 0.35,-0.28 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.35,-0.28 0.34,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.35,-0.28 0.34,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.35,-0.28 0.34,-0.29 0.35,-0.28 0.34,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.29 0.35,-0.28 0.34,-0.29 0.34,-0.28 0.35,-0.29 0.34,-0.29 0.35,-0.29 0.34,-0.28 0.34,-0.29 0.35,-0.29 0.34,-0.29 0.35,-0.29 0.34,-0.29 0.35,-0.28 0.34,-0.29 0.34,-0.29 0.35,-0.3 0.34,-0.29 0.35,-0.29 0.34,-0.29 0.34,-0.29 0.35,-0.29 0.34,-0.3 0.35,-0.29 0.34,-0.3 0.35,-0.29 0.34,-0.3 0.34,-0.29 0.35,-0.3 0.34,-0.29 0.35,-0.3 0.34,-0.3 0.35,-0.3 0.34,-0.3 0.34,-0.3 0.35,-0.3 0.34,-0.3 0.35,-0.3 0.34,-0.3 0.34,-0.31 0.35,-0.3 0.34,-0.31 0.35,-0.3 0.34,-0.31 0.35,-0.31 0.34,-0.3 0.34,-0.31 0.35,-0.31 0.34,-0.31 0.35,-0.32 0.34,-0.31 0.34,-0.31 0.35,-0.32 0.34,-0.31 0.35,-0.32 0.34,-0.32 0.35,-0.32 0.34,-0.32 0.34,-0.32 0.35,-0.32 0.34,-0.32 0.35,-0.33 0.34,-0.32 0.35,-0.33 0.34,-0.33 0.34,-0.33 0.35,-0.33 0.34,-0.33 0.35,-0.34 0.34,-0.33 0.34,-0.34 0.35,-0.34 0.34,-0.34 0.35,-0.34 0.34,-0.35 0.35,-0.34 0.34,-0.35 0.34,-0.35 0.35,-0.35 0.34,-0.35 0.35,-0.36 0.34,-0.35 0.34,-0.36 0.35,-0.36 0.34,-0.37 0.35,-0.36 0.34,-0.37 0.35,-0.37 0.34,-0.37 0.34,-0.38 0.35,-0.38 0.34,-0.38 0.35,-0.38 0.34,-0.39 0.35,-0.39 0.34,-0.39 0.34,-0.39 0.35,-0.4 0.34,-0.4 0.35,-0.41 0.34,-0.41 0.34,-0.41 0.35,-0.42 0.34,-0.42 0.35,-0.43 0.34,-0.42 0.35,-0.44 0.34,-0.44 0.34,-0.44 0.35,-0.45 0.34,-0.45 0.35,-0.46 0.34,-0.47 0.34,-0.47 0.35,-0.48 0.34,-0.48 0.35,-0.5 0.34,-0.49 0.35,-0.51 0.34,-0.52 0.34,-0.52 0.35,-0.53 0.34,-0.55 0.35,-0.55 0.34,-0.57 0.35,-0.57 0.34,-0.59 0.34,-0.61 0.35,-0.62 0.34,-0.63 0.35,-0.66 0.34,-0.67 0.34,-0.7 0.35,-0.72 0.34,-0.74 0.35,-0.78 0.34,-0.81 0.35,-0.85 0.34,-0.9 0.34,-0.96 0.35,-1.03 0.34,-1.11 0.35,-1.23 0.34,-1.4 0.34,-1.65 0.35,-2.15 0.34,-5.18"
+         id="path3705" />
+    </g>
+  </g>
+  <g
+     id="gnuplot_plot_2"
+     transform="translate(12.831682,5.8325788)">
+    <title
+       id="title3710">g(x)</title>
+    <g
+       fill="none"
+       color="#000000"
+       stroke="currentColor"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g3716">
+      <g
+         transform="translate(297.09,57.91)"
+         stroke="none"
+         fill="#000000"
+         font-family="'Times New Roman'"
+         font-size="12px"
+         text-anchor="end"
+         id="g3714">
+        <text
+           id="text3712">$y=\arccos x$</text>
+      </g>
+    </g>
+    <g
+       fill="none"
+       color="#000000"
+       stroke="currentColor"
+       stroke-width="2"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       id="g3720">
+      <path
+         stroke="#ffa500"
+         d="m 305.48,54.01 h 42.56 m -212.45,38.2 0.34,5.18 0.35,2.15 0.34,1.65 0.34,1.4 0.35,1.23 0.34,1.11 0.35,1.03 0.34,0.95 0.34,0.9 0.35,0.86 0.34,0.81 0.35,0.78 0.34,0.74 0.35,0.72 0.34,0.7 0.34,0.67 0.35,0.65 0.34,0.64 0.35,0.62 0.34,0.6 0.34,0.59 0.35,0.58 0.34,0.57 0.35,0.55 0.34,0.54 0.35,0.54 0.34,0.52 0.34,0.52 0.35,0.5 0.34,0.5 0.35,0.49 0.34,0.49 0.35,0.48 0.34,0.47 0.34,0.46 0.35,0.46 0.34,0.46 0.35,0.45 0.34,0.44 0.34,0.44 0.35,0.43 0.34,0.43 0.35,0.43 0.34,0.42 0.35,0.42 0.34,0.41 0.34,0.41 0.35,0.4 0.34,0.41 0.35,0.39 0.34,0.4 0.34,0.39 0.35,0.39 0.34,0.39 0.35,0.38 0.34,0.38 0.35,0.38 0.34,0.38 0.34,0.37 0.35,0.37 0.34,0.37 0.35,0.36 0.34,0.37 0.35,0.36 0.34,0.36 0.34,0.35 0.35,0.36 0.34,0.35 0.35,0.35 0.34,0.35 0.34,0.35 0.35,0.34 0.34,0.35 0.35,0.34 0.34,0.34 0.35,0.34 0.34,0.33 0.34,0.34 0.35,0.33 0.34,0.34 0.35,0.33 0.34,0.33 0.34,0.33 0.35,0.32 0.34,0.33 0.35,0.33 0.34,0.32 0.35,0.32 0.34,0.32 0.34,0.32 0.35,0.32 0.34,0.32 0.35,0.32 0.34,0.31 0.35,0.32 0.34,0.31 0.34,0.31 0.35,0.31 0.34,0.32 0.35,0.3 0.34,0.31 0.34,0.31 0.35,0.31 0.34,0.31 0.35,0.3 0.34,0.31 0.35,0.3 0.34,0.3 0.34,0.31 0.35,0.3 0.34,0.3 0.35,0.3 0.34,0.3 0.34,0.3 0.35,0.3 0.34,0.3 0.35,0.29 0.34,0.3 0.35,0.3 0.34,0.29 0.34,0.3 0.35,0.29 0.34,0.3 0.35,0.29 0.34,0.29 0.35,0.3 0.34,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.34,0.28 0.35,0.29 0.34,0.29 0.35,0.28 0.34,0.29 0.34,0.29 0.35,0.28 0.34,0.29 0.35,0.28 0.34,0.29 0.35,0.28 0.34,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.28 0.34,0.29 0.34,0.28 0.35,0.28 0.34,0.29 0.35,0.28 0.34,0.29 0.34,0.28 0.35,0.28 0.34,0.29 0.35,0.28 0.34,0.29 0.35,0.28 0.34,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.29 0.34,0.28 0.35,0.29 0.34,0.29 0.34,0.28 0.35,0.29 0.34,0.29 0.35,0.28 0.34,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.35,0.28 0.34,0.29 0.35,0.29 0.34,0.29 0.34,0.29 0.35,0.29 0.34,0.29 0.35,0.3 0.34,0.29 0.34,0.29 0.35,0.29 0.34,0.3 0.35,0.29 0.34,0.29 0.35,0.3 0.34,0.29 0.34,0.3 0.35,0.3 0.34,0.29 0.35,0.3 0.34,0.3 0.35,0.3 0.34,0.3 0.34,0.3 0.35,0.3 0.34,0.3 0.35,0.3 0.34,0.3 0.34,0.31 0.35,0.3 0.34,0.3 0.35,0.31 0.34,0.31 0.35,0.3 0.34,0.31 0.34,0.31 0.35,0.31 0.34,0.31 0.35,0.31 0.34,0.32 0.34,0.31 0.35,0.32 0.34,0.31 0.35,0.32 0.34,0.32 0.35,0.31 0.34,0.32 0.34,0.33 0.35,0.32 0.34,0.32 0.35,0.33 0.34,0.32 0.35,0.33 0.34,0.33 0.34,0.33 0.35,0.33 0.34,0.33 0.35,0.34 0.34,0.33 0.34,0.34 0.35,0.34 0.34,0.34 0.35,0.34 0.34,0.34 0.35,0.35 0.34,0.35 0.34,0.35 0.35,0.35 0.34,0.35 0.35,0.35 0.34,0.36 0.34,0.36 0.35,0.36 0.34,0.36 0.35,0.37 0.34,0.37 0.35,0.37 0.34,0.37 0.34,0.38 0.35,0.37 0.34,0.39 0.35,0.38 0.34,0.38 0.35,0.39 0.34,0.4 0.34,0.39 0.35,0.4 0.34,0.4 0.35,0.41 0.34,0.41 0.34,0.41 0.35,0.42 0.34,0.42 0.35,0.42 0.34,0.43 0.35,0.44 0.34,0.44 0.34,0.44 0.35,0.45 0.34,0.45 0.35,0.46 0.34,0.47 0.34,0.47 0.35,0.48 0.34,0.48 0.35,0.49 0.34,0.5 0.35,0.51 0.34,0.52 0.34,0.52 0.35,0.53 0.34,0.55 0.35,0.55 0.34,0.57 0.35,0.57 0.34,0.59 0.34,0.61 0.35,0.62 0.34,0.63 0.35,0.66 0.34,0.67 0.34,0.7 0.35,0.71 0.34,0.75 0.35,0.78 0.34,0.81 0.35,0.85 0.34,0.9 0.34,0.96 0.35,1.02 0.34,1.12 0.35,1.23 0.34,1.39 0.34,1.66 0.35,2.15 0.34,5.17"
+         id="path3718" />
+    </g>
+  </g>
+  <g
+     fill="none"
+     color="#ffffff"
+     stroke="#ff0000"
+     stroke-width="2"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3739" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3741" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="#000000"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3743" />
+  <g
+     fill="none"
+     color="#000000"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="butt"
+     stroke-linejoin="miter"
+     id="g3745" />
+  <metadata
+     id="metadata4613">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Gnuplot</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

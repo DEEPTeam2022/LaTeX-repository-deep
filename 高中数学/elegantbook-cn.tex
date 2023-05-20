@@ -1095,7 +1095,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 注意到，如果一个函数在某个区间上连续且单调，它在这个区间上一定是个单射.(注：所有初等函数都是连续的)
 
 \begin{proposition}{函数单调性的变化规律}
-    设函数$f,g$，为了方便计算，假定它们的单调区间$I$相同.\\
+    设函数$f(x),g(x)$，为了方便计算，假定它们的单调区间$I$相同.\\
     (1)函数的加法$f+g$：增函数$+$增函数 $\Rightarrow$ 增函数；减函数$+$减函数 $\Rightarrow$ 减函数.\\
     (2)函数的减法$f-g$：增函数$-$减函数 $\Rightarrow$ 增函数；减函数$-$增函数 $\Rightarrow$ 减函数.\\
     (3)函数的复合$g \circ f$~(当$f$的值域包含于$g$的单调区间时)：增函数 $\circ$ 增函数 $\Rightarrow$ 增函数；增函数 $\circ$ 减函数 $\Rightarrow$ 减函数；减函数 $\circ$ 增函数 $\Rightarrow$ 减函数；减函数 $\circ$ 减函数 $\Rightarrow$ 增函数.
@@ -1105,6 +1105,30 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     (1)第一部分：任取$x_1,x_2 \in I$使得$x_1 < x_2$.由题知$f(x_1) < f(x_2),~g(x_1) < g(x_2)$.将上两式相加，即得$(f+g)(x_1) < (f+g)(x_2)$.于是$f+g$在$I$上是增函数. \\
     (3)第二部分：任取$x_1,x_2 \in I$使得$x_1 < x_2$.由题知$f(x_1) > f(x_2)$.于是$g(f(x_1)) > g(f(x_2))$，即$(gf)(x_1) > (gf)(x_2)$.于是$gf$在$I$上单调递减.
 \end{proof}
+\begin{remark}
+	注意，以上命题并不能直接作为定理使用，解题时需给出证明.
+\end{remark}
+
+\begin{example}
+	(1)设函数$f(x)=\log_{1/2}(x^2-2x-3)$，试讨论$f(x)$的单调区间并利用定义证明之. \\
+	(2)设函数$$f(x)=\begin{cases}
+		(1/3)^x &x \leq 0 \\ (2a-1)x+(1-a) & x>0
+	\end{cases}$$在$\R$上是减函数，则$a$的取值范围为\tk .
+\end{example}
+\begin{solution}
+	(1)由$x^2-2x-3 > 0$，可知$f(x)$的定义域为$(-\infty ,-1) \cup (3,+\infty)$. \\
+	$f(x)$在$(-\infty ,-1)$单调递增，在$(3,+\infty)$单调递减，下证前者(后者同理可得)： \\
+	任取$x_1<x_2<-1$，则
+	\begin{align*}
+		f(x_1)-f(x_2) &= \log_{1/2}(x_1^2-2x_1-3) - \log_{1/2}(x_2^2-2x_2-3) \\
+		&= \log_{1/2}\ssb{\frac{x_1^2-2x_1-3}{x_2^2-2x_2-3}}
+	\end{align*}
+	其中，由于$g(x)=x^2-2x-3$在$(-\infty ,-1)$单调递减且恒为正，知$\dfrac{g(x_1)}{g(x_2)} > 1$.于是$$f(x_1)-f(x_2) < 0$$
+	即$f(x)$在$(-\infty ,-1)$单调递增. \\
+	(2)若$a=1/2$，则$f(x)$在$\R$上为不增函数，不是严格减函数； \\
+	若$a < 1/2$，可知$f(0)=1$，则$1-a \leq 1$，于是$a \in [0,1/2)$. \\
+	综上，$a$的取值范围为$[0,1/2)$.
+\end{solution}
 
 \begin{theorem}{区间根定理}
     假设函数$f(x)$满足以下条件：
@@ -1119,6 +1143,27 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	“连续性”是一个高等概念，我们暂时还无法详细了解(于是该定理也无法证明).只需要知道，高中阶段研究的函数(即初等函数)都是连续的.
 \end{remark}
 
+\begin{example}
+	(1)定义一个函数的\textit{不动点}如下：若存在函数$f(x)$定义域中的$x_0$满足$f(x_0)=x_0$，则称$x_0$是$f(x)$的一个\textit{不动点}.设$f(x)=e^x-2$，证明：$f(x)$在区间$(0,2)$内至少有一个\textit{不动点}. \\
+	(2)设方程$x^3-3x^2+1=0$有三根$\omega _1 < \omega _2 < \omega _3$.证明：对任意正整数$n$，有$[\omega _1 ^n + \omega _2 ^n] = 0$.(这里，$[x]$表示不超过$x$的最大整数)
+\end{example}
+\begin{solution}
+	(1)即证明$\varphi (x) = e^x-2-x$在$(0,2)$内至少有一个零点. \\
+	实际上，由于$\varphi (0) = -1 < 0,~\varphi (2)=e^2-4 > 0$，由区间根定理，这是显然的. \\
+	(2)记$f(x)=x^3-3x^2+1$.先对三根做初步估计：注意到，$$f(-1)=-3<0,\quad f(0)=1>0,\quad f(1)=-1<0,\quad f(2)=-3<0,\quad f(3)=1>0$$
+	于是$\omega _1 \in (-1,0),~\omega _2 \in (0,1),~\omega _3 \in (2,3)$.进一步地，注意到$$f(-0.5)=0.125>0,\quad f(0.5)=0.375>0,\quad f(-0.6)=-0.296<0,\quad f(0.6)=0.136>0,\quad f(0.7)=-0.127$$
+	于是$\omega _1 \in (-0.6,-0.5),~\omega _2 \in (0.6,0.7)$. \\
+	当$n=1$时，$\omega _1 + \omega _2 \in (0,0.2)$，则$[\omega _1 + \omega _2]=0$. \\
+	当$n=2$时，$\omega _1^2 + \omega _2^2 \in (0.61,0.85)$，则$[\omega _1^2 + \omega _2^2]=0$. \\
+	当$n$为奇数且$n \geq 3$时，由于$\omega _2 > -\omega _1$，可知$$\omega _2^n > -\omega _1^n$$
+	即$\omega _1 ^n + \omega _2 ^n >0$；另一方面，$\omega _2^n < 0.7^n$，$\omega _1 ^n < -0.5^n$，故$$\omega _1 ^n + \omega _2 ^n < 0.7^n - 0.5^n <1$$
+	于是$[\omega _1 ^n + \omega _2 ^n] = 0$. \\
+	当$n$为偶数且$n \geq 4$时，显然有$$\omega _1 ^n + \omega _2 ^n >0$$
+	另一方面，$\omega _2^n < 0.7^n$，$\omega _1 ^n < 0.6^n$，故$$\omega _1 ^n + \omega _2 ^n < 0.7^n + 0.6^n < 0.7^2 + 0.6^2 = 0.85 < 1$$
+	于是$[\omega _1 ^n + \omega _2 ^n] = 0$.
+\end{solution}
+
+\newpage
 \subsection{奇偶性与对称性}
 
 先介绍奇偶性的概念：
@@ -1131,41 +1176,100 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{definition}
 
 \begin{proposition}{函数奇偶性的变化规律}
-    设函数$f(x),g(x)$，为了方便计算，假定它们的定义域相同.\\
-    (1)同奇偶性函数的加减法$f(x) \pm g(x)$：奇函数$\pm$奇函数 $\Rightarrow$ 奇函数；偶函数$\pm$偶函数 $\Rightarrow$ 偶函数.\\
-    (2)不同奇偶性函数的加减法：具体情况分析.\\
-    (3)函数的乘法$f(x) \cdot g(x)$：奇函数$\cdot$奇函数 $\Rightarrow$ 偶函数；偶函数$\cdot$偶函数 $\Rightarrow$ 偶函数；奇函数$\cdot$偶函数 $\Rightarrow$ 奇函数.\\
-    (4)函数的除法：$\frac{1}{\text{奇函数}}$ $\Rightarrow$ 奇函数；$\frac{1}{\text{偶函数}}$ $\Rightarrow$ 偶函数.可以通过函数的乘法推广到任意两函数相除.\\
-    (5)函数的复合$f(x) \circ g(x)$：奇函数 $\circ$ 奇函数 $\Rightarrow$ 奇函数；奇函数 $\circ$ 偶函数 $\Rightarrow$ 偶函数；偶函数 $\circ$ 奇函数 $\Rightarrow$ 偶函数；偶函数 $\circ$ 偶函数 $\Rightarrow$ 偶函数.
+    设函数$f(x),g(x)$，为了方便计算，假定它们的定义域$D$相同.\\
+    (1)同奇偶性函数的加减法$f \pm g$：奇函数$\pm$奇函数 $\Rightarrow$ 奇函数；偶函数$\pm$偶函数 $\Rightarrow$ 偶函数.\\
+    (2)函数的(代数意义上的)乘法$f(x) \cdot g(x)$：奇函数$\cdot$奇函数 $\Rightarrow$ 偶函数；偶函数$\cdot$偶函数 $\Rightarrow$ 偶函数；奇函数$\cdot$偶函数 $\Rightarrow$ 奇函数.\\
+    (3)函数的(代数意义上的)除法：$\frac{1}{\text{奇函数}}$ $\Rightarrow$ 奇函数；$\frac{1}{\text{偶函数}}$ $\Rightarrow$ 偶函数.可以通过函数的(代数意义上的)乘法推广到任意两函数相除.\\
+    (4)函数的复合$g \circ f$：奇函数 $\circ$ 奇函数 $\Rightarrow$ 奇函数；奇函数 $\circ$ 偶函数 $\Rightarrow$ 偶函数；偶函数 $\circ$ 奇函数 $\Rightarrow$ 偶函数；偶函数 $\circ$ 偶函数 $\Rightarrow$ 偶函数.
 \end{proposition}
 \begin{remark}
 	如果把复合看做乘法，那么可以把“增减”看做“正负”，“奇偶”看做“奇偶”
 \end{remark}
 \begin{proof}
-    XXX
+    只选择(2)(3)(4)的部分证明： \\
+    (2)设奇函数$f(x)$与偶函数$g(x)$，函数$h(x):=f(x) \cdot g(x)$.对任意$x \in D$，有$f(x)=-f(-x),~g(x)=g(-x)$，于是有$$f(x) \cdot g(x) = - f(-x) \cdot g(-x)$$
+    即$h(x)=-h(-x)$.又因为$h(x)$的定义域关于原点对称，故$h(x)$是奇函数. \\
+    (3)设奇函数$f(x)$，$h(x):=\frac{1}{f(x)}$，其中$h(x)$的定义域是$f(x)$的定义域中除去所有使得$f(x)=0$的$x$，故$h(x)$定义域关于原点对称. \\
+    又由于对任意$x \in D$，有$f(x)=-f(-x)$，故$h(x)=-h(-x)$，于是$h(x)$是奇函数. \\
+    (4)设奇函数$f(x)$，偶函数$g(x)$，则对任意$x \in D$，有$f(x)=-f(x)$且$g(x)=g(-x)$，于是$$(gf)(-x) = g(f(-x)) = g(-f(x)) = g(f(x)) = (gf)(x)$$
+    又因为$(gf)(x)$的定义域关于原点对称，故$gf(x)$为偶函数.
 \end{proof}
+
+\begin{example}
+	(1)判断下列函数是否具有奇偶性：$$y = \frac{2^x-1}{2^x+1},\quad y=\frac{\sqrt{9-x^2}}{|x+4|+|x-3|},\quad y=\ln \ssb{x + \sqrt{x^2+1}}$$
+	(2)设函数$f(x)=\dfrac{x}{(2x+1)(x-a)}$为奇函数，则$a=$\tk . \\
+	(3)设函数$f(x)=x^3+x$，当$0 \leq t \leq 1$时，$f(mt)+f(1-m)>0$恒成立，则实数$m$的取值范围为\tk . \\
+	(4)设函数$f(x)=\dfrac{(x+1)^2+\sqrt[3]{x}}{x^2+1}$的最大值为$M$，最小值为$m$，则$M+m=$\tk .
+\end{example}
+\begin{solution}
+	(1)第一个：记$f(x)=y$.由于$$f(-x) = \frac{\frac{1}{2^x} -1}{\frac{1}{2^x} +1} = \frac{1-2^x}{1+2^x} = -f(x)$$
+	又$f(x)$定义域关于原点对称，故$f(x)$为奇函数. \\
+	第二个：记$f(x)=y$.由$9-x^2 \geq 0$知$x \in [-3,3]$，此时$|x+4|+|x-3|=x+4+3-x=7$.于是$$f(-x)=\frac{\sqrt{9-x^2}}{7}=f(x)$$
+	又$f(x)$定义域关于原点对称，故$f(x)$为偶函数. \\
+	第三个：记$f(x)=y$.由$x + \sqrt{x^2+1} > 0$，可知$x \in \R$.由于$$f(-x) = \ln \ssb{-x+\sqrt{x^2+1}} = \ln \ssb{\frac{1}{x+\sqrt{x^2+1}}} = -\ln \ssb{x + \sqrt{x^2+1}} = -f(x)$$
+	又$f(x)$定义域关于原点对称，故$f(x)$为奇函数. \\
+	(2)显然，$f(x)$定义域为$\R \setjianfa \{-1/2,a \}$.为使该定义域关于原点对称，令$a=1/2$.代回验证，发现$$f(-x) = \frac{-2x}{(1-2x)(2x+1)} = -f(x)$$
+	故$a=1/2$符合题意. \\
+	(3)注意到，$f(x)$是奇函数且在$\R$上单调递增，则原不等式等价于$f(mt)>f(m-1)$，即$mt>m-1$在$t \in [0,1]$时恒成立.于是$$m < \frac{1}{1-t}$$
+	而右式恒$\geq 1$，则$m \in (-\infty ,1)$. \\
+	(4)注意到，$f(x)=1+\dfrac{2x+\sqrt[3]{x}}{x^2+1}$，即$g(x)=f(x)-1$为奇函数，即$f(x)$关于$(0,1)$中心对称，则$M+m=2$.
+\end{solution}
+
+\begin{example}
+	(1)定义在$\R$上的函数$f(x)$满足$$\forall x,y \in \R ,~f(x+y)+f(x-y)=2f(x)f(y)$$且$f(0) \neq 0$，判断$f(x)$的奇偶性. \\
+	(2)证明：任何一个定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和.
+\end{example}
+\begin{solution}
+	(1)令$x=y=0$，则$$f(0)+f(0)=2f(0)f(0) \quad i.e. \quad f(0)\ssb{2f(0)-2}=0$$
+	由于$f(0) \neq 0$，可得$f(0)=1$. \\
+	令$x=0$，则$$f(y)+f(-y)=2f(0)f(y)$$
+	即$f(y)=f(-y)$.又$f(x)$定义域关于原点对称，故$f(x)$为偶函数. \\
+	(2)设该函数为$f(x)$，分解为$f(x)=g(x)+h(x)$，其中$g(x)$为偶函数，$h(x)$为奇函数.于是$$f(-x)=g(-x)+h(-x)=g(x)-h(x),\quad f(x)=g(x)+h(x)$$
+	可得$$g(x)=\frac{f(x)+f(-x)}{2},\quad h(x)=\frac{f(x)-f(-x)}{2}$$
+	经检验，对任意$f(x)$，该构造符合要求.
+\end{solution}
 
 对称性其实就是奇偶性在部分区间上的推广.因此，它在定义域上比较自由.
 
 \begin{definition}{对称性} %兴趣一阶I p76
     设函数$f(x)$的定义域为$D$，区间$I \subseteq D$.\\
-    类似于偶函数，函数$f(x)$的图像关于直线$x=a$\textbf{轴对称}等价于
-    $$ \forall x \in I, f(a+x)=f(a-x) $$
-    类似于奇函数，函数$f(x)$的图像关于点$(a,b)$\textbf{中心对称}等价于
-    $$ \forall x \in I, f(a+x)+f(a-x)=2b $$
+    函数$f(x)$的图像关于直线$x=a$\textbf{轴对称}当且仅当
+    $$ \forall x \in I,~ f(a+x)=f(a-x) $$
+    函数$f(x)$的图像关于点$(a,b)$\textbf{中心对称}当且仅当
+    $$ \forall x \in I,~ f(a+x)+f(a-x)=2b $$
 \end{definition}
-\begin{remark}
-    轴对称的定义等价于$$\forall x \in I, f(x)=f(2a-x)$$
-    中心对称的定义等价于$$\forall x \in I, f(x)=2b-f(2a-x)$$
-\end{remark}
+
+可以用图像来理解这一定义：
+
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=6cm]{gnuplot/202305201edit.svg}
+\end{figure}
+
+以中心对称为例，由图像可知$f(a+x)=b+y,~f(a-x)=b-y$，则$f(a+x)+f(a-x)=2b$.
 
 \begin{proposition}{函数的对称变换}
     设函数$f(x)$与$g(x)$.假设其定义域满足下方自然要求.\\
-    (1)$f(x)$与$g(x)$的图像关于直线$x=a$对称，等价于$$f(a+x)=g(a-x) \Longleftrightarrow f(x)=g(2a-x)$$
-    (2)$f(x)$与$g(x)$的图像关于直线$y=b$对称，等价于$$b+f(x)=b-g(x) \Longleftrightarrow f(x)=2b-g(x)$$
-    (3)$f(x)$与$g(x)$的图像关于点$(a,b)$对称，等价于$$b+f(a+x)=b-g(a-x) \Longleftrightarrow f(x)=2b-g(2a-x)$$
+    (1)$f(x)$与$g(x)$的图像关于直线$x=a$对称，等价于$$\forall x,~f(a+x)=g(a-x)$$
+    (2)$f(x)$与$g(x)$的图像关于直线$y=b$对称，等价于$$\forall x,~b+f(x)=b-g(x)$$
+    (3)$f(x)$与$g(x)$的图像关于点$(a,b)$对称，等价于$$\forall x,~b+f(a+x)=b-g(a-x)$$
 \end{proposition}
 
+\begin{example}
+	(1)若函数$y=f(x+2)$是偶函数，则$y=f(16-x)$的对称轴是\tk . \\
+	(2)指出下列函数的对称中心：$$y=x^3+3x^2+6x+3,\quad y=\frac{2017^x}{2017^x-1}$$
+	(3)若函数$f(x)=(1-x^2)(x^2+ax+b)$的图像关于直线$x=-2$对称，则$f(x)$的最大值为\tk .
+\end{example}
+\begin{solution}
+	(1)由题，$f(x)$关于$x=2$轴对称.那么$f(16-x)$关于$16-x=2$轴对称，即$y=f(16-x)$关于$x=14$轴对称. \\
+	(2)第一个：注意到，$f(x)=y=(x+1)^3+3(x+1)-1$.则$y=f(x-1)+1$是奇函数，那么$f(x)$关于$(-1,-1)$中心对称. \\
+	第二个：取几个特殊点：$f(1)=2017/2016,~f(-1)=-1/2016$，于是考虑取$f(-x)$看看：$$f(-x)=\frac{\frac{1}{2017^x}}{\frac{1}{2017^x}-1} = \frac{-1}{2017^x-1} = 1-f(x)$$
+	故$f(x)$关于$(0,1/2)$中心对称. \\
+	(3)由于$f(-1)=f(1)=0$，且$f(x)$关于$x=-2$对称，故$f(-3)=f(-5)=0$，即$$f(x)=-(x+1)(x-1)(x+3)(x+5) = -(x^2+4x-5)(x^2+4x+3) = -(x^2+4x-1)^2+16$$
+	其中，$x^2+4x-1 = (x+2)^2-5 \geq -5$，于是$f(x) \leq 16$.
+\end{solution}
+
+\newpage
 \subsection{周期性}
 
 \begin{definition}{周期性} %兴趣一阶I p76
@@ -1173,7 +1277,6 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     当$f(x)$满足$$\forall x \in D, \exists \ T \in \mathbb{R}, f(x)=f(x+T)$$
     称这样的$T$为函数$f(x)$的\textbf{周期}(period)，称$f(x)$为\textbf{周期函数}(periodic function).当$f(x)$有一个最小的正数$T$作为周期，这样的$T$称作最小正周期.
 \end{definition}
-
 \begin{remark}
     一个周期函数不一定有最小正周期，例如函数$f(x)=1$.
 \end{remark}
@@ -1181,62 +1284,59 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     当一个函数$f(x)$同时有周期$T_1,T_2$，则$aT_1+bT_2(a,b \in \mathbb{Z})$也为它的周期.
 \end{remark}
 
+\begin{example}
+	(1)设定义在$\R$上的函数$f(x)$满足$f(x) \cdot f(x+2)=13$，若$f(1)=2$，则$f(111)=$\tk . \\
+	(2)设$f(x)$是$\R$上的奇函数且$f(x+3)=-f(x)$，而当$0 \leq x \leq 3/2$时，$f(x)=x$，则$f(2003)=$\tk . \\
+	(3)\textit{(可能用到的引理：若$a,b$为不全为$0$的整数，则存在整数$x,y$，使得$ax+by=(a,b)$成立)}已知函数$f(x)$满足$f(x)=f(398-x)=f(2158-x)=f(3214-x)$，则$f(0),f(1),\cdots ,f(999)$中最多有\tk 个不同的值.
+\end{example}
+\begin{solution}
+	(1)由于$f(x) \cdot f(x+2)=13$，$f(x+2) \cdot f(x+4)=13$，故$f(x)=f(x+4)$.那么$f(111)=f(3)=13/f(1)=13/2$. \\
+	(2)由题给条件，$f(x+6)=-f(x+3)=f(x)$，故$f(2003)=f(-1)=-f(1)=1$. \\
+	(3)将$398-x$视作整体，那么$f(x)$有周期$1760$，同理有周期$1056$.由引理，$f(x)$必有周期$(1760,1056)=(704,1056)=(704,352)=352$，那么$f(x)$的最小正周期$T_0 \mid 352$. \\
+	于是$\{ f(0),\cdots ,f(999) \} = \{ f(0),\cdots ,f(351) \}$. \\
+	又由$f(x)=f(398-x)=f(46-x)$，即$f(x)$关于$x=23$与$x=199$轴对称，可知$\{ f(0),\cdots ,f(351) \} = \{ f(23),\cdots ,f(199) \}$.故最多有$177$个不同的值.
+\end{solution}
+
+\newpage
 \section{函数的图像}
+
+本节我们着重研究一个问题：如何做出一个函数的大致图像？这里给出一般处理思路：
+
+首先，观察该函数是否可以由某个形式更简单的函数进行图像变换操作(见后文内容)得到，并进行还原；其次，找到函数的定义域，并在某些特殊值点寻找极限值；接着，关注该函数的基本性质(从而可以减少一部分讨论)；最后，取一些离散的点并用平滑曲线将其相连.
 
 \begin{proposition}{绝对值对函数图像的影响}
     设函数$f(x)$，以下解析式不一定是函数.\\
     (1)当$y=f(|x|)$，即将$f(x)$的图像在$y$轴右侧部分沿$y$轴对称，作为在$y$轴左侧的图像.\\
     (2)当$y=|f(x)|$，即将$f(x)$的图像在$x$轴下方部分沿$x$轴翻折.\\
-    (3)当$|y|=f(x)$，即将$f(x)$的图像在$x$轴上方部分沿$x$轴对称，作为在$x$轴下方的图像.\\
-    作为练习，接着探究以下更加复杂的解析式.\\
+    (3)当$|y|=f(x)$，即将$f(x)$的图像在$x$轴上方部分沿$x$轴对称，作为在$x$轴下方的图像.
+\end{proposition}
+
+\begin{remark}
+	同样可以得到，\\ 
     (4)当$|y|=|f(x)|$，即将(2)中得到的图像按(3)的法则变换.\\
     (5)当$y=|f(|x|)|$，即将(2)中得到的图像按(1)的法则变换.\\
     (6)当$|y|=|f(|x|)|$，即将(5)中得到图像按(3)的法则变换.
-\end{proposition}
+\end{remark}
 
 \begin{proposition}{函数图像的拉伸}
     设函数$f(x)$.\\
-    (1)当$y=af(x)$，即将$f(x)$的图像沿竖直方向拉伸$a$倍（当$a\in (0,1)$时，则为向小拉伸）.\\
-    (2)当$y=f(b x)$，即将$f(x)$的图像沿水平方向拉伸$b$倍.
+    (1)当$y=Af(x)$，即将$f(x)$的图像沿竖直方向拉伸$A$倍.\\
+    (2)当$y=f(\omega x)$，即将$f(x)$的图像沿水平方向拉伸$1/\omega$倍.
 \end{proposition}
-
-\begin{problem}
-    有了上方的命题，我们可以对于函数图像拉伸进行一些思考：\\
-    假设在函数$f(x)$的图像上存在$n~(n \geq 2)$个点.\\
-    (1)经过其中两个点的一条直线，它的斜率在拉伸前后如何变化？\\
-    (2)连接其中$m$个点($m \leq n$)所构成的平面图形，它的面积在拉伸前后如何变化？\\
-    (3)将其中$m$个点($m \leq n$)两两之间连接，这样一些线段的长度所构成的一组比值在拉伸前后如何变化？\\
-\end{problem}
 
 \begin{proposition}{函数的平移变换}
     设函数$f(x)$，变换后的函数为$g(x)$.假设其定义域满足下方自然要求.\\
     (1)$f(x)$的图像向上或向下平移$m$个单位，等价于$$g(x)=f(x)+m \ \text{或} \ g(x)=f(x)-m$$
     (2)$f(x)$的图像向左或向右平移$n$个单位，等价于$$g(x)=f(x+n) \ \text{或} \ g(x)=f(x-n)$$
 \end{proposition}
-\begin{proof}
-    XXX
-\end{proof}
+
+以下命题只是为了满足你的好奇心，不要尝试去记忆它.
 
 \begin{proposition}{函数图像的轴对称变换}
     设函数$f(x),g(x)$，直线$l:Ax+By+C=0$，记$y=f(x)$\\
     当$f(x),g(x)$的图像关于该直线对称时，满足$$y = g\left(  x - \frac{2A(Ax+By+C)}{A^2+B^2}  \right) + \frac{2B(Ax+By+C)}{A^2+B^2}$$
     化简一下，即\small$$f \left(  x + \frac{A(Ax+By+C)}{A^2+B^2}  \right) - \frac{B(Ax+By+C)}{A^2+B^2} = g \left(  x - \frac{A(Ax+By+C)}{A^2+B^2}  \right) + \frac{B(Ax+By+C)}{A^2+B^2}$$\normalsize
 \end{proposition}
-\begin{proof}
-    XXX
-\end{proof}
-
-上面的式子非常不对称.因而我们来讨论一下单个函数关于自己对称的情况(即某函数有一个对称轴).
-
-\begin{proposition}{图像有轴对称性的函数}
-    设函数$f(x)$，它的图像的对称轴为直线$l:Ax+By+C=0$.\\
-    那么这个函数满足$$f(x) = f\left(  x - \frac{2A(Ax+Bf(x)+C)}{A^2+B^2}  \right) + \frac{2B(Ax+Bf(x)+C)}{A^2+B^2}$$
-    化简之后，即\small$$f \left(  x + \frac{A(Ax+Bf(x)+C)}{A^2+B^2}  \right) - \frac{B(Ax+Bf(x)+C)}{A^2+B^2} = f \left(  x - \frac{A(Ax+Bf(x)+C)}{A^2+B^2}  \right) + \frac{B(Ax+Bf(x)+C)}{A^2+B^2}$$\normalsize
-\end{proposition}
-
-\section{简单的函数方程}
-
-函数方程问题，Cauchy方程
 
 \chapter{三角函数}
 
@@ -1279,8 +1379,10 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     (3)奇偶性$$\sin{(-\alpha)}=-\sin{\alpha} \quad \cos{(-\alpha)}=\cos{\alpha} \quad \tan{(-\alpha)}=-\tan{\alpha}$$
     (4)在单位圆中角的终边关于$y$轴的对称性$$\sin{(\pi - \alpha)} = \sin{\alpha} \quad \cos{(\pi - \alpha)} = -\cos{\alpha} \quad \tan{(\pi - \alpha)} = -\tan{\alpha}$$
     (5)在单位圆中角的终边关于直线$y=x$的对称性$$\sin{\ssb{\frac{\pi}{2}-\alpha}}=\cos{\alpha} \quad \cos{\ssb{\frac{\pi}{2}-\alpha}}=\sin{\alpha} \quad \tan{\ssb{\frac{\pi}{2}-\alpha}}=\cot{\alpha}$$
-    (6)关于$\frac{\pi}{2}$的性质$$\sin{\ssb{\alpha+\frac{\pi}{2}}}=\cos{\alpha} \quad \cos{\ssb{\alpha+\frac{\pi}{2}}}=-\sin{\alpha} \quad \tan{\ssb{\alpha+\frac{\pi}{2}}}=-\cot{\alpha}$$
+    (6)关于$\dfrac{\pi}{2}$的性质$$\sin{\ssb{\alpha+\frac{\pi}{2}}}=\cos{\alpha} \quad \cos{\ssb{\alpha+\frac{\pi}{2}}}=-\sin{\alpha} \quad \tan{\ssb{\alpha+\frac{\pi}{2}}}=-\cot{\alpha}$$
 \end{proposition}
+
+以上性质可以采用如下方式记忆：做出单位圆，假定$\alpha$为第一象限角，再将其变换，得到的结果与一般的角度相同.
 
 作为一种函数，自然要研究其函数性质：
 
@@ -1303,7 +1405,17 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 为了更好地记忆以上性质，我们需要作出不同三角函数的图像.
 
-% TODO 三角函数的图像
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=10cm]{gnuplot/202305072edit1.svg}
+	\caption{正弦函数与余弦函数的图像}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=10cm]{gnuplot/202305072edit2.svg}
+	\caption{正切函数与余切函数的图像}
+\end{figure}
 
 回忆函数章节里介绍的“函数图像的变换”内容，通过对正弦函数进行这种操作，可以得到类正弦函数：
 
@@ -1320,11 +1432,14 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 三角函数是将角度映射为距离之比的函数.相应地，将距离之比映射到角度的函数叫做反三角函数(arc的意思即为“弧长”).
 
 \begin{definition}{反三角函数}
-    函数$$f(x)=\arcsin{x} \qquad f(x)=\arccos{x} \qquad f(x)=\arctan{x} \qquad f(x)=\arccot{x}$$
+    分别定义
+    $$\arcsin{x}:=\sin ^{-1}x~(x \in [-\frac{\pi}{2} ,\frac{\pi}{2}]) \qquad \arccos{x}:=\cos ^{-1}x~(x \in [0,\pi])$$
+    $$\arctan{x}:= \tan ^{-1}x~(x \in (-\frac{\pi}{2},\frac{\pi}{2})) \qquad \arccot{x}:=\cot ^{-1}x~(x \in (0,\pi))$$
+    其中，$$f(x)=\arcsin x \qquad f(x)=\arccos x \qquad f(x)=\arctan x \qquad f(x)=\arccot x$$
     分别称为\textbf{反正弦函数}(arcsine function)，\textbf{反余弦函数}(arccosine function)，\textbf{反正切函数}(arctangent function)，\textbf{反余切函数}(arccotangent function).这些函数统称为\textbf{反三角函数}(inverse trigonometric function).
 \end{definition}
 \begin{note}
-    反正弦函数、反余弦函数不是正弦函数、余弦函数的反函数，而是与其中的某一段互为反函数.
+    反三角函数不是对应三角函数在整个定义域上的反函数，而是与其中的某一段互为反函数.
 \end{note}
 
 \begin{proposition}{反三角函数的函数性质}
@@ -1337,13 +1452,23 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
         \hline
           & $\arcsin{x}$ & $\arccos{x}$ & $\arctan{x}$ & $\arccot{x}$ \\ \hline
         定义域 & $[-1,1]$ & $[-1,1]$ & $\mathbb{R}$ & $\mathbb{R}$ \\ \hline
-        值域 & $[-\frac{\pi}{2} ,\frac{\pi}{2}]$ & $[0,\pi]$ & $[-\frac{\pi}{2},\frac{\pi}{2}]$ & $[0,\pi]$ \\ \hline
+        值域 & $[-\frac{\pi}{2} ,\frac{\pi}{2}]$ & $[0,\pi]$ & $(-\frac{\pi}{2},\frac{\pi}{2})$ & $(0,\pi)$ \\ \hline
         对称性 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 \\ \hline
     \end{tabular}
     
 \end{proposition}
 
-% TODO 反三角函数的图像
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=7cm]{gnuplot/202305073edit1.svg}
+	\caption{反正弦函数与反余弦函数的图像}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includesvg[width=9cm]{gnuplot/202305073edit2.svg}
+	\caption{反正切函数与反余切函数的图像}
+\end{figure}
 
 \section{三角函数的计算}
 
@@ -1429,10 +1554,6 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \begin{proof}
     XXX
 \end{proof}
-\begin{remark}
-    细心的读者已经发现，和差化积公式的左半部分总是同名三角函数.那么不同名三角函数之和该如何转化呢？请自行证明：$$\sin{\alpha}+\cos{\beta}=2\sin{\frac{\alpha+\frac{\pi}{2}-\beta}{2}}\cos{\frac{\alpha-\frac{\pi}{2}+\beta}{2}}$$
-    提示：利用诱导公式.
-\end{remark}
 
 \subsection{正弦定理与余弦定理}
 

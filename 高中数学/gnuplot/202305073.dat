@@ -1,0 +1,67 @@
+#------------------------------Global Setting-------------------------#
+
+set term svg font 'Times New Roman'
+set encoding utf8
+set encoding iso_8859_1
+
+set size 0.9,1.0
+set out '202305073.svg'
+
+
+#----------------------------------------------------------------------#
+
+#-----------------------------Axes and frames--------------------------
+unset border
+
+xmin = -5
+xmax = 5
+ymin = -1.5*pi
+ymax = 1.5*pi
+
+set xzeroaxis linetype 1 lc 'black'
+set yzeroaxis linetype 1 lc 'black'
+set style arrow 3 head filled size screen 0.03,15,45 lc black
+set arrow 1 from 0, 1.02*ymin to 0,1.05*ymax arrowstyle 3  
+set arrow 2 from 1.02*xmin, 0 to 1.05*xmax,0 arrowstyle 3  
+
+set xtics nomirror axis
+set ytics ("" -1.5*pi 1, "-$\pi$" -pi, "" -0.5*pi 1, "0" 0, "" 0.5*pi 1, "$\pi$" pi, "" 1.5*pi 1) nomirror axis #offset -0.5*(xmax - xmin),0
+#unset xtics
+#unset ytics
+set mxtics 2
+set mytics 2
+
+#------------------------------------------------------------------
+
+#--------------------------content setting------------------------
+set xrange[xmin:xmax]
+set yrange[ymin:ymax]
+set samples 1000
+
+f(x) = asin(x)
+g(x) = acos(x)
+h(x) = atan(x)
+p(x) = pi/2 - atan(x)
+m(x) = x
+n1(x) = pi/2
+n2(x) = -pi/2
+n3(x) = pi
+n4(x) = 0
+
+#------------------------------------------------------------
+
+#-----------------------------label setting---------------------
+set xlabel '$x$'
+set ylabel '$y$'
+unset xlabel
+unset ylabel
+set label '{$x$}' at 1.05*xmax, 0.3 offset char 0, char 0 center font 'Times New Roman,16'
+set label '{$y$}' at 0.3, 1.05*ymax offset char 0, char 0 center font 'Times New Roman,16'
+
+set key top right
+#---------------------------------------------------------------------
+
+
+#-------------------------Start plotting---------------------------------------
+#plot f(x) lw 2 lc 'blue', g(x) lw 2 lc 'orange', n1(x) lw 1.5 lc 'red' dt '-' notitle, n2(x) lw 1.5 lc 'red' dt '-' notitle
+plot h(x) lw 2 lc 'dark-green', p(x) lw 2 lc 'navy', n1(x) lw 1.5 lc 'red' dt '-' notitle, n2(x) lw 1.5 lc 'red' dt '-' notitle, n3(x) lw 1.5 lc 'red' dt '-' notitle, n4(x) lw 1.5 lc 'red' dt '-' notitle
