@@ -1244,6 +1244,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \begin{figure}[h!]
 	\centering
 	\includesvg[width=6cm]{gnuplot/202305201edit.svg}
+	\caption{中心对称性质的图像}
 \end{figure}
 
 以中心对称为例，由图像可知$f(a+x)=b+y,~f(a-x)=b-y$，则$f(a+x)+f(a-x)=2b$.
@@ -1281,18 +1282,18 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     一个周期函数不一定有最小正周期，例如函数$f(x)=1$.
 \end{remark}
 \begin{remark}
-    当一个函数$f(x)$同时有周期$T_1,T_2$，则$aT_1+bT_2(a,b \in \mathbb{Z})$也为它的周期.
+    当一个函数$f(x)$同时有周期$T_1,T_2$，则$aT_1+bT_2(a,b \in \mathbb{Z})$也为它的周期.更进一步，由Bezout定理，$(T_1,T_2)$也为它的周期.
 \end{remark}
 
 \begin{example}
 	(1)设定义在$\R$上的函数$f(x)$满足$f(x) \cdot f(x+2)=13$，若$f(1)=2$，则$f(111)=$\tk . \\
 	(2)设$f(x)$是$\R$上的奇函数且$f(x+3)=-f(x)$，而当$0 \leq x \leq 3/2$时，$f(x)=x$，则$f(2003)=$\tk . \\
-	(3)\textit{(可能用到的引理：若$a,b$为不全为$0$的整数，则存在整数$x,y$，使得$ax+by=(a,b)$成立)}已知函数$f(x)$满足$f(x)=f(398-x)=f(2158-x)=f(3214-x)$，则$f(0),f(1),\cdots ,f(999)$中最多有\tk 个不同的值.
+	(3)已知函数$f(x)$满足$f(x)=f(398-x)=f(2158-x)=f(3214-x)$，则$f(0),f(1),\cdots ,f(999)$中最多有\tk 个不同的值.
 \end{example}
 \begin{solution}
 	(1)由于$f(x) \cdot f(x+2)=13$，$f(x+2) \cdot f(x+4)=13$，故$f(x)=f(x+4)$.那么$f(111)=f(3)=13/f(1)=13/2$. \\
-	(2)由题给条件，$f(x+6)=-f(x+3)=f(x)$，故$f(2003)=f(-1)=-f(1)=1$. \\
-	(3)将$398-x$视作整体，那么$f(x)$有周期$1760$，同理有周期$1056$.由引理，$f(x)$必有周期$(1760,1056)=(704,1056)=(704,352)=352$，那么$f(x)$的最小正周期$T_0 \mid 352$. \\
+	(2)由题给条件，$f(x+6)=-f(x+3)=f(x)$，故$f(2003)=f(-1)=-f(1)=-1$. \\
+	(3)将$398-x$视作整体，那么$f(x)$有周期$1760$，同理有周期$1056$，则$f(x)$有周期$(1760,1056)=(704,1056)=(704,352)=352$，那么$f(x)$的最小正周期$T_0 \leq 352$. \\
 	于是$\{ f(0),\cdots ,f(999) \} = \{ f(0),\cdots ,f(351) \}$. \\
 	又由$f(x)=f(398-x)=f(46-x)$，即$f(x)$关于$x=23$与$x=199$轴对称，可知$\{ f(0),\cdots ,f(351) \} = \{ f(23),\cdots ,f(199) \}$.故最多有$177$个不同的值.
 \end{solution}
@@ -1300,9 +1301,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \newpage
 \section{函数的图像}
 
-本节我们着重研究一个问题：如何做出一个函数的大致图像？这里给出一般处理思路：
+本节我们着重研究一个问题：如何做出一个函数的大致图像？
 
-首先，观察该函数是否可以由某个形式更简单的函数进行图像变换操作(见后文内容)得到，并进行还原；其次，找到函数的定义域，并在某些特殊值点寻找极限值；接着，关注该函数的基本性质(从而可以减少一部分讨论)；最后，取一些离散的点并用平滑曲线将其相连.
+首先介绍一些函数图像的变换方式.
 
 \begin{proposition}{绝对值对函数图像的影响}
     设函数$f(x)$，以下解析式不一定是函数.\\
@@ -1330,13 +1331,170 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     (2)$f(x)$的图像向左或向右平移$n$个单位，等价于$$g(x)=f(x+n) \ \text{或} \ g(x)=f(x-n)$$
 \end{proposition}
 
-以下命题只是为了满足你的好奇心，不要尝试去记忆它.
+\begin{example}
+	作出以下函数大致图像：$$y=\frac{x^2}{1-2|x|},\quad y=\frac{1+2^{x/2}}{1-2^{x/2}},\quad y=\ln \ssb{\frac{1+2^x}{1-2^x}},\quad y=e^x-\ln x$$
+\end{example}
+\begin{solution}
+	(1)先看$f(x)=\dfrac{x^2}{1-2x}$的图像.由于$$f(x)=-\frac{1}{2}x+\frac{1/8}{1/2 - x} - \frac{1}{4} = \frac{1}{2} \ssb{-x+\frac{1/4}{1/2-x}} - \frac{1}{4} = \frac{1}{2} \ssb{(1/2-x)+\frac{1/4}{1/2-x}-1}$$
+	故$f(x)$的图像可由$$g(x)=-\ssb{x+\dfrac{1}{4x}}$$
+	的图像先向右平移$\dfrac{1}{2}$，再向下平移$1$，最后沿竖直方向拉伸为原来的$\dfrac{1}{2}$得到. \\
+	接着取$f(|x|)$，即沿$y$轴左右对称即可.
+	\begin{figure}[H]
+		\centering
+		\includesvg[width=8cm]{gnuplot/202305241edit.svg}
+	\end{figure}
+	
+	\noindent
+	(2)先看最基本的$f(x)=\dfrac{1+2^x}{1-2^x}$.容易证明，该函数定义域是$\R \setjianfa \{ 0 \}$，是一个奇函数且单调递增，那么只需考虑$\R ^+$的一侧图像.注意到，在$x \to 0^+$时，$f(x) \to -\infty$；在$x \to +\infty$时，$f(x) \to -1$. \\
+	最后取$f(x/2)$，即沿水平方向拉伸为原来的$2$倍得到.
+	\begin{figure}[H]
+		\centering
+		\includesvg[width=8cm]{gnuplot/202305242edit.svg}
+	\end{figure}
+	
+	\noindent
+	(3)沿用(2)中最初始的$f(x)$，可知$g(x)=\ln f(x)$的定义域为$\R ^-$.容易证明，$g(x)$单调递增.且在$x \to -\infty$时，$g(x) \to 0$；$x \to 0^-$时，$g(x) \to +\infty$.
+	\begin{figure}[H]
+		\centering
+		\includesvg[width=8cm]{gnuplot/202305243edit.svg}
+	\end{figure}
+	
+	\noindent
+	(4)显然$f(x)=e^x-\ln x$的定义域为$\R ^+$.注意到，在$x$比较小时，$e^x$增长缓慢且靠近$1$；在$x$比较大时，$\ln x$增长缓慢且为正.故在$x$较小时图像类似于$y=\ln x+1$，$x$较大时图像类似于$e^x$，但会低一点.
+	\begin{figure}[H]
+		\centering
+		\includesvg[width=8cm]{gnuplot/202305244edit.svg}
+	\end{figure}
+\end{solution}
 
-\begin{proposition}{函数图像的轴对称变换}
-    设函数$f(x),g(x)$，直线$l:Ax+By+C=0$，记$y=f(x)$\\
-    当$f(x),g(x)$的图像关于该直线对称时，满足$$y = g\left(  x - \frac{2A(Ax+By+C)}{A^2+B^2}  \right) + \frac{2B(Ax+By+C)}{A^2+B^2}$$
-    化简一下，即\small$$f \left(  x + \frac{A(Ax+By+C)}{A^2+B^2}  \right) - \frac{B(Ax+By+C)}{A^2+B^2} = g \left(  x - \frac{A(Ax+By+C)}{A^2+B^2}  \right) + \frac{B(Ax+By+C)}{A^2+B^2}$$\normalsize
+\newpage
+\section{函数方程略讲}
+
+函数方程，是指这样一类特殊的方程，它的解是某一个函数表达式.解函数方程的技巧有很多，这里无法一一叙述，只好割爱，简要介绍一些基本方法，并将其作为函数章节的复习.完整的方法与例题可以参考\textit{Pang-Cheng, Wu}所著的\textit{Functional Equation}\footnote{https://cdn.bc-pf.org/resources/math/algebra/fe/Pang\_Cheng\_Wu-FE.pdf} .
+
+解决函数方程的基本方法有：赋值法，换元法，柯西法，利用单射与满射等.我们逐一介绍.
+
+\begin{example}{\examplefont{赋值与解方程组}}
+	(1)求所有函数$f:\R \to \R$，满足$$\forall x \in \R ,~2f(x)+xf(1-x)=x^3-2$$
+	(2)求所有函数$f:\R \to \R$，满足$$\forall x,y \in \R,~f(x-y)=f(x)+f(y)-2xy$$
+	(3)求所有函数$f:\mathbb{N} \to \mathbb{N}$，满足$$\forall x,y \in \mathbb{N},~f(x+y)=f(x)+f(y)+3(x+y)\sqrt[3]{f(x)f(y)}$$
+\end{example}
+\begin{solution}
+	(1)令$P(x)$表示$2f(x)+xf(1-x)=x^3-2$. \\
+	分别取$P(x)$及$P(1-x)$，有$$\begin{cases}
+		2f(x)+xf(1-x)=x^3-2 \\
+		2f(1-x)+(1-x)f(x)=(1-x)^3-2
+	\end{cases}$$
+	将$f(x)$与$f(1-x)$视作变量，将$x$视作参数，联立解得$f(x)=x^2-1$.代回$P(x)$验证，成立. \\
+	(2)令$P(x,y)$表示$f(x-y)=f(x)+f(y)-2xy$. \\
+	取$P(0,0)$，有$f(0)=f(0)+f(0)$，则$f(0)=0$；取$P(x,x)$，有$2f(x)-2x^2=f(0)=0$，则$f(x)=x^2$.代回$P(x,y)$验证，成立. \\
+	(3)根据$P(x,y)$的形式，猜测$f(x)=x^3$，取$g(x):=\sqrt[3]{f(x)}$，下证$g(x)=x$. \\
+	$P(x,y)$即为$(g(x+y))^3=(g(x))^3+(g(y))^3+3(x+y)g(x)g(y)$.分别取$P(x,-x),P(x,x),P(2x,-x)$，可得$$\begin{cases}
+		(g(0))^3 = (g(x))^3 + (g(-x))^3 \\
+		(g(2x))^3 = 2(g(x))^3 + 6x(g(x))^2 \\
+		(g(x))^3 = (g(2x))^3 + (g(-x))^3 + 3xg(2x)g(-x)
+	\end{cases}$$
+	将$g(x),g(-x),g(2x)$视作变量，将$x$视作参数.解得$g(x)=x$.
+\end{solution}
+
+\begin{proposition}{Cauchy方程}
+	若函数$f$满足$$\forall x,y \in D_f,~f(x+y)=f(x)+f(y)$$
+	则称$f$是\textbf{加性的}(additive). \\
+	对于加性函数$f$，若其定义域为$\mathbb{Q}$，则有$f(x)=f(1)x$；若其定义域为$\R$，且满足下列三个条件
+	\begin{itemize}
+		\item $f$在定义域上单调
+		\item $f$在定义域上连续
+		\item $f$在定义域上有界
+	\end{itemize}
+	之一，则有$f(x)=f(1)x$，反之则不一定.
 \end{proposition}
+\begin{proof}
+	第$1$步~下证
+	\begin{equation}
+		\forall n \in \mathbb{Z},~ f(n)=nf(1) \label{prop_cauchy1}
+	\end{equation}
+	首先，取$P(0,0)$，得$f(0+0)=f(0)+f(0)$，于是有$f(0)=0$. \\
+	其次，由$$f(n)=f(n-1)+f(1)=f(n-2)+2f(1)=\cdots =f(0)+nf(1)$$
+	有$\forall n \in \mathbb{Z}^+,~ f(n)=nf(1)$. \\
+	最后，取$P(x,-x)$，有$f(0)=f(x)+f(-x)$，则$\forall n \mathbb{Z}^-,~f(n)=-f(-n)=nf(1)$. \\
+	综上，式\ref{prop_cauchy1}成立. \\
+	第$2$步~下证
+	\begin{equation}
+		\forall p \in \mathbb{Z},q \in \mathbb{N}^+,~ f\ssb{\frac{p}{q}}=\frac{p}{q} f(1) \label{prop_cauchy2}
+	\end{equation}
+	首先，由$f$是加性的，显然有$f(x_1+ \cdots +x_n)=f(x_1) + \cdots + f(x_n)$.注意到$$qf\ssb{\frac{p}{q}} = \underbrace{f\ssb{\frac{p}{q}} + f\ssb{\frac{p}{q}} + \cdots + f\ssb{\frac{p}{q}}}_{q~ \rm times} = f\ssb{q \cdot \frac{p}{q}} = f(p)$$
+	结合式\ref{prop_cauchy1}，立得式\ref{prop_cauchy2}成立. \\
+	至此，原命题的前半部分证明完毕.为证明在$\R$上的加性函数是正比例函数的条件，需要用到一些高等工具，这里暂时跳过.
+\end{proof}
+\begin{remark}
+	像这样先证明$\mathbb{Z}$，再证明$\mathbb{Q}$，最后证明$\R$的方法称作Cauchy方法.
+\end{remark}
+
+\begin{example}{\examplefont{Cauchy方程}}
+	(1)求所有连续函数$f:\R \to \R$，满足$$\forall x,y\in \R,~f(x+y)=f(x)f(y)$$
+	(2)求所有函数$f:\mathbb{Q} \to \R$，满足$f(1)=2$且$$\forall x,y \in \mathbb{Q},~f(xy)=f(x)f(y)-f(x+y)+1$$
+\end{example}
+\begin{solution}
+	(1)在$P(x,y)$中，想让等式两侧同取自然对数，故先讨论$f(x)$的值域. \\
+	首先注意到，取$P(x,x)$，有$f(2x)=(f(x))^2 \geq 0$. \\
+	若存在$a$使得$f(a)=0$，则$\forall x \in \R,~f(x+a)=f(x)f(a)=0$，即此时$f(x)=0$. \\
+	若$f(x)$值域不包含$0$，则将$P(x,y)$两侧同取自然对数，可得$$\forall x,y \in \R,~ \ln f(x+y) = \ln f(x) + \ln f(y)$$
+	显然$g(x):= \ln f(x)$也是连续的.由Cauchy方程，$g(x)=g(1)x$，则$\ln f(x) = x \ln f(1)$，得$f(x)=(f(1))^x$. \\
+	综上，若存在$a$使得$f(a)=0$，则$f(x)=0$；若$f(x)$值域不包含$0$，则$f(x)=(f(1))^x$. \\
+	(2)根据$P(x,y)$形式，猜测$f(x)=x+1$.以下分两步给出证明： \\
+	第$1$步~下证
+	\begin{equation}
+		\forall n \in \mathbb{Z},~ f(n)=n+1 \label{ex35221}
+	\end{equation}
+	取$P(x,1)$，则有$$f(x)=f(x)f(1)-f(x+1)+1$$
+	即$f(x+1)=f(x)+1$.对于正整数$n$，有$$f(n)=f(n-1)+1=\cdots = f(1)+n-1=n+1$$
+	另一方面，取$P(-x,1)$，则有$$f(-x)=f(-x)f(1)-f(1-x)+1$$
+	即$f(-x)=f(1-x)-1$.对于正整数$n$，有$$f(-n)=f(1-n)-1=\cdots = f(0)-n=1-n$$
+	综上，式\ref{ex35221}成立. \\
+	第$2$步~下证
+	\begin{equation}
+		\forall p \in \mathbb{Z},q \in \mathbb{N}^+,~f\ssb{\frac{p}{q}} = \frac{p}{q} +1 \label{ex35222}
+	\end{equation}
+	取$P(q,p/q)$，有$$f(p) =f(q)f\ssb{\frac{p}{q}} - f\ssb{q+\frac{p}{q}}+1$$
+	取$P(x+p,1)$，有$$f(x+p)=f(x+p)f(1)-f(x+p+1)+1$$
+	同第一步可得$f(x+p)=f(x)+p$.综合该式与上式，可得$$p+1 = (q+1)f\ssb{\frac{p}{q}} - (q+1) - f\ssb{\frac{p}{q}} +1$$
+	于是式\ref{ex35222}成立.
+\end{solution}
+
+\begin{example}{\examplefont{利用单射}}
+	(1)求所有函数$f:\mathbb{Z} \to \mathbb{Z}$，满足$f(0)=1$且$$\forall n \in \mathbb{Z},~ f(f(n))=f(f(n+2)+2)=n$$
+	(2)求所有函数$f:\R^+ \to \R^+$，满足
+	\begin{enumerate}
+		\item 对所有正实数$x,y$，有$$f(xf(y))=yf(x)$$
+		\item 在区间$(1,+\infty)$上，$f(x)$有界.
+	\end{enumerate}
+	(3)设$S=\R _{(-1,+\infty )}$，确定所有$f:S \to S$，满足
+	\begin{enumerate}
+		\item 对所有$x,y \in S$，有$$f(x+f(y)+xf(y))=y+f(x)+yf(x)$$
+		\item 函数$g(x):=\dfrac{f(x)}{x}$在$(-1,0)$和$(0,+\infty)$严格单调递增.
+	\end{enumerate}
+\end{example}
+\begin{solution}
+	(1)如果$f$是单射，则有$f(n)=f(n+2)+2$，希望做到这一点. \\
+	任取整数$n_1,n_2$使得$f(n_1)=f(n_2)$，代入原式得$$f(f(n_1))=n_1,\quad f(f(n_2))=n_2$$
+	于是$n_1=n_2$，即$f$是单射.则$f(n)=f(n+2)+2$. \\
+	当$n$为偶数时，$f(n)=f(n-2)-2=\cdots =f(0)-n=1-n$；当$n$为奇数时，$f(n)=f(n-2)-2=\cdots =f(1)-n+1$.注意到$f(f(1))=1$，故$f(1)=0$，则$f(n)=1-n$. \\
+	综上，有$f(n)=1-n$. \\
+	(2)任取$y_1,y_2$使得$f(y_1)=f(y_2)$，取$P(x,y_1),P(x,y_2)$有$$f(xf(y_1))=y_1f(x),\quad f(xf(y_2))=y_2f(x)$$
+	由于$f(x)=0$不符合题意，故恒有$y_1=y_2$，即$f$是单射. \\
+	取$P(x,1)$，有$f(xf(1))=f(x)$，则$f(1)=1$；取$P(1,y)$，有$f(f(y))=yf(1)=y$；取$P(x,f(y))$，有$f(xy)=f(x)f(y)$. \\
+	取$P(x,x)$，有$f(xf(x))=xf(x)$.记$a=xf(x)$，则存在实数$a$使得$f(a)=a$成立.\footnote{请注意！这里不能说对所有实数$a$都成立，除非证明$f$是满射.}我们猜测$f(x)=x$，于是只需说明$a=1$.下证： \\
+	\buzhou{1}若$a>1$，由$f(x^2)=(f(x))^2$，$f(a^{2^n})=(f(a^{2^{n-1}}))^2=\cdots = a^{2^n}$，这与条件(ii)矛盾； \\
+	\buzhou{2}若$a<1$，则$1/a>1$.注意到$f(a)f(1/a)=1$，即$f(1/a)=1/f(a)=1/a$.同\buzhou{1}可知$f(1/a^{2^n})=1/a^{2^n}$，与(ii)矛盾. \\
+	综上，必有$a=1$，即$f(x)=1/x$.代回(i)(ii)知该$f(x)$满足条件. \\
+	(3)取$P(x,x)$，有$f(x+f(x)+xf(x))=x+f(x)+xf(x)$，即$g(x+f(x)+xf(x))=1$.由于$g(x)$是单射，于是对所有的$x \in S$，$x+f(x)+xf(x)$恒为定值，记作$c$，即$f(x)=\dfrac{c-x}{x+1}$. \\
+	将$f(x)$代入$P(x,y)$，得$$\frac{c-(x+(x+1)\frac{c-y}{y+1})}{(x+(x+1)\frac{c-y}{y+1})+1} = (y+(y+1)\frac{c-x}{x+1})$$
+	化简得$c^2+c=0$，即$f(x)=-1$或$f(x)=\dfrac{-x}{x+1}$.分别代回(i)(ii)验证，可知后者满足条件而前者不满足.
+\end{solution}
+
+\begin{example}{\examplefont{利用满射}}
+	(1)% TODO 满射例题
+\end{example}
 
 \chapter{三角函数}
 
@@ -1452,8 +1610,8 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
         \hline
           & $\arcsin{x}$ & $\arccos{x}$ & $\arctan{x}$ & $\arccot{x}$ \\ \hline
         定义域 & $[-1,1]$ & $[-1,1]$ & $\mathbb{R}$ & $\mathbb{R}$ \\ \hline
-        值域 & $[-\frac{\pi}{2} ,\frac{\pi}{2}]$ & $[0,\pi]$ & $(-\frac{\pi}{2},\frac{\pi}{2})$ & $(0,\pi)$ \\ \hline
-        对称性 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 & 沿$(0,0)$中心对称 & 沿$(0,\frac{\pi}{2})$中心对称 \\ \hline
+        值域 & $[-\dfrac{\pi}{2} ,\dfrac{\pi}{2}]$ & $[0,\pi]$ & $(-\dfrac{\pi}{2},\dfrac{\pi}{2})$ & $(0,\pi)$ \\ \hline
+        对称性 & 沿$(0,0)$中心对称 & 沿$(0,\dfrac{\pi}{2})$中心对称 & 沿$(0,0)$中心对称 & 沿$(0,\dfrac{\pi}{2})$中心对称 \\ \hline
     \end{tabular}
     
 \end{proposition}
@@ -1638,7 +1796,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \chapter{数列与数学归纳法}
 
-数列，顾名思义，就是将一组数按顺序排为一列的形式.或者，利用映射可以严格地定义数列：
+数列，顾名思义，就是将一组数按顺序排为一列的形式.利用映射可以严格地定义数列：
 
 \begin{definition}{序列，数列}
 	从自然数集$\mathbb{N}$到任意非空集合$A$的一个映射称为$A$中元素的一个\textbf{序列}(sequence).特别地，当$A$是数集时，称该序列为\textbf{数列}(number sequence).
@@ -1717,8 +1875,6 @@ $$
 		\item $\{ \log _{b}{a_n} \}$为等差数列，且其公差为$\log _{b}{q}$.
 	\end{enumerate}
 \end{proposition}
-
-由等比数列与等差数列的别名不难联想到$AM-GM$不等式.实际上，对于等比数列$\{ b_n \}$，有$b_{n+1} = (\sqrt{q \cdot b_n})^2 \leq \ssb{\dfrac{b_n+q}{2}}^2$，从而可以与另一个等差数列进行比较/放缩.
 
 \section{数列的变形}
 
@@ -1996,7 +2152,7 @@ $$
 	XXX
 \end{proof}
 
-\part{几何}
+\part{几何I}
 
 \chapter{平面向量}
 
@@ -2432,7 +2588,13 @@ $$
 
 空间向量基本定理，法向量与夹角计算
 
-\chapter{平面几何}
+\part{几何II}
+
+\chapter{平面几何常用定理}
+
+\section{梅涅劳斯定理与塞瓦定理}
+
+\section{与线段长和角度有关的定理}
 
 \part{数论}
 
@@ -2697,7 +2859,7 @@ $$
 	\buzhou{2}充分性：由Bezout定理可知，存在整数$m,n$使$am+bn=(a,b)$.记$c=c_1(a,b)$，则$amc_1+bnc_1=c$，即$(mc_1,nc_1)$是原方程的一组整数解.
 \end{proof}
 
-具体来讲，如何找到不定方程的一组解，除了通过观察，更快速的是借助下一章的同余工具，这里简要示范(读者可以在看过下一章之后再回来做).实际上，定理\ref{thm:eryryicigrxi}也可以用同余的知识证明.
+具体来讲，如何找到不定方程的一组解，除了通过观察，更快速的是借助下一章的同余工具，这里简要示范(读者可以在看过下一章之后再回来做).
 
 多元一次不定方程是二元情况的推广，在求解的时候一般作换元以消去尽可能多的变量，最后只需要解一些二元不定方程即可.
 
@@ -2761,16 +2923,14 @@ $$
 \end{remark}
 
 \begin{theorem}{同余运算的性质}{tsyuyysr}
-	(1)(在模$m$的意义下)类似于等式的性质：若$a \equiv b,~c \equiv d$，则$$a+c \equiv b+d, \qquad ac \equiv bd$$
-	特别地，有$a^k \equiv b^k$. \\
+	(1)关于加法与乘法的性质：若$a \equiv b \mod m,~c \equiv d \mod m$，则$$a+c \equiv b+d \mod m, \qquad ac \equiv bd \mod m$$
+	一般地，若$A_{\alpha _1 \cdots \alpha _k} \equiv B_{\alpha _1 \cdots \alpha _k} \mod m$且$x_i \equiv y_i \mod m~(i=1,2,\cdots ,k)$，则有$$\sum_{\alpha _1, \cdots ,\alpha _k} A_{\alpha _1 \cdots \alpha _k} x_1^{\alpha _1} \cdots x_k^{\alpha _k} \equiv \sum_{\alpha _1, \cdots ,\alpha _k} B_{\alpha _1 \cdots \alpha _k} y_1^{\alpha _1} \cdots y_k^{\alpha _k} \mod m$$
 	(2)若$a \equiv b \mod m$且$a \equiv b \mod n$，则$$a \equiv b \mod [m,n]$$
 	(3)若$ac \equiv bc \mod m$，其中$c \neq 0$，则$$a \equiv b \mod \frac{m}{(c,m)}$$
 \end{theorem}
 
 
 \section{剩余系}
-
-剩余系，完全剩余系，数论倒数，缩剩余系，Euler函数，Fermat定理，Wilson定理
 
 同余的本质，实际上是将正整数集$\mathbb{Z}$分为若干集合，每个集合模$m$的余数循环.类似于这种思路，可以对所有模$m$同余的数建立一个等价类：
 
@@ -2814,7 +2974,66 @@ $$
 
 在上述定理中，如果取$b=1$，则意味着在$(a,m)=1$时，总存在$x$使得$ax \equiv 1 \mod m$.称这样的$x$为$a$在\textbf{模$m$意义下的乘法逆元}，记$x \equiv a^{-1} \mod m$.因为所有这样的$a^{-1}$组成了一个模$m$的剩余类，故可以将乘法逆元(不严谨地)当做除法来考虑.
 
-\section{中国剩余定理}
+\section{欧拉定理，费马小定理与阶}
+
+\begin{definition}{欧拉函数}
+	定义\textbf{欧拉函数}$\varphi :\mathbb{Z} \to \mathbb{Z}$满足，$\varphi (a)$的值等于在$0,1,\cdots ,a-1$中与$a$互素的数的个数.
+\end{definition}
+
+\begin{definition}{缩剩余系}
+	若$\varphi (m)$个整数$a_1,\cdots ,a_{\varphi (m)}$包含于模$m$的一个完全剩余系，且其中任一整数均与$m$互素，则称它们构成模$m$的一个\textbf{缩剩余系}(简化剩余系).
+\end{definition}
+
+类似于完全剩余系，有
+
+\begin{theorem}{缩剩余系的性质}
+	设正整数$m$，整数$a$满足$(a,m)=1$.若$S$是一个模$m$的缩剩余系，则$T=aS$也是模$m$的缩剩余系.
+\end{theorem}
+\begin{proof}
+	XXX
+\end{proof}
+
+欧拉函数是一个积性函数，即对于互素的正整数$m_1,m_2$，有$\varphi (m_1m_2) = \varphi (m_1) \cdot \varphi (m_2)$.为了证明这个定理，若设$S_1,S_2$分别为模$m_1,m_2$的缩系，注意到$\varphi (m_1) \cdot \varphi (m_2)$即为$m_2S_1+m_1S_2$的元素个数.于是只要证明：
+
+\begin{theorem}
+	若整数$m_1,m_2$满足$(m_1,m_2)=1$，设$S_1,S_2$分别为模$m_1,m_2$的缩系，则$m_2S_1+m_1S_2$是模$m_1m_2$的缩系.
+\end{theorem}
+\begin{proof}
+	\buzhou{1} 先证明一个更一般的情况：若整数$m_1,m_2$满足$(m_1,m_2)=1$，设$S_1,S_2$分别为模$m_1,m_2$的完系，则$m_2S_1+m_1S_2$是模$m_1m_2$的完系. \\
+	首先注意到$|m_2S_1+m_1S_2|=|S_1| \cdot |S_2|=m_1m_2$，于是只需证明$m_2S_1+m_1S_2$中的$m_1m_2$个整数模$m_1m_2$互不同余. \\
+	假设存在$x_1,y_1 \in S_1$与$x_2,y_2 \in S_2$满足$$m_2x_1 + m_1x_2 \equiv m_2y_1 + m_1y_2 \mod m_1m_2$$
+	于是$$m_1(x_2-y_2) \equiv m_2(x_1-y_1) \mod m_1m_2$$
+	则有$$x_1 \equiv y_1 \mod m_1,\quad x_2 \equiv y_2 \mod m_2$$
+	矛盾.故$m_2S_1+m_1S_2$中的$m_1m_2$个整数模$m_1m_2$互不同余. \\
+	\buzhou{2} 在上述一般情况中，若任取$x_1 \in S_1$与$x_2 \in S_2$均有$(x_1,m_1)=(x_2,m_2)=1$，即为原命题情景. \\
+	一方面，由于$(m_2x_1+m_1x_2,m_1)=1$与$(m_2x_1+m_1x_2,m_2)=1$，显然有$(m_2x_1+m_1x_2,m_1m_2)=1$； \\
+	另一方面，若$(m_2x_1+m_1x_2,m_1m_2)=1$，则分别有$(m_2x_1+m_1x_2,m_1)=1$与$(m_2x_1+m_1x_2,m_2)=1$，于是$(x_1,m_1)=(x_2,m_2)=1$. \\
+	综上，$m_2S_1+m_1S_2$是模$m_1m_2$的完系.
+\end{proof}
+
+由此我们可以计算$\varphi (n)$.
+
+\begin{theorem}
+	设$n=p_1^{\alpha _1} \cdots p_k^{\alpha _k}$，则$$\varphi (n) = n \ssb{1-\frac{1}{p_1}} \cdots \ssb{1-\frac{1}{p_k}}$$
+\end{theorem}
+\begin{proof}
+	由欧拉函数是积性函数，有$$\varphi (n) = \varphi (p_1^{\alpha _1}) \cdots \varphi (p_k^{\alpha _k})$$
+\end{proof}
+
+\section{同余式与中国剩余定理}
+
+类似于上文所述，如果将同余运算考虑为相等符号(即构造若干“等价类”——剩余类进而将剩余类作为一个数的方法)，我们可以拓广多项式的根相关的内容.
+
+\begin{definition}{同余式}
+	设$f(x)$表示多项式$a_nx^n + \cdots + a_1x + a_0$，其中$a_i \in \mathbb{Z}~(i=0,1,\cdots ,n)$.对于正整数$m$，则$$f(x) \equiv 0 \mod m$$
+	称作模$m$的\textbf{同余式}.若$a_n \not\equiv 0 \mod m$，则$n$称作该同余式的\textbf{次数}.
+\end{definition}
+
+若$f(a) \equiv 0 \mod m$，则剩余类$K_a$中任意整数$x$都满足$f(x) \equiv 0$，于是可以定义：
+
+\begin{definition}{同余式的解}
+	若$a$是使得$f(a) \equiv 0 \mod m$成立的一个整数，则$x \equiv a \mod m$称作该同余式的一个\textbf{解}.
+\end{definition}
 
 \part{代数}
 

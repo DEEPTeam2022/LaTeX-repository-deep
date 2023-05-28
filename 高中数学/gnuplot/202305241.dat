@@ -1,0 +1,60 @@
+#------------------------------Global Setting-------------------------#
+
+set term svg font 'Times New Roman'
+set encoding utf8
+set encoding iso_8859_1
+
+set size 0.8,1.0
+set out '202305241.svg'
+
+
+#----------------------------------------------------------------------#
+
+#-----------------------------Axes and frames--------------------------
+unset border
+
+xmin = -6
+xmax = 6
+ymin = -6
+ymax = 6
+
+set xzeroaxis linetype 1 lc 'black'
+set yzeroaxis linetype 1 lc 'black'
+set style arrow 3 head filled size screen 0.03,15,45 lc black
+set arrow 1 from 0, 1.02*ymin to 0,1.05*ymax arrowstyle 3  
+set arrow 2 from 1.02*xmin, 0 to 1.05*xmax,0 arrowstyle 3  
+
+set xtics 1 nomirror axis
+set ytics 1 nomirror axis #offset -0.5*(xmax - xmin),0
+#unset xtics
+#unset ytics
+set mxtics 2
+set mytics 2
+
+#------------------------------------------------------------------
+
+#--------------------------content setting------------------------
+set xrange[xmin:xmax]
+set yrange[ymin:ymax]
+set samples 1000
+
+f(x) = -x-0.25/x
+g(x) = x**2/ (1-2*x)
+h(x) = x**2/ (1-2*abs(x))
+
+#------------------------------------------------------------
+
+#-----------------------------label setting---------------------
+set xlabel '$x$'
+set ylabel '$y$'
+unset xlabel
+unset ylabel
+set label '{$x$}' at 1.05*xmax, 0.3 offset char 0, char 0 center font 'Times New Roman,22'
+set label '{$y$}' at 0.3, 1.05*ymax offset char 0, char 0 center font 'Times New Roman,22'
+
+set key top right
+#---------------------------------------------------------------------
+
+
+#-------------------------Start plotting---------------------------------------
+plot f(x) lw 2 lc 'black', g(x) lw 2 lc 'blue', h(x) lw 2 lc 'red' dt '-'
