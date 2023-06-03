@@ -22,6 +22,7 @@
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}
 \newcommand{\sw}[1]{\boxed{\text{解法 #1}} \ }
+\newcommand{\pw}[1]{\boxed{\text{证法 #1}} \ }
 \newcommand{\buzhou}[1]{$#1^{\circ} \ $}
 \newcommand{\cor}{~\textit{或}~}
 \usepackage{ulem}
@@ -1372,7 +1373,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 函数方程，是指这样一类特殊的方程，它的解是某一个函数表达式.解函数方程的技巧有很多，这里无法一一叙述，只好割爱，简要介绍一些基本方法，并将其作为函数章节的复习.完整的方法与例题可以参考\textit{Pang-Cheng, Wu}所著的\textit{Functional Equation}\footnote{https://cdn.bc-pf.org/resources/math/algebra/fe/Pang\_Cheng\_Wu-FE.pdf} .
 
-解决函数方程的基本方法有：赋值法，换元法，柯西法，利用单射与满射等.我们逐一介绍.
+解决函数方程的基本方法有：赋值法，换元法，柯西法，利用函数的性质等.我们逐一介绍.
 
 \begin{example}{\examplefont{赋值与解方程组}}
 	(1)求所有函数$f:\R \to \R$，满足$$\forall x \in \R ,~2f(x)+xf(1-x)=x^3-2$$
@@ -1492,9 +1493,19 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	化简得$c^2+c=0$，即$f(x)=-1$或$f(x)=\dfrac{-x}{x+1}$.分别代回(i)(ii)验证，可知后者满足条件而前者不满足.
 \end{solution}
 
-\begin{example}{\examplefont{利用满射}}
-	(1)% TODO 满射例题
-\end{example}
+\newpage
+\begin{problemset}
+	\item 已知关于$x$的方程$x^2+\sqrt{12-3x^2} + |x^2 + 2x - \sqrt{12-3x^2} |=a$存在$3$个不同的实根，则实数$a$的取值范围为\tk .
+	\item (2022北京预赛)已知函数$f:\R \to \R$，使得任取实数$x,y,z$都有$$f(xy)+f(xz)-2f(x)f(yz) \geq \frac{1}{2}$$
+	则$[1 \cdot f(1)] + [2 \cdot f(2)] + \cdots + [2022 \cdot f(2022)]=$\tk .
+	\item (2022四川预赛)已知函数$f(x)$在$(0,+\infty)$上严格单调递减，且对任意$x \in (0,+\infty)$均有$$f(x) \cdot f\ssb{f(x)+\frac{2}{x}} = \frac{1}{3}$$记$g(x)=f(x)+4x^2$，则函数$g(x)$的最小值是\tk .
+	\item 设$f(x)=x^2+px+q~(p,q \in \mathbb{R})$.若$|f(x)|$在$[-1,1]$上的最大值为$M$，则$M$的最小值为\tk .
+	\item 设二次函数$f(x)=ax^2+bx+c~(a>0)$，方程$f(x)-x=0$的两个根$x_1,x_2$满足$0<x_1<x_2< \dfrac{1}{a}$. \\
+	(1)当$x \in (0,x_1)$时，证明：$x<f(x)<x_1$； \\
+	(2)设函数$f(x)$的图像关于直线$x=x_0$对称，证明：$x_0 < \dfrac{1}{2}x_1$.
+	\item 设关于$x$的一元二次方程$2x^2-tx-2=0$的两个根为$\alpha , \beta ~ (\alpha < \beta)$.若$x_1,x_2$为区间$[\alpha ,\beta]$上的两个不同的点，求证：$4x_1x_2-t(x_1+x_2)-4<0$.
+\end{problemset}
+
 
 \chapter{三角函数}
 
@@ -2990,7 +3001,7 @@ $$
 	设正整数$m$，整数$a$满足$(a,m)=1$.若$S$是一个模$m$的缩剩余系，则$T=aS$也是模$m$的缩剩余系.
 \end{theorem}
 \begin{proof}
-	XXX
+	由于$|T|=|S|=\varphi (m)$，只需证明$T$中的$\varphi (m)$个元素模$m$互不同余.实际上，若$x_1,x_2 \in S$满足$ax_1 \equiv ax_2 \mod m$，由于$(a,m)=1$，则有$x_1 \equiv x_2 \mod m$，矛盾.故原定理得证.
 \end{proof}
 
 欧拉函数是一个积性函数，即对于互素的正整数$m_1,m_2$，有$\varphi (m_1m_2) = \varphi (m_1) \cdot \varphi (m_2)$.为了证明这个定理，若设$S_1,S_2$分别为模$m_1,m_2$的缩系，注意到$\varphi (m_1) \cdot \varphi (m_2)$即为$m_2S_1+m_1S_2$的元素个数.于是只要证明：
@@ -3018,6 +3029,15 @@ $$
 \end{theorem}
 \begin{proof}
 	由欧拉函数是积性函数，有$$\varphi (n) = \varphi (p_1^{\alpha _1}) \cdots \varphi (p_k^{\alpha _k})$$
+	再来看$\varphi (p^k)$，其中$p$是素数而$k$是任意正整数.由定义，$\varphi (p^k)$表示在$0,1,p^k-1$中与$p^k$互素的数的个数，即从$0,1,p^k-1$中去除能被$p$整除的数的个数，即$$\varphi (p^k) = p^k - \lfloor \frac{p^k}{p} \rfloor = p^k - p^{k-1}$$
+	代入上式，即得$$\varphi (n) = p_1^{\alpha _1}\ssb{1-\frac{1}{p_1}} \cdots p_k^{\alpha _k}\ssb{1-\frac{1}{p_k}} = n \ssb{1-\frac{1}{p_1}} \cdots \ssb{1-\frac{1}{p_k}}$$
+\end{proof}
+
+\begin{theorem}{Euler定理}
+	设$m$是大于$1$的整数，$(a,m)=1$，则$$a^{\varphi (m)} \equiv 1 \mod m$$
+\end{theorem}
+\begin{proof}
+	
 \end{proof}
 
 \section{同余式与中国剩余定理}
@@ -3041,7 +3061,68 @@ $$
 
 \section{均值不等式}
 
-均值不等式，加权均值不等式
+\begin{theorem}{平均值不等式}
+	设$x_1, \cdots ,x_n$为$n$个非负实数，定义它们的 \\
+	调和平均：$$H_n = \frac{n}{\frac{1}{x_1} + \cdots + \frac{1}{x_n}}$$
+	几何平均：$$G_n = \sqrt[n]{x_1 \cdots x_n}$$
+	算术平均：$$A_n = \frac{x_1+ \cdots + x_n}{n}$$
+	平方平均：$$Q_n = \sqrt{\frac{x_1^2 + \cdots + x_n^2}{n}}$$
+	则有$$H_n \leq G_n \leq A_n \leq Q_n$$
+	所有不等式的等号均在$x_1 = \cdots = x_n$时取到.
+\end{theorem}
+\begin{proof}
+	只需证明$A_n \geq G_n$，第一部分自然可以推出：由于$$\frac{\frac{1}{x_1} + \cdots + \frac{1}{x_n}}{n} \geq \sqrt[n]{\frac{1}{x_1} \cdots \frac{1}{x_n}} = \frac{1}{\sqrt[n]{x_1 \cdots x_n}}$$
+	两边取倒数即得$G_n \geq H_n$，取等条件为$x_1= \cdots = x_n$；至于$A_n \leq Q_n$的情形，利用Cauchy不等式更方便，下一小节会给出证明. \\
+	这里给出$A_n \geq G_n$的四种证明方法，同时作为部分不等式技巧的介绍\footnote{这个不等式的证明方法非常多，可以参考小蓝本的《平均值不等式与柯西不等式》.} .这些证明方法读者初次接触时不必完全掌握，只需要每一步操作的目的即可.\\
+	\pw{一}(归纳法)对$n$归纳证明$A_n \geq G_n$且取等条件为$x_1 = \cdots = x_n$. \\
+	(1) 当$n=2$时，即证明$$x_1+x_2 \geq 2\sqrt{x_1x_2}$$
+	由$(y_1-y_2)^2 \geq 0$可知有$y_1^2 + y_2^2 \geq 2y_1y_2$，且其等号在$y_1=y_2$时取得.取$y_1=\sqrt{x_1},~y_2=\sqrt{x_2}$，知上式成立，且等号取得当且仅当$x_1=x_2$. \\
+	(2) 假设当$n=k$时命题成立，下证$n=k+1$时命题成立.作变形
+	\begin{align*}
+		&x_1 + \cdots + x_k + x_{k+1} \\
+		=& (x_1 + \cdots + x_k) + x_{k+1} \\
+		\geq & k\sqrt[k]{x_1 \cdots x_k} + x_{k+1} \\
+		=& k\sqrt[k]{x_1 \cdots x_k} + (x_{k+1} + \underbrace{G_{k+1} + \cdots + G_{k+1}}_{(k-1) ~\text{times}}) -(k-1)G_{k+1} \\
+		\geq & k\sqrt[k]{x_1 \cdots x_k} + k\sqrt[k]{x_{k+1}G_{k+1}^{k-1}} -(k-1)G_{k+1} \\
+		\geq & 2k\sqrt{\sqrt[k]{x_1 \cdots x_k} \sqrt[k]{x_{k+1}G_{k+1}^{k-1}}} -(k-1)G_{k+1} \\
+		=& 2k\sqrt[2k]{x_1 \cdots x_kx_{k+1} G_{k+1}^{k-1}} -(k-1)G_{k+1} \\
+		=& 2k\sqrt[2k]{G_{k+1}^{k+1} G_{k+1}^{k-1}} -(k-1)G_{k+1} \\
+		=& (k+1)G_{k+1}
+	\end{align*}
+	即得命题所述不等式，且取等条件为$x_1= \cdots = x_k$与$x_{k+1}=G_{k+1}$与$\sqrt[k]{x_1 \cdots x_k} = \sqrt[k]{x_{k+1}G_{k+1}^{k-1}}$，即$x_1 = \cdots = x_k = x_{k+1}$. \\ 
+	注：这里对(2)中变形做一些解释.第一次将$x_1 + \cdots + x_k$单独隔离开，是为了制造$n=k$的情况；第二次将$x_{k+1}$与$k-1$个$G_{k+1}$放在一起，本质上是因为想凑出一个与$k$次根号下的$x_1 \cdots x_k$相乘的$k$次根号下的$x_{k+1}$(这里其实已经想到下一步利用二元均值变加为乘)，再联系取等条件与最终目的想到利用$k-1$个$G_{k+1}$. \\
+	\pw{二}(换元与归纳法)由于$A_n \geq G_n$等价于$$\frac{x_1+\cdots +x_n}{\sqrt[n]{x_1 \cdots x_n}} \geq n$$
+	作换元$y_i = x_i/G_n,~i=1,\cdots ,n$，即已知$y_1 \cdots y_n = 1$，求证$y_1 + \cdots + y_n \geq n$，且取等条件为$y_1 = \cdots = y_n = 1$.下面对$n$归纳证明. \\
+	(1)当$n=2$时，即已知$y_1y_2=1$，求证$y_1+y_2 \geq 2$.同证法一的(1)可得. \\
+	(2)假设当$n=k$时成立，下证$n=k+1$时也成立. \\
+	将$y_ky_{k+1}$视作一个整体，那么由于$y_1 \cdots y_{k-1}(y_ky_{k+1}) = 1$，有$$y_1 + \cdots + y_{k-1} + y_ky_{k+1} \geq k$$
+	于是
+	\begin{align*}
+		&y_1 + \cdots + y_k + y_{k+1} \\
+		\geq & k- y_ky_{k+1} + y_k + y_{k+1} \\
+		=& k+1 - (y_k-1)(y_{k+1}-1)
+	\end{align*}
+	只需证明$(y_k-1)(y_{k+1}-1) \leq 0$即可.实际上，由于一开始$y_k$与$y_{k+1}$的选取是任意的，而由$y_1 \cdots y_{k+1}=1$必有某个$y_i$不小于$1$，另一个$y_j$不大于$1$，于是可以不妨设$y_k \leq 1,~y_{k+1} \geq 1$，即得. \\
+	取等条件自然为$y_1 = \cdots =y_k = y_{k+1} = 1$. \\
+	\pw{三}(换元与取对数)用另一种方式换元：由于$A_n \geq G_n$等价于$$\frac{x_1 \cdots x_n}{(x_1+ \cdots +x_n)^n} \leq \frac{1}{n^n}$$
+	作换元$y_i=x_i/A_n$，即已知$y_1 + \cdots + y_n = 1$，需要证明$y_1 \cdots y_n \leq 1/n^n$.两边取对数即证$$\ln y_1 + \cdots + \ln y_n \leq -n\ln n$$
+	且等号在$y_1 = \cdots =y_n = 1/n$时取到. \\
+	将熟知的不等式$\ln x \leq x-1$结合取等条件变形为$\ln nx \leq nx-1$，即$\ln x \leq nx-\ln n -1$.于是$$\ln y_1 + \cdots + \ln y_n \leq n(y_1 + \cdots +y_n) - n\ln n - n = -n \ln n$$
+	其中等号在$y_1 = \cdots = y_n = 1/n$处取到. \\
+	\pw{四}(反向归纳法)\footnote{这个证法最初是由柯西想到的} 也许平均值不等式对于$k \to k+1$的情况需要一些调整，但是它对于$k \to 2k$的情况就很漂亮.我们可以归纳证明，命题对所有$n=2^m$的情况成立. \\
+	(1)当$m=1$时，同证法一的(1)可知命题成立. \\
+	(2)假设当$m=k$时命题成立，下证$m=k+1$时命题成立.
+	\begin{align*}
+		&\frac{x_1 + \cdots + x_{2^k} + x_{2^k+1} + \cdots + x_{2^{k+1}}}{2^{k+1}} \\
+		=& \frac{1}{2} \ssb{\frac{x_1 + \cdots + x_{2^k}}{2^{k}} + \frac{x_{2^k+1} + \cdots + x_{2^{k+1}}}{2^{k}}} \\
+		\geq & \frac{1}{2} (\sqrt[2^k]{x_1 \cdots x_{2^k}} + \sqrt[2^k]{x_{2^k+1} \cdots x_{2^{k+1}}}) \\
+		\geq &\sqrt{\sqrt[2^k]{x_1 \cdots x_{2^k}}  \sqrt[2^k]{x_{2^k+1} \cdots x_{2^{k+1}}}} \\
+		=& \sqrt[2^{k+1}]{x_1 \cdots x_{2^k}x_{2^k+1} \cdots x_{2^{k+1}}}
+	\end{align*}
+	也就是说，在整个正整数集中，有无数个离散的元素使得命题成立.接着只需要证明$k+1 \to k$的情况即可.这是显然的，假设$n=k+1$时命题成立，那么$$\sqrt[k+1]{x_1 \cdots x_kA_k} \leq \frac{x_1 + \cdots + x_k +A_k}{k+1} = A_k$$
+	不难看出取等条件为全相等. \\
+	所以对任意正整数$n$，命题均成立.
+\end{proof}
 
 \section{Cauchy不等式}
 
@@ -3051,9 +3132,31 @@ Cauchy不等式
 
 排序不等式，切比雪夫不等式
 
-\section{若干著名不等式}
+\section{Jensen不等式，切线放缩与调整法}
 
-Jensen不等式，Hölder不等式，Young不等式，Schur不等式，权方和不等式，Bernoulli不等式
+Jensen不等式
+
+\begin{example}
+	利用调整法证明平均值不等式.即，对于非负实数$x_1, \cdots ,x_n$，有$$\frac{x_1+ \cdots +x_n}{n} \geq \sqrt[n]{x_1 \cdots x_n}$$
+	当且仅当$x_1 = \cdots =x_n$时取得等号.
+\end{example}
+\begin{solution}
+	首先，若$x_1 = \cdots = x_n$，显然有$A_n=G_n$.记$$f(x_1, \cdots ,x_n) = \frac{x_1 + \cdots + x_n}{n} - \sqrt[n]{x_1 \cdots x_n}$$
+	下证$f(x_1, \cdots ,x_n) \geq f(A_n, \cdots ,A_n) = 0$. \\
+	首先证明，若$x_1 \leq A_n,~x_2 \geq A_n$，则有$$f(x_1,x_2,x_3, \cdots ,x_n) \geq f \ssb{A_n,x_1+x_2-A_n,x_3, \cdots ,x_n}$$
+	上式等价于$$A_n - \sqrt[n]{x_1x_2x_3 \cdots x_n} \geq A_n - \sqrt[n]{A_n(x_1+x_2-A_n)x_3 \cdots x_n}$$
+	即$$A_n(x_1+x_2-A_n) \geq x_1x_2,\quad (A_n-x_1)(A_n-x_2) \leq 0$$
+	由$x_1 \leq A_n,~x_2 \geq A_n$知上式成立，且取等条件为$x_1=A_n$或$x_2=A_n$. \\
+	对于$x_1, \cdots ,x_n$，除去其中等于$A_n$的，剩下的一些$x$中必有不小于$A_n$与不大于$A_n$的.将这两个元素按照上式进行放缩，得到一个新的$A_n$与另一个新的元素.不断重复该过程直到所有$x$都变为$A_n$，即得$f(x_1, \cdots ,x_n) \geq f(A_n, \cdots ,A_n) = 0$，且取等条件为$x_1 = \cdots = x_n = A_n$.
+\end{solution}
+
+\section{Hölder不等式}
+
+Hölder不等式
+
+\section{Schur不等式与三元不等式问题}
+
+Schur不等式，齐次化
 
 \chapter{复数与多项式II}
 
