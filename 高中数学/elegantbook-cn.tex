@@ -25,18 +25,23 @@
 \newcommand{\pw}[1]{\boxed{\text{证法 #1}} \ }
 \newcommand{\buzhou}[1]{$#1^{\circ} \ $}
 \newcommand{\cor}{~\textit{或}~}
+\newcommand{\lrfloor}[1]{\lfloor #1 \rfloor}
 \usepackage{ulem}
 	\newcommand{\tk}{\uline{\hspace{4em}}}
 \newcommand{\pspace}{\vspace{0.5em}}
 \usepackage{amsmath,amsfonts}
 	\DeclareMathOperator{\spn}{span}
-	\DeclareMathOperator{\ic}{i}
 	\DeclareMathOperator{\card}{card}
 	\DeclareMathOperator{\arccot}{arccot}
 	\DeclareMathOperator{\setjianfa}{\textbackslash}
 	\DeclareMathOperator{\CRe}{Re}
 	\DeclareMathOperator{\CIm}{Im}
 	\DeclareMathOperator{\lcm}{lcm}
+	\DeclareMathOperator{\Arg}{Arg}
+	\DeclareMathOperator{\ii}{i}
+	\DeclareMathOperator{\ee}{e}
+	\DeclareSymbolFont{yh}{OMX}{yhex}{m}{n}
+	\DeclareMathAccent{\hu}{\mathord}{yh}{"F3}
 \newcommand{\examplefont}[1]{\color{mgreen} \textbf{#1}}
 
 \makeatletter
@@ -105,7 +110,15 @@
 
 \chapter*{写在前面}\markboth{写在前面}{写在前面}
 
-“例题”主要旨在提升对定理、定义的理解，“练习”则是一些利用既有知识解决的题目.
+在学习完《高中数学》后，可以看看下列数学专业书籍：
+
+\begin{itemize}
+	\item 《线性代数应该这样学》(\textit{Linear Algebras Done Right})~~作者\textit{Sheldon Axler}：虽然名为线性代数教材，实际上与常规的线代教材讲法完全不同，不涉及过多的计算方法，适合作为数学分析的前置课程；
+	\item 《数学分析I》~~作者\textit{Ayumu}\footnote{https://space.bilibili.com/1632276842}：实数理论、极限理论、函数的连续性、(一元函数的)微分、积分；
+	\item 《数论：概念和问题》(\textit{Number Theory: Concepts and Problems})~~作者\textit{Titu Andreescu}：将初等数论中的核心内容应用到竞赛题目上，内容很全，并且包括大量练习题.
+\end{itemize}
+
+如果能在一年以内学完《高中数学》，那么以上书籍一年左右也就可以看完.
 
 \tableofcontents
 
@@ -129,7 +142,7 @@
 \subsection{命题的概念}
 
 \begin{definition}{命题}
-	由一个陈述句表达的、具有真值的判断称为\textbf{命题}.
+	由一个陈述句表达的、具有真值的判断称为\textbf{命题}(proposition).
 \end{definition}
 \begin{remark}
 	有一种特殊的命题，形如“若$p$，则$q$”，这种命题可以帮助我们判断很多要素.
@@ -138,8 +151,8 @@
 命题之间有一些特殊关系.
 
 \begin{definition}{充分条件与必要条件} %ayumu数分p1定义0.1
-	设命题$A$和$B$.若$A$可以推得$B$，则称命题$A$是$B$的\textbf{充分条件}(sufficient condition)，$B$是$A$的\textbf{必要条件}(necessary condition)，记作$$A \Rightarrow B,~\text{或}~B \Leftarrow A$$
-	若$A$可以推得$B$且$B$可以推得$A$，则称命题$A$和$B$互为\textbf{充分必要条件}(necessary and sufficient condition)，简称充要条件，此时也称命题$A$和$B$等价($A$成立当且仅当$B$成立)，记作$$A \Leftrightarrow B$$
+	设命题$A$和$B$.若$A$可以推得$B$，则称命题$A$是$B$的\textbf{充分条件}(sufficient condition)，$B$是$A$的\textbf{必要条件}(necessary condition)，记作$$A \Rightarrow B,~\text{或}~B \Leftarrow A.$$
+	若$A$可以推得$B$且$B$可以推得$A$，则称命题$A$和$B$互为\textbf{充分必要条件}(necessary and sufficient condition)，简称充要条件，此时也称命题$A$和$B$等价($A$成立当且仅当$B$成立)，记作$$A \Leftrightarrow B.$$
 	此时$B \Rightarrow A$的过程称为充分性，$A \Rightarrow B$的过程称为必要性.
 \end{definition}
 \begin{remark}
@@ -149,7 +162,7 @@
 	类似于大于等于(小于等于)号，“充分(必要)条件”具有传递性.即“若$A \Rightarrow B$且$B \Rightarrow C$，则$A \Rightarrow C$”.
 \end{remark}
 
-可以用图像来更好理解该定义.
+可以用图像来更好理解该定义.(图1)
 
 \begin{figure}[h!]
 	\centering
@@ -158,47 +171,42 @@
 \end{figure}
 
 \begin{example}
-	(1)一个四边形“是菱形”是“它的对角线互相垂直”的\tk 条件. \\
-	(2)“$0<x<1$”是“$x<2$”的\tk 条件. \\
-	(3)设有命题$p,q$.则“$p \Rightarrow q$”是“$p \Leftrightarrow q$”的\tk 条件. \\
-	(4)“$x^2-5x+6 \neq 0$”是“$x \neq 2$”的\tk 条件.
+	(a)一个四边形“是菱形”是“它的对角线互相垂直”的\tk 条件. \\
+	(b)“$0<x<1$”是“$x<2$”的\tk 条件. \\
+	(c)设有命题$p,q$.则“$p \Rightarrow q$”是“$p \Leftrightarrow q$”的\tk 条件. \\
+	(d)“$x^2-5x+6 \neq 0$”是“$x \neq 2$”的\tk 条件.
 \end{example}
 \begin{solution}
-	(1)充分且不必要；(2)充分且不必要；(3)必要且不充分；(4)充分且不必要.
+	(a)充分且不必要；(b)充分且不必要；(c)必要且不充分；(d)充分且不必要.
 \end{solution}
 
 不过这种直观的判断方式比较迷惑，我们可以通过命题的逻辑运算更好地思考这些问题.
 
 \begin{definition}{命题的逻辑运算} %ayumu数分p1定义0.3
 	设命题$A$与$B$， \\
-	(1)若$A$和$B$中至少有一个命题成立，则称$A$\textbf{或}(or)$B$，记作$$A \vee B$$
-	(2)若$A$和$B$同时成立，则称$A$\textbf{且}(and)$B$，记作$$A \wedge B$$
-	(3)若$A$的相反形式成立，则称\textbf{非}(not)$A$(或称$A$的否定)，记作$$\neg A$$
+	(1)若$A$和$B$中至少有一个命题成立，则称$A$\textbf{或}(or)$B$，记作$$A \vee B.$$
+	(2)若$A$和$B$同时成立，则称$A$\textbf{且}(and)$B$，记作$$A \wedge B.$$
+	(3)若$A$的相反形式成立，则称\textbf{非}(not)$A$(或称$A$的否定)，记作$$\neg A.$$
 \end{definition}
 \begin{remark}
-	关于“且”“或”的否定，存在如下规律：
-	$$\neg (A \vee B) = (\neg A) \wedge (\neg B)$$
-	$$\neg (A \wedge B) = (\neg A) \vee (\neg B)$$
+	关于“且”“或”的否定，存在如下规律：(实质上是集合运算的摩根律，可以比对后文思考)
+	$$\neg (A \vee B) = (\neg A) \wedge (\neg B),\qquad \neg (A \wedge B) = (\neg A) \vee (\neg B).$$
 \end{remark}
 
 另外，对于任意命题的否定，有一个重要法则.在二值逻辑中，该定律实际上告诉我们一个命题$P$要么为真、要么为假.
 
-\begin{proposition}{排中律}
+\begin{theorem}{排中律}
 	对于任何命题$P$，$P \vee (\neg P)$为真.
-\end{proposition}
+\end{theorem}
 
 \begin{definition}{存在，任意}
 	设命题$A$， \\
-	(1)若\textbf{存在}(exist)$x$使得命题$A$成立，可以记作$$\exists x~s.t.~A$$
-	(2)若对于\textbf{任意}(for all)$x$都能使得命题$A$成立，可以记作$$\forall x,A$$
+	(1)若\textbf{存在}(exist)$x$使得命题$A$成立，可以记作$$\exists x,A.$$
+	(2)若对于\textbf{任意}(for all)$x$都能使得命题$A$成立，可以记作$$\forall x,A.$$
 \end{definition}
 \begin{remark}
-	“$s.t.$”是“\textit{such that}”的缩写.
-\end{remark}
-\begin{remark}
 	“存在”与“任意”的否定如下：
-	$$\neg (\forall x,A) = \exists x~s.t.~\neg A$$
-	$$\neg (\exists x~s.t.~A) = \forall x,\neg A$$
+	$$\neg (\forall x,A) = \exists x,\neg A,\qquad \neg (\exists x,A) = \forall x,\neg A.$$
 \end{remark}
 
 \subsection{特殊的命题}
@@ -207,9 +215,9 @@
 
 \begin{definition}{原命题，逆命题，否命题，逆否命题}
 	设有\textbf{原命题}(primitive proposition)可以表示为$P \Rightarrow Q$的形式. \\
-	(1)\textbf{逆命题}(converse proposition)定义为：$$Q \Rightarrow P$$
-	(2)\textbf{否命题}(inverse proposition)定义为：$$\neg P \Rightarrow \neg Q$$
-	(3)\textbf{逆否命题}(contrapositive proposition)定义为：$$\neg Q \Rightarrow \neg P$$
+	(1)\textbf{逆命题}(converse proposition)定义为：$$Q \Rightarrow P.$$
+	(2)\textbf{否命题}(inverse proposition)定义为：$$\neg P \Rightarrow \neg Q.$$
+	(3)\textbf{逆否命题}(contrapositive proposition)定义为：$$\neg Q \Rightarrow \neg P.$$
 \end{definition}
 \begin{remark}
 	此时否命题就是原命题的否定形式，即$\neg (P \Rightarrow Q) = (\neg Q \Rightarrow \neg P)$.
@@ -217,11 +225,11 @@
 
 回顾上一个例题的最后一问，除了用直观的判断方式以外，我们还可以用反证法说明“若$x \neq 2$，则$x^2-5x+6 \neq 0$”.实际上，反证法的本质就是以下命题所述：
 
-\begin{proposition}{逆否命题的真假性}{nifzmkti}
+\begin{theorem}{逆否命题的真假性}{nifzmkti}
 	逆否命题与原命题的真假性相同.
-\end{proposition}
+\end{theorem}
 
-这个命题也可用图像来解释：
+这个命题也可用图像来解释：(图2)
 
 \begin{figure}[h!]
 	\centering
@@ -238,14 +246,14 @@
 	证明：$\sqrt{2}$是无理数.
 \end{example}
 \begin{proof}
-	设原命题：“所有能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是有理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
-	则原命题等价于“所有不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数都是无理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
-	构造逆否命题：“$\sqrt{2}$是有理数”$\Rightarrow$“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”， \\
-	由“$\sqrt{2}$是有理数”，设$\sqrt{2}= \dfrac{p}{q}~$($p,q$都是正整数且互质).两边同时平方，有$$2q^2=p^2$$
-	这要求$p$是$2$的倍数，因而$p^2$是$4$的倍数，故$q^2$是$2$的倍数.又因为$q$是整数，所以$q$是$2$的倍数，那么$p,q$不互质，即$\sqrt{2}$不能表示为上述形式.这就证明了“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互质)的形式的数是有理数”.由于原命题与逆否命题的真假性相同，故原命题也成立.
+	设原命题：“所有能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互素)的形式的数都是有理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
+	则原命题等价于“所有不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互素)的形式的数都是无理数”$\Rightarrow$“$\sqrt{2}$是无理数”. \\
+	构造逆否命题：“$\sqrt{2}$是有理数”$\Rightarrow$“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互素)的形式的数是有理数”， \\
+	由“$\sqrt{2}$是有理数”，设$\sqrt{2}= \dfrac{p}{q}~$($p,q$都是正整数且互素).两边同时平方，有$$2q^2=p^2,$$
+	这要求$p$是$2$的倍数，因而$p^2$是$4$的倍数，故$q^2$是$2$的倍数.又因为$q$是整数，所以$q$是$2$的倍数，那么$p,q$不互素，即$\sqrt{2}$不能表示为上述形式.这就证明了“存在一个不能表示为$\dfrac{p}{q}~$($p,q$都是正整数且互素)的形式的数是有理数”.由于原命题与逆否命题的真假性相同，故原命题也成立.
 \end{proof}
 
-\newpage
+\vspace{5em}
 \section{集合}
 
 \subsection{集合的概念}
@@ -257,8 +265,8 @@
 对于一个集合，我们有两种方式描述集合中的元素：
 
 \begin{enumerate}
-	\item 列举法：将集合中的元素一一列举，例如$$\{ 1,2,3,\cdots \}$$其中“$\cdots$”表示类似的元素.
-	\item 描述法：为了描述含有无限个元素的集合(即无限集)，我们用所含元素的性质来表示该集合，例如$$\kaishu \{ x \in E|P(x) \},~\text{或}\{ x \in E:P(x) \}$$\songti 其中$x$为这些元素的代表元素，$E$是$x$的范围，$P(x)$表示$x$满足的性质.
+	\item 列举法：将集合中的元素一一列举，例如$$\{ 1,2,3,\cdots \},$$其中“$\cdots$”表示类似的元素.
+	\item 描述法：为了描述含有无限个元素的集合(即无限集)，我们用所含元素的性质来表示该集合，例如$$ \{ x \in E : P(x) \},\footnote{亦作$\{ x \in E \mid P(x) \}$.}$$其中$x$为这些元素的代表元素，$E$是$x$的范围，$P(x)$表示$x$满足的性质.
 \end{enumerate}
 
 另外，一些常见的数集有它们特定的表示符号：
@@ -278,19 +286,20 @@
 	\end{tabular}
 \end{table}
 
-为了描述类似于“正整数集”的集合，我们规定一些标记.例如，$\R ^{+}$(或$\R _{+}$)表示正实数集，$\mathbb{Z}^{-}$表示负整数集，$\mathbb{N}^{*}$表示非零自然数集(等价于正整数集).
+为了描述类似于“正整数集”的集合，我们规定一些标记.例如，$\R ^{+}$表示正实数集，$\mathbb{Z}^{-}$表示负整数集，$\mathbb{N}^{*}$表示非零自然数集(等价于正整数集).
 
 以下介绍集合之间的关系：
 
 \begin{definition}{子集和母集}
-	设集合$A$和$B$，若$$\forall x,~x \in A \Rightarrow x \in B$$则称$A$\textbf{包含于}(is included in)$B$，或$B$\textbf{包含}(includes)$A$；$A$是$B$的一个\textbf{子集}(subset)，$B$是$A$的一个\textbf{母集}(superset)，记作$$A \subseteq B,~ \text{或} B \supseteq A$$
+	设集合$A$和$B$，若$$\forall x,~x \in A \Rightarrow x \in B,$$
+	则称$A$\textbf{包含于}(is included in)$B$，或$B$\textbf{包含}(includes)$A$；$A$是$B$的一个\textbf{子集}(subset)，$B$是$A$的一个\textbf{母集}(superset)，记作$$A \subseteq B,~ \text{或} B \supseteq A.$$
 	
-	当$A$和$B$互为子集时，记作$A=B$.即，$A=B$表示$$\forall x,~ x \in A \Leftrightarrow x \in B$$
+	当$A$和$B$互为子集时，记作$A=B$.即，$A=B$表示$$\forall x,~ x \in A \Leftrightarrow x \in B.$$
 	
-	特别地，若$$(A \subseteq B) \wedge (A \neq B)$$则称$A$是$B$的一个\textbf{真子集}(proper subset)，$B$是$A$的一个\textbf{真母集}(proper superset)，记作$$A \subsetneqq B,~ \text{或} B \supsetneqq A$$
+	特别地，若$$(A \subseteq B) \wedge (A \neq B),$$则称$A$是$B$的一个\textbf{真子集}(proper subset)，$B$是$A$的一个\textbf{真母集}(proper superset)，记作$$A \subset B,~ \text{或} B \supset A.$$
 \end{definition}
 \begin{note}
-	上述定义中符号“$\subseteq ,\subsetneqq$”在一些数学课本中也会写作“$\subset$”等.本书均采用上述写法.
+	上述定义中符号“$\subset$”在一些数学课本中也会写作“$\subsetneqq$”等.本书均采用上述写法.
 \end{note}
 \begin{remark}
 	(真)包含关系具有传递性，就如同逻辑运算中“充分条件”有传递性一样.
@@ -298,7 +307,7 @@
 
 由上述定义，不难证明，空集是任意集合的子集、是任意非空集合的真子集.
 
-有时我们需要研究某个有限集合的元素个数.设有限集$A$，可以用$\card (A)$表示其元素个数(card即\textit{cardinal}，基数).另外，有限集$A$的\textbf{阶}也表示其元素个数，记作$|A|$.
+有时我们需要研究某个有限集合的元素个数.设有限集$A$，可以用$\card (A)$表示其元素个数(card即\textit{cardinal}，基数)\footnote{请注意，集合的基数是一个重要的概念，并且可以拓广至无限集合，在高中数学的范畴内暂时略去不谈.} .另外，有限集$A$的\textbf{阶}也表示其元素个数，记作$|A|$.
 
 \begin{proposition}{有限集合的子集个数}
 	对于一个有限集$A$，它的子集个数为$2^{|A|}$个，真子集个数为$2^{|A|}-1$个.
@@ -307,9 +316,9 @@
 	\sw{一}使用“贡献法”.对于给定的一个$A$的子集，任何一个$a_i~(i=1,2,\cdots ,n)$要么在其中，要么不在其中，由乘法原理，这样做就会生成$2^n$个不同的子集.对于一个有限集$A$，其真子集恰会比其子集少一个$A$，即真子集个数为$2^n-1$. \\
 	\sw{二}设集合$\{ a_1, \cdots ,a_n \}$.对$n$较小的情况进行子集的枚举：
 	\begin{align*}
-		n=1&,\quad \varnothing, \{ a_1 \} \\
-		n=2&,\quad \color{red} \varnothing, \{ a_1 \},\{ a_2 \},\{ a_1,a_2 \} \color{black} \\
-		n=3&,\quad \color{red} \varnothing, \{ a_1 \},\{ a_2 \}\color{black},\{ a_3 \},\color{red} \{a_1,a_2\} \color{black},\{ a_2,a_3 \},\{ a_3,a_1 \},\{ a_1,a_2,a_3 \}
+		n=1&,\quad \varnothing, \{ a_1 \}; \\
+		n=2&,\quad \color{red} \varnothing, \{ a_1 \},\{ a_2 \},\{ a_1,a_2 \}; \color{black} \\
+		n=3&,\quad \color{red} \varnothing, \{ a_1 \},\{ a_2 \}\color{black},\{ a_3 \},\color{red} \{a_1,a_2\} \color{black},\{ a_2,a_3 \},\{ a_3,a_1 \},\{ a_1,a_2,a_3 \}.
 	\end{align*}
 	容易发现，每次从$n$增加到$n+1$时，$n$的情况中的子集全部被“继承”到$n+1$的情况里，又将新增加的元素$a_{n+1}$放在每一个继承下来的子集里形成一族新的子集(以$n=2 \to 3$为例，红色部分即为“继承”，黑色部分即为增加).由这种递推关系，可以得到$n$元集合的子集个数为$2^n$. \\
 	注：在不使用数学归纳法时，这种证明实际上是不严谨的.
@@ -320,12 +329,14 @@
 类似于上文对子集和母集的定义，我们可以从集合中元素的角度来研究集合间的运算.
 
 \begin{definition}{集合的交、并、差、补}
-	设集合$A$和$B$， \\
-	(1)$A$与$B$的\textbf{交集}(intersection)，记作$A \cap B$，定义为$$A \cap B := \{ x|(x \in A) \wedge (x \in B) \}$$
-	(2)$A$与$B$的\textbf{并集}(union)，记作$A \cup B$，定义为$$A \cup B := \{ x|(x \in A) \vee (x \in B) \}$$
-	(3)$A$与$B$的\textbf{差集}(difference)，记作$A-B$或$A \setjianfa B$，定义为$$A \setjianfa B := \{ x|(x \in A) \wedge (x \notin B) \}$$
-	(4)设$U$为\textbf{全集}.$A$的\textbf{补集}(complement)，记作$\complement _{U}{A}$，定义为$$\complement _{U}{A} := \{ x|(x \in U) \wedge (x \notin A) \}$$
+	设集合$A$和$B$，
+	\begin{itemize}
+		\item $A$与$B$的\textbf{交集}(intersection)，记作$A \cap B$，定义为$$A \cap B := \{ x|(x \in A) \wedge (x \in B) \}.$$
+		\item $A$与$B$的\textbf{并集}(union)，记作$A \cup B$，定义为$$A \cup B := \{ x|(x \in A) \vee (x \in B) \}.$$
+		\item $A$与$B$的\textbf{差集}(difference)，记作$A-B$或$A \setjianfa B$，定义为$$A \setjianfa B := \{ x|(x \in A) \wedge (x \notin B) \}.$$
+		\item 设$U$为\textbf{全集}.$A$的\textbf{补集}(complement)，记作$\complement _{U}{A}$，定义为$$\complement _{U}{A} := \{ x|(x \in U) \wedge (x \notin A) \}.$$
 	若已知该全集(题目中明确定义)，$A$的补集也可记作$\overline{A}$.
+	\end{itemize}
 \end{definition}
 \begin{remark}
 	“$A := B$”表示用$B$定义$A$.
@@ -336,11 +347,11 @@
 
 \begin{proposition}
 	设集合$A,B$，
-	$$A \cap B = B ~ \Leftrightarrow ~ B \subseteq A ,\quad A \cup B = A ~ \Leftrightarrow ~ B \subseteq A$$
+	$$A \cap B = B ~ \Leftrightarrow ~ B \subseteq A ,\quad A \cup B = A ~ \Leftrightarrow ~ B \subseteq A.$$
 \end{proposition}
 \begin{proof}
 	以第一个为例. \\
-	\buzhou{1}充分性：由$B \subseteq A$，有$\forall x, x \in B \Rightarrow x \in A$.于是$$B = \{ x|x \in B \} = \{ x|(x \in B) \wedge (x \in B) \} \subseteq \{ x|(x \in A) \wedge (x \in B) \} = A \cap B$$
+	\buzhou{1}充分性：由$B \subseteq A$，有$\forall x, x \in B \Rightarrow x \in A$.于是$$B = \{ x|x \in B \} = \{ x|(x \in B) \wedge (x \in B) \} \subseteq \{ x|(x \in A) \wedge (x \in B) \} = A \cap B.$$
 	又因为$(A \cap B) \subseteq B$，于是$A \cap B = B$. \\
 	\buzhou{2}必要性：由$A \cap B = B$可得$B \subseteq (A \cap B)$.又因为$(A \cap B) \subseteq A$，于是$B \subseteq A$.
 \end{proof}
@@ -360,17 +371,17 @@
 
 \begin{proposition}{集合运算的运算律}
 	设集合$A$和$B$，全集$U$. \\
-	(1)它们的交、并运算满足交换律，即$$A \cap B = B \cap A \qquad A \cup B = B \cup A$$
+	(1)它们的交、并运算满足交换律，即$$A \cap B = B \cap A, \qquad A \cup B = B \cup A.$$
 	(2)它们的交、并运算满足结合律，即
-	$$A \cap B \cap C = (A \cap B) \cap C = A \cap (B \cap C)$$
-	$$A \cup B \cup C = (A \cup B) \cup C = A \cup (B \cup C)$$
+	$$A \cap B \cap C = (A \cap B) \cap C = A \cap (B \cap C),$$
+	$$A \cup B \cup C = (A \cup B) \cup C = A \cup (B \cup C).$$
 	(3)它们的交运算与并运算之间满足分配律，即
-	$$(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$$
-	$$(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$$
-	(4)它们的交、并运算与补运算之间满足摩根律(或称德摩根定理，De Morgan's theorem)，即$$\overline{A \cap B} = \overline{A} \cup \overline{B} \qquad \overline{A \cup B} = \overline{A} \cap \overline{B}$$
+	$$(A \cap B) \cup C = (A \cup C) \cap (B \cup C),$$
+	$$(A \cup B) \cap C = (A \cap C) \cup (B \cap C).$$
+	(4)它们的交、并运算与补运算之间满足摩根律(或称德摩根定理，De Morgan's theorem)，即$$\overline{A \cap B} = \overline{A} \cup \overline{B}, \qquad \overline{A \cup B} = \overline{A} \cap \overline{B}.$$
 \end{proposition}
 
-实际上，集合之间的交、并与逻辑运算中的和、或是一样的.例如，不等式$x^2-4x+3 \geq 0$的取值范围为$$\{ x|(x \leq 1) \vee (x \geq 3) \} = \{ x|x \leq 1 \} \cup \{ x|x \geq 3 \}$$
+实际上，集合之间的交、并与逻辑运算中的和、或是一样的.例如，不等式$x^2-4x+3 \geq 0$的取值范围为$$\{ x|(x \leq 1) \vee (x \geq 3) \} = \{ x|x \leq 1 \} \cup \{ x|x \geq 3 \}.$$
 
 为了更方便地表示上述结果，引入区间的概念：
 
@@ -385,7 +396,7 @@
 	其他形式的区间定义相似.
 \end{definition}
 
-上文例子中$x$的取值范围就可以表达为$$(-\infty ,1] \cup [3,+\infty )$$
+上文例子中$x$的取值范围就可以表达为$$(-\infty ,1] \cup [3,+\infty ).$$
 
 \begin{problemset}
 	\item 集合$A=\{ 2,0,1,3 \},~B = \{ x|-x \in A,2-x^2 \notin A \}$，则集合$B$中所有元素的和为\tk .
@@ -400,7 +411,7 @@
 		a+1+\dfrac{b}{a} = a^2+(a+b) + 0 \\ a \times 1 \times \dfrac{b}{a} = a^2 \times (a+b) \times 0
 	\end{cases}$，由第二个式子可知$b=0$，代回第一个式子，解得$a= \pm 1$，又因为$a^2 \neq a+b$，于是$a=-1$.综上，$a^{99}+b^{99}=-1$.
 	\item 由$A \cup B = A$，$A \cap B = \{ 5 \}$，可知$B \subsetneqq A$且$5 \in B$，即$B=\{ 5 \}$.这意味着二次方程$x^2+px+q=0$恰有一个解$x=5$，于是$p=-10,~q=25$，进而$pq=-250$.
-	\item 可以作一个换元的操作：令$P=\complement _{\mathbb{R}} M$，则$M=\complement _{\mathbb{R}} P$(也即$P \cup Q=\R ,~P \cap Q = \varnothing$).于是$P \subseteq N$，所求即为$(\complement _{\mathbb{R}} P) \cup (\complement _{\mathbb{R}} N)$.由命题\ref{pro:nifzmkti}可知$(\complement _{\mathbb{R}} N) \subseteq (\complement _{\mathbb{R}} P)$，于是原式等于$\complement _{\mathbb{R}} P$，即为$M$.
+	\item 可以作一个换元的操作：令$P=\complement _{\mathbb{R}} M$，则$M=\complement _{\mathbb{R}} P$(也即$P \cup Q=\R ,~P \cap Q = \varnothing$).于是$P \subseteq N$，所求即为$(\complement _{\mathbb{R}} P) \cup (\complement _{\mathbb{R}} N)$.由命题\ref{thm:nifzmkti}可知$(\complement _{\mathbb{R}} N) \subseteq (\complement _{\mathbb{R}} P)$，于是原式等于$\complement _{\mathbb{R}} P$，即为$M$.
 \end{psolution}
 
 
@@ -415,7 +426,7 @@
 \section{幂运算与对数运算}
 
 首先介绍\textbf{幂}(power)的概念.对于单项式$a^n(n \in \mathbb{Q})$，令$n=\frac{p}{q}$，
-$$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
+$$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z}).$$
 
 这就是有理数次幂的严格定义.其中，$a$称为底数，$n$称为指数，$a^n$的值称为幂值.若$n$是无理数，可以通过计算其相邻的有理数逼近，也可以借助指数函数进行定义(后文会提到).
 
@@ -423,14 +434,14 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 
 \begin{proposition}{幂函数的运算律}
 	设$a,b,m,n \in \R $. \\
-	(1)同底数幂相乘$$a^m \times a^n = a^{m+n}$$
-	(2)同指数幂相乘$$a^m \times b^m = (ab)^m$$
-	(3)幂的幂$$(a^m)^n=a^{mn}$$
+	(1)同底数幂相乘$$a^m \times a^n = a^{m+n}.$$
+	(2)同指数幂相乘$$a^m \times b^m = (ab)^m.$$
+	(3)幂的幂$$(a^m)^n=a^{mn}.$$
 \end{proposition}
 
 接着介绍对数的概念.一般地，若$a^x=y~(a>0,a \neq 1)$，则称$x$为以$a$为底$y$的\textbf{对数}(logarithm)，记作$x = \log_{a}{y}$，其中$a$叫做底数，$y$叫做真数(这里人为要求$a>0$是因为当$a\leq 0$时运算不可逆，也即对数函数不单调)；读作“以$a$为底$y$的对数”.
 
-通常把以$10$为底的对数叫做\textbf{常用对数}(化学中pH值的计算公式就有利用到它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$e$为底的对数叫做\textbf{自然对数}，简记为$\log_{e}{N}=\ln N$.
+通常把以$10$为底的对数叫做\textbf{常用对数}(化学中pH值的计算公式就有利用到它)，简记为$\log_{10}{N}=\lg N$；把以自然常数$\ee$\footnote{$\ee$的定义需要用到数列极限，后文会提到.}为底的对数叫做\textbf{自然对数}，简记为$\log_{\ee}{N}=\ln N$.
 
 对数运算有两条重要性质：(1)$~\log_{a}{1} = 0,~\log_{a}{a}=1$；(2)$~a^{\log_{a}{N}}=N$.第二条看起来是个废话，但是我们会在下方多次应用.
 
@@ -438,27 +449,27 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	计算：$\log_{2}{8}=$\tk ,~$\log_{\sqrt{5}}{125}=$\tk ,~$\log_{114514}{1}=$\tk ,$\log_{8}{16}=$\tk .
 \end{example}
 \begin{solution}
-	$3$；$6$；$0$；$\dfrac{4}{3}$.
+	$3$；$6$；$0$；$4/3$.
 \end{solution}
 
 类似于指数运算，对数运算也有一些重要运算公式：
 
 \begin{proposition}{对数的运算法则}
 	假设下列式子都有意义. \\
-	(1)加减法$$\log_{\alpha}{MN} = \log_{\alpha}{M} + \log_{\alpha}{N} \qquad \log_{\alpha}{\frac{M}{N}} = \log_{\alpha}{M} - \log_{\alpha}{N}$$
-	(2)换底公式$$\log_{\alpha}{x} = \frac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}$$
-	(3)指数$$\log_{\alpha ^n}{x^m} = \frac{m}{n} \log_{\alpha}{x}$$
-	(4)倒数$$\log_{\alpha}{\beta} = \frac{1}{\log_{\beta}{\alpha}}$$
-	(5)链式$$\log_{\alpha}{\beta} \cdot \log_{\beta}{\gamma} = \log_{\alpha}{\gamma}$$
+	(1)加减法$$\log_{\alpha}{MN} = \log_{\alpha}{M} + \log_{\alpha}{N}, \qquad \log_{\alpha}{\frac{M}{N}} = \log_{\alpha}{M} - \log_{\alpha}{N}.$$
+	(2)换底公式$$\log_{\alpha}{x} = \frac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}.$$
+	(3)指数$$\log_{\alpha ^n}{x^m} = \frac{m}{n} \log_{\alpha}{x}.$$
+	(4)倒数$$\log_{\alpha}{\beta} = \frac{1}{\log_{\beta}{\alpha}}.$$
+	(5)链式$$\log_{\alpha}{\beta} \cdot \log_{\beta}{\gamma} = \log_{\alpha}{\gamma}.$$
 \end{proposition}
 \begin{proof}
 	这里只选择部分运算法则证明： \\
-	(1)加法：由对数的定义，$\alpha ^{\log_{\alpha}{M}} = M,~\alpha ^{\log_{\alpha}{N}} = N$，于是$$MN = \alpha ^{\log_{\alpha}{M}} \cdot \alpha ^{\log_{\alpha}{N}} = \alpha ^{\log_{\alpha}{M} + \log_{\alpha}{N}}$$
+	(1)加法：由对数的定义，$\alpha ^{\log_{\alpha}{M}} = M,~\alpha ^{\log_{\alpha}{N}} = N$，于是$$MN = \alpha ^{\log_{\alpha}{M}} \cdot \alpha ^{\log_{\alpha}{N}} = \alpha ^{\log_{\alpha}{M} + \log_{\alpha}{N}}.$$
 	这告诉我们$\log_{\alpha}{MN} = \log_{\alpha}{M} + \log_{\alpha}{N}$. \\
-	(2)换底公式：由对数的定义，$\beta ^{\log_{\beta}{x}} = x,~\beta ^{\log_{\beta}{\alpha}} = \alpha$，那么$$x = (\beta ^{\log_{\beta}{\alpha}})^{\frac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}} = \alpha ^{\frac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}}$$
+	(2)换底公式：由对数的定义，$\beta ^{\log_{\beta}{x}} = x,~\beta ^{\log_{\beta}{\alpha}} = \alpha$，那么$$x = (\beta ^{\log_{\beta}{\alpha}})^{\frac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}} = \alpha ^{\frac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}}.$$
 	这告诉我们$\log_{\alpha}{x} = \dfrac{\log_{\beta}{x}}{\log_{\beta}{\alpha}}$. \\
-	(5)链式：令$$\log_{\alpha}{\beta} = \frac{\ln{\beta}}{\ln{\alpha}},~ \log_{\beta}{\gamma} = \frac{\ln{\gamma}}{\ln{\beta}}$$
-	所以$$\log_{\alpha}{\beta} \cdot \log_{\beta}{\gamma} = \frac{\ln{\beta}}{\ln{\alpha}} \cdot \frac{\ln{\gamma}}{\ln{\beta}} = \frac{\ln{\gamma}}{\ln{\alpha}} = \log_{\alpha}{\gamma}$$
+	(5)链式：令$$\log_{\alpha}{\beta} = \frac{\ln{\beta}}{\ln{\alpha}},~ \log_{\beta}{\gamma} = \frac{\ln{\gamma}}{\ln{\beta}},$$
+	所以$$\log_{\alpha}{\beta} \cdot \log_{\beta}{\gamma} = \frac{\ln{\beta}}{\ln{\alpha}} \cdot \frac{\ln{\gamma}}{\ln{\beta}} = \frac{\ln{\gamma}}{\ln{\alpha}} = \log_{\alpha}{\gamma}.$$
 \end{proof}
 \begin{remark}
 	不难发现，在应用换底公式之后做证明变得很轻松.可以说，如果把“重要性质”比作一个轮子，那么换底公式就是一辆车：用轮子也能向前走(用重要性质也能写证明)，但远不及一辆车快速与舒适(引入换底公式会十分便捷).
@@ -468,8 +479,7 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 \end{remark}
 \begin{remark}
 	由加减法运算法则，可以一窥常用对数的作用.例如，
-	$$\lg{120} = \lg{1.2 \times 10^2} = \lg{1.2}+2$$
-	$$\lg{0.012} = \lg{1.2 \times 10^{-2}} = \lg{1.2}-2$$
+	$$\lg{120} = \lg{1.2 \times 10^2} = \lg{1.2}+2,\qquad \lg{0.012} = \lg{1.2 \times 10^{-2}} = \lg{1.2}-2.$$
 	若要计算$\lg{120}$与$\lg{0.012}$，只需要知道$\lg{1.2}$的值.于是$\lg{N}$可以被用在换底公式中作为“工具对数”来近似计算.
 \end{remark}
 
@@ -479,81 +489,81 @@ $$a^{\frac{p}{q}}:=\sqrt[q]{a^p} \ (p,q \in \mathbb{Z})$$
 	(3)设$a,b,c$都是正数，且$3^a=4^b=6^c$，则$a,b,c$的关系为\tk .
 \end{example}
 \begin{solution}
-	(1)$$5^{\lg 20} \times 0.5^{\lg 0.5} = 5^{\lg 20} \times 2^{\lg 2} = 5 \times 5^{\lg 2} \times 2^{\lg 2} = 10$$
-	$$6^{\lg 40} \times 5^{\lg 36} = 10^{\lg 6 \cdot \lg 40} \times 10^{\lg 5 \cdot \lg 36} = 10^{\lg 6 \cdot (\lg 40 + \lg 25)} = 216$$
-	(2)由所给条件，令$a=\frac{\ln{9}}{\ln{18}}=\frac{2\ln{3}}{\ln{2}+2\ln{3}} ,~b=\frac{\ln{5}}{\ln{18}}=\frac{\ln{5}}{\ln{2}+2\ln{3}}$，则$$\ln{2}=\frac{2-2a}{a}\ln{3},~\ln{5}=\frac{2b}{a}\ln{3}$$
+	(1)$$5^{\lg 20} \times 0.5^{\lg 0.5} = 5^{\lg 20} \times 2^{\lg 2} = 5 \times 5^{\lg 2} \times 2^{\lg 2} = 10.$$
+	$$6^{\lg 40} \times 5^{\lg 36} = 10^{\lg 6 \cdot \lg 40} \times 10^{\lg 5 \cdot \lg 36} = 10^{\lg 6 \cdot (\lg 40 + \lg 25)} = 216.$$
+	(2)由所给条件，令$a=\frac{\ln{9}}{\ln{18}}=\frac{2\ln{3}}{\ln{2}+2\ln{3}} ,~b=\frac{\ln{5}}{\ln{18}}=\frac{\ln{5}}{\ln{2}+2\ln{3}}$，则$$\ln{2}=\frac{2-2a}{a}\ln{3},~\ln{5}=\frac{2b}{a}\ln{3}.$$
 	于是
-	$$\log_{36}{45} = \frac{\ln{45}}{\ln{36}} = \frac{\ln{5} + 2\ln{3}}{2\ln{2}+2\ln{3}} = \frac{\frac{2b}{a}+2}{\frac{4-4a}{a}+2} = \frac{a+b}{2-a}$$
-	(3)记$3^a=4^b=6^c=t$，则$$a=\log_{3}{t},~b=\log_{4}{t},~c=\log_{6}{t}$$
-	于是$$\frac{1}{a}=\log_{t}{3},~\frac{1}{b}=\log_{t}{4},~\frac{1}{c}=\log_{t}{6}$$
-	故$$\frac{2}{a} + \frac{1}{b} = \log_{t}{9} + \log_{t}{4} = \log_{t}{36} = \frac{2}{c}$$
+	$$\log_{36}{45} = \frac{\ln{45}}{\ln{36}} = \frac{\ln{5} + 2\ln{3}}{2\ln{2}+2\ln{3}} = \frac{\frac{2b}{a}+2}{\frac{4-4a}{a}+2} = \frac{a+b}{2-a}.$$
+	(3)记$3^a=4^b=6^c=t$，则$$a=\log_{3}{t},~b=\log_{4}{t},~c=\log_{6}{t},$$
+	于是$$\frac{1}{a}=\log_{t}{3},~\frac{1}{b}=\log_{t}{4},~\frac{1}{c}=\log_{t}{6}.$$
+	故$$\frac{2}{a} + \frac{1}{b} = \log_{t}{9} + \log_{t}{4} = \log_{t}{36} = \frac{2}{c}.$$
 \end{solution}
 
-\newpage
+\vspace{4em}
 \section{求和符号}
 
 为了简明地表示一连串式子求和，定义如下求和符号：
 
 \begin{definition}{求和符号}
-	对于整数$m \leq n$：$$\sum_{i=m}^{n} x_i := x_m + x_{m+1} + \cdots + x_{n}$$
-	更一般地，设性质$P(x)$，$$\sum_{P(x)} x := \textit{所有满足性质$P(x)$的$x$相加}$$
+	对于整数$m \leq n$：$$\sum_{i=m}^{n} x_i := x_m + x_{m+1} + \cdots + x_{n}.$$
+	更一般地，设性质$P(x)$，$$\sum_{P(x)} x := \textit{所有满足性质$P(x)$的$x$相加}.$$
 \end{definition}
 
 给出几个求和符号的例子：
-$$\sum_{i=1}^{n} i^2 = 1^2 + 2^2 + \cdots + n^2$$
-$$\sum_{j=8}^{10} (4j-3) = (4 \times 8-3) + (4 \times 9 - 3) + (4 \times 10 -3)$$
-$$\sum_{i=1}^{n} 1 = 1 + 1 + \cdots + 1~~(\textit{共$n$个$1$})$$
-$$\sum_{i=1}^{3} \ssb{\sum_{j=1}^{3} a_ib_j} = \sum_{i=1}^{3} \ssb{a_ib_1+a_ib_2+a_ib_3} = a_1b_1+a_1b_2+a_1b_3+a_2b_1+a_2b_2+a_2b_3+a_3b_1+a_3b_2+a_3b_3$$
-$$\sum_{1 \leq i < j \leq 4} a_ia_j = a_1a_2 + a_1a_3 + a_1a_4 + a_2a_3 + a_2a_4 + a_3a_4$$
-$$\sum_{\textit{$x$是素数且$0< x \leq 10$}} x = 2+3+5+7$$
+$$\sum_{i=1}^{n} i^2 = 1^2 + 2^2 + \cdots + n^2;$$
+$$\sum_{j=8}^{10} (4j-3) = (4 \times 8-3) + (4 \times 9 - 3) + (4 \times 10 -3);$$
+$$\sum_{i=1}^{n} 1 = 1 + 1 + \cdots + 1~~(\textit{共$n$个$1$});$$
+$$\sum_{i=1}^{3} \ssb{\sum_{j=1}^{3} a_ib_j} = \sum_{i=1}^{3} \ssb{a_ib_1+a_ib_2+a_ib_3} = a_1b_1+a_1b_2+a_1b_3+a_2b_1+a_2b_2+a_2b_3+a_3b_1+a_3b_2+a_3b_3;$$
+$$\sum_{1 \leq i < j \leq 4} a_ia_j = a_1a_2 + a_1a_3 + a_1a_4 + a_2a_3 + a_2a_4 + a_3a_4;$$
+$$\sum_{\textit{$x$是素数且$0< x \leq 10$}} x = 2+3+5+7.$$
 
 \begin{example}
 	证明下列求和恒等式：\\
-	(1)(后半部分为双重求和符号的性质)$$\ssb{\sum_{i=1}^{n}a_i} \ssb{\sum_{i=1}^{n}b_i} = \sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j = \sum_{i=1}^{n}\sum_{j=1}^{n} a_jb_i$$
-	(2)$$\sum_{i=1}^{n}(a_{i+1}-a_i)=a_{n+1}-a_1$$
-	(3)$$\sum_{i=1}^{n} (a_{n+i}-a_i) = \sum_{i=1}^n \sum_{j=i}^{n-1+i}(a_{j+1}-a_j)$$
-	(4)$$\sum_{1 \leq i < j \leq n}a_ia_j = \sum_{i=1}^{n-1} \ssb{\sum_{j=i+1}^{n} a_ia_j} = \sum_{j=2}^{n} \ssb{\sum_{i=1}^{j-1} a_ia_j}$$
-	(5)$$\ssb{\sum_{i=1}^n a_i}^2 = \sum_{i=1}^{n} a_i^2 + 2\sum_{1 \leq i < j \leq n}a_ia_j$$
-	(6)$$\sum_{1 \leq i < j \leq n}(a_i-a_j)^2 = n\sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^{n} a_i}^2$$
+	(1)(后半部分为双重求和符号的性质)$$\ssb{\sum_{i=1}^{n}a_i} \ssb{\sum_{i=1}^{n}b_i} = \sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j = \sum_{i=1}^{n}\sum_{j=1}^{n} a_jb_i.$$
+	(2)$$\sum_{i=1}^{n}(a_{i+1}-a_i)=a_{n+1}-a_1.$$
+	(3)$$\sum_{i=1}^{n} (a_{n+i}-a_i) = \sum_{i=1}^n \sum_{j=i}^{n-1+i}(a_{j+1}-a_j).$$
+	(4)$$\sum_{1 \leq i < j \leq n}a_ia_j = \sum_{i=1}^{n-1} \ssb{\sum_{j=i+1}^{n} a_ia_j} = \sum_{j=2}^{n} \ssb{\sum_{i=1}^{j-1} a_ia_j}.$$
+	(5)$$\ssb{\sum_{i=1}^n a_i}^2 = \sum_{i=1}^{n} a_i^2 + 2\sum_{1 \leq i < j \leq n}a_ia_j.$$
+	(6)$$\sum_{1 \leq i < j \leq n}(a_i-a_j)^2 = n\sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^{n} a_i}^2.$$
 \end{example}
 \begin{remark}
-	双重求和符号可以理解为有先后顺序的求和，即$$\sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j = \sum_{i=1}^{n} \ssb{\sum_{j=1}^{n} a_ib_j}$$
+	双重求和符号可以理解为有先后顺序的求和，即$$\sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j = \sum_{i=1}^{n} \ssb{\sum_{j=1}^{n} a_ib_j}.$$
 \end{remark}
 
 \begin{proof}
-	(1)前半部分：$$LHS = \sum_{i=1}^{n} \ssb{a_i \sum_{j=1}^{n}b_j} = \sum_{i=1}^{n} \ssb{\sum_{j=1}^{n}a_ib_j} = \sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j$$
-	后半部分：与上式同理可得$$LHS = \sum_{i=1}^{n}\sum_{j=1}^{n} a_jb_i$$
-	故有$$\sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j = \sum_{i=1}^{n}\sum_{j=1}^{n} a_jb_i$$
-	(2)$$LHS = (a_2-a_1) + (a_3-a_2) + \cdots + (a_{n+1}-a_n) = a_{n+1}-a_1$$
-	(3)对于每个$i=1,\cdots ,n$，类似于(2)的结论，有$$a_{n+i}-a_i = \sum_{j=i}^{n-1+i}(a_{j+1}-a_j)$$
-	对$i$进行累加求和，即得$$\sum_{i=1}^{n} (a_{n+i}-a_i) = \sum_{i=1}^n \sum_{j=i}^{n-1+i}(a_{j+1}-a_j)$$
-	(4)对于每个$i=1, \cdots ,n-1$，$$\sum_{i<j \leq n} a_ia_j = \sum_{j=i+1}^{n} a_ia_j$$
-	对$i$累加求和，即得$$\sum_{1 \leq i < j \leq n}a_ia_j = \sum_{i=1}^{n-1} \ssb{\sum_{j=i+1}^{n} a_ia_j}$$
-	由此，前半部分证毕.类似地，对每个$j=2, \cdots ,n$，$$\sum_{1 \leq i<j} a_ia_j = \sum_{i=1}^{j-1} a_ia_j$$
-	对$j$累加求和，即得$$\sum_{1 \leq i < j \leq n}a_ia_j = \sum_{j=2}^{n} \ssb{\sum_{i=1}^{j-1} a_ia_j}$$
+	(1)前半部分：$$LHS = \sum_{i=1}^{n} \ssb{a_i \sum_{j=1}^{n}b_j} = \sum_{i=1}^{n} \ssb{\sum_{j=1}^{n}a_ib_j} = \sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j.$$
+	后半部分：与上式同理可得$$LHS = \sum_{i=1}^{n}\sum_{j=1}^{n} a_jb_i,$$
+	故有$$\sum_{i=1}^{n}\sum_{j=1}^{n} a_ib_j = \sum_{i=1}^{n}\sum_{j=1}^{n} a_jb_i.$$
+	(2)$$LHS = (a_2-a_1) + (a_3-a_2) + \cdots + (a_{n+1}-a_n) = a_{n+1}-a_1.$$
+	(3)对于每个$i=1,\cdots ,n$，类似于(2)的结论，有$$a_{n+i}-a_i = \sum_{j=i}^{n-1+i}(a_{j+1}-a_j).$$
+	对$i$进行累加求和，即得$$\sum_{i=1}^{n} (a_{n+i}-a_i) = \sum_{i=1}^n \sum_{j=i}^{n-1+i}(a_{j+1}-a_j).$$
+	(4)对于每个$i=1, \cdots ,n-1$，$$\sum_{i<j \leq n} a_ia_j = \sum_{j=i+1}^{n} a_ia_j.$$
+	对$i$累加求和，即得$$\sum_{1 \leq i < j \leq n}a_ia_j = \sum_{i=1}^{n-1} \ssb{\sum_{j=i+1}^{n} a_ia_j}.$$
+	由此，前半部分证毕.类似地，对每个$j=2, \cdots ,n$，$$\sum_{1 \leq i<j} a_ia_j = \sum_{i=1}^{j-1} a_ia_j.$$
+	对$j$累加求和，即得$$\sum_{1 \leq i < j \leq n}a_ia_j = \sum_{j=2}^{n} \ssb{\sum_{i=1}^{j-1} a_ia_j}.$$
 	后半部分即证毕. \\
-	(5)由(1)中结论，$$LHS = \sum_{i=1}^{n}\sum_{j=1}^{n} a_ia_j = \sum_{i=1}^{n} (a_ia_1+a_ia_2 + \cdots + a_ia_n)$$
-	对于每个$i=1, \cdots ,n$，将$a_ia_i$、$a_ia_j~(j<i)$和$a_ia_j~(j>i)$分开求和(注意，第二种不存在$i=1$的情况，第三种不存在$i=n$的情况，否则会与第一种的计数重复)，则有$$LHS = \sum_{i=1}^{n} a_i^2 + \sum_{i=2}^{n} \ssb{\sum_{j=1}^{i-1} a_ia_j} + \sum_{i=1}^{n-1} \ssb{\sum_{j=i+1}^{n} a_ia_j}$$
-	由(4)中结论，即$$LHS = \sum_{i=1}^{n} a_i^2 + 2\sum_{1 \leq i < j \leq n}a_ia_j$$
-	(6)对每个满足$1 \leq i < j \leq n$的$(i,j)$，有$$(a_i-a_j)^2 = a_i^2+a_j^2-2a_ia_j$$
+	(5)由(1)中结论，$$LHS = \sum_{i=1}^{n}\sum_{j=1}^{n} a_ia_j = \sum_{i=1}^{n} (a_ia_1+a_ia_2 + \cdots + a_ia_n).$$
+	对于每个$i=1, \cdots ,n$，将$a_ia_i$、$a_ia_j~(j<i)$和$a_ia_j~(j>i)$分开求和(注意，第二种不存在$i=1$的情况，第三种不存在$i=n$的情况，否则会与第一种的计数重复)，则有$$LHS = \sum_{i=1}^{n} a_i^2 + \sum_{i=2}^{n} \ssb{\sum_{j=1}^{i-1} a_ia_j} + \sum_{i=1}^{n-1} \ssb{\sum_{j=i+1}^{n} a_ia_j}.$$
+	由(4)中结论，即$$LHS = \sum_{i=1}^{n} a_i^2 + 2\sum_{1 \leq i < j \leq n}a_ia_j.$$
+	(6)对每个满足$1 \leq i < j \leq n$的$(i,j)$，有$$(a_i-a_j)^2 = a_i^2+a_j^2-2a_ia_j,$$
 	对所有这样的$(i,j)$累加，则
 	\begin{equation}
-		\sum_{1 \leq i < j \leq n}(a_i-a_j)^2 = \sum_{1 \leq i < j \leq n} (a_i^2+a_j^2-2a_ia_j) = \sum_{1 \leq i < j \leq n}(a_i^2+a_j^2) -2\sum_{1 \leq i < j \leq n} a_ia_j \label{ex1211}
+		\sum_{1 \leq i < j \leq n}(a_i-a_j)^2 = \sum_{1 \leq i < j \leq n} (a_i^2+a_j^2-2a_ia_j) = \sum_{1 \leq i < j \leq n}(a_i^2+a_j^2) -2\sum_{1 \leq i < j \leq n} a_ia_j. \label{ex1211}
 	\end{equation}
 	由(5)中结论，
 	\begin{equation}
-		2\sum_{1 \leq i < j \leq n}a_ia_j = \ssb{\sum_{i=1}^n a_i}^2 - \sum_{i=1}^{n} a_i^2 \label{ex1212}
+		2\sum_{1 \leq i < j \leq n}a_ia_j = \ssb{\sum_{i=1}^n a_i}^2 - \sum_{i=1}^{n} a_i^2. \label{ex1212}
 	\end{equation}
 	将式\ref{ex1212}代入式\ref{ex1211}，得
 	\begin{equation}
-		LHS = \sum_{1 \leq i < j \leq n}(a_i^2+a_j^2) + \sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^n a_i}^2 \label{ex1213}
+		LHS = \sum_{1 \leq i < j \leq n}(a_i^2+a_j^2) + \sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^n a_i}^2. \label{ex1213}
 	\end{equation}
-	对每个$i=1, \cdots ,n-1$，有$$\sum_{i < j \leq n} (a_i^2+a_j^2) = \sum_{i < j \leq n}a_i^2 + \sum_{i < j \leq n}a_j^2 = (n-i)a_i^2 + a_{i+1}^2 + \cdots + a_n^2$$
+	对每个$i=1, \cdots ,n-1$，有$$\sum_{i < j \leq n} (a_i^2+a_j^2) = \sum_{i < j \leq n}a_i^2 + \sum_{i < j \leq n}a_j^2 = (n-i)a_i^2 + a_{i+1}^2 + \cdots + a_n^2.$$
 	对$i$累加求和.注意到，对于每个$a_k$，均在$i=k$时出现$n-k$次、在$i=1,\cdots ,k-1$时分别出现$1$次，即共出现$n-1$次，故
 	\begin{equation}
-		\sum_{1 \leq i < j \leq n}(a_i^2+a_j^2) = \sum_{i=1}^{n} \ssb{(n-1)a_i^2} = (n-1) \sum_{i=1}^{n} a_i^2 \label{ex1214}
+		\sum_{1 \leq i < j \leq n}(a_i^2+a_j^2) = \sum_{i=1}^{n} \ssb{(n-1)a_i^2} = (n-1) \sum_{i=1}^{n} a_i^2. \label{ex1214}
 	\end{equation}
-	将式\ref{ex1214}带入式\ref{ex1213}，可得$$LHS = n\sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^{n} a_i}^2$$
+	将式\ref{ex1214}带入式\ref{ex1213}，可得$$LHS = n\sum_{i=1}^{n} a_i^2 - \ssb{\sum_{i=1}^{n} a_i}^2.$$
 \end{proof}
 
 \chapter{复数与多项式I}
@@ -577,8 +587,8 @@ $$\sum_{\textit{$x$是素数且$0< x \leq 10$}} x = 2+3+5+7$$
 \end{figure}
 
 这种做法看起来“大逆不道”，它居然敢对一个负数开根！但是如果仔细算一算(暂时承认现有的运算律仍存在)，由于
-$$(2+\sqrt{-1})^3 = 8 + 12\sqrt{-1} - 6 - \sqrt{-1} = 2+11\sqrt{-1}=2+\sqrt{-121}$$
-$$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
+$$(2+\sqrt{-1})^3 = 8 + 12\sqrt{-1} - 6 - \sqrt{-1} = 2+11\sqrt{-1}=2+\sqrt{-121},$$
+$$(2-\sqrt{-1})^3 = 2-\sqrt{-121},$$
 可以得到$x=(2+\sqrt{-1})+(2-\sqrt{-1})=4$.很明显$x=4$的确是原方程的一个根.
 
 就像刚才的例子一样，人们发现有些时候如果允许对负数开根并保持现有运算律不变，最终仍然可以得到正确的计算结果.于是大家开始猜测：这种特殊的由负数开根产生的数真的存在吗？有什么性质？有什么作用？经过长年的猜想与论证，最终构成了数学中的“复数”体系.
@@ -586,42 +596,49 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \newpage
 \begin{definition}{复数，复数间的关系与运算}
 	\begin{itemize}
-		\item 记$z=a+b\ic ~(a,b \in \R )$为一个\textbf{复数}(complex number)，其中$\ic ^2=-1$.定义复数$z$的\textbf{实部}为$a$，\textbf{虚部}为$b$，分别记作$$\CRe (z):=a,\quad \CIm (z):=b$$
+		\item 记$z=a+b\ii ~(a,b \in \R )$为一个\textbf{复数}(complex number)，其中$\ii ^2=-1$.定义复数$z$的\textbf{实部}为$a$，\textbf{虚部}为$b$，分别记作$$\CRe (z):=a,\quad \CIm (z):=b.$$
 		\item 实部为$0$、虚部不为$0$的复数称为纯虚数；虚部为$0$的复数称为实数.
-		\item 两个复数相等当且仅当其实部、虚部分别相等，即$$z_1=z_2 ~~ \Leftrightarrow ~~ \CRe (z_1) = \CRe (z_2) ,~ \CIm (z_1) = \CIm (z_2)$$
+		\item 两个复数相等当且仅当其实部、虚部分别相等，即$$z_1=z_2 ~~ \Leftrightarrow ~~ \CRe (z_1) = \CRe (z_2) ,~ \CIm (z_1) = \CIm (z_2).$$
 		\item 由所有复数构成的集合记为$\C$.$\C$上的加法与乘法定义如下：
-			$$(a+b\ic ) + (c+d\ic ) = (a+c) + (b+d)\ic $$
-			$$(a+b\ic )(c+d\ic ) = (ac-bd) + (ad+bc)\ic $$
+			$$(a+b\ii ) + (c+d\ii ) = (a+c) + (b+d)\ii ,$$
+			$$(a+b\ii )(c+d\ii ) = (ac-bd) + (ad+bc)\ii .$$
 	\end{itemize}
 \end{definition}
 \begin{remark}
 	复数之间无法比较大小，只能比较是否相等.
 \end{remark}
+\begin{remark}
+	如此定义的复数就不会产生类似于对负数开根的问题：对复数开根还是复数(这一点要用到之后的三角形式证明).
+\end{remark}
+\begin{remark}
+	将实数的运算律带入复数，容易发现上述定义的加法和乘法和实数一样.实际上，我们之所以这样定义复数的运算，就是为了引出下面的(和实数相同的)运算律.
+\end{remark}
+
 
 \begin{proposition}{复数运算的性质}{Fxkvi}
-	(1) 交换性质$$\forall \alpha , \beta \in \C , \alpha + \beta = \beta + \alpha , \alpha \beta = \beta \alpha$$
-	(2) 结合性质$$\forall \alpha , \beta , \lambda \in \C , (\alpha + \beta) + \lambda = \alpha + (\beta + \lambda) , (\alpha \beta) \lambda = \alpha (\beta \lambda)$$
-	(3) 单位元$$\forall \lambda \in \C , \lambda + 0 = \lambda , 1 \lambda = \lambda$$
-	(4) 加法逆元$$\forall \alpha \in \C , \exists ! \beta \in \C , \alpha + \beta = 0$$
-	(5) 乘法逆元$$\forall \alpha \in \C (\alpha \neq 0) , \exists ! \beta \in \C , \alpha \beta = 1$$
-	(6) 分配性质$$\forall \lambda , \alpha , \beta \in \C , \lambda (\alpha + \beta) = \lambda \alpha + \lambda \beta$$
+	(1) 交换性质$$\forall \alpha , \beta \in \C , \alpha + \beta = \beta + \alpha , \alpha \beta = \beta \alpha.$$
+	(2) 结合性质$$\forall \alpha , \beta , \lambda \in \C , (\alpha + \beta) + \lambda = \alpha + (\beta + \lambda) , (\alpha \beta) \lambda = \alpha (\beta \lambda).$$
+	(3) 单位元$$\forall \lambda \in \C , \lambda + 0 = \lambda , 1 \lambda = \lambda.$$
+	(4) 加法逆元$$\forall \alpha \in \C , \exists ! \beta \in \C , \alpha + \beta = 0.$$
+	(5) 乘法逆元$$\forall \alpha \in \C (\alpha \neq 0) , \exists ! \beta \in \C , \alpha \beta = 1.$$
+	(6) 分配性质$$\forall \lambda , \alpha , \beta \in \C , \lambda (\alpha + \beta) = \lambda \alpha + \lambda \beta.$$
 \end{proposition}
 \begin{remark}
 	“$\exists !$”表示“存在唯一”.
 \end{remark}
 \begin{proof}
 	这里只选择部分性质证明： \\
-	(1) 加法交换性质：设$\alpha = a+b\ic , \beta = c+d\ic ~(a,b,c,d \in \R )$，则
-	$$\alpha + \beta = (a+b\ic ) + (c+d\ic ) = (a+c) + (b+d)\ic = (c+a) + (d+b)\ic$$
-	$$\beta + \alpha = (c+d\ic ) + (a+b\ic ) = (c+a) + (d+b)$$
-	因此有$\alpha + \beta = \beta + \alpha$ \\
-	(2) 乘法单位元：设$\lambda = a+b\ic ~ (a,b \in \R )$，那么$$1 \lambda = (1+0\ic )(a+b\ic ) = a + b\ic = \lambda$$
-	(3) 加法逆元：先证明存在.设$\alpha = a+b\ic $，取$\beta = (-a) + (-b)\ic $，则$\alpha + \beta = 0+0\ic = 0$；\\
-	再证明唯一.假设$\beta _1, \beta _2 \in \C $均为$\alpha$的加法逆元，那么$$\beta _1 = \beta _1 + 0 = \beta _1 + \alpha + \beta _2 = 0 + \beta _2 = \beta _2$$
+	(1) 加法交换性质：设$\alpha = a+b\ii , \beta = c+d\ii ~(a,b,c,d \in \R )$，则
+	$$\alpha + \beta = (a+b\ii ) + (c+d\ii ) = (a+c) + (b+d)\ii = (c+a) + (d+b)\ii ,$$
+	$$\beta + \alpha = (c+d\ii ) + (a+b\ii ) = (c+a) + (d+b)\ii .$$
+	因此有$\alpha + \beta = \beta + \alpha$. \\
+	(2) 乘法单位元：设$\lambda = a+b\ii ~ (a,b \in \R )$，那么$$1 \lambda = (1+0\ii )(a+b\ii ) = a + b\ii = \lambda .$$
+	(3) 加法逆元：先证明存在.设$\alpha = a+b\ii $，取$\beta = (-a) + (-b)\ii $，则$\alpha + \beta = 0+0\ii = 0$；\\
+	再证明唯一.假设$\beta _1, \beta _2 \in \C $均为$\alpha$的加法逆元，那么$$\beta _1 = \beta _1 + 0 = \beta _1 + \alpha + \beta _2 = 0 + \beta _2 = \beta _2 .$$
 	这与假设矛盾，则$\alpha$的加法逆元是唯一的.
 \end{proof}
 
-由此可以引出\textbf{域}的正式定义：
+我们发现，实数集合与复数集合都满足上述命题里的性质.一般地，可以把这类集合抽象为一种特殊的代数结构：
 
 \begin{definition}{域}
 	\textbf{域}是一个集合$\F$，它带有加法与乘法两种运算(分别在加法与乘法上封闭)，且这些运算满足命题\ref{pro:Fxkvi}所示所有性质.
@@ -630,23 +647,19 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	最小的域是一个集合$\{ 0,1 \}$，带有通常的加法与乘法运算，但规定$1+1=0$.
 \end{remark}
 
-容易验证，$\R$与$\C$都是域.
+容易验证，$\R$与$\C$都是域.有些时候会遇到一些其他的域，这时就可以快速地将$\R$的一些性质推广过去.
 
-总是用$\beta$表示$\alpha$的逆元非常不自然，因此定义出加/乘法逆元的表示与减/除法.
+再回到复数的运算.既然一个复数的加/乘法逆元是唯一的(也就是所谓良定义的)，可以用特定符号来表示.
 
 \begin{definition}{加法逆元，减法，乘法逆元，除法}
 	设$\alpha , \beta \in \C $.
 	\begin{itemize}
 		\item 令$- \alpha$表示$\alpha$的加法逆元，即$-\alpha$是使得$$\alpha + (-\alpha) = 0$$成立的唯一复数.
 		\item 对于$\alpha \neq 0$，令$\alpha ^{-1}$表示$\alpha$的乘法逆元，即$\alpha ^{-1}$是使得$$\alpha (\alpha ^{-1}) = 1$$成立的唯一复数.
-		\item 定义$\C $上的\textbf{减法}：$$\beta - \alpha = \beta + (-\alpha)$$
-		\item 定义$\C $上的\textbf{除法}：$$\beta / \alpha = \beta (1 / \alpha)$$
+		\item 定义$\C $上的\textbf{减法}：$$\beta - \alpha = \beta + (-\alpha).$$
+		\item 定义$\C $上的\textbf{除法}：$$\beta / \alpha = \beta (1 / \alpha).$$
 	\end{itemize}
 \end{definition}
-
-刚才我们用非常严谨的方式研究了复数域上的运算，不过实际上这些运算与实数域上的毫无区别.(因为我们一开始就是希望保持原有运算律不变)
-
-最后，有一个小问题：复数(虚数)的出现是因为在实数域下无法对负数开根，那么复数域会不会有类似的限制以致于产生一些其他的数域呢？
 
 \section{多项式的概念与运算}
 
@@ -662,16 +675,20 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	设$f(x) = \sum_{i=0}^{n}a_i x^i,~g(x) = \sum_{i=0}^{m}b_i x^i$.不妨设$m \leq n$，规定$b_i=0~(k > m)$.
 	\begin{itemize}
 		\item $f(x)=g(x)$的充要条件是$n=m,~a_i=b_i$.
-		\item 多项式的加法如下：$$f(x) + g(x) = \sum_{i=0}^{n} (a_i + b_i)x^{i}$$
-		\item 多项式的标量乘法如下：$$\lambda f(x) = \sum_{i=0}^{n} (\lambda a_i)x^{i}$$
-		\item 多项式的乘法如下：$$f(x) \cdot g(x) = \sum_{i=0}^{n} \sum_{j=0}^{m} a_ib_j x^{i+j} = \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k$$
+		\item 多项式的加法如下：$$f(x) + g(x) = \sum_{i=0}^{n} (a_i + b_i)x^{i}.$$
+		\item 多项式的标量乘法如下：$$\lambda f(x) = \sum_{i=0}^{n} (\lambda a_i)x^{i}.$$
+		\item 多项式的乘法如下：$$f(x) \cdot g(x) = \sum_{i=0}^{n} \sum_{j=0}^{m} a_ib_j x^{i+j} = \sum_{k=0}^{m+n} \ssb{\sum_{i+j=k}a_ib_j}x^k.$$
 	\end{itemize}
 \end{theorem}
+\begin{proof}
+	多项式相等的充要条件证明需要用到一个命题：一个多项式为零多项式(恒等于零的多项式)的充要条件为所有系数都为$0$，这一点我们将在再次介绍复数时证明. \\
+	其余的命题利用复数域上的运算性质立即得证.
+\end{proof}
 
 类比于整数的带余除法，多项式间也可以有带余除法.
 
 \begin{theorem}{多项式的带余除法}{doxluiiufa}
-	若$f(x)$和$g(x)$是两个已知的多项式，其中$g(x)$不是零多项式，那么存在唯一的一对多项式$q(x)$和$r(x)$，使得$$f(x) = g(x) \cdot q(x) + r(x)$$其中$\deg r < \deg g$或$r(x)=0$.称$q(x)$和$r(x)$分别为$f(x)$除以$g(x)$所得的\textbf{商式}与\textbf{余式}.
+	若$f(x)$和$g(x)$是两个已知的多项式，其中$g(x)$不是零多项式，那么存在唯一的一对多项式$q(x)$和$r(x)$，使得$$f(x) = g(x) \cdot q(x) + r(x).$$其中$\deg r < \deg g$或$r(x)=0$.称$q(x)$和$r(x)$分别为$f(x)$除以$g(x)$所得的\textbf{商式}与\textbf{余式}.
 \end{theorem}
 \begin{remark}
 	这个定理的证明需要用到数学归纳法，我们会在之后回顾该证明.
@@ -711,19 +728,23 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\end{itemize}
 \end{theorem}
 \begin{proof}
-	(1)用$f(x)$除以$x-c$，记$f(x)=(x-c)q(x)+r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) =0$，即$r(x)$是一个常数. \\
-	令$x=c$，则$f(c)=r(x)$，即余式$r(x)$的值为$f(c)$. \\
+	(1)用$f(x)$除以$x-c$，记$f(x)=(x-c)q(x)+r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) =0$，即$r(x)$是一个常数.此时令$x=c$，则$f(c)=r(x)$，即余式$r(x)$的值为$f(c)$. \\
 	(2)证明同上，请读者自行验证.
 \end{proof}
 
+多项式的根和一次因式有一一对应的关系，下列命题就是余数定理的简单推论.
+\begin{proposition}{多项式的根对应一个一次因式}
+	设多项式$f(x)$.则常数$c$满足$f(c)=0$当且仅当$(x-c)$是$f(x)$的因式.
+\end{proposition}
+
 \begin{theorem}{因式定理}
-    对于一个关于$x$的$n$次多项式$$f(x)=a_nx^n+ \cdots +a_1x+a_0$$若存在有理根$c=\dfrac{p}{q}$，则分子$p$是常数项$a_0$的因数，分母$q$是首项系数$a_n$的因数.
+    对于一个关于$x$的$n$次多项式$$f(x)=a_nx^n+ \cdots +a_1x+a_0,$$若存在有理根$c=\dfrac{p}{q}$，则分子$p$是常数项$a_0$的因数，分母$q$是首项系数$a_n$的因数.
 \end{theorem}
 \begin{proof}
 	由定理\ref{thm:doxluiyuuudkli}可得，$f(x)$有根$\dfrac{p}{q}$等价于$f\ssb{\dfrac{p}{q}}=0$，即
 	$a_n \ssb{\dfrac{p}{q}}^n + \cdots + a_1 \dfrac{p}{q} + a_0 = 0$，变形得
-	$$a_np^n + a_{n-1}p^{n-1}q + \cdots + a_1pq^{n-1} + a_0q^n = 0$$
-	两边同时对$q$取模，可得$$a_np^n \equiv 0 \mod q$$
+	$$a_np^n + a_{n-1}p^{n-1}q + \cdots + a_1pq^{n-1} + a_0q^n = 0.$$
+	两边同时对$q$取模，可得$$a_np^n \equiv 0 \mod q.$$
 	由于$(p,q)=1$，则$(p^n,q)=1$，于是$a_n \equiv 0 \mod q$，即$q$是$a_n$的因数.同理可得$p$是$a_0$的因数.
 \end{proof}
 
@@ -734,16 +755,16 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{example}
 \begin{solution}
 	(1)第一个：记$f(x)=2x^4-7x^3+4x^2+2x-1$.注意到，$f(1)=0,~f(-1/2)=0$，于是$f(x)$必有因式$(x-1),(2x+1)$. \\
-	设$f(x)=(x-1)(2x+1) \cdot q(x)$，由长除法可得$q(x)=x^2-3x+1$，故$$f(x)=(x-1)(2x+1)(x^2-3x+1)$$
-	第二个：记$f(x)=x^3-9yx^2+26y^2x-24y^3$为关于$x$的多项式.注意到，$f(2y)=0$，故$f(x)$必有因式$(x-2y)$.同上可得$$f(x)=(x-2y)(x^2-7xy+12y^2)=(x-2y)(x-3y)(x-4y)$$
+	设$f(x)=(x-1)(2x+1) \cdot q(x)$，由长除法可得$q(x)=x^2-3x+1$，故$$f(x)=(x-1)(2x+1)(x^2-3x+1).$$
+	第二个：记$f(x)=x^3-9yx^2+26y^2x-24y^3$为关于$x$的多项式.注意到，$f(2y)=0$，故$f(x)$必有因式$(x-2y)$.同上可得$$f(x)=(x-2y)(x^2-7xy+12y^2)=(x-2y)(x-3y)(x-4y).$$
 	(2)记$f(x)=(2x-3)(3x+1) \cdot q(x) + r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) \leq 1$，记$r(x)=ax+b$. \\
-	由余数定理可得$f(3/2)=7,f(-1/3)=-4$.带入上式，有$$\frac{3}{2}a+b=7,\quad -\frac{1}{3}a+b=-4$$
+	由余数定理可得$f(3/2)=7,f(-1/3)=-4$.带入上式，有$$\frac{3}{2}a+b=7,\quad -\frac{1}{3}a+b=-4.$$
 	解得$a=6,b=-2$.则所求余式$r(x)=6x-2$. \\
-	(3)记$x^{10}=(x-1)^2 \cdot q(x) + r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) \leq 1$，记$r(x)=ax+b$，即$$x^{10} = (x-1)^2 \cdot q(x) + ax+b$$
-	由余数定理可得$f(1)=0$，即得$a+b=1$.带入上式，有$$x^{10} = (x-1)^2 \cdot q(x) + ax-a+1$$
+	(3)记$x^{10}=(x-1)^2 \cdot q(x) + r(x)$.由定理\ref{thm:doxluiiufa}可得$\deg r(x) \leq 1$，记$r(x)=ax+b$，即$$x^{10} = (x-1)^2 \cdot q(x) + ax+b.$$
+	由余数定理可得$f(1)=0$，即得$a+b=1$.带入上式，有$$x^{10} = (x-1)^2 \cdot q(x) + ax-a+1.$$
 	作代数变形，得
-	$$x^{10}-1 = (x-1)[q(x) \cdot (x-1)+a]$$
-	$$(x-1)(x^9+x^8+ \cdots +x+1) = (x-1)[q(x) \cdot (x-1)+a]$$
+	$$x^{10}-1 = (x-1)[q(x) \cdot (x-1)+a],$$
+	$$(x-1)(x^9+x^8+ \cdots +x+1) = (x-1)[q(x) \cdot (x-1)+a].$$
 	于是$x^9+x^8+ \cdots +x+1 = q(x) \cdot (x-1)+a$.在此式中令$x=1$，可得$a=10$. \\
 	综上，所求余式为$r(x)=10x-9$.
 \end{solution}
@@ -752,19 +773,19 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \begin{theorem}{Vieta定理}
 	设多项式$f(x)=a_nx^n + \cdots + a_1x + a_0$有根$x_1, \cdots ,x_n$.则有$$\begin{cases}
-		x_1+x_2+ \cdots + x_n=-\dfrac{a_{n-1}}{a_n} \\
-		{\displaystyle \sum_{1 \leq i < j \leq n} x_ix_j} = \dfrac{a_{n-2}}{a_n} \\
+		x_1+x_2+ \cdots + x_n=-\dfrac{a_{n-1}}{a_n}, \\
+		{\displaystyle \sum_{1 \leq i < j \leq n} x_ix_j} = \dfrac{a_{n-2}}{a_n}, \\
 		\quad \cdots \cdots \\
-		{\displaystyle \sum_{1 \leq i_1 < \cdots < i_k \leq n} (x_{i_1} \cdots x_{i_k})} = (-1)^{k} \dfrac{a_{n-k}}{a_n} \\
+		{\displaystyle \sum_{1 \leq i_1 < \cdots < i_k \leq n} (x_{i_1} \cdots x_{i_k})} = (-1)^{k} \dfrac{a_{n-k}}{a_n}, \\
 		\quad \cdots \cdots \\
-		x_1 \cdots x_n = (-1)^{n} \dfrac{a_0}{a_n}
+		x_1 \cdots x_n = (-1)^{n} \dfrac{a_0}{a_n}.
 	\end{cases}$$
 \end{theorem}
 \begin{remark}
 	Vieta定理适用于$f(x)$为任意系数多项式的情况，因此就算某些根是复数，该定理也成立.
 \end{remark}
 \begin{proof}
-	设$f(x)=a_nx^n + \cdots + a_1x + a_0=a_n(x-x_1)(x-x_2) \cdots (x-x_n)$，将其展开并由多项式相等的定义可得.
+	设$f(x)=a_nx^n + \cdots + a_1x + a_0=a_n(x-x_1)(x-x_2) \cdots (x-x_n)$，将其展开并由多项式相等的充要条件可得.
 \end{proof}
 
 \begin{example}
@@ -780,12 +801,12 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{example}
 \begin{solution}
 	(1)记$x^3-3x^2=y^3-3y^2=z^3-3z^2=k$，则$x,y,z$是关于$t$的方程$t^3-3t^2-k=0$的三个不同根.由Vieta定理，$x+y+z=3$. \\
-	(2)由Vieta定理，$$x_1+x_2+x_3+x_4=0,\quad x_1x_2x_3+x_1x_2x_4+x_1x_3x_4+x_2x_3x_4=90,\quad x_1x_2x_3x_4=-2009$$
-	由于$x_1x_2=49$，有$x_3x_4=-41$，带入前两式可得$$(x_1+x_2)+(x_3+x_4)=0,\quad -41(x_1+x_2)+49(x_3+x_4)=-90$$
-	解得$x_1+x_2=1,~x_3+x_4=-1$.由Vieta定理，$$k=x_1x_2+x_1x_3+x_1x_4+x_2x_3+x_2x_4+x_3x_4=8+(x_1+x_2)(x_3+x_4)=7$$
+	(2)由Vieta定理，$$x_1+x_2+x_3+x_4=0,\quad x_1x_2x_3+x_1x_2x_4+x_1x_3x_4+x_2x_3x_4=90,\quad x_1x_2x_3x_4=-2009.$$
+	由于$x_1x_2=49$，有$x_3x_4=-41$，带入前两式可得$$(x_1+x_2)+(x_3+x_4)=0,\quad -41(x_1+x_2)+49(x_3+x_4)=-90.$$
+	解得$x_1+x_2=1,~x_3+x_4=-1$.由Vieta定理，$$k=x_1x_2+x_1x_3+x_1x_4+x_2x_3+x_2x_4+x_3x_4=8+(x_1+x_2)(x_3+x_4)=7.$$
 	(3)注意到，$1, \cdots ,9$是关于$t$的方程$$\frac{x_1}{10t+1} + \frac{x_2}{10t+2} + \cdots + \frac{x_9}{10t+9} = 1$$
-	的$9$个不同根.将上式整理为$$10^9 \cdot t^{9} + (1 + \cdots + 9 - x_1 - \cdots - x_9) \cdot 10^8 \cdot t^{8} + \cdots = 0$$
-	由Vieta定理可得$$1+\cdots +9 = \frac{(x_1 + \cdots + x_9 - 1 - \cdots - 9) \cdot 10^8}{10^9}$$
+	的$9$个不同根.将上式整理为$$10^9 \cdot t^{9} + (1 + \cdots + 9 - x_1 - \cdots - x_9) \cdot 10^8 \cdot t^{8} + \cdots = 0.$$
+	由Vieta定理可得$$1+\cdots +9 = \frac{(x_1 + \cdots + x_9 - 1 - \cdots - 9) \cdot 10^8}{10^9},$$
 	化简得$x_1 + \cdots + x_9 = 495$.
 \end{solution}
 
@@ -807,8 +828,8 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \begin{definition}{映射，函数}
 	\begin{itemize}
-		\item 设$A$和$B$为两个集合，若对$A$中每个元素$x$，都存在$B$中唯一的元素$y$与之对应，则称此对应关系为一个\textbf{映射}(map)，记作$$f:A \to B,~~x \mapsto y$$
-		\item $x$在$B$中的对应元素$y$称为$x$在$f$下的\textbf{象}(image)，$x$称为$y$在$f$下的\textbf{原象}(preimage)，记作$$f(x) = y,~ x \in A$$
+		\item 设$A$和$B$为两个集合，若对$A$中每个元素$x$，都存在$B$中唯一的元素$y$与之对应，则称此对应关系为一个\textbf{映射}(map)，记作$$f:A \to B,~~x \mapsto y.$$
+		\item $x$在$B$中的对应元素$y$称为$x$在$f$下的\textbf{象}(image)，$x$称为$y$在$f$下的\textbf{原象}(preimage)，记作$$f(x) = y,~ x \in A.$$
 		\item 集合$A$称作映射$f$的\textbf{定义域}(domain)，记作$D_f$；集合$B$称为映射$f$的\textbf{陪域}(codomain)；$A$中所有元素在$f$下的象组成的集合称为$f$的\textbf{值域}(range)，记作$R_f$或$f(A)$.
 		\item 两个映射相等，当且仅当它们的定义域、对应关系、值域相同.
 		\item 定义域与陪域均为数集的映射称作\textbf{函数}(function).
@@ -850,6 +871,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 		\item 如果$f$为双射，则$|A| = |B|$. 
 	\end{itemize}
 \end{proposition}
+\begin{remark}
+	此命题的证明需要用到严谨的公理体系集合论，这里只需理解即可.
+\end{remark}
 
 刚才我们用了一种静态的方式理解函数.初中介绍的函数概念更为“动态”，即因变量随着自变量的变化而变化的规则称为函数.这种理解方式会在下一小节的例题中体现.
 
@@ -866,39 +890,39 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \begin{solution}
 	(1)第一组：不同.$f$的定义域为$(-\infty ,1)\cup (1,+\infty)$，而$g$的定义域为$\R$. \\
 	第二组：相同.$f$和$g$的定义域都是$(-\infty ,0)\cup (0,+\infty)$，对应法则相同，值域都是$\R ^{+}$. \\
-	(2)分别构造如下：$$f(x)=x^2, ~g(x)=|x|;\quad f(x)=\frac{1}{x}-2$$
+	(2)分别构造如下：$$f(x)=x^2, ~g(x)=|x|;\quad f(x)=\frac{1}{x}-2.$$
 	(3)第一问：即要求对于任意$x \in \R$都有$x^2+ax+1 \geq 0$，只需$\Delta \leq 0$，即得$a \in [-2,2]$. \\
-	第二问：即要求对于所有$x \in \R$，$x^2+ax+1$的值取遍$\R ^{+} \cup \{ 0 \}$.由于$$x^2+ax+1 = \ssb{x+\frac{a}{2}}^2 + 1-\frac{a^2}{4}$$
+	第二问：即要求对于所有$x \in \R$，$x^2+ax+1$的值取遍$\R ^{+} \cup \{ 0 \}$.由于$$x^2+ax+1 = \ssb{x+\frac{a}{2}}^2 + 1-\frac{a^2}{4},$$
 	由二次函数的性质可知$1-\dfrac{a^2}{4} \leq 0$，即得$a \in (-\infty ,-2]\cup [2,+\infty)$. \\
 	(4)做出$f(x)$的大致图像如下：
 	\begin{figure}[h!]
 		\centering
 		\includesvg[width=8cm]{gnuplot/202305021edit.svg}
 	\end{figure}
-	于是得到$k \in (0,1)$.
+	容易得到$k \in (0,1)$.
 \end{solution}
 
-\newpage
+\vspace{2em}
 \subsection{映射与函数的运算}
 
 先介绍一种由定义自然产生的运算：
 
 \begin{definition}{逆映射与反函数} %兴趣一阶I p26
-    设映射$f:A \to B$，如果$f$是一个双射，则对任意的$y \in B$，都存在唯一的$x \in A$使得$y=f(x)$.这就产生了一个从$B$到$A$的映射$g$，满足$$x=g(y),~\forall y \in B$$
-    该映射称为$f$的\textbf{逆映射}(inverse mapping)，记作$$f^{-1}:B \to A$$
+    设映射$f:A \to B$，如果$f$是一个双射，则对任意的$y \in B$，都存在唯一的$x \in A$使得$y=f(x)$.这就产生了唯一一个从$B$到$A$的映射$g$\footnote{实际上这一点是需要证明的，然而如果没有对逆映射的直观理解，证明过程几乎无法看懂，这里只好用不严格的语言表述.}，满足$$x=g(y),~\forall y \in B.$$
+    该映射称为$f$的\textbf{逆映射}(inverse mapping)，记作$$f^{-1}:B \to A.$$
     对于这样的逆映射，它的定义域是$B$，值域是$A$.\\
     同样地，设函数$f:A \to B$，如果$f$是一个双射，则$f$的逆映射$f^{-1}$称为函数$f$的\textbf{反函数}(inverse function)，其定义域是$B$，值域是$A$.
 \end{definition}
 
 不难发现，如果两个函数互为反函数，它们的图像关于$y=x$对称.
 
-函数的加法与标量乘法的定义很符合直觉.
+函数的加法与标量乘法的定义很平凡.
 
 \begin{definition}{函数的加法，标量乘法}
 	\begin{itemize}
-		\item 对于$f,g:A \to B$，对所有$x \in A$，规定函数的加和$f + g$满足$$(f + g)(x) = f(x) + g(x)$$
+		\item 对于$f,g:A \to B$，对所有$x \in A$，规定函数的加和$f + g$满足$$(f + g)(x) = f(x) + g(x).$$
 		函数$f + g$的定义域为$A$，陪域不定.
-		\item 对于$f:A \to B$及$\lambda \in \R$，对所有$x \in A$，规定函数的标量乘法得到的乘积$\lambda f$满足$$(\lambda f)(x) = \lambda f(x)$$
+		\item 对于$f:A \to B$及$\lambda \in \R$，对所有$x \in A$，规定函数的标量乘法得到的乘积$\lambda f$满足$$(\lambda f)(x) = \lambda f(x).$$
 		函数$\lambda f$的定义域为$A$，陪域为$\lambda B$\footnote{我们用常数乘以集合的方式表示将该集合中每个元素均乘以该常数构成的新集合}.
 	\end{itemize}
 \end{definition}
@@ -906,7 +930,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 那么函数之间的乘法该是如何的？实际上，如果单纯地将$f(x)$与$g(x)$的值相乘，得到的新函数很难研究.我们更倾向于研究一种特殊的“乘法”：
 
 \begin{definition}{映射与函数的复合} %兴趣一阶I p26
-    设映射$f:A \to B$，$g:B \to C$，则它们的\textbf{复合映射}(composite mapping)~$gf:A \to C$定义为$$(gf)(x)=g(f(x)) \ (x \in A)$$
+    设映射$f:A \to B$，$g:B \to C$，则它们的\textbf{复合映射}(composite mapping)~$gf:A \to C$定义为$$(gf)(x)=g(f(x)) \ (\forall x \in A).$$
     注意复合运算有先后顺序.容易说明映射$gf$的定义域为$A$，值域为$C$.\\
     当集合$A,B,C$均为数集时，可以得到类似的复合函数定义.
 \end{definition}
@@ -918,7 +942,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 有了函数的“乘法”，自然可以得到函数的“乘方”运算.我们一般将$f \circ f \circ \cdots \circ f~(n\textit{次复合})$称作$f$的$n$次迭代，记作$f^n$.
 
-另外，如果定义“恒等映射”$I:A \to A,I(x)=x$为乘法单位元，“零映射”$0:A\to A,0(x)=0$为加法单位元，用类似于复数的方法我们可以定义函数的乘法逆元、加法逆元.注意到，这里的乘法逆元就是逆映射，即$$f^{-1} \circ f (x) = x$$
+另外，如果定义“恒等映射”$I_A:A \to A,x \mapsto x$为集合$A$上的乘法单位元，“零映射”$0:A\to A,x \mapsto 0$为加法单位元，用类似于复数的方法我们可以定义函数的乘法逆元、加法逆元.注意到，这里的乘法逆元就是逆映射，即$$f^{-1} \circ f = I_A,\qquad f \circ f^{-1} = I_B.$$
 其余性质读者可参考复数章节证明.
 
 \begin{example}
@@ -928,18 +952,18 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	(4)函数$y=f(x+1)$的反函数是$y=f^{-1}(x+1)$，已知$f(1)=4007$，则$f(1998)=$\tk . \\
 \end{example}
 \begin{solution}
-	(1)第一个：记$y=f(x)$，那么$y \in (3,9)$，$x=\dfrac{y-3}{2}$，于是$$f^{-1}(x)=\frac{x-3}{2},~x \in (3,9)$$
-	第二个：由于$y=6+\dfrac{1}{x-1} \in (-\infty ,6)\cup (6,+\infty)$，所以$$f^{-1}(x) = 1+\frac{1}{x-6},~x \in (-\infty ,6)\cup (6,+\infty)$$
-	第三个：记$y=f(x)$，注意到$y-27=(x-3)^3 \in \R$，故$$f^{-1}(x) = \sqrt[3]{x-27}+3$$
+	(1)第一个：记$y=f(x)$，那么$y \in (3,9)$，$x=\dfrac{y-3}{2}$，于是$$f^{-1}(x)=\frac{x-3}{2},~x \in (3,9).$$
+	第二个：由于$y=6+\dfrac{1}{x-1} \in (-\infty ,6)\cup (6,+\infty)$，所以$$f^{-1}(x) = 1+\frac{1}{x-6},~x \in (-\infty ,6)\cup (6,+\infty).$$
+	第三个：记$y=f(x)$，注意到$y-27=(x-3)^3 \in \R$，故$$f^{-1}(x) = \sqrt[3]{x-27}+3.$$
 	(2)第一个：记$t=x+1$，则$f(t)=t(t-1)=t^2-t$，故$f(x)=x^2-x$； \\
 	第二个：记$t=\sqrt{x} \geq 0$，则$f(t)=3t^2-2t$，故$f(x)=3x^2-2x,~x \in [0,+\infty )$. \\
 	(3)题目条件即$f(2)=4$，令$20-2x=2$，此时$x=9,~y=4$.于是$y=f(20-2x)$的反函数过点$(4,9)$. \\
 	(4)由于$y$的反函数为$y=f^{-1}(x+1)$，可知$y+1=f(x)$，将$y=f(x+1)$代入，即得$f(x+1)+1=f(x)$.于是有
 	\begin{align*}
-		f(1998)-f(1997)&=-1 \\
-		f(1997)-f(1996)&=-1 \\
+		f(1998)-f(1997)&=-1, \\
+		f(1997)-f(1996)&=-1, \\
 		\cdots \cdots \\
-		f(2)-f(1)&=-1
+		f(2)-f(1)&=-1.
 	\end{align*}
 	将上式累加可得$f(1998)-f(1)=-1997$，则$f(1998)=4007-1997=2010$.
 \end{solution}
@@ -980,17 +1004,17 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \begin{proposition}{指数函数与对数函数的性质}
     指数函数$f(x)=a^x$具有以下性质：
     \begin{itemize}
-        \item 定义域：$\mathbb{R}$
-        \item 值域：$\mathbb{R}^+$
-        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
-        \item 图像：恒过定点$(0,1)$
+        \item 定义域：$\mathbb{R}$；
+        \item 值域：$\mathbb{R}^+$；
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数；
+        \item 图像：恒过定点$(0,1)$.
     \end{itemize}
     对数函数$f(x)=\log_{a}{x}$具有以下性质：
     \begin{itemize}
-        \item 定义域：$\mathbb{R}^{+}$
-        \item 值域：$\mathbb{R}$
-        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数
-        \item 图像：恒过定点$(1,0)$
+        \item 定义域：$\mathbb{R}^{+}$；
+        \item 值域：$\mathbb{R}$；
+        \item 单调性：当$0<a<1$时，为减函数；当$a>1$时，为增函数；
+        \item 图像：恒过定点$(1,0)$.
     \end{itemize}
     对数函数$f(x)=\log_{a}{x}$与指数函数$f=a^{x}$($a>0$且$a \neq 1$)互为反函数.它们的图像关于$y=x$对称.
 \end{proposition}
@@ -1007,7 +1031,8 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\caption{对数函数的图像}
 \end{figure}
 
-顺便说一句，在学习幂运算时，我们无法定义无理数次幂，只能通过实数的连续性逼近.现在我们可以定义$$a^x = \ssb{e ^{\ln a}}^x = e^{x \cdot \ln a}$$
+顺便说一句，在学习幂运算时，我们无法定义无理数次幂，只能通过实数的连续性逼近.现在我们可以定义$$a^x = \ssb{e ^{\ln a}}^x = e^{x \cdot \ln a}.$$
+\newpage \noindent
 其中$x \in \C$~(是的，甚至可以推广到复数域).这个定义是良定义，因为由指数函数与对数函数复合带来的连续性与我们之前通过实数连续性逼近相吻合.
 
 \begin{example}
@@ -1024,9 +1049,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 		\includesvg[width=7cm]{gnuplot/202305071edit.svg}
 	\end{figure}
 	于是可知$f(x)$的最大值为$6$，在$x=4$时取得. \\
-	(3)记$t=3^x \in [1/3,9]$，故$$f(x) = -t^2 + 6t + 3$$
+	(3)记$t=3^x \in [1/3,9]$，故$$f(x) = -t^2 + 6t + 3.$$
 	则$f(x)$的最大值为$12$，在$t=3$即$x=1$时取得. \\
-	(4)记$t=2^x \in (0,1/2)$，故原不等式等价于$$m-m^2 > -\frac{t+1}{t^2}$$恒成立.记$u=1/t \in (2, \infty)$，则$$-\frac{t+1}{t^2} = -\frac{\frac{1}{u}+1}{\frac{1}{u^2}} = -(u^2+u) < -6$$
+	(4)记$t=2^x \in (0,1/2)$，故原不等式等价于$$m-m^2 > -\frac{t+1}{t^2}$$恒成立.记$u=1/t \in (2, \infty)$，则$$-\frac{t+1}{t^2} = -\frac{\frac{1}{u}+1}{\frac{1}{u^2}} = -(u^2+u) < -6.$$
 	联系上式，恒有$m-m^2 \geq -6$，于是$m \in [-2,3]$.
 \end{solution}
 
@@ -1040,7 +1065,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 有两类特殊的初等函数，在研究最值问题时很常见.
 
 \begin{example}
-    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0)$$
+    设函数$$f(x)=mx+\frac{n}{x}~(m,n>0).$$
     请指出它的定义域、值域并作出示意图.
 \end{example}
 \begin{solution}
@@ -1055,7 +1080,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{solution}
 
 \begin{example}
-    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0)$$
+    设函数$$f(x)=mx-\frac{n}{x}~(m,n>0).$$
     请指出它的定义域、值域并作出示意图.
 \end{example}
 \begin{solution}
@@ -1093,7 +1118,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     在$(- \infty , 0) \color{red}{\cup}\color{black} (0 , + \infty)$上单调递增.它只有一个单调区间.
 \end{note}
 
-注意到，如果一个函数在某个区间上连续且单调，它在这个区间上一定是个单射.(注：所有初等函数都是连续的)
+注意到，如果一个函数在某个区间上连续且单调，它在这个区间上一定是个单射(注：所有初等函数都是连续的).用反证法容易说明：任取$f(x_1)=f(x_2)$，假设$x_1 \neq x_2$，不妨$x_1 > x_2$且$f$单调递增，则$f(x_1) > f(x_2)$，矛盾.
 
 \begin{proposition}{函数单调性的变化规律}
     设函数$f(x),g(x)$，为了方便计算，假定它们的单调区间$I$相同.\\
@@ -1122,9 +1147,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	任取$x_1<x_2<-1$，则
 	\begin{align*}
 		f(x_1)-f(x_2) &= \log_{1/2}(x_1^2-2x_1-3) - \log_{1/2}(x_2^2-2x_2-3) \\
-		&= \log_{1/2}\ssb{\frac{x_1^2-2x_1-3}{x_2^2-2x_2-3}}
+		&= \log_{1/2}\ssb{\frac{x_1^2-2x_1-3}{x_2^2-2x_2-3}}.
 	\end{align*}
-	其中，由于$g(x)=x^2-2x-3$在$(-\infty ,-1)$单调递减且恒为正，知$\dfrac{g(x_1)}{g(x_2)} > 1$.于是$$f(x_1)-f(x_2) < 0$$
+	其中，由于$g(x)=x^2-2x-3$在$(-\infty ,-1)$单调递减且恒为正，知$\dfrac{g(x_1)}{g(x_2)} > 1$.于是$$f(x_1)-f(x_2) < 0.$$
 	即$f(x)$在$(-\infty ,-1)$单调递增. \\
 	(2)若$a=1/2$，则$f(x)$在$\R$上为不增函数，不是严格减函数； \\
 	若$a < 1/2$，可知$f(0)=1$，则$1-a \leq 1$，于是$a \in [0,1/2)$. \\
@@ -1146,25 +1171,25 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \begin{example}
 	(1)定义一个函数的\textit{不动点}如下：若存在函数$f(x)$定义域中的$x_0$满足$f(x_0)=x_0$，则称$x_0$是$f(x)$的一个\textit{不动点}.设$f(x)=e^x-2$，证明：$f(x)$在区间$(0,2)$内至少有一个\textit{不动点}. \\
-	(2)设方程$x^3-3x^2+1=0$有三根$\omega _1 < \omega _2 < \omega _3$.证明：对任意正整数$n$，有$[\omega _1 ^n + \omega _2 ^n] = 0$.(这里，$[x]$表示不超过$x$的最大整数)
+	(2)设方程$x^3-3x^2+1=0$有三根$\omega _1 < \omega _2 < \omega _3$.证明：对任意正整数$n$，有$\lfloor \omega _1 ^n + \omega _2 ^n \rfloor = 0$.(这里，$\lfloor x \rfloor$表示不超过$x$的最大整数)
 \end{example}
 \begin{solution}
 	(1)即证明$\varphi (x) = e^x-2-x$在$(0,2)$内至少有一个零点. \\
 	实际上，由于$\varphi (0) = -1 < 0,~\varphi (2)=e^2-4 > 0$，由区间根定理，这是显然的. \\
-	(2)记$f(x)=x^3-3x^2+1$.先对三根做初步估计：注意到，$$f(-1)=-3<0,\quad f(0)=1>0,\quad f(1)=-1<0,\quad f(2)=-3<0,\quad f(3)=1>0$$
-	于是$\omega _1 \in (-1,0),~\omega _2 \in (0,1),~\omega _3 \in (2,3)$.进一步地，注意到$$f(-0.5)=0.125>0,\quad f(0.5)=0.375>0,\quad f(-0.6)=-0.296<0,\quad f(0.6)=0.136>0,\quad f(0.7)=-0.127$$
+	(2)记$f(x)=x^3-3x^2+1$.先对三根做初步估计：注意到，$$f(-1)=-3<0,\quad f(0)=1>0,\quad f(1)=-1<0,\quad f(2)=-3<0,\quad f(3)=1>0.$$
+	于是$\omega _1 \in (-1,0),~\omega _2 \in (0,1),~\omega _3 \in (2,3)$.进一步地，注意到$$f(-0.5)=0.125>0,\quad f(0.5)=0.375>0,\quad f(-0.6)=-0.296<0,\quad f(0.6)=0.136>0,\quad f(0.7)=-0.127.$$
 	于是$\omega _1 \in (-0.6,-0.5),~\omega _2 \in (0.6,0.7)$. \\
-	当$n=1$时，$\omega _1 + \omega _2 \in (0,0.2)$，则$[\omega _1 + \omega _2]=0$. \\
-	当$n=2$时，$\omega _1^2 + \omega _2^2 \in (0.61,0.85)$，则$[\omega _1^2 + \omega _2^2]=0$. \\
-	当$n$为奇数且$n \geq 3$时，由于$\omega _2 > -\omega _1$，可知$$\omega _2^n > -\omega _1^n$$
-	即$\omega _1 ^n + \omega _2 ^n >0$；另一方面，$\omega _2^n < 0.7^n$，$\omega _1 ^n < -0.5^n$，故$$\omega _1 ^n + \omega _2 ^n < 0.7^n - 0.5^n <1$$
-	于是$[\omega _1 ^n + \omega _2 ^n] = 0$. \\
-	当$n$为偶数且$n \geq 4$时，显然有$$\omega _1 ^n + \omega _2 ^n >0$$
-	另一方面，$\omega _2^n < 0.7^n$，$\omega _1 ^n < 0.6^n$，故$$\omega _1 ^n + \omega _2 ^n < 0.7^n + 0.6^n < 0.7^2 + 0.6^2 = 0.85 < 1$$
-	于是$[\omega _1 ^n + \omega _2 ^n] = 0$.
+	当$n=1$时，$\omega _1 + \omega _2 \in (0,0.2)$，则$\lrfloor{\omega _1 + \omega _2}=0$. \\
+	当$n=2$时，$\omega _1^2 + \omega _2^2 \in (0.61,0.85)$，则$\lrfloor{\omega _1^2 + \omega _2^2} =0$. \\
+	当$n$为奇数且$n \geq 3$时，由于$\omega _2 > -\omega _1$，可知$$\omega _2^n > -\omega _1^n,$$
+	即$\omega _1 ^n + \omega _2 ^n >0$；另一方面，$\omega _2^n < 0.7^n$，$\omega _1 ^n < -0.5^n$，故$$\omega _1 ^n + \omega _2 ^n < 0.7^n - 0.5^n <1,$$
+	于是$\lrfloor{\omega _1 ^n + \omega _2 ^n} = 0$. \\
+	当$n$为偶数且$n \geq 4$时，显然有$$\omega _1 ^n + \omega _2 ^n >0.$$
+	另一方面，$\omega _2^n < 0.7^n$，$\omega _1 ^n < 0.6^n$，故$$\omega _1 ^n + \omega _2 ^n < 0.7^n + 0.6^n < 0.7^2 + 0.6^2 = 0.85 < 1.$$
+	于是$\lrfloor{\omega _1 ^n + \omega _2 ^n} = 0$.
 \end{solution}
 
-\newpage
+\vspace{2em}
 \subsection{奇偶性与对称性}
 
 先介绍奇偶性的概念：
@@ -1188,45 +1213,45 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{remark}
 \begin{proof}
     只选择(2)(3)(4)的部分证明： \\
-    (2)设奇函数$f(x)$与偶函数$g(x)$，函数$h(x):=f(x) \cdot g(x)$.对任意$x \in D$，有$f(x)=-f(-x),~g(x)=g(-x)$，于是有$$f(x) \cdot g(x) = - f(-x) \cdot g(-x)$$
+    (2)设奇函数$f(x)$与偶函数$g(x)$，函数$h(x):=f(x) \cdot g(x)$.对任意$x \in D$，有$f(x)=-f(-x),~g(x)=g(-x)$，于是有$$f(x) \cdot g(x) = - f(-x) \cdot g(-x),$$
     即$h(x)=-h(-x)$.又因为$h(x)$的定义域关于原点对称，故$h(x)$是奇函数. \\
     (3)设奇函数$f(x)$，$h(x):=\frac{1}{f(x)}$，其中$h(x)$的定义域是$f(x)$的定义域中除去所有使得$f(x)=0$的$x$，故$h(x)$定义域关于原点对称. \\
     又由于对任意$x \in D$，有$f(x)=-f(-x)$，故$h(x)=-h(-x)$，于是$h(x)$是奇函数. \\
-    (4)设奇函数$f(x)$，偶函数$g(x)$，则对任意$x \in D$，有$f(x)=-f(x)$且$g(x)=g(-x)$，于是$$(gf)(-x) = g(f(-x)) = g(-f(x)) = g(f(x)) = (gf)(x)$$
+    (4)设奇函数$f(x)$，偶函数$g(x)$，则对任意$x \in D$，有$f(x)=-f(x)$且$g(x)=g(-x)$，于是$$(gf)(-x) = g(f(-x)) = g(-f(x)) = g(f(x)) = (gf)(x).$$
     又因为$(gf)(x)$的定义域关于原点对称，故$gf(x)$为偶函数.
 \end{proof}
 
 \begin{example}
-	(1)判断下列函数是否具有奇偶性：$$y = \frac{2^x-1}{2^x+1},\quad y=\frac{\sqrt{9-x^2}}{|x+4|+|x-3|},\quad y=\ln \ssb{x + \sqrt{x^2+1}}$$
+	(1)判断下列函数是否具有奇偶性：$$y = \frac{2^x-1}{2^x+1},\quad y=\frac{\sqrt{9-x^2}}{|x+4|+|x-3|},\quad y=\ln \ssb{x + \sqrt{x^2+1}}.$$
 	(2)设函数$f(x)=\dfrac{x}{(2x+1)(x-a)}$为奇函数，则$a=$\tk . \\
 	(3)设函数$f(x)=x^3+x$，当$0 \leq t \leq 1$时，$f(mt)+f(1-m)>0$恒成立，则实数$m$的取值范围为\tk . \\
 	(4)设函数$f(x)=\dfrac{(x+1)^2+\sqrt[3]{x}}{x^2+1}$的最大值为$M$，最小值为$m$，则$M+m=$\tk .
 \end{example}
 \begin{solution}
-	(1)第一个：记$f(x)=y$.由于$$f(-x) = \frac{\frac{1}{2^x} -1}{\frac{1}{2^x} +1} = \frac{1-2^x}{1+2^x} = -f(x)$$
+	(1)第一个：记$f(x)=y$.由于$$f(-x) = \frac{\frac{1}{2^x} -1}{\frac{1}{2^x} +1} = \frac{1-2^x}{1+2^x} = -f(x),$$
 	又$f(x)$定义域关于原点对称，故$f(x)$为奇函数. \\
-	第二个：记$f(x)=y$.由$9-x^2 \geq 0$知$x \in [-3,3]$，此时$|x+4|+|x-3|=x+4+3-x=7$.于是$$f(-x)=\frac{\sqrt{9-x^2}}{7}=f(x)$$
+	第二个：记$f(x)=y$.由$9-x^2 \geq 0$知$x \in [-3,3]$，此时$|x+4|+|x-3|=x+4+3-x=7$.于是$$f(-x)=\frac{\sqrt{9-x^2}}{7}=f(x),$$
 	又$f(x)$定义域关于原点对称，故$f(x)$为偶函数. \\
-	第三个：记$f(x)=y$.由$x + \sqrt{x^2+1} > 0$，可知$x \in \R$.由于$$f(-x) = \ln \ssb{-x+\sqrt{x^2+1}} = \ln \ssb{\frac{1}{x+\sqrt{x^2+1}}} = -\ln \ssb{x + \sqrt{x^2+1}} = -f(x)$$
+	第三个：记$f(x)=y$.由$x + \sqrt{x^2+1} > 0$，可知$x \in \R$.由于$$f(-x) = \ln \ssb{-x+\sqrt{x^2+1}} = \ln \ssb{\frac{1}{x+\sqrt{x^2+1}}} = -\ln \ssb{x + \sqrt{x^2+1}} = -f(x),$$
 	又$f(x)$定义域关于原点对称，故$f(x)$为奇函数. \\
-	(2)显然，$f(x)$定义域为$\R \setjianfa \{-1/2,a \}$.为使该定义域关于原点对称，令$a=1/2$.代回验证，发现$$f(-x) = \frac{-2x}{(1-2x)(2x+1)} = -f(x)$$
+	(2)显然，$f(x)$定义域为$\R \setjianfa \{-1/2,a \}$.为使该定义域关于原点对称，令$a=1/2$.代回验证，发现$$f(-x) = \frac{-2x}{(1-2x)(2x+1)} = -f(x).$$
 	故$a=1/2$符合题意. \\
-	(3)注意到，$f(x)$是奇函数且在$\R$上单调递增，则原不等式等价于$f(mt)>f(m-1)$，即$mt>m-1$在$t \in [0,1]$时恒成立.于是$$m < \frac{1}{1-t}$$
+	(3)注意到，$f(x)$是奇函数且在$\R$上单调递增，则原不等式等价于$f(mt)>f(m-1)$，即$mt>m-1$在$t \in [0,1]$时恒成立.于是$$m < \frac{1}{1-t},$$
 	而右式恒$\geq 1$，则$m \in (-\infty ,1)$. \\
 	(4)注意到，$f(x)=1+\dfrac{2x+\sqrt[3]{x}}{x^2+1}$，即$g(x)=f(x)-1$为奇函数，即$f(x)$关于$(0,1)$中心对称，则$M+m=2$.
 \end{solution}
 
 \begin{example}
-	(1)定义在$\R$上的函数$f(x)$满足$$\forall x,y \in \R ,~f(x+y)+f(x-y)=2f(x)f(y)$$且$f(0) \neq 0$，判断$f(x)$的奇偶性. \\
+	(1)定义在$\R$上的函数$f(x)$满足$$\forall x,y \in \R ,~f(x+y)+f(x-y)=2f(x)f(y),$$且$f(0) \neq 0$，判断$f(x)$的奇偶性. \\
 	(2)证明：任何一个定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和.
 \end{example}
 \begin{solution}
-	(1)令$x=y=0$，则$$f(0)+f(0)=2f(0)f(0) \quad i.e. \quad f(0)\ssb{2f(0)-2}=0$$
+	(1)令$x=y=0$，则$$f(0)+f(0)=2f(0)f(0) \quad i.e. \quad f(0)\ssb{2f(0)-2}=0.$$
 	由于$f(0) \neq 0$，可得$f(0)=1$. \\
-	令$x=0$，则$$f(y)+f(-y)=2f(0)f(y)$$
+	令$x=0$，则$$f(y)+f(-y)=2f(0)f(y),$$
 	即$f(y)=f(-y)$.又$f(x)$定义域关于原点对称，故$f(x)$为偶函数. \\
-	(2)设该函数为$f(x)$，分解为$f(x)=g(x)+h(x)$，其中$g(x)$为偶函数，$h(x)$为奇函数.于是$$f(-x)=g(-x)+h(-x)=g(x)-h(x),\quad f(x)=g(x)+h(x)$$
-	可得$$g(x)=\frac{f(x)+f(-x)}{2},\quad h(x)=\frac{f(x)-f(-x)}{2}$$
+	(2)设该函数为$f(x)$，分解为$f(x)=g(x)+h(x)$，其中$g(x)$为偶函数，$h(x)$为奇函数.于是$$f(-x)=g(-x)+h(-x)=g(x)-h(x),\quad f(x)=g(x)+h(x).$$
+	可得$$g(x)=\frac{f(x)+f(-x)}{2},\quad h(x)=\frac{f(x)-f(-x)}{2}.$$
 	经检验，对任意$f(x)$，该构造符合要求.
 \end{solution}
 
@@ -1235,9 +1260,9 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \begin{definition}{对称性} %兴趣一阶I p76
     设函数$f(x)$的定义域为$D$，区间$I \subseteq D$.\\
     函数$f(x)$的图像关于直线$x=a$\textbf{轴对称}当且仅当
-    $$ \forall x \in I,~ f(a+x)=f(a-x) $$
+    $$ \forall x \in I,~ f(a+x)=f(a-x). $$
     函数$f(x)$的图像关于点$(a,b)$\textbf{中心对称}当且仅当
-    $$ \forall x \in I,~ f(a+x)+f(a-x)=2b $$
+    $$ \forall x \in I,~ f(a+x)+f(a-x)=2b. $$
 \end{definition}
 
 可以用图像来理解这一定义：
@@ -1252,31 +1277,31 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \begin{proposition}{函数的对称变换}
     设函数$f(x)$与$g(x)$.假设其定义域满足下方自然要求.\\
-    (1)$f(x)$与$g(x)$的图像关于直线$x=a$对称，等价于$$\forall x,~f(a+x)=g(a-x)$$
-    (2)$f(x)$与$g(x)$的图像关于直线$y=b$对称，等价于$$\forall x,~b+f(x)=b-g(x)$$
-    (3)$f(x)$与$g(x)$的图像关于点$(a,b)$对称，等价于$$\forall x,~b+f(a+x)=b-g(a-x)$$
+    (1)$f(x)$与$g(x)$的图像关于直线$x=a$对称，等价于$$\forall x,~f(a+x)=g(a-x).$$
+    (2)$f(x)$与$g(x)$的图像关于直线$y=b$对称，等价于$$\forall x,~b+f(x)=b-g(x).$$
+    (3)$f(x)$与$g(x)$的图像关于点$(a,b)$对称，等价于$$\forall x,~b+f(a+x)=b-g(a-x).$$
 \end{proposition}
 
 \begin{example}
 	(1)若函数$y=f(x+2)$是偶函数，则$y=f(16-x)$的对称轴是\tk . \\
-	(2)指出下列函数的对称中心：$$y=x^3+3x^2+6x+3,\quad y=\frac{2017^x}{2017^x-1}$$
+	(2)指出下列函数的对称中心：$$y=x^3+3x^2+6x+3,\quad y=\frac{2017^x}{2017^x-1}.$$
 	(3)若函数$f(x)=(1-x^2)(x^2+ax+b)$的图像关于直线$x=-2$对称，则$f(x)$的最大值为\tk .
 \end{example}
 \begin{solution}
 	(1)由题，$f(x)$关于$x=2$轴对称.那么$f(16-x)$关于$16-x=2$轴对称，即$y=f(16-x)$关于$x=14$轴对称. \\
 	(2)第一个：注意到，$f(x)=y=(x+1)^3+3(x+1)-1$.则$y=f(x-1)+1$是奇函数，那么$f(x)$关于$(-1,-1)$中心对称. \\
-	第二个：取几个特殊点：$f(1)=2017/2016,~f(-1)=-1/2016$，于是考虑取$f(-x)$看看：$$f(-x)=\frac{\frac{1}{2017^x}}{\frac{1}{2017^x}-1} = \frac{-1}{2017^x-1} = 1-f(x)$$
+	第二个：取几个特殊点：$f(1)=2017/2016,~f(-1)=-1/2016$，于是考虑取$f(-x)$看看：$$f(-x)=\frac{\frac{1}{2017^x}}{\frac{1}{2017^x}-1} = \frac{-1}{2017^x-1} = 1-f(x).$$
 	故$f(x)$关于$(0,1/2)$中心对称. \\
-	(3)由于$f(-1)=f(1)=0$，且$f(x)$关于$x=-2$对称，故$f(-3)=f(-5)=0$，即$$f(x)=-(x+1)(x-1)(x+3)(x+5) = -(x^2+4x-5)(x^2+4x+3) = -(x^2+4x-1)^2+16$$
+	(3)由于$f(-1)=f(1)=0$，且$f(x)$关于$x=-2$对称，故$f(-3)=f(-5)=0$，即$$f(x)=-(x+1)(x-1)(x+3)(x+5) = -(x^2+4x-5)(x^2+4x+3) = -(x^2+4x-1)^2+16.$$
 	其中，$x^2+4x-1 = (x+2)^2-5 \geq -5$，于是$f(x) \leq 16$.
 \end{solution}
 
-\newpage
+\vspace{3em}
 \subsection{周期性}
 
 \begin{definition}{周期性} %兴趣一阶I p76
     设函数$f(x)$的定义域为$D$.\\
-    当$f(x)$满足$$\forall x \in D, \exists \ T \in \mathbb{R}, f(x)=f(x+T)$$
+    当$f(x)$满足$$\forall x \in D, \exists \ T \in \mathbb{R}, f(x)=f(x+T),$$
     称这样的$T$为函数$f(x)$的\textbf{周期}(period)，称$f(x)$为\textbf{周期函数}(periodic function).当$f(x)$有一个最小的正数$T$作为周期，这样的$T$称作最小正周期.
 \end{definition}
 \begin{remark}
@@ -1333,10 +1358,10 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{proposition}
 
 \begin{example}
-	作出以下函数大致图像：$$y=\frac{x^2}{1-2|x|},\quad y=\frac{1+2^{x/2}}{1-2^{x/2}},\quad y=\ln \ssb{\frac{1+2^x}{1-2^x}},\quad y=e^x-\ln x$$
+	作出以下函数大致图像：$$y=\frac{x^2}{1-2|x|},\quad y=\frac{1+2^{x/2}}{1-2^{x/2}},\quad y=\ln \ssb{\frac{1+2^x}{1-2^x}},\quad y=e^x-\ln x.$$
 \end{example}
 \begin{solution}
-	(1)先看$f(x)=\dfrac{x^2}{1-2x}$的图像.由于$$f(x)=-\frac{1}{2}x+\frac{1/8}{1/2 - x} - \frac{1}{4} = \frac{1}{2} \ssb{-x+\frac{1/4}{1/2-x}} - \frac{1}{4} = \frac{1}{2} \ssb{(1/2-x)+\frac{1/4}{1/2-x}-1}$$
+	(1)先看$f(x)=\dfrac{x^2}{1-2x}$的图像.由于$$f(x)=-\frac{1}{2}x+\frac{1/8}{1/2 - x} - \frac{1}{4} = \frac{1}{2} \ssb{-x+\frac{1/4}{1/2-x}} - \frac{1}{4} = \frac{1}{2} \ssb{(1/2-x)+\frac{1/4}{1/2-x}-1},$$
 	故$f(x)$的图像可由$$g(x)=-\ssb{x+\dfrac{1}{4x}}$$
 	的图像先向右平移$\dfrac{1}{2}$，再向下平移$1$，最后沿竖直方向拉伸为原来的$\dfrac{1}{2}$得到. \\
 	接着取$f(|x|)$，即沿$y$轴左右对称即可.
@@ -1376,30 +1401,30 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 解决函数方程的基本方法有：赋值法，换元法，柯西法，利用函数的性质等.我们逐一介绍.
 
 \begin{example}{\examplefont{赋值与解方程组}}
-	(1)求所有函数$f:\R \to \R$，满足$$\forall x \in \R ,~2f(x)+xf(1-x)=x^3-2$$
-	(2)求所有函数$f:\R \to \R$，满足$$\forall x,y \in \R,~f(x-y)=f(x)+f(y)-2xy$$
-	(3)求所有函数$f:\mathbb{N} \to \mathbb{N}$，满足$$\forall x,y \in \mathbb{N},~f(x+y)=f(x)+f(y)+3(x+y)\sqrt[3]{f(x)f(y)}$$
+	(1)求所有函数$f:\R \to \R$，满足$$\forall x \in \R ,~2f(x)+xf(1-x)=x^3-2.$$
+	(2)求所有函数$f:\R \to \R$，满足$$\forall x,y \in \R,~f(x-y)=f(x)+f(y)-2xy.$$
+	(3)求所有函数$f:\mathbb{N} \to \mathbb{N}$，满足$$\forall x,y \in \mathbb{N},~f(x+y)=f(x)+f(y)+3(x+y)\sqrt[3]{f(x)f(y)}.$$
 \end{example}
 \begin{solution}
 	(1)令$P(x)$表示$2f(x)+xf(1-x)=x^3-2$. \\
 	分别取$P(x)$及$P(1-x)$，有$$\begin{cases}
-		2f(x)+xf(1-x)=x^3-2 \\
-		2f(1-x)+(1-x)f(x)=(1-x)^3-2
+		2f(x)+xf(1-x)=x^3-2, \\
+		2f(1-x)+(1-x)f(x)=(1-x)^3-2.
 	\end{cases}$$
 	将$f(x)$与$f(1-x)$视作变量，将$x$视作参数，联立解得$f(x)=x^2-1$.代回$P(x)$验证，成立. \\
 	(2)令$P(x,y)$表示$f(x-y)=f(x)+f(y)-2xy$. \\
 	取$P(0,0)$，有$f(0)=f(0)+f(0)$，则$f(0)=0$；取$P(x,x)$，有$2f(x)-2x^2=f(0)=0$，则$f(x)=x^2$.代回$P(x,y)$验证，成立. \\
 	(3)根据$P(x,y)$的形式，猜测$f(x)=x^3$，取$g(x):=\sqrt[3]{f(x)}$，下证$g(x)=x$. \\
 	$P(x,y)$即为$(g(x+y))^3=(g(x))^3+(g(y))^3+3(x+y)g(x)g(y)$.分别取$P(x,-x),P(x,x),P(2x,-x)$，可得$$\begin{cases}
-		(g(0))^3 = (g(x))^3 + (g(-x))^3 \\
-		(g(2x))^3 = 2(g(x))^3 + 6x(g(x))^2 \\
-		(g(x))^3 = (g(2x))^3 + (g(-x))^3 + 3xg(2x)g(-x)
+		(g(0))^3 = (g(x))^3 + (g(-x))^3, \\
+		(g(2x))^3 = 2(g(x))^3 + 6x(g(x))^2, \\
+		(g(x))^3 = (g(2x))^3 + (g(-x))^3 + 3xg(2x)g(-x).
 	\end{cases}$$
 	将$g(x),g(-x),g(2x)$视作变量，将$x$视作参数.解得$g(x)=x$.
 \end{solution}
 
 \begin{proposition}{Cauchy方程}
-	若函数$f$满足$$\forall x,y \in D_f,~f(x+y)=f(x)+f(y)$$
+	若函数$f$满足$$\forall x,y \in D_f,~f(x+y)=f(x)+f(y),$$
 	则称$f$是\textbf{加性的}(additive). \\
 	对于加性函数$f$，若其定义域为$\mathbb{Q}$，则有$f(x)=f(1)x$；若其定义域为$\R$，且满足下列三个条件
 	\begin{itemize}
@@ -1412,18 +1437,18 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \begin{proof}
 	第$1$步~下证
 	\begin{equation}
-		\forall n \in \mathbb{Z},~ f(n)=nf(1) \label{prop_cauchy1}
+		\forall n \in \mathbb{Z},~ f(n)=nf(1). \label{prop_cauchy1}
 	\end{equation}
 	首先，取$P(0,0)$，得$f(0+0)=f(0)+f(0)$，于是有$f(0)=0$. \\
-	其次，由$$f(n)=f(n-1)+f(1)=f(n-2)+2f(1)=\cdots =f(0)+nf(1)$$
+	其次，由$$f(n)=f(n-1)+f(1)=f(n-2)+2f(1)=\cdots =f(0)+nf(1),$$
 	有$\forall n \in \mathbb{Z}^+,~ f(n)=nf(1)$. \\
-	最后，取$P(x,-x)$，有$f(0)=f(x)+f(-x)$，则$\forall n \mathbb{Z}^-,~f(n)=-f(-n)=nf(1)$. \\
+	最后，取$P(x,-x)$，有$f(0)=f(x)+f(-x)$，则$\forall n \in \mathbb{Z}^-,~f(n)=-f(-n)=nf(1)$. \\
 	综上，式\ref{prop_cauchy1}成立. \\
 	第$2$步~下证
 	\begin{equation}
-		\forall p \in \mathbb{Z},q \in \mathbb{N}^+,~ f\ssb{\frac{p}{q}}=\frac{p}{q} f(1) \label{prop_cauchy2}
+		\forall p \in \mathbb{Z},q \in \mathbb{N}^+,~ f\ssb{\frac{p}{q}}=\frac{p}{q} f(1). \label{prop_cauchy2}
 	\end{equation}
-	首先，由$f$是加性的，显然有$f(x_1+ \cdots +x_n)=f(x_1) + \cdots + f(x_n)$.注意到$$qf\ssb{\frac{p}{q}} = \underbrace{f\ssb{\frac{p}{q}} + f\ssb{\frac{p}{q}} + \cdots + f\ssb{\frac{p}{q}}}_{q~ \rm times} = f\ssb{q \cdot \frac{p}{q}} = f(p)$$
+	首先，由$f$是加性的，显然有$f(x_1+ \cdots +x_n)=f(x_1) + \cdots + f(x_n)$.注意到$$qf\ssb{\frac{p}{q}} = \underbrace{f\ssb{\frac{p}{q}} + f\ssb{\frac{p}{q}} + \cdots + f\ssb{\frac{p}{q}}}_{q~ \rm times} = f\ssb{q \cdot \frac{p}{q}} = f(p),$$
 	结合式\ref{prop_cauchy1}，立得式\ref{prop_cauchy2}成立. \\
 	至此，原命题的前半部分证明完毕.为证明在$\R$上的加性函数是正比例函数的条件，需要用到一些高等工具，这里暂时跳过.
 \end{proof}
@@ -1432,56 +1457,56 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 \end{remark}
 
 \begin{example}{\examplefont{Cauchy方程}}
-	(1)求所有连续函数$f:\R \to \R$，满足$$\forall x,y\in \R,~f(x+y)=f(x)f(y)$$
-	(2)求所有函数$f:\mathbb{Q} \to \R$，满足$f(1)=2$且$$\forall x,y \in \mathbb{Q},~f(xy)=f(x)f(y)-f(x+y)+1$$
+	(1)求所有连续函数$f:\R \to \R$，满足$$\forall x,y\in \R,~f(x+y)=f(x)f(y).$$
+	(2)求所有函数$f:\mathbb{Q} \to \R$，满足$f(1)=2$且$$\forall x,y \in \mathbb{Q},~f(xy)=f(x)f(y)-f(x+y)+1.$$
 \end{example}
 \begin{solution}
 	(1)在$P(x,y)$中，想让等式两侧同取自然对数，故先讨论$f(x)$的值域. \\
 	首先注意到，取$P(x,x)$，有$f(2x)=(f(x))^2 \geq 0$. \\
 	若存在$a$使得$f(a)=0$，则$\forall x \in \R,~f(x+a)=f(x)f(a)=0$，即此时$f(x)=0$. \\
-	若$f(x)$值域不包含$0$，则将$P(x,y)$两侧同取自然对数，可得$$\forall x,y \in \R,~ \ln f(x+y) = \ln f(x) + \ln f(y)$$
-	显然$g(x):= \ln f(x)$也是连续的.由Cauchy方程，$g(x)=g(1)x$，则$\ln f(x) = x \ln f(1)$，得$f(x)=(f(1))^x$. \\
+	若$f(x)$值域不包含$0$，则将$P(x,y)$两侧同取自然对数，可得$$\forall x,y \in \R,~ \ln f(x+y) = \ln f(x) + \ln f(y).$$
+	显然\footnote{这一点并不显然，但是现在无法证明.}$g(x):= \ln f(x)$也是连续的.由Cauchy方程，$g(x)=g(1)x$，则$\ln f(x) = x \ln f(1)$，得$f(x)=(f(1))^x$. \\
 	综上，若存在$a$使得$f(a)=0$，则$f(x)=0$；若$f(x)$值域不包含$0$，则$f(x)=(f(1))^x$. \\
 	(2)根据$P(x,y)$形式，猜测$f(x)=x+1$.以下分两步给出证明： \\
 	第$1$步~下证
 	\begin{equation}
-		\forall n \in \mathbb{Z},~ f(n)=n+1 \label{ex35221}
+		\forall n \in \mathbb{Z},~ f(n)=n+1. \label{ex35221}
 	\end{equation}
-	取$P(x,1)$，则有$$f(x)=f(x)f(1)-f(x+1)+1$$
-	即$f(x+1)=f(x)+1$.对于正整数$n$，有$$f(n)=f(n-1)+1=\cdots = f(1)+n-1=n+1$$
-	另一方面，取$P(-x,1)$，则有$$f(-x)=f(-x)f(1)-f(1-x)+1$$
-	即$f(-x)=f(1-x)-1$.对于正整数$n$，有$$f(-n)=f(1-n)-1=\cdots = f(0)-n=1-n$$
+	取$P(x,1)$，则有$$f(x)=f(x)f(1)-f(x+1)+1,$$
+	即$f(x+1)=f(x)+1$.对于正整数$n$，有$$f(n)=f(n-1)+1=\cdots = f(1)+n-1=n+1.$$
+	另一方面，取$P(-x,1)$，则有$$f(-x)=f(-x)f(1)-f(1-x)+1,$$
+	即$f(-x)=f(1-x)-1$.对于正整数$n$，有$$f(-n)=f(1-n)-1=\cdots = f(0)-n=1-n.$$
 	综上，式\ref{ex35221}成立. \\
 	第$2$步~下证
 	\begin{equation}
-		\forall p \in \mathbb{Z},q \in \mathbb{N}^+,~f\ssb{\frac{p}{q}} = \frac{p}{q} +1 \label{ex35222}
+		\forall p \in \mathbb{Z},q \in \mathbb{N}^+,~f\ssb{\frac{p}{q}} = \frac{p}{q} +1. \label{ex35222}
 	\end{equation}
-	取$P(q,p/q)$，有$$f(p) =f(q)f\ssb{\frac{p}{q}} - f\ssb{q+\frac{p}{q}}+1$$
-	取$P(x+p,1)$，有$$f(x+p)=f(x+p)f(1)-f(x+p+1)+1$$
-	同第一步可得$f(x+p)=f(x)+p$.综合该式与上式，可得$$p+1 = (q+1)f\ssb{\frac{p}{q}} - (q+1) - f\ssb{\frac{p}{q}} +1$$
+	取$P(q,p/q)$，有$$f(p) =f(q)f\ssb{\frac{p}{q}} - f\ssb{q+\frac{p}{q}}+1.$$
+	取$P(x+p,1)$，有$$f(x+p)=f(x+p)f(1)-f(x+p+1)+1.$$
+	同第一步可得$f(x+p)=f(x)+p$.综合该式与上式，可得$$p+1 = (q+1)f\ssb{\frac{p}{q}} - (q+1) - f\ssb{\frac{p}{q}} +1.$$
 	于是式\ref{ex35222}成立.
 \end{solution}
 
 \begin{example}{\examplefont{利用单射}}
-	(1)求所有函数$f:\mathbb{Z} \to \mathbb{Z}$，满足$f(0)=1$且$$\forall n \in \mathbb{Z},~ f(f(n))=f(f(n+2)+2)=n$$
+	(1)求所有函数$f:\mathbb{Z} \to \mathbb{Z}$，满足$f(0)=1$且$$\forall n \in \mathbb{Z},~ f(f(n))=f(f(n+2)+2)=n.$$
 	(2)求所有函数$f:\R^+ \to \R^+$，满足
 	\begin{enumerate}
-		\item 对所有正实数$x,y$，有$$f(xf(y))=yf(x)$$
+		\item 对所有正实数$x,y$，有$$f(xf(y))=yf(x);$$
 		\item 在区间$(1,+\infty)$上，$f(x)$有界.
 	\end{enumerate}
 	(3)设$S=\R _{(-1,+\infty )}$，确定所有$f:S \to S$，满足
 	\begin{enumerate}
-		\item 对所有$x,y \in S$，有$$f(x+f(y)+xf(y))=y+f(x)+yf(x)$$
+		\item 对所有$x,y \in S$，有$$f(x+f(y)+xf(y))=y+f(x)+yf(x);$$
 		\item 函数$g(x):=\dfrac{f(x)}{x}$在$(-1,0)$和$(0,+\infty)$严格单调递增.
 	\end{enumerate}
 \end{example}
 \begin{solution}
 	(1)如果$f$是单射，则有$f(n)=f(n+2)+2$，希望做到这一点. \\
-	任取整数$n_1,n_2$使得$f(n_1)=f(n_2)$，代入原式得$$f(f(n_1))=n_1,\quad f(f(n_2))=n_2$$
+	任取整数$n_1,n_2$使得$f(n_1)=f(n_2)$，代入原式得$$f(f(n_1))=n_1,\quad f(f(n_2))=n_2.$$
 	于是$n_1=n_2$，即$f$是单射.则$f(n)=f(n+2)+2$. \\
 	当$n$为偶数时，$f(n)=f(n-2)-2=\cdots =f(0)-n=1-n$；当$n$为奇数时，$f(n)=f(n-2)-2=\cdots =f(1)-n+1$.注意到$f(f(1))=1$，故$f(1)=0$，则$f(n)=1-n$. \\
 	综上，有$f(n)=1-n$. \\
-	(2)任取$y_1,y_2$使得$f(y_1)=f(y_2)$，取$P(x,y_1),P(x,y_2)$有$$f(xf(y_1))=y_1f(x),\quad f(xf(y_2))=y_2f(x)$$
+	(2)任取$y_1,y_2$使得$f(y_1)=f(y_2)$，取$P(x,y_1),P(x,y_2)$有$$f(xf(y_1))=y_1f(x),\quad f(xf(y_2))=y_2f(x).$$
 	由于$f(x)=0$不符合题意，故恒有$y_1=y_2$，即$f$是单射. \\
 	取$P(x,1)$，有$f(xf(1))=f(x)$，则$f(1)=1$；取$P(1,y)$，有$f(f(y))=yf(1)=y$；取$P(x,f(y))$，有$f(xy)=f(x)f(y)$. \\
 	取$P(x,x)$，有$f(xf(x))=xf(x)$.记$a=xf(x)$，则存在实数$a$使得$f(a)=a$成立.\footnote{请注意！这里不能说对所有实数$a$都成立，除非证明$f$是满射.}我们猜测$f(x)=x$，于是只需说明$a=1$.下证： \\
@@ -1489,7 +1514,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\buzhou{2}若$a<1$，则$1/a>1$.注意到$f(a)f(1/a)=1$，即$f(1/a)=1/f(a)=1/a$.同\buzhou{1}可知$f(1/a^{2^n})=1/a^{2^n}$，与(ii)矛盾. \\
 	综上，必有$a=1$，即$f(x)=1/x$.代回(i)(ii)知该$f(x)$满足条件. \\
 	(3)取$P(x,x)$，有$f(x+f(x)+xf(x))=x+f(x)+xf(x)$，即$g(x+f(x)+xf(x))=1$.由于$g(x)$是单射，于是对所有的$x \in S$，$x+f(x)+xf(x)$恒为定值，记作$c$，即$f(x)=\dfrac{c-x}{x+1}$. \\
-	将$f(x)$代入$P(x,y)$，得$$\frac{c-(x+(x+1)\frac{c-y}{y+1})}{(x+(x+1)\frac{c-y}{y+1})+1} = (y+(y+1)\frac{c-x}{x+1})$$
+	将$f(x)$代入$P(x,y)$，得$$\frac{c-(x+(x+1)\frac{c-y}{y+1})}{(x+(x+1)\frac{c-y}{y+1})+1} = (y+(y+1)\frac{c-x}{x+1}).$$
 	化简得$c^2+c=0$，即$f(x)=-1$或$f(x)=\dfrac{-x}{x+1}$.分别代回(i)(ii)验证，可知后者满足条件而前者不满足.
 \end{solution}
 
@@ -1509,32 +1534,47 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \chapter{三角函数}
 
+\begin{introduction}
+	\item 三角函数、反三角函数的定义与性质
+	\item 三角恒等变形
+	\item 三角恒等式、不等式
+	\item 三角换元
+\end{introduction}
+
 \section{三角函数的概念}
 
-在研究更高深的三角函数之前，要对初中所学过的“角”的概念进行推广.
+既然想要将初中学过的锐角三角函数推广到实数域上，就必须对角的定义做一些修补.
 
-\begin{definition}{任意角与弧度制} %兴趣一阶II p6
-    角的一边从$x$轴正方向开始旋转（以逆时针为正方向），最终旋转过的角度即为该角的角度.这样，我们就把角的概念推广到了\textbf{任意角}(any angle).\\
-    像这样旋转生成的角上，某一点旋转产生的弧长$l$与到原点距离$r$之比，定义为该角的\textbf{弧度}(radian).弧度的单位为rad(一般省略).由于这样做出的比值是用$k \pi$表示的，我们可以用一个比较规整的数值表示角度.容易发现，$\pi$等价于$180^{\circ}$.
-\end{definition}
+我们定义，角的一边从$x$轴正方向开始旋转（以逆时针为正方向），最终旋转过的角度即为该角的角度.像这样旋转生成的角上，某一点旋转产生的弧长$l$与到原点距离$r$之比，定义为该角的\textbf{弧度}(radian).弧度的单位为rad(一般省略).
+
+由于这样做出的比值是用$k \pi$表示的，可以用一个比较规整的数值表示角度.容易发现，$\pi$等价于$180^{\circ}$.
 
 利用任意角，可以得到更加广阔的三角函数定义：
 
 \begin{definition}{三角函数} %兴趣一阶II p7
     设平面直角坐标系中的单位圆$\odot O$，记角的终边与该单位圆的交点为$P(x,y)$，记$OP=r$.\\
-    分别定义$$\sin{\alpha}=\frac{y}{r} \quad \cos{\alpha}=\frac{x}{r} \quad \tan{\alpha}=\frac{y}{x} \quad \cot{\alpha}=\frac{x}{y}$$
-    其中，函数$$f(x)=\sin{x} \qquad f(x)=\cos{x} \qquad f(x)=\tan{x} \qquad f(x)=\cot{x}$$
-    分别称为\textbf{正弦函数}(sine function)，\textbf{余弦函数}(cosine function)，\textbf{正切函数}(tangent function)，\textbf{余切函数}(cotangent function).这些函数统称为\textbf{三角函数}(trigonometric function).
+    分别定义$$\sin{\alpha}=\frac{y}{r}, \quad \cos{\alpha}=\frac{x}{r}, \quad \tan{\alpha}=\frac{y}{x}, \quad \cot{\alpha}=\frac{x}{y}, \quad \sec \alpha = \frac{r}{x}, \quad \csc \alpha = \frac{r}{y}.$$
+    其中，函数$$f(x)=\sin{x}, \quad f(x)=\cos{x}, \quad f(x)=\tan{x}, \quad f(x)=\cot{x}, \quad f(x)=\sec x, \quad f(x)=\csc x.$$
+    分别称为\textbf{正弦函数}(sine function)，\textbf{余弦函数}(cosine function)，\textbf{正切函数}(tangent function)，\textbf{余切函数}(cotangent function)，\textbf{正割函数}(secant function)，\textbf{余割函数}(cosecant function).这些函数统称为\textbf{三角函数}(trigonometric function).
 \end{definition}
 \begin{remark}
-    正切与余切函数满足：$\tan{x} \cdot \cot{x} = 1$.
-\end{remark}
-\begin{remark}
-    类似于正(余)弦、正(余)切函数，正割函数$\sec{x}=\dfrac{1}{\cos{x}}$与余割$\csc{x}=\dfrac{1}{\sin{x}}$函数也有定义，但并不常用.
+    正割函数与余割函数不常用.
 \end{remark}
 \begin{remark}
     不同角的终边可以相同.终边相同的角的角度不一定相同，但它们的三角函数值一定相同.
 \end{remark}
+
+由三角函数的定义立得\footnote{为了避免歧义，将$(\sin x)^2$记作$\sin ^2 x$.}：$$\sin ^2 x + \cos ^2 x = 1,\quad \tan x = \frac{\sin x}{\cos x},\quad \frac{1}{\cos ^2 x} - \tan ^2 x =1.$$
+
+三角函数的定义如图所示：
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{attachment/20230622 copy 2.pdf}
+	\caption{三角函数的定义：以第一象限角为例}
+\end{figure}
+
+
 
 
 \subsection{三角函数的性质}
@@ -1543,17 +1583,25 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 
 \begin{proposition}{三角函数诱导公式} %兴趣一阶II p7
     通过上述三角函数的定义，我们不难发现不同角的三角函数有时会有一些关系，这也是三角函数部分性质的体现.\\
-    (1)关于$2\pi$的周期性$$\sin{(\alpha + 2k\pi)}=\sin{\alpha} \quad \cos{(\alpha + 2k\pi)}=\cos{\alpha} \quad \tan{(\alpha + 2k\pi)}=\tan{\alpha} \quad \cot{(\alpha + 2k\pi)}=\cot{\alpha}$$
-    (2)关于$\pi$的性质$$\sin{(\alpha + \pi)}=-\sin{\alpha} \quad \cos{(\alpha + \pi)}=-\cos{\alpha} \quad \tan{(\alpha + \pi)}=\tan{\alpha} \quad \cot{(\alpha + \pi)}=\cot{\alpha}$$
-    (3)奇偶性$$\sin{(-\alpha)}=-\sin{\alpha} \quad \cos{(-\alpha)}=\cos{\alpha} \quad \tan{(-\alpha)}=-\tan{\alpha}$$
-    (4)在单位圆中角的终边关于$y$轴的对称性$$\sin{(\pi - \alpha)} = \sin{\alpha} \quad \cos{(\pi - \alpha)} = -\cos{\alpha} \quad \tan{(\pi - \alpha)} = -\tan{\alpha}$$
-    (5)在单位圆中角的终边关于直线$y=x$的对称性$$\sin{\ssb{\frac{\pi}{2}-\alpha}}=\cos{\alpha} \quad \cos{\ssb{\frac{\pi}{2}-\alpha}}=\sin{\alpha} \quad \tan{\ssb{\frac{\pi}{2}-\alpha}}=\cot{\alpha}$$
-    (6)关于$\dfrac{\pi}{2}$的性质$$\sin{\ssb{\alpha+\frac{\pi}{2}}}=\cos{\alpha} \quad \cos{\ssb{\alpha+\frac{\pi}{2}}}=-\sin{\alpha} \quad \tan{\ssb{\alpha+\frac{\pi}{2}}}=-\cot{\alpha}$$
+    (1)关于$2\pi$的周期性$$\sin{(\alpha + 2k\pi)}=\sin{\alpha}, \quad \cos{(\alpha + 2k\pi)}=\cos{\alpha}, \quad \tan{(\alpha + 2k\pi)}=\tan{\alpha}, \quad \cot{(\alpha + 2k\pi)}=\cot{\alpha}.$$
+    (2)关于$\pi$的性质$$\sin{(\alpha + \pi)}=-\sin{\alpha}, \quad \cos{(\alpha + \pi)}=-\cos{\alpha}, \quad \tan{(\alpha + \pi)}=\tan{\alpha}, \quad \cot{(\alpha + \pi)}=\cot{\alpha}.$$
+    (3)奇偶性$$\sin{(-\alpha)}=-\sin{\alpha}, \quad \cos{(-\alpha)}=\cos{\alpha}, \quad \tan{(-\alpha)}=-\tan{\alpha}.$$
+    (4)在单位圆中角的终边关于$y$轴的对称性$$\sin{(\pi - \alpha)} = \sin{\alpha}, \quad \cos{(\pi - \alpha)} = -\cos{\alpha}, \quad \tan{(\pi - \alpha)} = -\tan{\alpha}.$$
+    (5)在单位圆中角的终边关于直线$y=x$的对称性$$\sin{\ssb{\frac{\pi}{2}-\alpha}}=\cos{\alpha}, \quad \cos{\ssb{\frac{\pi}{2}-\alpha}}=\sin{\alpha}, \quad \tan{\ssb{\frac{\pi}{2}-\alpha}}=\cot{\alpha}.$$
+    (6)关于$\dfrac{\pi}{2}$的性质$$\sin{\ssb{\alpha+\frac{\pi}{2}}}=\cos{\alpha}, \quad \cos{\ssb{\alpha+\frac{\pi}{2}}}=-\sin{\alpha}, \quad \tan{\ssb{\alpha+\frac{\pi}{2}}}=-\cot{\alpha}.$$
 \end{proposition}
 
-以上性质可以采用如下方式记忆：做出单位圆，假定$\alpha$为第一象限角，再将其变换，得到的结果与一般的角度相同.
+以上性质可以采用如下方式推导和记忆：做出单位圆，假定$\alpha$为第一象限角，再将其变换，得到的结果与一般的角度相同.例如，在考虑$\sin (\alpha + \dfrac{\pi}{2}),\cos (\alpha + \dfrac{\pi}{2})$等于什么时，作出下图：
 
-作为一种函数，自然要研究其函数性质：
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{attachment/20230622sjjnhjuu.pdf}
+	\caption{诱导公式的记忆}
+\end{figure}
+
+利用三角形全等的知识，可以发现$x_P=y_Q,~y_P=-x_Q$，于是$$\sin (\alpha + \frac{\pi}{2}) = \frac{y_Q}{r} = \frac{x_P}{r} = \cos \alpha ,\quad \cos (\alpha + \frac{\pi}{2}) = \frac{x_Q}{r} = -\frac{y_P}{r} = -\sin \alpha .$$
+
+三角函数的诱导公式看起来有很多并且不好记忆，但是这些性质都可以被三角函数的函数性质与图像总结.
 
 \begin{proposition}{三角函数的函数性质}
     三角函数$\sin{x},\cos{x},\tan{x},\cot{x}$具有以下性质：
@@ -1572,7 +1620,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     
 \end{proposition}
 
-为了更好地记忆以上性质，我们需要作出不同三角函数的图像.
+三角函数的图像如下：
 
 \begin{figure}[h!]
 	\centering
@@ -1580,11 +1628,25 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	\caption{正弦函数与余弦函数的图像}
 \end{figure}
 
+\newpage
 \begin{figure}[h!]
 	\centering
 	\includesvg[width=10cm]{gnuplot/202305072edit2.svg}
 	\caption{正切函数与余切函数的图像}
 \end{figure}
+
+以上图像务必牢记.
+
+观察正弦函数、正切函数图像中过原点的直线$y=x$，我们发现在$x \geq 0$时有$$\sin x \leq x \leq \tan x.$$
+
+这个式子是三角问题中常见的放缩，下面用图像来证明它：
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{attachment/20230622 copy.pdf}
+\end{figure}
+
+由定义可知，$AC=\sin x,~BD = \tan x,~\hu{AD}=x$，那么$\sin x \leq x \leq \tan x$是显然的.
 
 回忆函数章节里介绍的“函数图像的变换”内容，通过对正弦函数进行这种操作，可以得到类正弦函数：
 
@@ -1594,17 +1656,52 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     该函数的最小正周期$T=\dfrac{2\pi}{|\omega|}$.最大值(波峰)、最小值(波谷)分别为$|A|$,$-|A|$.
 \end{definition}
 
-类正弦函数在物理学中有很多应用.
+类正弦函数在物理学中有很多应用.我们之后要讲到的辅助角公式也要经常用到它.
+
+\begin{example}
+	(1)设$\tan x=2$，求值：$$\frac{\sin x + 2\cos x}{3\sin x + 4\cos x},\quad 2\sin ^2 x-1.$$
+	(2)设$f(x)=\dfrac{\sin x \cos x}{2+\sin x+\cos x}$，则$f(x)$的值域为\tk .
+\end{example}
+\begin{solution}
+	(1)第一个：上下同时除以$\cos x$，则$$S_0 = \frac{\tan x + 2}{3\tan x +4} = \frac{2}{5}.$$
+	第二个：将$-1$单独提出来，只看$2\sin ^2x$.将其除以$1=\sin ^2x + \cos ^2 x$，可得$$S_0 = \frac{2\sin ^2 x}{\sin ^2x + \cos ^2 x} -1 = \frac{2\tan ^2x}{\tan ^2x +1}-1 = \frac{3}{5}.$$
+	注：第二个中进行的操作称作齐次化，齐次化能够让我们像第一个中凑出$\tan x$. \\
+	(2)设$u=\sin x \cos x,~v=\sin x + \cos x$，则有$v^2-2u=1$，$$f(x) = \frac{u}{2+v} = \frac{v^2-1}{4+2v} = \frac{v+2}{2} + \frac{3}{2} \cdot \frac{1}{v+2} -2 \in [\sqrt{3}-2,\frac{12+11\sqrt{2}}{28}].$$
+	注意这里$v \in [-\sqrt{2},\sqrt{2}]$，这一点不好用现有知识说明，读者不妨学完辅助角公式之后回来看看.
+\end{solution}
+
+\begin{example}
+	(1)判断：$\sin 1 \cdot \cos 3 \cdot \tan 5 \tk 0$. \\
+	(2)若$\sin \alpha > 1/2$，则角$\alpha$的取值范围为\tk . \\
+	(3)若$\sin ^2 x \geq \cos ^2 x$，则$x$取值范围为\tk . \\
+\end{example}
+\begin{solution}
+	(1)可知$0<1<\pi /2<3<\pi <3\pi /2 <5 < 2\pi$，于是$\sin 1 >0,~\cos 3<0,~\tan 5<0$，则原式$>0$. \\
+	(2)利用$\sin x$的图像可知，$\alpha \in \bigcup_{k \in \mathbb{Z}} \ssb{\dfrac{\pi}{6}+2k\pi ,\dfrac{5\pi}{6}+2k\pi }$. \\
+	(3)即$|\sin x| \geq |\cos x|$.观察$\sin x$与$\cos x$的图像可知，$x \in \bigcup_{k \in \mathbb{Z}} \ssb{\dfrac{\pi}{4}+k\pi ,\dfrac{3\pi}{4}+k\pi}$.
+\end{solution}
+
+\begin{example}
+	(1)比较$\log_{\sin 1} \cos 1,~\log_{\sin 1} \tan 1,~\log_{\cos 1} \sin 1,~\log_{\cos 1} \tan 1$的大小. \\
+	(2)设$n$为正整数，证明：$$\cos \frac{1}{2} \cdot \cos \frac{1}{3} \cdot \cdots \cdot \cos \frac{1}{n} > \frac{\sqrt{2}}{2}.$$
+\end{example}
+\begin{solution}
+	(1)稍加比较得到$0 < \cos 1 < \sin 1 < 1 < \tan 1$，作图可知$\log_{\sin 1} \cos 1 > \log_{\cos 1} \sin 1 > \log_{\cos 1} \tan 1 > \log_{\sin 1} \tan 1$. \\
+	(2)对于所有$k=2,\cdots ,n$，可知$$\cos ^2 \frac{1}{k} = 1 - \sin ^2 \frac{1}{k} > 1-\frac{1}{k^2} = \frac{k-1}{k} \cdot \frac{k}{k+1}.$$
+	对$k$累乘，则$$LHS^2 = \prod_{k=2}^{n} \cos ^2 \frac{1}{k} > \prod_{k=2}^{n} \frac{k-1}{k} \cdot \frac{k}{k+1} = \frac{n+1}{2n} > \frac{1}{2}.$$
+	故$LHS > \frac{\sqrt{2}}{2}$.
+\end{solution}
+
 
 \subsection{反三角函数}
 
-三角函数是将角度映射为距离之比的函数.相应地，将距离之比映射到角度的函数叫做反三角函数(arc的意思即为“弧长”).
+三角函数是将角度映射为距离之比的函数.相应地，将距离之比映射到角度的函数叫做反三角函数(arc的意思即为“弧长”).这里为了方便，就不研究正割、余割函数的反函数了.
 
 \begin{definition}{反三角函数}
     分别定义
-    $$\arcsin{x}:=\sin ^{-1}x~(x \in [-\frac{\pi}{2} ,\frac{\pi}{2}]) \qquad \arccos{x}:=\cos ^{-1}x~(x \in [0,\pi])$$
-    $$\arctan{x}:= \tan ^{-1}x~(x \in (-\frac{\pi}{2},\frac{\pi}{2})) \qquad \arccot{x}:=\cot ^{-1}x~(x \in (0,\pi))$$
-    其中，$$f(x)=\arcsin x \qquad f(x)=\arccos x \qquad f(x)=\arctan x \qquad f(x)=\arccot x$$
+    $$\arcsin{x}:=\sin ^{-1}x~(x \in [-\frac{\pi}{2} ,\frac{\pi}{2}]), \qquad \arccos{x}:=\cos ^{-1}x~(x \in [0,\pi]),$$
+    $$\arctan{x}:= \tan ^{-1}x~(x \in (-\frac{\pi}{2},\frac{\pi}{2})), \qquad \arccot{x}:=\cot ^{-1}x~(x \in (0,\pi)).$$
+    其中，$$f(x)=\arcsin x, \qquad f(x)=\arccos x, \qquad f(x)=\arctan x, \qquad f(x)=\arccot x.$$
     分别称为\textbf{反正弦函数}(arcsine function)，\textbf{反余弦函数}(arccosine function)，\textbf{反正切函数}(arctangent function)，\textbf{反余切函数}(arccotangent function).这些函数统称为\textbf{反三角函数}(inverse trigonometric function).
 \end{definition}
 \begin{note}
@@ -1791,7 +1888,7 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
     $$a^2-b^2=1 \quad \longrightarrow \quad \cosh^2{x}-\sinh^2{y}=1$$
 
 \begin{remark}
-	有关双曲函数的内容会在复数章节仔细研究.
+	有关双曲函数的内容见后文.
 \end{remark}
 
 三角换元对于解决一些与反三角函数相关的问题很好用.
@@ -1803,7 +1900,39 @@ $$(2-\sqrt{-1})^3 = 2-\sqrt{-121}$$
 	(2)解方程：$$\arccos \left| \frac{x^2-1}{x^2+1} \right| + \arcsin \left| \frac{2x}{x^2+1} \right| + \arccot \left| \frac{x^2-1}{2x} \right| = \pi$$
 \end{example}
 
+\begin{lemma}
+    任意定义域关于原点对称的函数都可以唯一地表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
+    其中前者是偶函数，后者是奇函数.
+\end{lemma}
+\begin{proof}
+    设$f(x)=g(x)+h(x)$，其中$g(x)$是偶函数，$h(x)$是奇函数.那么由$$f(-x) = g(-x) + h(-x) = g(x) - h(x)$$
+    将$f(x),f(-x)$视作常数，可以解得$$g(x) = \frac{f(x)+f(-x)}{2},~h(x) = \frac{f(x)-f(-x)}{2}$$
+    经验证，这样的$g(x)$和$h(x)$的确符合要求.
+\end{proof}
 
+\begin{definition}{双曲函数}
+    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
+    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
+    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
+    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+\end{definition}
+
+\begin{proposition}{双曲恒等变形公式}
+    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
+    (2)和差角公式
+    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
+    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
+    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
+    (3)倍角公式
+    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
+    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
+\end{proposition}
+\begin{remark}
+    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
+    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
+    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+\end{remark}
 
 \chapter{数列与数学归纳法}
 
@@ -1966,6 +2095,14 @@ $$
 \end{proof}
 
 \subsection{最小数原理与无穷递降法}
+
+\begin{example} % titu p9
+	设$a_1<a_2<\cdots $是递增的正整数无穷数列，满足$a_n$整除$a_1+a_2+\cdots +a_{n-1}$对所有$n \geq 2002$成立.证明：存在正整数$n_0$，满足$$a_n=a_1+\cdots +a_{n-1}$$对所有$n \geq n_0$成立.
+\end{example}
+
+\begin{example}
+	设$n$是非零整数，则存在唯一的整数对$(a,b)$满足$a \geq 0$，$b$是奇数，使得$n=2^a \cdot b$.
+\end{example}
 
 \chapter{极限与导数}
 
@@ -3033,6 +3170,13 @@ $$
 	代入上式，即得$$\varphi (n) = p_1^{\alpha _1}\ssb{1-\frac{1}{p_1}} \cdots p_k^{\alpha _k}\ssb{1-\frac{1}{p_k}} = n \ssb{1-\frac{1}{p_1}} \cdots \ssb{1-\frac{1}{p_k}}$$
 \end{proof}
 
+以上是计算$\varphi (n)$的一条路.或者，在不知道它是积性函数的情况下，通过数集合的元素个数可以得到同样的结果.
+
+设$n=p_1^{\alpha _1} \cdots p_k^{\alpha _k}$，那么一个数$p$与$n$互素，当且仅当$p_i \nmid p~(i=1,\cdots ,k)$.记$P_i=\{ 1\leq p \leq n: p_i \mid p\}$，那么$$\varphi (n) = n - | \bigcup_{i=1}^{k} P_i | = n- \ssb{\sum_{i=1}^{k} |P_i| - \sum_{1\leq i_1 < i_2 \leq k} |P_{i_1} \cap P_{i_2}| + \cdots + (-1)^{k-1} |P_1 \cap \cdots \cap P_k|  }$$
+其中，由于$p_i$两两互素，可得$$|P_{i_1} \cap \cdots \cap P_{i_m}| = \frac{n}{p_{i_1} \cdots p_{i_m}}$$
+于是$$\varphi (n) = n - \sum_{i=1}^{k} \frac{n}{p_i}  + \sum_{1\leq i_1 < i_2 \leq k} \frac{n}{p_{i_1}p_{i_2}} - \cdots + (-1)^{k} \frac{n}{p_1 \cdots p_k}$$
+稍作整理，即得$$\varphi (n) = n \ssb{1-\frac{1}{p_1}} \cdots \ssb{1-\frac{1}{p_k}}$$
+
 \begin{theorem}{Euler定理}
 	设$m$是大于$1$的整数，$(a,m)=1$，则$$a^{\varphi (m)} \equiv 1 \mod m$$
 \end{theorem}
@@ -3160,44 +3304,245 @@ Schur不等式，齐次化
 
 \chapter{复数与多项式II}
 
-\section{复数进阶}
+\section{复数的概念}
 
-\subsection{复数的不同表示形式}
+在第二章，我们已经介绍了复数的基本运算与表示.现在做一些补充.
 
-复数的三角表示，复数的指数表示，复数的四则运算，共轭复数的运算
-
-\subsection{复数的应用}
-
-\begin{lemma}
-    任意定义域关于原点对称的函数都可以表示为一个奇函数与一个偶函数的和，且表示方法为$$f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}$$
-\end{lemma}
-\begin{proof}
-    XXX
-\end{proof}
-
-\begin{definition}{双曲函数}
-    我们可以将$f(x)=e^x$按照上述引理的方式进行分解，即$$e^x=\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}$$
-    由此，我们定义奇函数部分为\textbf{双曲正弦函数}(hyperbolic sine function)，即$$\sinh{x}=\frac{e^x-e^{-x}}{2}$$
-    偶函数部分为\textbf{双曲余弦函数}(hyperbolic cosine function)，即$$\cosh{x}=\frac{e^x+e^{-x}}{2}$$
-    通过双曲正弦与双曲余弦做比得出的函数，定义为\textbf{双曲正切函数}(hyperbolic tangent function)，即$$\tanh{x}=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+\begin{definition}{复数的运算}
+	设$z \in \C$.
+	\begin{itemize}
+		\item 复数$z$的\textbf{复共轭}定义如下：$$\bar{z} = \CRe z - (\CIm z) i$$
+		\item 复数$z$的\textbf{模长}(绝对值)定义如下：$$|z| = \sqrt{(\CRe z)^2 + (\CIm z )^2}$$
+	\end{itemize}
 \end{definition}
 
-\begin{proposition}{双曲恒等变形公式}
-    (1)$$\cosh^2{x}-\sinh^2{x}=1$$
-    (2)和差角公式
-    $$\sinh{(x \pm y)}=\sinh{x}\cosh{y} \pm \cosh{x}\sinh{y}$$
-    $$\cosh{(x \pm y)}=\cosh{x}\cosh{y} \pm \sinh{x}\sinh{y}$$
-    $$\tanh{(x \pm y)}=\frac{\tanh{x} \pm \tanh{y}}{1 \pm \tanh{x}\tanh{y}}$$
-    (3)倍角公式
-    $$\sinh{2x}=2\sinh{x}\cosh{x}$$
-    $$\cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
-    $$\tanh{2x}=\frac{2\tanh{x}}{1+\tanh^2{x}}$$
+\begin{proposition}{复数运算的性质}
+	(1)关于$w,z \in \C$的复共轭：
+	$$z + \bar{z} = 2\CRe z,\qquad z - \bar{z} = 2\CIm z,\qquad z=\bar{z} \Leftrightarrow z \in \R$$
+	$$\overline{w \pm z} = \bar{w} \pm \bar{z},\qquad \overline{wz} = \bar{w} \bar{z},\qquad \overline{\ssb{\frac{w}{z}}} = \frac{\bar{w}}{\bar{z}}$$
+	(2)关于$w,z \in \C$的模长：
+	$$|\bar{z}| = |z|,\qquad z \bar{z} = |z|^2$$
+	$$|\CRe z| \leq |z|,\qquad |\CIm z| \leq |z|,\qquad |wz|=|w||z|,\qquad |w+z| \leq |w|+|z|~(\textit{三角不等式})$$
 \end{proposition}
+\begin{proof}
+	选择一部分证明，其余留给读者. \\
+	(1)对于复数$w,z$，$\overline{wz} = \bar{w} \bar{z}$：设$w=a+bi ,~z=c+di$，那么有
+	$$\overline{wz} = \overline{(ac-bd)+(ad+bc)i} = (ac-bd)-(ad+bc)i$$
+	$$\bar{w} \bar{z} = (a-bi)(c-di) = (ac-bd)-(ad+bc)i$$
+	于是原命题成立. \\
+	(2)对于复数$w,z$，$\overline{w/z} = \bar{w}/\bar{z}$：只需证明，$\overline{1/z}=1/\bar{z}$.设$z=a+bi$，有
+	$$\overline{ \frac{1}{z} } = \overline{ \frac{a-bi}{(a+bi )(a-bi )} } = \overline{ \frac{a-bi }{a^2+b^2} } = \frac{a+bi }{a^2+b^2}$$
+	$$\frac{1}{\bar{z}} = \frac{1}{a-bi } = \frac{a+bi }{a^2+b^2}$$
+	于是原命题成立. \\
+	(3)三角不等式：由于
+	\begin{align*}
+		|w+z|^2 &= (w+z)(\bar{w}+\bar{z}) = w\bar{w} + z\bar{z} + w\bar{z} + z\bar{w} \\
+		&= |w|^2+|z|^2+w\bar{z} + \overline{w\bar{z}} = |w|^2+|z|^2+2\CRe w\bar{z} \leq |w|^2 + |z|^2 + 2|w\bar{z}| = (|w|+|z|)^2
+	\end{align*}
+	两边同取平方根，即原命题成立. \\
+	现在研究一下取等条件：等号取到当且仅当$w\bar{z} \in \R$.设$w=a+bi ,~z=c+di$，则$$w\bar{z} = (a+bi )(c-di ) = (ac-bd) + (bc-ad)i$$
+	可得$bc=ad$，又注意到$$\frac{a+bi}{c+di} = \frac{(a+bi )(c-di )}{c^2+d^2} = \frac{(ac+bd) + (bc-ad)i }{c^2+d^2}$$
+	于是$a+bi$是$c+di$的常数$\lambda \in \R$倍.
+\end{proof}
+
+从上面三角不等式取等条件的探索可以发现，复数之间也会存在常数倍的情况.联系平面向量知识，若定义$\xl{OZ} = (\CRe z,\CIm z)$，就能够将任何一个复数转化为一个向量.这就是复平面.
+
+% TODO 复平面作图
+
+在复平面上，可以得到(或定义)以下要素：
+
+\begin{itemize}
+	\item 复数的模长就等于其对应向量的模长，即$|z|=|\xl{OZ}|$.
+	\item 复数的\textbf{幅角}等于终边落在射线$OZ$上的角的大小，记为$\Arg (z)=\theta \in \R$.
+	\item 复数的\textbf{幅角主值}等于其幅角中唯一一个大小在$[0,2\pi )$中的那个角的大小，记为$\arg (z) = \theta \in [0,2\pi )$.
+	\item 复数的复共轭等于为其沿$x$轴对称所得的新向量.
+	\item 复数的加减法就是所对应向量的加减法.
+\end{itemize}
+
+那么三角不等式的取等条件就是$\xl{OW}$与$\xl{OZ}$共线.
+
+从复平面来看，我们也可以试一试将其转换为极坐标形式，即对于$z=a+bi $，将$\xl{OZ}=(a,b)$变为$$\xl{OZ} = (r \cos \theta ,r \sin \theta )$$
+其中$r=\sqrt{a^2+b^2},~\tan \theta = b/a$.再将其变回复数的形式，即得$$z = a+bi = r(\cos \theta + i \sin \theta)$$
+这就是复数的三角形式表示.它的好处主要体现在复平面上：
+
+\begin{proposition}{复数的三角形式运算}
+	设$z_1=r_1(\cos \theta _1+ i \sin \theta _1),~z_2=r_2(\cos \theta _2+ i \sin \theta _2)$，那么
+	$$z_1z_2 = r_1r_2\ssb{ \cos (\theta _1 + \theta _2) + i \sin (\theta _1 + \theta _2) }$$
+	$$\frac{z_1}{z_2} = \frac{r_1}{r_2} \ssb{ \cos (\theta _1 - \theta _2) + i \sin (\theta _1 - \theta _2) }$$
+	$$z_1^n = r_1^n \ssb{ \cos n\theta _1 + i \sin n\theta _1 }~(\textit{棣莫弗公式，这里$n$为任意整数})$$
+	$$z_1~\textit{的$n$次方根有}~ \sqrt[n]{r} \ssb{ \cos \frac{\theta _1+2k\pi}{n} + i \sin \frac{\theta +2k\pi}{n} },~k=0,1,\cdots ,n-1$$
+\end{proposition}
+\begin{proof}
+	(1)可知有$$z_1z_2 = r_1r_2\ssb{ \cos \theta _1 \cos \theta _2 - \sin \theta _1 \sin \theta _2 + (\cos \theta _1 \sin \theta _2 + \sin \theta _1 \cos \theta _2) i }$$
+	由和差角公式可知原命题成立. \\
+	(2)同(1)可得，读者自证不难. \\
+	(3)设$z=z_1/r_1$.利用数学归纳法先证明$n$为正整数的情况(略)，再证明$n$为负整数的情况. \\
+	注意到下列恒等式：$$\cos n\theta + i \sin n\theta = \ssb{\cos (-n\theta ) + i \sin (-n\theta)}^{-1}$$
+	于是对负整数$n$，有$$z^n = (z^{-n})^{-1} = \ssb{\cos (-n\theta ) + i \sin (-n\theta)}^{-1} = \cos n\theta + i \sin n\theta$$
+	(4)这一条实际上是单位根的性质，先按下不表，之后再专门研究.
+\end{proof}
+
+也就是说，两个复数相乘，结果就对应将它们的模长相乘、幅角相加得到的向量.
+
+在三角形式中，把$z/r$看做关于$\theta$的函数$f$，则该函数满足$$f(x_1+x_2) = f(x_1)f(x_2),\qquad f(x_1-x_2)=\frac{f(x_1)}{f(x_2)}$$
+似乎$f(x)$就是指数函数的形式.实际上，Euler定理告诉我们它就是$e^{i x}$.
+
+\begin{theorem}{Euler定理}
+	对于任意的实数$x$，恒有$$\cos x + i \sin x = e^{i x}$$
+\end{theorem}
 \begin{remark}
-    不难发现，双曲函数恒等变形公式与三角函数的变形公式很类似，只是部分符号不同.\\
-    这里给出一种巧妙的记忆方法：Osborne's Rule.即，当你看到三角公式中有两个$\sin$相乘时，就把前面的符号反向.例如：$$\cos^2{x}+\sin^2{x}=1 \qquad \longrightarrow \qquad \cosh^2{x}-\sinh^2{x}=1$$
-    $$\cos{2x}=\cos^2{x}-\sin^2{x} \qquad \longrightarrow \qquad \cosh{2x}=\cosh^2{x}+\sinh^2{x}$$
+	在复数域上的$e^x$定义为：对于$z \in \C$，规定$$e^z = \lim_{n\to \infty} \ssb{1+\frac{z}{n}}^n$$
 \end{remark}
+\begin{remark}
+	这个定理的证明不要求掌握.
+\end{remark}
+\begin{proof}
+	设$z=a+bi$，于是$$\ssb{1+\frac{a+bi}{n}}^n = \ssb{(1+\frac{a}{n}) + \frac{b}{n} i}^n$$
+	由棣莫弗公式，上式的结果也是一个复数，可以设其为$r(\cos \theta + i \sin \theta)$，其中$$r=\ssb{(1+\frac{a}{n})^2 + (\frac{b}{n})^2}^{n/2},~\theta = n\arctan \frac{b/n}{1+a/n}$$
+	由于$$\lim_{n\to \infty} \ln r = \lim_{n\to \infty} \ssb{ \frac{n}{2}\ln \ssb{(1+\frac{a}{n})^2 + (\frac{b}{n})^2}} = \lim_{n\to \infty} \ssb{ \frac{n}{2}\ln \ssb{ 1+\frac{2an+a^2+b^2}{n^2} }}$$
+	其中由常用的近似$\ln (1+x) \sim x$，有$$\lim_{n\to \infty} \ln r = \lim_{n\to \infty} \ssb{ \frac{n}{2} \cdot \frac{2an+a^2+b^2}{n^2} } = a$$
+	于是$$\lim_{n\to \infty} r = \lim_{n\to \infty} e^{\ln r} = e^a$$
+	另一方面，由于$\arctan x \sim x$，有$$\lim_{n\to \infty} \theta = \lim_{n\to \infty} n \cdot \frac{b/n}{1+a/n} = b$$
+	从而可知，$$e^{a+bi} = \lim_{n\to \infty} r(\cos \theta + i \sin \theta) = e^a(\cos b + i \sin b)$$
+	从而$e^{ix}=\cos x + i \sin x$.
+\end{proof}
+
+\section{复数的应用}
+
+\subsection{复数与三角}
+
+回忆一下，双曲函数是由$e^x$按奇偶分离得到的，它又与三角函数的变形十分类似，猜测三角函数能否也可以用某个函数分解得到？
+
+注意到$$e^{ix} = \cos x + i \sin x,\qquad e^{-ix} = \cos -x + i \sin -x = \cos x - i \sin x$$
+用类似当时引理证明的方式可以得到$$\cos x = \frac{e^{ix}+e^{-ix}}{2},\qquad \sin x = \frac{e^{ix} - e^{-ix}}{2i}$$
+
+这样得到的式子不太符合我们一开始的预期，然而我们可以用比较“代数”的方式来表示三角函数，随之而来的好处就是计算方便很多.
+
+\begin{example}
+	(1)解方程$8\cos ^3 x-6\cos x+\sqrt{2}=0$. \\
+	(2)证明：$$\cos ^n \theta = \frac{1}{2^n} \sum_{k=0}^{n}C_n^k \cos (n-2k)\theta$$
+	(3)化简或求值：$$\theta = 4\arctan \frac{1}{5} - \arctan \frac{1}{239}$$
+\end{example}
+
+\begin{example}
+	设$n$是一个大于$3$的质数，求$$\ssb{1+2\cos \frac{2\pi}{n}} \ssb{1+2\cos \frac{4\pi}{n}} \ssb{1+2\cos \frac{6\pi}{n}} \cdots \ssb{1+2\cos \frac{2n\pi}{n}}$$
+	的值.
+\end{example}
+
+在之后研究单位根性质的时候会见到更多用复数解决的三角问题.
+
+\subsection{复数与多项式的根}
+
+在当初学习多项式时，其实有一点一直没有严格说明：为什么两个多项式相等，其各项系数就一定相等？这涉及到多项式的良定义问题，所以我们一定要说明清楚.
+
+设多项式$f(x)=a_0 + a_1x + \cdots + a_nx^n,~g(x)=b_0 + b_1x + \cdots + b_nx^n$.若$f(x)=g(x)$，则有$$(a_0-b_0) + (a_1-b_1)x + \cdots + (a_n-b_n)x^n = 0$$
+为了让$f(x)$和$g(x)$的系数对应相等，考虑如下命题：
+
+\begin{proposition}{多项式是零函数当且仅当其所有系数均为$0$}{doxluilkhjuu}
+	设$a_0, \cdots ,a_n \in \C$.对任意$z \in \C$都有$$a_0 + a_1z + \cdots + a_nz^n =0 \quad \Longleftrightarrow \quad a_0=a_1=\cdots =a_n=0$$
+\end{proposition}
+\begin{proof}
+	充分性显然，下证必要性：\\ 
+	假设存在某个$a_i$，满足它本身不为$0$，而对任意$i \leq m \leq n$都有$a_m=0$.若$i=n$，则$a_n \neq 0$；若$i \neq n$，则可知$LHS = a_0 + a_1z + \cdots + a_iz^i$.于是可以不妨设$a_n \neq 0$. \\
+	那么考虑构造一个特殊的$z$来制造矛盾，这里可以选择说明$a_0 + a_1z + \cdots + a_{n-1}z^{n-1} \neq -a_nz^n$，即$|a_0 + a_1z + \cdots + a_{n-1}z^{n-1}| \neq |a_nz^n|$.针对该形式构造： \\
+	首先，利用三角不等式有$$|a_0 + a_1z + \cdots + a_{n-1}z^{n-1}| \leq |a_0| + |a_1||z| + \cdots + |a_{n-1}||z|^{n-1}$$
+	如果要求$|z| \geq 1$，则上式可以继续放缩：$$\leq (|a_0|+|a_1|+\cdots +|a_{n-1}|) |z|^{n-1}$$
+	于是只要$|a_n||z| > (|a_0|+|a_1|+\cdots +|a_{n-1}|)$，取$$z = \frac{|a_0|+|a_1|+\cdots +|a_{n-1}|}{|a_n|} + 1$$
+	即可.这样的$z$会使得原式不成立，于是任意的$a_i=0$.
+\end{proof}
+
+接着来研究多项式的因式分解.先从简单的$\C$开始.(说它简单，是因为在$\C$中约束较少，例如不需要考虑二次方程无实根的情况)
+
+\begin{proposition}{$\C$上多项式的分解}
+	设$f(z)$是任意的复系数$n$次多项式且不为常值函数，则存在$c,z_1,\cdots ,z_n \in \C$使得$f(z)$可以唯一表示为$$f(z) = c(z-z_1) \cdots (z-z_n)$$
+\end{proposition}
+\begin{proof}
+	对$n$进行归纳证明. \\
+	(1)当$n=1$时，显然$f(z)=c(z-z_1)$，其中$z_1=0$，且$c$与$z_1$是唯一的. \\
+	(2)假设$n$时成立，下证$n+1$时也成立. \\
+	存在性：由代数基本定理，$n+1$次多项式$f(z)$存在一个根$z_n$，于是$(z-z_n)$是$f(z)$的一个因式，也即存在一个$q(z)$使得$f(z)=(z-z_n)q(z)$.将归纳假设中关于$n$次多项式$q(z)$的分解代入，即得$f(z)$的一个分解. \\
+	唯一性：显然$c$是唯一确定的.现在假设存在两组不同的$z_1, \cdots ,z_n$和$x_1, \cdots ,x_n$满足$$(z-z_1) \cdots (z-z_n) = (z-x_1) \cdots (z-x_n)$$
+	对所有$z$成立.取$z=z_i~(i=1,\cdots ,n)$，则右侧中必然存在至少一个$x_{\sigma (i)}=0$.注意到，$|\sigma (\{ 1, \cdots ,n \})| = |\{ 1,\cdots ,n \}|$，于是由集合的对应原理知$\sigma$是双射，从而$z_1, \cdots ,z_n$和$x_1, \cdots ,x_n$全相等，与假设矛盾.故唯一性成立.
+\end{proof}
+
+那么$\R$上多项式该如何分解？先从具体的例子出发，看看需要什么.多项式$x^3+x^2+x-3$可以因式分解为$(x^2+2x+3)(x-1)$，并且在实数域内不可再分，因为二次方程$x^2+2x+3$没有零点.
+
+所以最后总是可以将$\R$上的多项式分解到只剩一堆无实根的二次多项式.一般地，有
+
+\begin{proposition}{$\R$上多项式的分解}
+	设$f(x)$是任意的实系数$n$次多项式且不为常值函数，则存在$c,x_1, \cdots ,x_m,b_1, \cdots ,b_p,c_1,\cdots ,c_p \in \R$使得$f(z)$可以唯一地表示为$$f(x) = c(x-x_1) \cdots (x-x_m)(x^2+b_1x+c_1) \cdots (x^2+b_px+c_p)$$
+	且$m+2p=n$，以及对每个$i=1, \cdots p$都有$b_i^2 < 4c_i$.
+\end{proposition}
+\begin{proof}
+	先证明一个引理(实系数多项式复根成对定理)：设一个实系数多项式的任意的复数根$z$(若存在)，则其复共轭$\bar{z}$也是该多项式的根. \\
+	引理的证明：设$f(x)=a_0+a_1x+ \cdots +a_nx^n$有零点$z_0$，则$$a_0+a_1z_0+ \cdots +a_nz_0^n = 0$$
+	两边同取复共轭，可得$$a_0+a_1\bar{z_0}+ \cdots +a_n\bar{z_0}^n = 0$$
+	于是$\bar{z_0}$也是该多项式的根. \\
+	回到原题：若$f(x)$的根全为实数，原命题显然成立；若不然，设$f(x)$的一个零点$z_0 \in \C \setjianfa \R$，那么存在一个$n-2$次多项式$q(x)$使得$$f(x)=(x-z_0)(x-\bar{z_0})q(x) = (x^2-2(\CRe z_0)x+|z_0|^2)q(x)$$
+	若此处$q(x)$也是实系数的，那么由归纳法易知$(x-z_0)$与$(x-\bar{z_0})$出现的次数一样多，从而原命题成立，下证$q(x)$的确是实系数的： \\
+	在上式左右同取虚部，则有$\CIm q(x) = 0$.设$q(x)=a_0 + a_1x + \cdots + a_{n-2}x^{n-2}$，左右同取虚部，得$$\CIm q(x) = \CIm a_0 + (\CIm a_1)x + \cdots + (\CIm a_{n-2})x^{n-2}$$
+	由命题\ref{pro:doxluilkhjuu}可知$\CIm a_0 = \CIm a_1 = \cdots = \CIm a_{n-2}$，故$q(x)$是实系数的.
+\end{proof}
+
+\section{单位根的性质与应用}
+
+多项式$f(x)=x^n-1$的所有根称为$1$的$n$次单位根，在代数板块有很多应用.
+
+由代数基本定理可知，$1$的$n$次单位根恰有$n$个，又因为显然$$\varepsilon _k = e^{\frac{2k\pi }{n}} = \cos \frac{2k\pi }{n} + i \sin \frac{2k\pi }{n} ~(k=0,1,\cdots ,n-1)$$
+这$n$个互不相同的复数是$1$的$n$次单位根，故它们刚好就是$f(x)=x^n-1$的所有根.从复平面的角度看，这$n$个根所对应的向量就是单位圆的内接$n$边的顶点(保证该$n$边形有一个顶点在$(1,0)$处).
+
+还记得“复数与三角”一节的例题吗？从那道题我们可以知道，单位根的任意整数次方还是单位根.一般地，若$(n,k)=1$，则存在$\varepsilon$使得$1,\varepsilon ^k,\varepsilon ^{2k},\cdots ,\varepsilon ^{(n-1)k}$刚好可以遍历$1$的所有$n$次单位根.注意这里不一定所有的单位根都满足上述性质，例如$1$的任意次方都不能遍历所有单位根.为此，思考怎样的根才能遍历.
+
+在复平面上看：$n=4$时，有单位根$\pm 1,\pm i$，其中$\pm 1$不满足上述性质；$n=5$时，$1$不满足；$n=6$时，有复平面上的$6$个单位根，其中是$3$的单位根的那$3$个不满足上述性质.
+
+% TODO 单位根作图
+
+从图像可以很清晰的发现：如果一个$n$次单位根同时也是$m~(m<n)$次单位根，那么它就不满足要求，因为它会直接遍历所有$m$次单位根.\footnote{严格地来说，这里的$m$应该是所有$m$中最小的那个，因为可以对$m$重复做这个判断操作}特别地，注意到这里不满足性质的根的个数恰为$\varphi (n)$，于是我们有： 
+
+\begin{theorem}{单位原根的个数}
+	称$1$的某个$n$次单位根$\varepsilon$为\textbf{单位原根}，如果对所有$m~(m<n)$，都有$\varepsilon$不是$1$的$m$次单位根. \\
+	$1$的所有$n$次单位原根的个数恰为$\varphi (n)$.
+\end{theorem}
+\begin{proof}
+	只需注意到，在所有单位根$\varepsilon _k~(k=0,\cdots ,n-1)$中，若$(k,n)>1$，则$\varepsilon _k$也是$1$的$\frac{n}{(k,n)}$次单位根.那么单位原根的个数就是小于$n$且与$n$互素的数的个数，即$\varphi (n)$.
+\end{proof}
+
+由探究单位原根的过程，自然有：
+
+\begin{theorem}{单位根的计算}
+	\begin{itemize}
+		\item 设$\varepsilon$是$1$的一个$n$次单位原根，若$(n,k)=1$，则$1,\varepsilon ^k,\varepsilon ^{2k},\cdots ,\varepsilon ^{(n-1)k}$刚好可以遍历$1$的所有$n$次单位根.
+		\item 若$n$能表示成$n=p_1 \cdots p_m$的形式且$p_1, \cdots ,p_m$两两互素，则$n$的所有单位原根可由$p_1,\cdots ,p_m$的所有单位原根两两相乘得到.
+		\item 若$n$能表示成$n=p_1 \cdots p_m$的形式且$p_1, \cdots ,p_m$两两互素，则$n$的所有单位根可由$p_1,\cdots ,p_m$的所有单位根两两相乘得到.
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	(1)若$(n,k)=1$，则$\{ 0,k,2k,\cdots ,(n-1)k \}$构成模$n$的一个完系，那么$$\{ 1,\varepsilon ^k,\varepsilon ^{2k},\cdots ,\varepsilon ^{(n-1)k} \} = \{ 1,\varepsilon ,\varepsilon ^2,\cdots ,\varepsilon ^{n-1}\}$$
+	这样得到的$n$个复数显然互不相同，且都是$1$的$n$次单位根，于是它们恰为所有的单位根. \\
+	(2)显然如上操作可以得到$n$的$\varphi (p_1) \cdots \varphi (p_m)$个互不相同的单位原根，又因为欧拉函数是积性的，故$n$的单位原根恰有$\varphi (n)=\varphi (p_1) \cdots \varphi (p_m)$个，于是这些单位原根就是$n$的所有单位原根. \\
+	(3)根据(1)与(2)，显然成立.
+\end{proof}
+
+单位根主要在因式分解和证明三角恒等式中起作用.
+
+\begin{example}
+	(1)已知复数满足$x^2+x+1=0$，则$x^{14}+x^{-14}=$\tk . \\
+	(2)已知复数$x,y,z$满足$|x|^2+|y|^2+|z|^2=1$，证明：$$|x^3+y^3+z^3-3xyz| \leq 1$$
+	(3)分解因式：$x^{12}+x^9+x^6+x^3+1$，并证明最终结果是既约的. \\
+	(4)设$P(x),Q(x),R(x),S(x)$满足$$P(x^5)+xQ(x^5)+x^2R(x^5)=(x^4+x^3+x^2+x+1)S(x)$$
+	求证：$x-1$是$P(x)$的一个因式.
+\end{example}
+
+\begin{example}
+	(1)求证：$$\sin n\theta = 2^{n-1} \prod_{k=0}^{n-1}\sin \ssb{\theta + \frac{k\pi}{n}}$$
+	(2)计算下式的值：$$\sum_{k=0}^{2n} \cos \ssb{\alpha + \frac{2k\pi}{2n+1}}$$
+	(3)求证：$$\sqrt{n} = 2^{n-1} \prod_{k=1}^{n-1} \sin \frac{k\pi}{2n}$$
+\end{example}
+
+
+\section{母函数的性质与应用}
+
+
 
 \part{组合}
 

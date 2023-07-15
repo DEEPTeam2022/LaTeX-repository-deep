@@ -190,7 +190,7 @@
 \ifdefstring{\ELEGANT@lang}{cn}{
   \ifdefstring{\ELEGANT@chinesefont}{founder}{
     \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
-    \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
+    \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03},Path=fonts/]{FZShuSong-Z01.TTF}
     \setCJKsansfont[BoldFont={FZHei-B01}]{FZKai-Z03}
     \setCJKmonofont[BoldFont={FZHei-B01}]{FZFangSong-Z02}
     \setCJKfamilyfont{zhsong}{FZShuSong-Z01}
